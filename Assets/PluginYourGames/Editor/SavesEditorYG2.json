@@ -1,0 +1,112 @@
+{
+    "idSave": 7384,
+    "GameSaveData": {
+        "Wallet": {
+            "Soft": 0,
+            "Middle": 145,
+            "Hard": 130
+        },
+        "Shop": {
+            "Levels": []
+        },
+        "OfflineIncome": {
+            "LastOnlineTicks": 639157336272202996
+        },
+        "DailyLogin": {
+            "CurrentDayIndex": 1,
+            "LastClaimUtcTicks": 639157230957646253
+        },
+        "DailyQuests": {
+            "DayKey": "20260530",
+            "Points": 60,
+            "Quests": [
+                {
+                    "Id": "1",
+                    "CurrentValue": 10,
+                    "IsCompleted": true,
+                    "IsPointsAdded": true
+                },
+                {
+                    "Id": "2",
+                    "CurrentValue": 20,
+                    "IsCompleted": true,
+                    "IsPointsAdded": true
+                },
+                {
+                    "Id": "3",
+                    "CurrentValue": 30,
+                    "IsCompleted": true,
+                    "IsPointsAdded": true
+                },
+                {
+                    "Id": "4",
+                    "CurrentValue": 40,
+                    "IsCompleted": true,
+                    "IsPointsAdded": true
+                },
+                {
+                    "Id": "5",
+                    "CurrentValue": 50,
+                    "IsCompleted": true,
+                    "IsPointsAdded": true
+                },
+                {
+                    "Id": "6",
+                    "CurrentValue": 60,
+                    "IsCompleted": true,
+                    "IsPointsAdded": true
+                }
+            ],
+            "Milestones": [
+                {
+                    "RequiredPoints": 20,
+                    "IsClaimed": true
+                },
+                {
+                    "RequiredPoints": 40,
+                    "IsClaimed": true
+                },
+                {
+                    "RequiredPoints": 60,
+                    "IsClaimed": true
+                }
+            ]
+        },
+        "PlayerProgression": {
+            "CompletedLevels": 18,
+            "CurrentExperience": 0
+        },
+        "Quests": {
+            "Quests": [
+                {
+                    "Id": "Second",
+                    "CurrentValue": 21266,
+                    "IsCompleted": false,
+                    "IsRewardClaimed": false
+                },
+                {
+                    "Id": "first",
+                    "CurrentValue": 100,
+                    "IsCompleted": true,
+                    "IsRewardClaimed": true
+                },
+                {
+                    "Id": "Third",
+                    "CurrentValue": 10,
+                    "IsCompleted": true,
+                    "IsRewardClaimed": true
+                },
+                {
+                    "Id": "Fourth",
+                    "CurrentValue": 5,
+                    "IsCompleted": true,
+                    "IsRewardClaimed": true
+                }
+            ]
+        },
+        "CardCollections": {
+            "Cards": [],
+            "Collections": []
+        }
+    }
+}

@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 963101fa59910ff4e97943952048cde2, type: 3}
+  m_Name: DailyQuestConfig
+  m_EditorClassIdentifier: Assembly-CSharp::DailyQuests.DailyQuestConfig
+  _quests:
+  - _id: 1
+    _titleLocalizationKey: daily_quest.1.title
+    _title: 
+    _descriptionLocalizationKey: daily_quest.1.description
+    _description: 10
+    _objectiveType: 0
+    _targetValue: 10
+    _targetId: 
+    _points: 10
+  - _id: 2
+    _titleLocalizationKey: daily_quest.2.title
+    _title: 
+    _descriptionLocalizationKey: daily_quest.2.description
+    _description: 20
+    _objectiveType: 0
+    _targetValue: 20
+    _targetId: 
+    _points: 10
+  - _id: 3
+    _titleLocalizationKey: daily_quest.3.title
+    _title: 
+    _descriptionLocalizationKey: daily_quest.3.description
+    _description: 30
+    _objectiveType: 0
+    _targetValue: 30
+    _targetId: 
+    _points: 10
+  - _id: 4
+    _titleLocalizationKey: daily_quest.4.title
+    _title: 
+    _descriptionLocalizationKey: daily_quest.4.description
+    _description: 40
+    _objectiveType: 0
+    _targetValue: 40
+    _targetId: 
+    _points: 10
+  - _id: 5
+    _titleLocalizationKey: daily_quest.5.title
+    _title: 
+    _descriptionLocalizationKey: daily_quest.5.description
+    _description: 50
+    _objectiveType: 0
+    _targetValue: 50
+    _targetId: 
+    _points: 10
+  - _id: 6
+    _titleLocalizationKey: daily_quest.6.title
+    _title: 
+    _descriptionLocalizationKey: daily_quest.6.description
+    _description: 60
+    _objectiveType: 0
+    _targetValue: 60
+    _targetId: 
+    _points: 10
+  _milestones:
+  - _requiredPoints: 20
+    _rewards:
+    - _rewardType: 0
+      _currencyType: 0
+      _amount: 10
+      _rewardId: 
+      _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayText: 
+  - _requiredPoints: 40
+    _rewards:
+    - _rewardType: 0
+      _currencyType: 1
+      _amount: 20
+      _rewardId: 
+      _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayText: 
+  - _requiredPoints: 60
+    _rewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 30
+      _rewardId: 
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayText: 

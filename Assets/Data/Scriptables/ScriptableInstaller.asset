@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92056a87af9192c49a6a7c633ab88747, type: 3}
+  m_Name: ScriptableInstaller
+  m_EditorClassIdentifier: Assembly-CSharp::ScriptableInstaller
+  _config: {fileID: 11400000, guid: 9c14dd04a025e3c4781ae1191e12af34, type: 2}
+  _dailyLoginConfig: {fileID: 11400000, guid: fc831dd0dcff244429af7e7760435240, type: 2}
+  _featureUnlockConfig: {fileID: 11400000, guid: 3bb12c427a4084b4980e131d0dacbbdb, type: 2}
+  _questConfig: {fileID: 11400000, guid: c3cfc2b8f4a34be4e874f9e807320652, type: 2}
+  _dailyQuestConfig: {fileID: 11400000, guid: 241f2d166d2abf4418f81527dcb0fd2f, type: 2}
+  _cardCollectionConfig: {fileID: 11400000, guid: d4a30b2eb6965c9408c784bcbf5f059d, type: 2}
+  _localizationConfig: {fileID: 11400000, guid: 5ff3821d613b6e94ba779ab5eed84355, type: 2}

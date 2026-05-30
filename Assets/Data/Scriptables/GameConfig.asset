@@ -1,0 +1,235 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6e261af5a9fc14ca359fdb9d05dabb, type: 3}
+  m_Name: GameConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Core.GameConfig
+  _clicks:
+  - _id: soft_paw
+    _nameLocalizationKey: shop.item.soft_paw.name
+    _name: "\u041C\u044F\u0433\u043A\u0430\u044F \u043B\u0430\u043F\u043A\u0430"
+    _icon: {fileID: 0}
+    _basePrice: 10
+    _baseBonus: 1
+  - _id: sharp_claws
+    _nameLocalizationKey: shop.item.sharp_claws.name
+    _name: "\u041E\u0441\u0442\u0440\u044B\u0435 \u043A\u043E\u0433\u043E\u0442\u043A\u0438"
+    _icon: {fileID: 0}
+    _basePrice: 25
+    _baseBonus: 2
+  - _id: cat_energy
+    _nameLocalizationKey: shop.item.cat_energy.name
+    _name: "\u041A\u043E\u0448\u0430\u0447\u044C\u044F \u044D\u043D\u0435\u0440\u0433\u0438\u044F"
+    _icon: {fileID: 0}
+    _basePrice: 60
+    _baseBonus: 3
+  - _id: quick_dash
+    _nameLocalizationKey: shop.item.quick_dash.name
+    _name: "\u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u0440\u044B\u0432\u043E\u043A"
+    _icon: {fileID: 0}
+    _basePrice: 120
+    _baseBonus: 5
+  - _id: hunting_instinct
+    _nameLocalizationKey: shop.item.hunting_instinct.name
+    _name: "\u041E\u0445\u043E\u0442\u043D\u0438\u0447\u0438\u0439 \u0438\u043D\u0441\u0442\u0438\u043D\u043A\u0442"
+    _icon: {fileID: 0}
+    _basePrice: 250
+    _baseBonus: 7
+  - _id: tail_agility
+    _nameLocalizationKey: shop.item.tail_agility.name
+    _name: "\u041B\u043E\u0432\u043A\u043E\u0441\u0442\u044C \u0445\u0432\u043E\u0441\u0442\u0430"
+    _icon: {fileID: 0}
+    _basePrice: 500
+    _baseBonus: 10
+  - _id: cat_training
+    _nameLocalizationKey: shop.item.cat_training.name
+    _name: "\u0422\u0440\u0435\u043D\u0438\u0440\u043E\u0432\u043A\u0430 \u043A\u043E\u0442\u0430"
+    _icon: {fileID: 0}
+    _basePrice: 1000
+    _baseBonus: 14
+  - _id: wild_thrill
+    _nameLocalizationKey: shop.item.wild_thrill.name
+    _name: "\u0414\u0438\u043A\u0438\u0439 \u0430\u0437\u0430\u0440\u0442"
+    _icon: {fileID: 0}
+    _basePrice: 2000
+    _baseBonus: 19
+  - _id: night_hunt
+    _nameLocalizationKey: shop.item.night_hunt.name
+    _name: "\u041D\u043E\u0447\u043D\u0430\u044F \u043E\u0445\u043E\u0442\u0430"
+    _icon: {fileID: 0}
+    _basePrice: 4000
+    _baseBonus: 25
+  - _id: predator_instinct
+    _nameLocalizationKey: shop.item.predator_instinct.name
+    _name: "\u0418\u043D\u0441\u0442\u0438\u043D\u043A\u0442 \u0445\u0438\u0449\u043D\u0438\u043A\u0430"
+    _icon: {fileID: 0}
+    _basePrice: 8000
+    _baseBonus: 33
+  - _id: royal_grace
+    _nameLocalizationKey: shop.item.royal_grace.name
+    _name: "\u041A\u043E\u0440\u043E\u043B\u0435\u0432\u0441\u043A\u0430\u044F \u0433\u0440\u0430\u0446\u0438\u044F"
+    _icon: {fileID: 0}
+    _basePrice: 15000
+    _baseBonus: 45
+  - _id: alpha_cat
+    _nameLocalizationKey: shop.item.alpha_cat.name
+    _name: "\u0410\u043B\u044C\u0444\u0430-\u043A\u043E\u0442"
+    _icon: {fileID: 0}
+    _basePrice: 30000
+    _baseBonus: 60
+  - _id: yard_legend
+    _nameLocalizationKey: shop.item.yard_legend.name
+    _name: "\u041B\u0435\u0433\u0435\u043D\u0434\u0430 \u0434\u0432\u043E\u0440\u0430"
+    _icon: {fileID: 0}
+    _basePrice: 60000
+    _baseBonus: 80
+  - _id: cat_god
+    _nameLocalizationKey: shop.item.cat_god.name
+    _name: "\u041A\u043E\u0448\u0430\u0447\u0438\u0439 \u0431\u043E\u0433"
+    _icon: {fileID: 0}
+    _basePrice: 120000
+    _baseBonus: 110
+  - _id: absolute_predator
+    _nameLocalizationKey: shop.item.absolute_predator.name
+    _name: "\u0410\u0431\u0441\u043E\u043B\u044E\u0442\u043D\u044B\u0439 \u0445\u0438\u0449\u043D\u0438\u043A"
+    _icon: {fileID: 0}
+    _basePrice: 250000
+    _baseBonus: 150
+  _autoBuys:
+  - _id: sleepy_cat
+    _nameLocalizationKey: shop.item.sleepy_cat.name
+    _name: "\u0421\u043E\u043D\u043D\u044B\u0439 \u043A\u043E\u0442\u0438\u043A"
+    _icon: {fileID: 0}
+    _basePrice: 50
+    _baseBonus: 1
+  - _id: cat_bed
+    _nameLocalizationKey: shop.item.cat_bed.name
+    _name: "\u041B\u0435\u0436\u0430\u043D\u043A\u0430"
+    _icon: {fileID: 0}
+    _basePrice: 150
+    _baseBonus: 2
+  - _id: food_bowl
+    _nameLocalizationKey: shop.item.food_bowl.name
+    _name: "\u041C\u0438\u0441\u043A\u0430 \u0441 \u0435\u0434\u043E\u0439"
+    _icon: {fileID: 0}
+    _basePrice: 400
+    _baseBonus: 3
+  - _id: toy_mouse
+    _nameLocalizationKey: shop.item.toy_mouse.name
+    _name: "\u0418\u0433\u0440\u0443\u0448\u0435\u0447\u043D\u0430\u044F \u043C\u044B\u0448\u044C"
+    _icon: {fileID: 0}
+    _basePrice: 1000
+    _baseBonus: 5
+  - _id: scratching_post
+    _nameLocalizationKey: shop.item.scratching_post.name
+    _name: "\u041A\u043E\u0433\u0442\u0435\u0442\u043E\u0447\u043A\u0430"
+    _icon: {fileID: 0}
+    _basePrice: 2500
+    _baseBonus: 7
+  - _id: cat_house
+    _nameLocalizationKey: shop.item.cat_house.name
+    _name: "\u0414\u043E\u043C\u0438\u043A \u043A\u043E\u0442\u0430"
+    _icon: {fileID: 0}
+    _basePrice: 6000
+    _baseBonus: 10
+  - _id: auto_feeder
+    _nameLocalizationKey: shop.item.auto_feeder.name
+    _name: "\u0410\u0432\u0442\u043E\u043A\u043E\u0440\u043C\u0443\u0448\u043A\u0430"
+    _icon: {fileID: 0}
+    _basePrice: 15000
+    _baseBonus: 14
+  - _id: robo_toy
+    _nameLocalizationKey: shop.item.robo_toy.name
+    _name: "\u0420\u043E\u0431\u043E-\u0438\u0433\u0440\u0443\u0448\u043A\u0430"
+    _icon: {fileID: 0}
+    _basePrice: 35000
+    _baseBonus: 20
+  - _id: cat_helper
+    _nameLocalizationKey: shop.item.cat_helper.name
+    _name: "\u041A\u043E\u0448\u0430\u0447\u0438\u0439 \u043F\u043E\u043C\u043E\u0449\u043D\u0438\u043A"
+    _icon: {fileID: 0}
+    _basePrice: 80000
+    _baseBonus: 28
+  - _id: mini_food_farm
+    _nameLocalizationKey: shop.item.mini_food_farm.name
+    _name: "\u041C\u0438\u043D\u0438-\u0444\u0435\u0440\u043C\u0430 \u0435\u0434\u044B"
+    _icon: {fileID: 0}
+    _basePrice: 180000
+    _baseBonus: 40
+  - _id: cat_manager
+    _nameLocalizationKey: shop.item.cat_manager.name
+    _name: "\u041A\u043E\u0442-\u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440"
+    _icon: {fileID: 0}
+    _basePrice: 400000
+    _baseBonus: 55
+  - _id: treat_factory
+    _nameLocalizationKey: shop.item.treat_factory.name
+    _name: "\u0424\u0430\u0431\u0440\u0438\u043A\u0430 \u043B\u0430\u043A\u043E\u043C\u0441\u0442\u0432"
+    _icon: {fileID: 0}
+    _basePrice: 900000
+    _baseBonus: 75
+  - _id: cat_business
+    _nameLocalizationKey: shop.item.cat_business.name
+    _name: "\u041A\u043E\u0448\u0430\u0447\u0438\u0439 \u0431\u0438\u0437\u043D\u0435\u0441"
+    _icon: {fileID: 0}
+    _basePrice: 2000000
+    _baseBonus: 100
+  - _id: cat_empire
+    _nameLocalizationKey: shop.item.cat_empire.name
+    _name: "\u0418\u043C\u043F\u0435\u0440\u0438\u044F \u043A\u043E\u0442\u043E\u0432"
+    _icon: {fileID: 0}
+    _basePrice: 5000000
+    _baseBonus: 140
+  - _id: endless_food_supply
+    _nameLocalizationKey: shop.item.endless_food_supply.name
+    _name: "\u0411\u0435\u0441\u043A\u043E\u043D\u0435\u0447\u043D\u044B\u0439 \u0437\u0430\u043F\u0430\u0441
+      \u0435\u0434\u044B"
+    _icon: {fileID: 0}
+    _basePrice: 12000000
+    _baseBonus: 200
+  _paidBuys: []
+  _softPriceIcon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+  _paidPriceIcon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+  _offlineIncome:
+    _hardClaimCost: 10
+    _adMultiplier: 2
+    _paidMultiplier: 2
+    _minSecondsToShow: 0
+  _playerProgression:
+    _middleRewardPerLevel: 5
+    _experienceRewards:
+    - _source: 0
+      _experience: 1
+    - _source: 1
+      _experience: 1
+    - _source: 2
+      _experience: 10
+    _levels:
+    - _experienceToComplete: 100
+      _rewardIcon: {fileID: -4439254127691508170, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _bonuses:
+      - _type: 0
+        _percent: 5
+    - _experienceToComplete: 100
+      _rewardIcon: {fileID: -4439254127691508170, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _bonuses:
+      - _type: 1
+        _percent: 10
+    - _experienceToComplete: 100
+      _rewardIcon: {fileID: -4439254127691508170, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _bonuses:
+      - _type: 0
+        _percent: 5
+      - _type: 1
+        _percent: 5
+  _data:
+    _scenesId:
+      _mainSceneId: 

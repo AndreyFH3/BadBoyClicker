@@ -1,0 +1,707 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781e2fd61d2d4dc2bbfdd626db5a6c68, type: 3}
+  m_Name: LocalizationConfig
+  m_EditorClassIdentifier: Assembly-CSharp::GameLocalization.LocalizationConfig
+  _defaultLanguage: ru
+  _currentLanguage: ru
+  _entries:
+  - _key: common.cancel
+    _values:
+    - _language: ru
+      _text: "\u041E\u0442\u043C\u0435\u043D\u0430"
+    - _language: en
+      _text: Cancel
+  - _key: common.ok
+    _values:
+    - _language: ru
+      _text: "\u041E\u041A"
+    - _language: en
+      _text: OK
+  - _key: common.done
+    _values:
+    - _language: ru
+      _text: "\u0413\u043E\u0442\u043E\u0432\u043E"
+    - _language: en
+      _text: Done
+  - _key: common.take
+    _values:
+    - _language: ru
+      _text: "\u0417\u0430\u0431\u0440\u0430\u0442\u044C"
+    - _language: en
+      _text: Take
+  - _key: ui.shop
+    _values:
+    - _language: ru
+      _text: "\u041C\u0430\u0433\u0430\u0437\u0438\u043D"
+    - _language: en
+      _text: Shop
+  - _key: ui.purchases
+    _values:
+    - _language: ru
+      _text: "\u041F\u043E\u043A\u0443\u043F\u043A\u0438"
+    - _language: en
+      _text: Purchases
+  - _key: ui.settings
+    _values:
+    - _language: ru
+      _text: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
+    - _language: en
+      _text: Settings
+  - _key: ui.click
+    _values:
+    - _language: ru
+      _text: "\u041A\u043B\u0438\u043A\u0430\u0442\u044C"
+    - _language: en
+      _text: Click
+  - _key: ui.daily
+    _values:
+    - _language: ru
+      _text: "\u0415\u0436\u0435\u0434\u043D\u0435\u0432\u043D\u043E"
+    - _language: en
+      _text: Daily
+  - _key: offline_income.title
+    _values:
+    - _language: ru
+      _text: "\u041E\u0444\u0444\u043B\u0430\u0439\u043D \u0434\u043E\u0445\u043E\u0434"
+    - _language: en
+      _text: Offline Earn
+  - _key: reward.currency_amount
+    _values:
+    - _language: ru
+      _text: +{0} {1}
+    - _language: en
+      _text: +{0} {1}
+  - _key: currency.soft
+    _values:
+    - _language: ru
+      _text: "\u043C\u043E\u043D\u0435\u0442"
+    - _language: en
+      _text: coins
+  - _key: currency.decor
+    _values:
+    - _language: ru
+      _text: "\u0434\u0435\u043A\u043E\u0440\u0430"
+    - _language: en
+      _text: decor
+  - _key: currency.hard
+    _values:
+    - _language: ru
+      _text: "\u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u043E\u0432"
+    - _language: en
+      _text: gems
+  - _key: shop.item.level
+    _values:
+    - _language: ru
+      _text: "\u0423\u0440. {0}"
+    - _language: en
+      _text: Lvl {0}
+  - _key: shop.item.bonus
+    _values:
+    - _language: ru
+      _text: +{0}
+    - _language: en
+      _text: +{0}
+  - _key: shop.item.soft_paw.name
+    _values:
+    - _language: ru
+      _text: "\u041C\u044F\u0433\u043A\u0430\u044F \u043B\u0430\u043F\u043A\u0430"
+    - _language: en
+      _text: Soft Paw
+  - _key: shop.item.sharp_claws.name
+    _values:
+    - _language: ru
+      _text: "\u041E\u0441\u0442\u0440\u044B\u0435 \u043A\u043E\u0433\u043E\u0442\u043A\u0438"
+    - _language: en
+      _text: Sharp Claws
+  - _key: shop.item.cat_energy.name
+    _values:
+    - _language: ru
+      _text: "\u041A\u043E\u0448\u0430\u0447\u044C\u044F \u044D\u043D\u0435\u0440\u0433\u0438\u044F"
+    - _language: en
+      _text: Cat Energy
+  - _key: shop.item.quick_dash.name
+    _values:
+    - _language: ru
+      _text: "\u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u0440\u044B\u0432\u043E\u043A"
+    - _language: en
+      _text: Quick Dash
+  - _key: shop.item.hunting_instinct.name
+    _values:
+    - _language: ru
+      _text: "\u041E\u0445\u043E\u0442\u043D\u0438\u0447\u0438\u0439 \u0438\u043D\u0441\u0442\u0438\u043D\u043A\u0442"
+    - _language: en
+      _text: Hunting Instinct
+  - _key: shop.item.tail_agility.name
+    _values:
+    - _language: ru
+      _text: "\u041B\u043E\u0432\u043A\u043E\u0441\u0442\u044C \u0445\u0432\u043E\u0441\u0442\u0430"
+    - _language: en
+      _text: Tail Agility
+  - _key: shop.item.cat_training.name
+    _values:
+    - _language: ru
+      _text: "\u0422\u0440\u0435\u043D\u0438\u0440\u043E\u0432\u043A\u0430 \u043A\u043E\u0442\u0430"
+    - _language: en
+      _text: Cat Training
+  - _key: shop.item.wild_thrill.name
+    _values:
+    - _language: ru
+      _text: "\u0414\u0438\u043A\u0438\u0439 \u0430\u0437\u0430\u0440\u0442"
+    - _language: en
+      _text: Wild Thrill
+  - _key: shop.item.night_hunt.name
+    _values:
+    - _language: ru
+      _text: "\u041D\u043E\u0447\u043D\u0430\u044F \u043E\u0445\u043E\u0442\u0430"
+    - _language: en
+      _text: Night Hunt
+  - _key: shop.item.predator_instinct.name
+    _values:
+    - _language: ru
+      _text: "\u0418\u043D\u0441\u0442\u0438\u043D\u043A\u0442 \u0445\u0438\u0449\u043D\u0438\u043A\u0430"
+    - _language: en
+      _text: Predator Instinct
+  - _key: shop.item.royal_grace.name
+    _values:
+    - _language: ru
+      _text: "\u041A\u043E\u0440\u043E\u043B\u0435\u0432\u0441\u043A\u0430\u044F
+        \u0433\u0440\u0430\u0446\u0438\u044F"
+    - _language: en
+      _text: Royal Grace
+  - _key: shop.item.alpha_cat.name
+    _values:
+    - _language: ru
+      _text: "\u0410\u043B\u044C\u0444\u0430-\u043A\u043E\u0442"
+    - _language: en
+      _text: Alpha Cat
+  - _key: shop.item.yard_legend.name
+    _values:
+    - _language: ru
+      _text: "\u041B\u0435\u0433\u0435\u043D\u0434\u0430 \u0434\u0432\u043E\u0440\u0430"
+    - _language: en
+      _text: Yard Legend
+  - _key: shop.item.cat_god.name
+    _values:
+    - _language: ru
+      _text: "\u041A\u043E\u0448\u0430\u0447\u0438\u0439 \u0431\u043E\u0433"
+    - _language: en
+      _text: Cat God
+  - _key: shop.item.absolute_predator.name
+    _values:
+    - _language: ru
+      _text: "\u0410\u0431\u0441\u043E\u043B\u044E\u0442\u043D\u044B\u0439 \u0445\u0438\u0449\u043D\u0438\u043A"
+    - _language: en
+      _text: Absolute Predator
+  - _key: shop.item.sleepy_cat.name
+    _values:
+    - _language: ru
+      _text: "\u0421\u043E\u043D\u043D\u044B\u0439 \u043A\u043E\u0442\u0438\u043A"
+    - _language: en
+      _text: Sleepy Cat
+  - _key: shop.item.cat_bed.name
+    _values:
+    - _language: ru
+      _text: "\u041B\u0435\u0436\u0430\u043D\u043A\u0430"
+    - _language: en
+      _text: Cat Bed
+  - _key: shop.item.food_bowl.name
+    _values:
+    - _language: ru
+      _text: "\u041C\u0438\u0441\u043A\u0430 \u0441 \u0435\u0434\u043E\u0439"
+    - _language: en
+      _text: Food Bowl
+  - _key: shop.item.toy_mouse.name
+    _values:
+    - _language: ru
+      _text: "\u0418\u0433\u0440\u0443\u0448\u0435\u0447\u043D\u0430\u044F \u043C\u044B\u0448\u044C"
+    - _language: en
+      _text: Toy Mouse
+  - _key: shop.item.scratching_post.name
+    _values:
+    - _language: ru
+      _text: "\u041A\u043E\u0433\u0442\u0435\u0442\u043E\u0447\u043A\u0430"
+    - _language: en
+      _text: Scratching Post
+  - _key: shop.item.cat_house.name
+    _values:
+    - _language: ru
+      _text: "\u0414\u043E\u043C\u0438\u043A \u043A\u043E\u0442\u0430"
+    - _language: en
+      _text: Cat House
+  - _key: shop.item.auto_feeder.name
+    _values:
+    - _language: ru
+      _text: "\u0410\u0432\u0442\u043E\u043A\u043E\u0440\u043C\u0443\u0448\u043A\u0430"
+    - _language: en
+      _text: Auto Feeder
+  - _key: shop.item.robo_toy.name
+    _values:
+    - _language: ru
+      _text: "\u0420\u043E\u0431\u043E-\u0438\u0433\u0440\u0443\u0448\u043A\u0430"
+    - _language: en
+      _text: Robo Toy
+  - _key: shop.item.cat_helper.name
+    _values:
+    - _language: ru
+      _text: "\u041A\u043E\u0448\u0430\u0447\u0438\u0439 \u043F\u043E\u043C\u043E\u0449\u043D\u0438\u043A"
+    - _language: en
+      _text: Cat Helper
+  - _key: shop.item.mini_food_farm.name
+    _values:
+    - _language: ru
+      _text: "\u041C\u0438\u043D\u0438-\u0444\u0435\u0440\u043C\u0430 \u0435\u0434\u044B"
+    - _language: en
+      _text: Mini Food Farm
+  - _key: shop.item.cat_manager.name
+    _values:
+    - _language: ru
+      _text: "\u041A\u043E\u0442-\u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440"
+    - _language: en
+      _text: Cat Manager
+  - _key: shop.item.treat_factory.name
+    _values:
+    - _language: ru
+      _text: "\u0424\u0430\u0431\u0440\u0438\u043A\u0430 \u043B\u0430\u043A\u043E\u043C\u0441\u0442\u0432"
+    - _language: en
+      _text: Treat Factory
+  - _key: shop.item.cat_business.name
+    _values:
+    - _language: ru
+      _text: "\u041A\u043E\u0448\u0430\u0447\u0438\u0439 \u0431\u0438\u0437\u043D\u0435\u0441"
+    - _language: en
+      _text: Cat Business
+  - _key: shop.item.cat_empire.name
+    _values:
+    - _language: ru
+      _text: "\u0418\u043C\u043F\u0435\u0440\u0438\u044F \u043A\u043E\u0442\u043E\u0432"
+    - _language: en
+      _text: Cat Empire
+  - _key: shop.item.endless_food_supply.name
+    _values:
+    - _language: ru
+      _text: "\u0411\u0435\u0441\u043A\u043E\u043D\u0435\u0447\u043D\u044B\u0439
+        \u0437\u0430\u043F\u0430\u0441 \u0435\u0434\u044B"
+    - _language: en
+      _text: Endless Food Supply
+  - _key: quest.first.title
+    _values:
+    - _language: ru
+      _text: "\u041D\u0430\u043A\u043B\u0438\u043A\u0430\u0442\u044C 100 \u0440\u0430\u0437"
+    - _language: en
+      _text: Click 100 times
+  - _key: quest.first.description
+    _values:
+    - _language: ru
+      _text: "\u0421\u0434\u0435\u043B\u0430\u0442\u044C 100 \u043A\u043B\u0438\u043A\u043E\u0432
+        \u043F\u043E \u043A\u043E\u0442\u0438\u043A\u0443"
+    - _language: en
+      _text: Click the cat 100 times
+  - _key: quest.second.title
+    _values:
+    - _language: ru
+      _text: "\u0417\u0430\u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C 100\u041A"
+    - _language: en
+      _text: Earn 100K
+  - _key: quest.second.description
+    _values:
+    - _language: ru
+      _text: "\u0417\u0430\u0440\u0430\u0431\u043E\u0442\u0430\u0442\u044C 100\u041A
+        \u043C\u043E\u043D\u0435\u0442\u043E\u043A"
+    - _language: en
+      _text: Earn 100K coins
+  - _key: quest.third.title
+    _values:
+    - _language: ru
+      _text: "\u041A\u0443\u043F\u0438\u0442\u044C 10 \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0439
+        \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435"
+    - _language: en
+      _text: Buy 10 shop upgrades
+  - _key: quest.third.description
+    _values:
+    - _language: ru
+      _text: "\u041A\u0443\u043F\u0438\u0442\u044C 10 \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u0438\u0439
+        \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435"
+    - _language: en
+      _text: Buy 10 upgrades in the shop
+  - _key: quest.fourth.title
+    _values:
+    - _language: ru
+      _text: "\u0414\u043E\u0441\u0442\u0438\u0447\u044C 5 \u0443\u0440\u043E\u0432\u043D\u044F"
+    - _language: en
+      _text: Reach level 5
+  - _key: quest.fourth.description
+    _values:
+    - _language: ru
+      _text: "\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u044C 5 \u0443\u0440\u043E\u0432\u043D\u0435\u0439
+        \u043F\u0440\u043E\u0433\u0440\u0435\u0441\u0441\u0430 \u0438\u0433\u0440\u043E\u043A\u0430"
+    - _language: en
+      _text: Complete 5 player progression levels
+  - _key: daily_quest.1.title
+    _values:
+    - _language: ru
+      _text: "\u0421\u0434\u0435\u043B\u0430\u0442\u044C 10 \u043A\u043B\u0438\u043A\u043E\u0432"
+    - _language: en
+      _text: Make 10 clicks
+  - _key: daily_quest.1.description
+    _values:
+    - _language: ru
+      _text: "\u041A\u043B\u0438\u043A\u043D\u0438 10 \u0440\u0430\u0437 \u0437\u0430
+        \u0441\u0435\u0433\u043E\u0434\u043D\u044F"
+    - _language: en
+      _text: Click 10 times today
+  - _key: daily_quest.2.title
+    _values:
+    - _language: ru
+      _text: "\u0421\u0434\u0435\u043B\u0430\u0442\u044C 20 \u043A\u043B\u0438\u043A\u043E\u0432"
+    - _language: en
+      _text: Make 20 clicks
+  - _key: daily_quest.2.description
+    _values:
+    - _language: ru
+      _text: "\u041A\u043B\u0438\u043A\u043D\u0438 20 \u0440\u0430\u0437 \u0437\u0430
+        \u0441\u0435\u0433\u043E\u0434\u043D\u044F"
+    - _language: en
+      _text: Click 20 times today
+  - _key: daily_quest.3.title
+    _values:
+    - _language: ru
+      _text: "\u0421\u0434\u0435\u043B\u0430\u0442\u044C 30 \u043A\u043B\u0438\u043A\u043E\u0432"
+    - _language: en
+      _text: Make 30 clicks
+  - _key: daily_quest.3.description
+    _values:
+    - _language: ru
+      _text: "\u041A\u043B\u0438\u043A\u043D\u0438 30 \u0440\u0430\u0437 \u0437\u0430
+        \u0441\u0435\u0433\u043E\u0434\u043D\u044F"
+    - _language: en
+      _text: Click 30 times today
+  - _key: daily_quest.4.title
+    _values:
+    - _language: ru
+      _text: "\u0421\u0434\u0435\u043B\u0430\u0442\u044C 40 \u043A\u043B\u0438\u043A\u043E\u0432"
+    - _language: en
+      _text: Make 40 clicks
+  - _key: daily_quest.4.description
+    _values:
+    - _language: ru
+      _text: "\u041A\u043B\u0438\u043A\u043D\u0438 40 \u0440\u0430\u0437 \u0437\u0430
+        \u0441\u0435\u0433\u043E\u0434\u043D\u044F"
+    - _language: en
+      _text: Click 40 times today
+  - _key: daily_quest.5.title
+    _values:
+    - _language: ru
+      _text: "\u0421\u0434\u0435\u043B\u0430\u0442\u044C 50 \u043A\u043B\u0438\u043A\u043E\u0432"
+    - _language: en
+      _text: Make 50 clicks
+  - _key: daily_quest.5.description
+    _values:
+    - _language: ru
+      _text: "\u041A\u043B\u0438\u043A\u043D\u0438 50 \u0440\u0430\u0437 \u0437\u0430
+        \u0441\u0435\u0433\u043E\u0434\u043D\u044F"
+    - _language: en
+      _text: Click 50 times today
+  - _key: daily_quest.6.title
+    _values:
+    - _language: ru
+      _text: "\u0421\u0434\u0435\u043B\u0430\u0442\u044C 60 \u043A\u043B\u0438\u043A\u043E\u0432"
+    - _language: en
+      _text: Make 60 clicks
+  - _key: daily_quest.6.description
+    _values:
+    - _language: ru
+      _text: "\u041A\u043B\u0438\u043A\u043D\u0438 60 \u0440\u0430\u0437 \u0437\u0430
+        \u0441\u0435\u0433\u043E\u0434\u043D\u044F"
+    - _language: en
+      _text: Click 60 times today
+  - _key: card_collection.0.title
+    _values:
+    - _language: ru
+      _text: "\u041F\u0435\u0440\u0432\u0430\u044F \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u044F"
+    - _language: en
+      _text: First Collection
+  - _key: card_collection.0.description
+    _values:
+    - _language: ru
+      _text: "\u0421\u043E\u0431\u0435\u0440\u0438 \u0432\u0441\u0435 \u043A\u0430\u0440\u0442\u044B
+        \u043F\u0435\u0440\u0432\u043E\u0439 \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: Collect every card in the first collection
+  - _key: card_collection.1.title
+    _values:
+    - _language: ru
+      _text: "\u0412\u0442\u043E\u0440\u0430\u044F \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u044F"
+    - _language: en
+      _text: Second Collection
+  - _key: card_collection.1.description
+    _values:
+    - _language: ru
+      _text: "\u0421\u043E\u0431\u0435\u0440\u0438 \u0432\u0441\u0435 \u043A\u0430\u0440\u0442\u044B
+        \u0432\u0442\u043E\u0440\u043E\u0439 \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: Collect every card in the second collection
+  - _key: card_collection.card.0_1.title
+    _values:
+    - _language: ru
+      _text: "\u041A\u0430\u0440\u0442\u0430 1-1"
+    - _language: en
+      _text: Card 1-1
+  - _key: card_collection.card.0_1.description
+    _values:
+    - _language: ru
+      _text: "\u041F\u0435\u0440\u0432\u0430\u044F \u043A\u0430\u0440\u0442\u0430
+        \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: The first card in the collection
+  - _key: card_collection.card.0_2.title
+    _values:
+    - _language: ru
+      _text: "\u041A\u0430\u0440\u0442\u0430 1-2"
+    - _language: en
+      _text: Card 1-2
+  - _key: card_collection.card.0_2.description
+    _values:
+    - _language: ru
+      _text: "\u0412\u0442\u043E\u0440\u0430\u044F \u043A\u0430\u0440\u0442\u0430
+        \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: The second card in the collection
+  - _key: card_collection.card.0_3.title
+    _values:
+    - _language: ru
+      _text: "\u041A\u0430\u0440\u0442\u0430 1-3"
+    - _language: en
+      _text: Card 1-3
+  - _key: card_collection.card.0_3.description
+    _values:
+    - _language: ru
+      _text: "\u0422\u0440\u0435\u0442\u044C\u044F \u043A\u0430\u0440\u0442\u0430
+        \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: The third card in the collection
+  - _key: card_collection.card.0_4.title
+    _values:
+    - _language: ru
+      _text: "\u041A\u0430\u0440\u0442\u0430 1-4"
+    - _language: en
+      _text: Card 1-4
+  - _key: card_collection.card.0_4.description
+    _values:
+    - _language: ru
+      _text: "\u0427\u0435\u0442\u0432\u0435\u0440\u0442\u0430\u044F \u043A\u0430\u0440\u0442\u0430
+        \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: The fourth card in the collection
+  - _key: card_collection.card.0_5.title
+    _values:
+    - _language: ru
+      _text: "\u041A\u0430\u0440\u0442\u0430 1-5"
+    - _language: en
+      _text: Card 1-5
+  - _key: card_collection.card.0_5.description
+    _values:
+    - _language: ru
+      _text: "\u041F\u044F\u0442\u0430\u044F \u043A\u0430\u0440\u0442\u0430 \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: The fifth card in the collection
+  - _key: card_collection.card.0_6.title
+    _values:
+    - _language: ru
+      _text: "\u041A\u0430\u0440\u0442\u0430 1-6"
+    - _language: en
+      _text: Card 1-6
+  - _key: card_collection.card.0_6.description
+    _values:
+    - _language: ru
+      _text: "\u0428\u0435\u0441\u0442\u0430\u044F \u043A\u0430\u0440\u0442\u0430
+        \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: The sixth card in the collection
+  - _key: card_collection.card.1_1.title
+    _values:
+    - _language: ru
+      _text: "\u041A\u0430\u0440\u0442\u0430 2-1"
+    - _language: en
+      _text: Card 2-1
+  - _key: card_collection.card.1_1.description
+    _values:
+    - _language: ru
+      _text: "\u041F\u0435\u0440\u0432\u0430\u044F \u043A\u0430\u0440\u0442\u0430
+        \u0432\u0442\u043E\u0440\u043E\u0439 \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: The first card in the second collection
+  - _key: card_collection.card.1_2.title
+    _values:
+    - _language: ru
+      _text: "\u041A\u0430\u0440\u0442\u0430 2-2"
+    - _language: en
+      _text: Card 2-2
+  - _key: card_collection.card.1_2.description
+    _values:
+    - _language: ru
+      _text: "\u0412\u0442\u043E\u0440\u0430\u044F \u043A\u0430\u0440\u0442\u0430
+        \u0432\u0442\u043E\u0440\u043E\u0439 \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: The second card in the second collection
+  - _key: card_collection.card.1_3.title
+    _values:
+    - _language: ru
+      _text: "\u041A\u0430\u0440\u0442\u0430 2-3"
+    - _language: en
+      _text: Card 2-3
+  - _key: card_collection.card.1_3.description
+    _values:
+    - _language: ru
+      _text: "\u0422\u0440\u0435\u0442\u044C\u044F \u043A\u0430\u0440\u0442\u0430
+        \u0432\u0442\u043E\u0440\u043E\u0439 \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: The third card in the second collection
+  - _key: card_collection.card.1_4.title
+    _values:
+    - _language: ru
+      _text: "\u041A\u0430\u0440\u0442\u0430 2-4"
+    - _language: en
+      _text: Card 2-4
+  - _key: card_collection.card.1_4.description
+    _values:
+    - _language: ru
+      _text: "\u0427\u0435\u0442\u0432\u0435\u0440\u0442\u0430\u044F \u043A\u0430\u0440\u0442\u0430
+        \u0432\u0442\u043E\u0440\u043E\u0439 \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: The fourth card in the second collection
+  - _key: card_collection.card.1_5.title
+    _values:
+    - _language: ru
+      _text: "\u041A\u0430\u0440\u0442\u0430 2-5"
+    - _language: en
+      _text: Card 2-5
+  - _key: card_collection.card.1_5.description
+    _values:
+    - _language: ru
+      _text: "\u041F\u044F\u0442\u0430\u044F \u043A\u0430\u0440\u0442\u0430 \u0432\u0442\u043E\u0440\u043E\u0439
+        \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: The fifth card in the second collection
+  - _key: card_collection.card.1_6.title
+    _values:
+    - _language: ru
+      _text: "\u041A\u0430\u0440\u0442\u0430 2-6"
+    - _language: en
+      _text: Card 2-6
+  - _key: card_collection.card.1_6.description
+    _values:
+    - _language: ru
+      _text: "\u0428\u0435\u0441\u0442\u0430\u044F \u043A\u0430\u0440\u0442\u0430
+        \u0432\u0442\u043E\u0440\u043E\u0439 \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438"
+    - _language: en
+      _text: The sixth card in the second collection
+  - _key: player_features.locked_level
+    _values:
+    - _language: ru
+      _text: "\u041E\u0442\u043A\u0440\u043E\u0435\u0442\u0441\u044F \u043D\u0430
+        \u0443\u0440\u043E\u0432\u043D\u0435 {0}"
+    - _language: en
+      _text: Unlocks at level {0}
+  - _key: player_progression.level
+    _values:
+    - _language: ru
+      _text: "\u0423\u0440. {0}"
+    - _language: en
+      _text: LVL {0}
+  - _key: player_progression.new_level_button
+    _values:
+    - _language: ru
+      _text: "\u041D\u043E\u0432\u044B\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C"
+    - _language: en
+      _text: New level
+  - _key: player_progression.level_up
+    _values:
+    - _language: ru
+      _text: "\u041F\u043E\u0432\u044B\u0441\u0438\u0442\u044C \u0443\u0440\u043E\u0432\u0435\u043D\u044C"
+    - _language: en
+      _text: Level Up
+  - _key: player_progression.level_up_offer
+    _values:
+    - _language: ru
+      _text: "\u041F\u043E\u043A\u0443\u043F\u043A\u0438 \u0438 \u043C\u044F\u0433\u043A\u0430\u044F
+        \u0432\u0430\u043B\u044E\u0442\u0430 \u0431\u0443\u0434\u0443\u0442 \u0441\u0431\u0440\u043E\u0448\u0435\u043D\u044B.\n\u0422\u044B
+        \u043F\u043E\u043B\u0443\u0447\u0438\u0448\u044C:\n{0}"
+    - _language: en
+      _text: 'Purchases and soft currency will be reset.
+
+        You will receive:
+
+        {0}'
+  - _key: player_progression.level_up_result
+    _values:
+    - _language: ru
+      _text: "\u041D\u043E\u0432\u044B\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C
+        \u0434\u043E\u0441\u0442\u0438\u0433\u043D\u0443\u0442!\n{0}"
+    - _language: en
+      _text: 'New level reached!
+
+        {0}'
+  - _key: player_progression.level_up_offer_runtime
+    _values:
+    - _language: ru
+      _text: "\u041F\u043E\u043A\u0443\u043F\u043A\u0438 \u0438 \u043C\u044F\u0433\u043A\u0430\u044F
+        \u0432\u0430\u043B\u044E\u0442\u0430 \u0431\u0443\u0434\u0443\u0442 \u0441\u0431\u0440\u043E\u0448\u0435\u043D\u044B.\n\n\u0422\u044B
+        \u043F\u043E\u043B\u0443\u0447\u0438\u0448\u044C:\n{0}"
+    - _language: en
+      _text: 'Purchases and soft currency will be reset.
+
+
+        You will receive:
+
+        {0}'
+  - _key: player_progression.level_up_result_runtime
+    _values:
+    - _language: ru
+      _text: "\u041D\u043E\u0432\u044B\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C
+        \u0434\u043E\u0441\u0442\u0438\u0433\u043D\u0443\u0442!\n\n{0}"
+    - _language: en
+      _text: 'New level reached!
+
+
+        {0}'
+  - _key: player_progression.reward.middle_currency
+    _values:
+    - _language: ru
+      _text: "+{0} \u0434\u0435\u043A\u043E\u0440\u0430"
+    - _language: en
+      _text: +{0} decor currency
+  - _key: player_progression.reward.bonus_percent
+    _values:
+    - _language: ru
+      _text: +{0:0.#}% {1}
+    - _language: en
+      _text: +{0:0.#}% {1}
+  - _key: player_progression.reward.new_level
+    _values:
+    - _language: ru
+      _text: "\u041D\u043E\u0432\u044B\u0439 \u0443\u0440\u043E\u0432\u0435\u043D\u044C"
+    - _language: en
+      _text: New level
+  - _key: player_progression.bonus.click_income
+    _values:
+    - _language: ru
+      _text: "\u043A \u0434\u043E\u0445\u043E\u0434\u0443 \u0437\u0430 \u043A\u043B\u0438\u043A"
+    - _language: en
+      _text: to click income
+  - _key: player_progression.bonus.passive_income
+    _values:
+    - _language: ru
+      _text: "\u043A \u043F\u0430\u0441\u0441\u0438\u0432\u043D\u043E\u043C\u0443
+        \u0434\u043E\u0445\u043E\u0434\u0443"
+    - _language: en
+      _text: to passive income

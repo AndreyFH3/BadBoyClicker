@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb9b23e37bfafe40ae3b9572d9bdca1, type: 3}
+  m_Name: DailyLoginConfig
+  m_EditorClassIdentifier: Assembly-CSharp::DailyLogin.DailyLoginConfig
+  _days:
+  - _reward:
+      _rewardType: 0
+      _currencyType: 0
+      _amount: 100
+      _rewardId: first
+      _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayText: 100
+  - _reward:
+      _rewardType: 0
+      _currencyType: 1
+      _amount: 15
+      _rewardId: second
+      _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayText: 15
+  - _reward:
+      _rewardType: 0
+      _currencyType: 2
+      _amount: 20
+      _rewardId: third
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayText: 20

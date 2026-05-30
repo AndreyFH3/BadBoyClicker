@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2767f1aeec88a6e4f9135776ee9e6ccf, type: 3}
+  m_Name: CardCollectionConfig
+  m_EditorClassIdentifier: Assembly-CSharp::CardCollections.CardCollectionConfig
+  _collections:
+  - _id: 0
+    _titleLocalizationKey: card_collection.0.title
+    _title: 
+    _descriptionLocalizationKey: card_collection.0.description
+    _description: 
+    _cards:
+    - _id: 0_1
+      _titleLocalizationKey: card_collection.card.0_1.title
+      _title: 123
+      _descriptionLocalizationKey: card_collection.card.0_1.description
+      _description: 123
+      _requiredAmount: 0
+      _stars: 1
+      _icon: {fileID: -1435123845590555009, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
+    - _id: 0_2
+      _titleLocalizationKey: card_collection.card.0_2.title
+      _title: 
+      _descriptionLocalizationKey: card_collection.card.0_2.description
+      _description: 
+      _requiredAmount: 0
+      _stars: 1
+      _icon: {fileID: -1937676155757957757, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
+    - _id: 0_3
+      _titleLocalizationKey: card_collection.card.0_3.title
+      _title: 
+      _descriptionLocalizationKey: card_collection.card.0_3.description
+      _description: 
+      _requiredAmount: 0
+      _stars: 1
+      _icon: {fileID: 3811987700599746683, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
+    - _id: 0_4
+      _titleLocalizationKey: card_collection.card.0_4.title
+      _title: 
+      _descriptionLocalizationKey: card_collection.card.0_4.description
+      _description: 
+      _requiredAmount: 0
+      _stars: 1
+      _icon: {fileID: -83566590225105562, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
+    - _id: 0_5
+      _titleLocalizationKey: card_collection.card.0_5.title
+      _title: 
+      _descriptionLocalizationKey: card_collection.card.0_5.description
+      _description: 
+      _requiredAmount: 0
+      _stars: 1
+      _icon: {fileID: 3122708759700704995, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
+    - _id: 0_6
+      _titleLocalizationKey: card_collection.card.0_6.title
+      _title: 
+      _descriptionLocalizationKey: card_collection.card.0_6.description
+      _description: 
+      _requiredAmount: 0
+      _stars: 1
+      _icon: {fileID: 7419883896294469389, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
+    _rewards: []
+  - _id: 1
+    _titleLocalizationKey: card_collection.1.title
+    _title: 
+    _descriptionLocalizationKey: card_collection.1.description
+    _description: 
+    _cards:
+    - _id: 1_1
+      _titleLocalizationKey: card_collection.card.1_1.title
+      _title: 
+      _descriptionLocalizationKey: card_collection.card.1_1.description
+      _description: 
+      _requiredAmount: 0
+      _stars: 1
+      _icon: {fileID: 2125897330413865003, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
+    - _id: 1_2
+      _titleLocalizationKey: card_collection.card.1_2.title
+      _title: 
+      _descriptionLocalizationKey: card_collection.card.1_2.description
+      _description: 
+      _requiredAmount: 0
+      _stars: 1
+      _icon: {fileID: 1537972319798792046, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
+    - _id: 1_3
+      _titleLocalizationKey: card_collection.card.1_3.title
+      _title: 
+      _descriptionLocalizationKey: card_collection.card.1_3.description
+      _description: 
+      _requiredAmount: 0
+      _stars: 1
+      _icon: {fileID: 8020217996901168981, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
+    - _id: 1_4
+      _titleLocalizationKey: card_collection.card.1_4.title
+      _title: 
+      _descriptionLocalizationKey: card_collection.card.1_4.description
+      _description: 
+      _requiredAmount: 0
+      _stars: 1
+      _icon: {fileID: 8020785636586205456, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
+    - _id: 1_5
+      _titleLocalizationKey: card_collection.card.1_5.title
+      _title: 
+      _descriptionLocalizationKey: card_collection.card.1_5.description
+      _description: 
+      _requiredAmount: 0
+      _stars: 1
+      _icon: {fileID: 2779402041821275866, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
+    - _id: 1_6
+      _titleLocalizationKey: card_collection.card.1_6.title
+      _title: 
+      _descriptionLocalizationKey: card_collection.card.1_6.description
+      _description: 
+      _requiredAmount: 0
+      _stars: 1
+      _icon: {fileID: -726316802023506734, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
+    _rewards: []

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39290334487c3514f9c3861e42872c53, type: 3}
+  m_Name: PlayerFeatureUnlockConfig
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerFeatures.PlayerFeatureUnlockConfig
+  _features:
+  - _feature: 0
+    _requiredLevel: 2
+  - _feature: 1
+    _requiredLevel: 3
+  - _feature: 2
+    _requiredLevel: 4
+  - _feature: 3
+    _requiredLevel: 5
