@@ -1,6 +1,5 @@
 using System;
 using CardCollections;
-using GameLocalization;
 using Zenject;
 
 namespace CardCollectionMVP
@@ -28,7 +27,6 @@ namespace CardCollectionMVP
             _service.CollectionChanged += OnCollectionChanged;
             _view.CollectionSelected += OnCollectionSelected;
             _selectionModel.SelectedCollectionChanged += OnSelectedCollectionChanged;
-            Localization.LanguageChanged += UpdateView;
 
             UpdateView();
         }
@@ -39,7 +37,6 @@ namespace CardCollectionMVP
             _service.CollectionChanged -= OnCollectionChanged;
             _view.CollectionSelected -= OnCollectionSelected;
             _selectionModel.SelectedCollectionChanged -= OnSelectedCollectionChanged;
-            Localization.LanguageChanged -= UpdateView;
         }
 
         private void UpdateView()

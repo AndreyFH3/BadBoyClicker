@@ -7,9 +7,7 @@ namespace GameLocalization
         private static ILocalizationService _service;
 
         public static bool IsReady => _service != null;
-        public static string CurrentLanguage => _service?.CurrentLanguage ?? string.Empty;
         public static event Action ServiceChanged;
-        public static event Action LanguageChanged;
 
         public static void SetService(ILocalizationService service)
         {
@@ -25,22 +23,6 @@ namespace GameLocalization
         public static string Tr(string key, string fallback = null)
         {
             return _service == null ? fallback ?? key ?? string.Empty : _service.Localize(key, fallback);
-        }
-
-        public static void SetLanguage(string language)
-        {
-            if (_service == null)
-            {
-                return;
-            }
-
-            string currentLanguage = _service.CurrentLanguage;
-            _service.SetLanguage(language);
-
-            if (!string.Equals(currentLanguage, _service.CurrentLanguage, StringComparison.OrdinalIgnoreCase))
-            {
-                LanguageChanged?.Invoke();
-            }
         }
 
         public static string Format(string key, string fallback, params object[] args)

@@ -25,7 +25,6 @@ namespace QuestSystem
         public IReadOnlyList<Quest> Quests => _quests;
         public event Action Changed;
         public event Action<Quest> QuestChanged;
-        public event Action<Quest> QuestRewardClaimed;
 
         [Inject]
         public void Construct(
@@ -168,7 +167,6 @@ namespace QuestSystem
 
             _rewardService.GiveRewards(quest.Data.Rewards);
             quest.MarkRewardClaimed();
-            QuestRewardClaimed?.Invoke(quest);
             return true;
         }
 

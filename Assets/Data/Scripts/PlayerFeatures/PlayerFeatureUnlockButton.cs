@@ -35,8 +35,6 @@ namespace PlayerFeatures
 
         private void OnEnable()
         {
-            Localization.LanguageChanged += UpdateState;
-
             if (_featureUnlockService != null)
             {
                 _featureUnlockService.FeatureUnlocked += OnFeatureUnlocked;
@@ -51,8 +49,6 @@ namespace PlayerFeatures
 
         private void OnDisable()
         {
-            Localization.LanguageChanged -= UpdateState;
-
             if (_featureUnlockService != null)
             {
                 _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;

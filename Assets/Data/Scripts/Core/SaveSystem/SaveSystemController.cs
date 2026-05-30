@@ -8,7 +8,6 @@ using DailyQuests;
 using PlayerProgression;
 using QuestSystem;
 using CardCollections;
-using Customization;
 
 namespace Core
 {
@@ -25,8 +24,6 @@ namespace Core
         private QuestRuntimeSave _questSave;
         private ICardCollectionService _cardCollectionService;
         private CardCollectionRuntimeSave _cardCollectionSave;
-        private ICustomizationService _customizationService;
-        private CustomizationRuntimeSave _customizationSave;
         private GameConfig _config;
         private bool _isApplyingSaveData;
 
@@ -43,8 +40,6 @@ namespace Core
             QuestRuntimeSave questSave,
             ICardCollectionService cardCollectionService,
             CardCollectionRuntimeSave cardCollectionSave,
-            ICustomizationService customizationService,
-            CustomizationRuntimeSave customizationSave,
             GameConfig config)
         {
             _wallet = wallet;
@@ -58,8 +53,6 @@ namespace Core
             _questSave = questSave;
             _cardCollectionService = cardCollectionService;
             _cardCollectionSave = cardCollectionSave;
-            _customizationService = customizationService;
-            _customizationSave = customizationSave;
             _config = config;
         }
 
@@ -74,7 +67,6 @@ namespace Core
             _playerProgression.Changed += Save;
             _questSave.Changed += Save;
             _cardCollectionSave.Changed += Save;
-            _customizationSave.Changed += Save;
 
             if (YG2.isSDKEnabled)
             {
@@ -93,7 +85,6 @@ namespace Core
             _playerProgression.Changed -= Save;
             _questSave.Changed -= Save;
             _cardCollectionSave.Changed -= Save;
-            _customizationSave.Changed -= Save;
         }
 
         public void Load()
@@ -115,7 +106,6 @@ namespace Core
                 _playerProgression.Set(data.PlayerProgression);
                 _questService.Set(data.Quests);
                 _cardCollectionService.Set(data.CardCollections);
-                _customizationService.Set(data.Customization);
                 _shopSave.Recalculate(_config);
             }
             finally
@@ -140,8 +130,7 @@ namespace Core
                 DailyQuests = _dailyQuestService.Get(),
                 PlayerProgression = _playerProgression.Get(),
                 Quests = _questService.Get(),
-                CardCollections = _cardCollectionService.Get(),
-                Customization = _customizationService.Get()
+                CardCollections = _cardCollectionService.Get()
             };
 
             YG2.SaveProgress();

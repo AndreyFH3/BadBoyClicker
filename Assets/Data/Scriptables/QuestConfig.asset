@@ -65,7 +65,7 @@ MonoBehaviour:
     - _rewardType: 3
       _currencyType: 1
       _amount: 5
-      _rewardId: Chest_1
+      _rewardId: 
       _icon: {fileID: 0}
       _displayText: 
   - _id: Fourth
@@ -80,6 +80,6 @@ MonoBehaviour:
     - _rewardType: 3
       _currencyType: 1
       _amount: 5
-      _rewardId: Chest_1
+      _rewardId: 
       _icon: {fileID: 0}
       _displayText: 

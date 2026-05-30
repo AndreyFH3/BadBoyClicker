@@ -9,8 +9,6 @@ namespace QuestSystem
         IReadOnlyList<Quest> Quests { get; }
         event Action Changed;
         event Action<Quest> QuestChanged;
-        event Action<Quest> QuestRewardClaimed;
-
         Quest GetQuest(string id);
         IReadOnlyList<QuestViewData> GetAllViewData();
     }

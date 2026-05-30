@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using PlayerProgression;
-using QuestSystem;
 
 namespace Core
 {
@@ -10,7 +9,7 @@ namespace Core
     {
         [SerializeField] private List<ShopDataClick> _clicks;
         [SerializeField] private List<ShopDataClick> _autoBuys;
-        [SerializeField] private List<PaidShopData> _paidBuys;
+        [SerializeField] private List<ShopDataClick> _paidBuys;
         [SerializeField] private Sprite _softPriceIcon;
         [SerializeField] private Sprite _paidPriceIcon;
         [SerializeField] private OfflineIncomeData _offlineIncome = new();
@@ -19,7 +18,7 @@ namespace Core
 
         public IReadOnlyList<ShopDataClick> Clicks => _clicks;
         public IReadOnlyList<ShopDataClick> AutoBuys => _autoBuys;
-        public IReadOnlyList<PaidShopData> PaidBuys => _paidBuys;
+        public IReadOnlyList<ShopDataClick> PaidBuys => _paidBuys;
         public Sprite SoftPriceIcon => _softPriceIcon;
         public Sprite PaidPriceIcon => _paidPriceIcon;
         public OfflineIncomeData OfflineIncome => _offlineIncome;
@@ -113,42 +112,6 @@ namespace Core
             public Sprite Icon => _icon;
             public long BasePrice => _basePrice;
             public long BaseBonus => _baseBonus;
-        }
-
-        [System.Serializable]
-        public class PaidShopData
-        {
-            [SerializeField] private string _id;
-            [SerializeField] private PaidShopPurchaseKind _purchaseKind;
-            [SerializeField] private string _paymentId;
-            [SerializeField] private QuestRewardCurrencyType _priceCurrencyType;
-            [SerializeField] private long _priceAmount;
-            [SerializeField] private string _nameLocalizationKey;
-            [SerializeField] private string _name;
-            [SerializeField] private Sprite _icon;
-            [SerializeField] private string _priceText;
-            [SerializeField] private string _rewardTextLocalizationKey;
-            [SerializeField] private string _rewardText;
-            [SerializeField] private List<QuestReward> _rewards = new();
-
-            public string Id => _id;
-            public PaidShopPurchaseKind PurchaseKind => _purchaseKind;
-            public string PaymentId => string.IsNullOrEmpty(_paymentId) ? _id : _paymentId;
-            public QuestRewardCurrencyType PriceCurrencyType => _priceCurrencyType;
-            public long PriceAmount => _priceAmount;
-            public string NameLocalizationKey => _nameLocalizationKey;
-            public string Name => string.IsNullOrEmpty(_name) ? _id : _name;
-            public Sprite Icon => _icon;
-            public string PriceText => _priceText;
-            public string RewardTextLocalizationKey => _rewardTextLocalizationKey;
-            public string RewardText => _rewardText;
-            public IReadOnlyList<QuestReward> Rewards => _rewards;
-        }
-
-        public enum PaidShopPurchaseKind
-        {
-            RealMoney = 0,
-            InGameCurrency = 1
         }
     }
 }

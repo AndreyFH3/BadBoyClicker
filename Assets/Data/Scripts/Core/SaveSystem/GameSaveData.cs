@@ -6,7 +6,6 @@ using DailyQuests;
 using PlayerProgression;
 using QuestSystem;
 using CardCollections;
-using Customization;
 
 namespace Core
 {
@@ -21,6 +20,5 @@ namespace Core
         public PlayerProgressionRuntimeSave.SaveData PlayerProgression;
         public QuestSaveData Quests;
         public CardCollectionSaveData CardCollections;
-        public CustomizationSaveData Customization;
     }
 }

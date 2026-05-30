@@ -29,8 +29,6 @@ namespace DailyQuests
 
         public int Points => _save.Points;
         public event Action Changed;
-        public event Action<string, int> QuestPointsClaimed;
-        public event Action<int> MilestoneClaimed;
 
         [Inject]
         public void Construct(
@@ -179,7 +177,6 @@ namespace DailyQuests
             state.IsPointsAdded = true;
             _save.SetQuestState(state);
             _save.AddPoints(data.Points);
-            QuestPointsClaimed?.Invoke(questId, data.Points);
             Changed?.Invoke();
             return true;
         }
@@ -206,7 +203,6 @@ namespace DailyQuests
 
             _rewardService.GiveRewards(milestone.Rewards);
             _save.SetMilestoneClaimed(requiredPoints);
-            MilestoneClaimed?.Invoke(requiredPoints);
             Changed?.Invoke();
             return true;
         }

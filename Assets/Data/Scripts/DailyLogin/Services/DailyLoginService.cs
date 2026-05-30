@@ -14,8 +14,6 @@ namespace DailyLogin
         private readonly ISaveSystem _saveSystem;
         private readonly ITimeService _timeService;
 
-        public event Action<int, RewardConfig> RewardClaimed;
-
         public DailyLoginService(
             DailyLoginConfig config,
             IDailyLoginRuntimeSave runtimeSave,
@@ -83,11 +81,9 @@ namespace DailyLogin
 
             _rewardService.GiveReward(dayConfig.Reward);
 
-            int currentDayIndex = GetCurrentDayIndex();
             int nextDayIndex = NormalizeDayIndex(_runtimeSave.CurrentDayIndex + 1);
             _runtimeSave.SetClaimState(nextDayIndex, _timeService.CurrentUtcTicks);
 
-            RewardClaimed?.Invoke(currentDayIndex, dayConfig.Reward);
             _saveSystem.Save();
             return true;
         }

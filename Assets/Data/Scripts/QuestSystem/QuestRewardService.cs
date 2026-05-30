@@ -9,16 +9,15 @@ namespace QuestSystem
     public class QuestRewardService : IQuestRewardService
     {
         private readonly Wallet _wallet;
-        private readonly DiContainer _container;
 
         [InjectOptional] private IBoostRewardService _boostRewardService;
+        [InjectOptional] private IChestRewardService _chestRewardService;
         [InjectOptional] private IQuestBackgroundRewardService _backgroundRewardService;
         [InjectOptional] private IQuestCustomRewardService _customRewardService;
 
-        public QuestRewardService(Wallet wallet, DiContainer container)
+        public QuestRewardService(Wallet wallet)
         {
             _wallet = wallet;
-            _container = container;
         }
 
         public void GiveRewards(IReadOnlyList<QuestReward> rewards)
@@ -113,14 +112,13 @@ namespace QuestSystem
 
         private void GiveChest(string chestId)
         {
-            var chestRewardService = _container.TryResolve<IChestRewardService>();
-            if (chestRewardService == null)
+            if (_chestRewardService == null)
             {
                 Debug.LogWarning($"Chest reward service is not bound. Chest was not granted: {chestId}");
                 return;
             }
 
-            chestRewardService.GiveChest(chestId);
+            _chestRewardService.GiveChest(chestId);
         }
 
         private void GiveCustom(string rewardId)

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using YG;
 
 namespace GameLocalization
 {
@@ -9,40 +8,14 @@ namespace GameLocalization
     {
         private readonly LocalizationConfig _config;
         private readonly Dictionary<string, Dictionary<string, string>> _values = new();
-        private const string LanguageKey = "game_language";
         private bool _isBuilt;
 
-        public IReadOnlyList<string> AvailableLanguages => _config?.AvailableLanguages ?? Array.Empty<string>();
         public string CurrentLanguage => _config?.CurrentLanguage ?? "ru";
 
         public LocalizationService(LocalizationConfig config)
         {
             _config = config;
-            ApplySavedLanguage();
             Rebuild();
-        }
-
-        public void SetLanguage(string language)
-        {
-            if (_config == null || string.IsNullOrWhiteSpace(language))
-            {
-                return;
-            }
-
-            string normalizedLanguage = NormalizeLanguage(language);
-            if (string.Equals(CurrentLanguage, normalizedLanguage, StringComparison.OrdinalIgnoreCase))
-            {
-                return;
-            }
-
-            _config.SetCurrentLanguage(normalizedLanguage);
-            PlayerPrefs.SetString(LanguageKey, normalizedLanguage);
-            PlayerPrefs.Save();
-
-            if (!string.Equals(YG2.lang, normalizedLanguage, StringComparison.OrdinalIgnoreCase))
-            {
-                YG2.SwitchLanguage(normalizedLanguage);
-            }
         }
 
         public string Localize(string key, string fallback = null)
@@ -129,39 +102,6 @@ namespace GameLocalization
             }
 
             _isBuilt = true;
-        }
-
-        private void ApplySavedLanguage()
-        {
-            if (_config == null)
-            {
-                return;
-            }
-
-            string savedLanguage = PlayerPrefs.GetString(LanguageKey, string.Empty);
-            if (!string.IsNullOrWhiteSpace(savedLanguage))
-            {
-                string normalizedLanguage = NormalizeLanguage(savedLanguage);
-                _config.SetCurrentLanguage(normalizedLanguage);
-
-                if (!string.Equals(YG2.lang, normalizedLanguage, StringComparison.OrdinalIgnoreCase))
-                {
-                    YG2.SwitchLanguage(normalizedLanguage);
-                }
-
-                return;
-            }
-
-            if (!string.IsNullOrWhiteSpace(YG2.lang))
-            {
-                _config.SetCurrentLanguage(NormalizeLanguage(YG2.lang));
-            }
-        }
-
-        private static string NormalizeLanguage(string language)
-        {
-            string normalized = language.Trim().ToLowerInvariant();
-            return normalized == "us" || normalized == "as" || normalized == "ai" ? "en" : normalized;
         }
 
         private void EnsureBuilt()
