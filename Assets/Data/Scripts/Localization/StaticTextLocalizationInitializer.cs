@@ -44,7 +44,13 @@ namespace GameLocalization
                     continue;
                 }
 
-                text.text = _localization.Localize(key, source);
+                LocalizedText localizedText = text.GetComponent<LocalizedText>();
+                if (localizedText == null)
+                {
+                    localizedText = text.gameObject.AddComponent<LocalizedText>();
+                }
+
+                localizedText.Configure(key, source);
             }
         }
     }

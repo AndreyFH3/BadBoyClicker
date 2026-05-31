@@ -1,5 +1,6 @@
 using System;
 using DailyQuests;
+using GameLocalization;
 using PlayerFeatures;
 using Zenject;
 
@@ -40,6 +41,7 @@ namespace DailyQuestMVP
             _service.Changed -= UpdateView;
             _view.ClaimQuestPointsRequested -= OnClaimQuestPointsRequested;
             _view.ClaimMilestoneRequested -= OnClaimMilestoneRequested;
+            Localization.LanguageChanged -= UpdateView;
             _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;
         }
 
@@ -48,6 +50,7 @@ namespace DailyQuestMVP
             _service.Changed += UpdateView;
             _view.ClaimQuestPointsRequested += OnClaimQuestPointsRequested;
             _view.ClaimMilestoneRequested += OnClaimMilestoneRequested;
+            Localization.LanguageChanged += UpdateView;
             UpdateView();
         }
 

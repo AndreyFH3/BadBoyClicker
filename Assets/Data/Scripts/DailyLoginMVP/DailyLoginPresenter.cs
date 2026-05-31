@@ -1,4 +1,5 @@
 using System;
+using GameLocalization;
 using PlayerFeatures;
 using Zenject;
 
@@ -31,6 +32,7 @@ namespace DailyLoginMVP
         public void Initialize()
         {
             _view.ClaimRequested += Claim;
+            Localization.LanguageChanged += OnLanguageChanged;
 
             if (!_featureUnlockService.IsUnlocked(PlayerFeatureType.DailyLoginReward))
             {
@@ -57,6 +59,7 @@ namespace DailyLoginMVP
         public void Dispose()
         {
             _view.ClaimRequested -= Claim;
+            Localization.LanguageChanged -= OnLanguageChanged;
             _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;
         }
 
@@ -92,6 +95,14 @@ namespace DailyLoginMVP
             _container.Unbind<DailyLoginPresenter>();
             _container.Unbind<DailyLoginModel>();
             _startupGate.Complete();
+        }
+
+        private void OnLanguageChanged()
+        {
+            if (!_isCompleted && _model.HasReward)
+            {
+                _view.Show(_model.CreateViewData());
+            }
         }
     }
 }

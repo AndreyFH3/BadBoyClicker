@@ -4,6 +4,7 @@ using DailyQuests;
 using PlayerFeatures;
 using QuestSystem;
 using CardCollections;
+using Chests;
 using GameLocalization;
 using UnityEngine;
 using Zenject;
@@ -17,6 +18,7 @@ public class ScriptableInstaller : ScriptableObjectInstaller
     [SerializeField] protected QuestConfig _questConfig;
     [SerializeField] protected DailyQuestConfig _dailyQuestConfig;
     [SerializeField] protected CardCollectionConfig _cardCollectionConfig;
+    [SerializeField] protected ChestConfig _chestConfig;
     [SerializeField] protected LocalizationConfig _localizationConfig;
     
     public override void InstallBindings()
@@ -52,6 +54,12 @@ public class ScriptableInstaller : ScriptableObjectInstaller
             : ScriptableObject.CreateInstance<CardCollectionConfig>();
 
         Container.Bind<CardCollectionConfig>().FromInstance(cardCollectionConfig).AsSingle().NonLazy();
+
+        ChestConfig chestConfig = _chestConfig != null
+            ? _chestConfig
+            : ScriptableObject.CreateInstance<ChestConfig>();
+
+        Container.Bind<ChestConfig>().FromInstance(chestConfig).AsSingle().NonLazy();
 
         LocalizationConfig localizationConfig = _localizationConfig != null
             ? _localizationConfig

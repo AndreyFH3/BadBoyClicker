@@ -1,4 +1,5 @@
 using System;
+using GameLocalization;
 using Zenject;
 namespace Shop
 {
@@ -20,6 +21,7 @@ namespace Shop
             _view.OpenRequested += OnOpenRequested;
             _view.CloseRequested += OnCloseRequested;
             _view.OnBuy += OnBuyRequested;
+            Localization.LanguageChanged += OnLanguageChanged;
 
             UpdateView(true);
         }
@@ -30,6 +32,7 @@ namespace Shop
             _view.OpenRequested -= OnOpenRequested;
             _view.CloseRequested -= OnCloseRequested;
             _view.OnBuy -= OnBuyRequested;
+            Localization.LanguageChanged -= OnLanguageChanged;
         }
 
         private void OnStateChanged()
@@ -62,6 +65,11 @@ namespace Shop
         private void OnBuyRequested(string id)
         {
             _model.Buy(id);
+        }
+
+        private void OnLanguageChanged()
+        {
+            UpdateView(true);
         }
     }
 }

@@ -17,6 +17,8 @@ using PlayerFeatures;
 using QuestSystem;
 using CardCollections;
 using CardCollectionMVP;
+using Chests;
+using ChestsMVP;
 using GameLocalization;
 
 namespace Installer
@@ -33,6 +35,7 @@ namespace Installer
         [SerializeField] private PlayerProgressionView _playerProgressionView;
         [SerializeField] private CardCollectionsView _cardCollectionsView;
         [SerializeField] private CardCollectionCardsView _cardCollectionCardsView;
+        [SerializeField] private ChestOpenView _chestOpenView;
 
         public override void InstallBindings()
         {
@@ -51,6 +54,7 @@ namespace Installer
             Container.BindInitializableExecutionOrder<StaticTextLocalizationInitializer>(-9999);
             Container.Bind<QuestFactory>().AsSingle().NonLazy();
             Container.Bind<IQuestRewardService>().To<QuestRewardService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ChestRewardService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerProgressionService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerFeatureUnlockService>().AsSingle().NonLazy();
             Container.Bind<ITimeService>().To<LocalTimeService>().AsSingle().NonLazy();
@@ -105,6 +109,11 @@ namespace Installer
             else
                 Container.Bind<ICardCollectionCardsView>().To<CardCollectionCardsNullView>().AsSingle().NonLazy();
 
+            if (_chestOpenView != null)
+                Container.Bind<IChestOpenView>().FromInstance(_chestOpenView).AsSingle().NonLazy();
+            else
+                Container.Bind<IChestOpenView>().To<ChestOpenNullView>().AsSingle().NonLazy();
+
             Container.BindInterfacesAndSelfTo<DailyLoginModel>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyLoginPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyQuestPresenter>().AsSingle().NonLazy();
@@ -114,6 +123,7 @@ namespace Installer
             Container.Bind<CardCollectionSelectionModel>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CardCollectionsPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CardCollectionCardsPresenter>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<ChestOpenPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<OfflineIncomeActivityTracker>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameStartRouter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<QuestService>().AsSingle().NonLazy();

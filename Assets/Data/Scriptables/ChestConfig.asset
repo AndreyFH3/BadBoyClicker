@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a182bd30c54b46e4ab7b6f0910b7a2d1, type: 3}
+  m_Name: ChestConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Chests.ChestConfig
+  _chests:
+  - _id: Chest_1
+    _titleLocalizationKey: chest.chest_1.title
+    _title: Chest 1
+    _icon: {fileID: 0}
+    _rewards:
+    - _rarityWeight: 70
+      _rewardKind: 0
+      _reward:
+        _rewardType: 0
+        _currencyType: 0
+        _amount: 100
+        _rewardId: 
+        _icon: {fileID: 0}
+        _displayTextLocalizationKey: 
+        _displayText: 100 Soft
+      _cardCollectionId: 
+      _cardStars: 1
+      _allowDuplicateCards: 1
+    - _rarityWeight: 20
+      _rewardKind: 1
+      _reward:
+        _rewardType: 0
+        _currencyType: 0
+        _amount: 0
+        _rewardId: 
+        _icon: {fileID: 0}
+        _displayTextLocalizationKey: 
+        _displayText: 
+      _cardCollectionId: 0
+      _cardStars: 1
+      _allowDuplicateCards: 1
+    - _rarityWeight: 25
+      _rewardKind: 0
+      _reward:
+        _rewardType: 0
+        _currencyType: 1
+        _amount: 10
+        _rewardId: 
+        _icon: {fileID: 0}
+        _displayTextLocalizationKey: 
+        _displayText: 10 Decor
+      _cardCollectionId: 
+      _cardStars: 1
+      _allowDuplicateCards: 1
+    - _rarityWeight: 5
+      _rewardKind: 0
+      _reward:
+        _rewardType: 0
+        _currencyType: 2
+        _amount: 1
+        _rewardId: 
+        _icon: {fileID: 0}
+        _displayTextLocalizationKey: 
+        _displayText: 1 Hard
+      _cardCollectionId: 
+      _cardStars: 1
+      _allowDuplicateCards: 1
