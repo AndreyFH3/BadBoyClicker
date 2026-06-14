@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using GameAudio;
 using GameLocalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace GameSettings
 {
@@ -30,6 +32,13 @@ namespace GameSettings
         [SerializeField] private TMP_Text _languageLabelText;
 
         private bool _audioEnabled = true;
+        private IAudioService _audioService;
+
+        [Inject]
+        private void Construct(IAudioService audioService)
+        {
+            _audioService = audioService;
+        }
 
         private void Awake()
         {
@@ -156,6 +165,14 @@ namespace GameSettings
 
         private void ApplyAudio()
         {
+            IAudioService audioService = _audioService ?? AudioServices.Current;
+
+            if (audioService != null)
+            {
+                audioService.SetEnabled(_audioEnabled);
+                return;
+            }
+
             AudioListener.volume = _audioEnabled ? 1f : 0f;
         }
 

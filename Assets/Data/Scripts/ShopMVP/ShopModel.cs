@@ -6,6 +6,7 @@ using Utils;
 using Zenject;
 using PlayerProgression;
 using GameLocalization;
+using AdBonusOffers;
 
 namespace Shop
 {
@@ -20,6 +21,7 @@ namespace Shop
         private IShopRuntimeSave _save;
         private IPlayerProgressionService _playerProgression;
         private ILocalizationService _localization;
+        private IAdBonusEffectService _bonusEffectService;
         private readonly Dictionary<string, ShopItem> _items = new();
 
         public bool IsOpen { get; private set; }
@@ -34,13 +36,15 @@ namespace Shop
             Wallet wallet,
             IShopRuntimeSave save,
             IPlayerProgressionService playerProgression,
-            ILocalizationService localization)
+            ILocalizationService localization,
+            IAdBonusEffectService bonusEffectService)
         {
             _config = config;
             _wallet = wallet;
             _save = save;
             _playerProgression = playerProgression;
             _localization = localization;
+            _bonusEffectService = bonusEffectService;
 
             BuildItems();
             _save.Recalculate(_config);
@@ -51,12 +55,14 @@ namespace Shop
         {
             _wallet.OnSoftChanged += OnWalletChanged;
             _playerProgression.Changed += OnProgressionChanged;
+            _bonusEffectService.Changed += OnBonusEffectsChanged;
         }
 
         public void Dispose()
         {
             _wallet.OnSoftChanged -= OnWalletChanged;
             _playerProgression.Changed -= OnProgressionChanged;
+            _bonusEffectService.Changed -= OnBonusEffectsChanged;
         }
 
         public List<ShopElementData> GetAllData()
@@ -181,7 +187,8 @@ namespace Shop
 
         private long CalculatePrice(long basePrice, int level)
         {
-            return (long)Mathf.Ceil(basePrice * Mathf.Pow(PriceGrowth, level));
+            float priceMultiplier = _bonusEffectService?.ShopPriceMultiplier ?? 1f;
+            return Math.Max(1, (long)Mathf.Ceil(basePrice * Mathf.Pow(PriceGrowth, level) * Mathf.Max(0f, priceMultiplier)));
         }
 
         private Sprite GetPriceIcon(ShopItemType type)
@@ -205,6 +212,11 @@ namespace Shop
         private void OnProgressionChanged()
         {
             _save.Recalculate(_config);
+            StateChanged?.Invoke();
+        }
+
+        private void OnBonusEffectsChanged()
+        {
             StateChanged?.Invoke();
         }
 

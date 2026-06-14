@@ -1,75 +1,75 @@
 {
-    "idSave": 11506,
+    "idSave": 14414,
     "GameSaveData": {
         "Wallet": {
-            "Soft": 246,
-            "Middle": 285,
-            "Hard": 132
+            "Soft": 303,
+            "Middle": 330,
+            "Hard": 182
         },
         "Shop": {
             "Levels": []
         },
         "OfflineIncome": {
-            "LastOnlineTicks": 639158286403905049
+            "LastOnlineTicks": 639170273150879298
         },
         "DailyLogin": {
-            "CurrentDayIndex": 2,
-            "LastClaimUtcTicks": 639158245546856116
+            "CurrentDayIndex": 1,
+            "LastClaimUtcTicks": 639170266354501442
         },
         "DailyQuests": {
-            "DayKey": "20260531",
-            "Points": 0,
+            "DayKey": "20260614",
+            "Points": 60,
             "Quests": [
                 {
                     "Id": "1",
                     "CurrentValue": 10,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "2",
                     "CurrentValue": 20,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "3",
                     "CurrentValue": 30,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "4",
                     "CurrentValue": 40,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "5",
                     "CurrentValue": 50,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "6",
                     "CurrentValue": 60,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 }
             ],
             "Milestones": []
         },
         "PlayerProgression": {
-            "CompletedLevels": 29,
-            "CurrentExperience": 23
+            "CompletedLevels": 33,
+            "CurrentExperience": 100
         },
         "Quests": {
             "Quests": [
                 {
                     "Id": "Second",
-                    "CurrentValue": 39644,
-                    "IsCompleted": false,
-                    "IsRewardClaimed": false
+                    "CurrentValue": 100000,
+                    "IsCompleted": true,
+                    "IsRewardClaimed": true
                 },
                 {
                     "Id": "first",

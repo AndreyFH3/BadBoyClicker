@@ -20,3 +20,4 @@ MonoBehaviour:
   _cardCollectionConfig: {fileID: 11400000, guid: d4a30b2eb6965c9408c784bcbf5f059d, type: 2}
   _chestConfig: {fileID: 11400000, guid: 65d06ecece1443249390807a5a8d07fb, type: 2}
   _localizationConfig: {fileID: 11400000, guid: 5ff3821d613b6e94ba779ab5eed84355, type: 2}
+  _audioConfig: {fileID: 11400000, guid: 0cd7f54270ff46efbe1350f37f0ce64e, type: 2}

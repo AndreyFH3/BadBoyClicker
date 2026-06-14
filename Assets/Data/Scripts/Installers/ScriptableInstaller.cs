@@ -6,6 +6,8 @@ using QuestSystem;
 using CardCollections;
 using Chests;
 using GameLocalization;
+using GameAudio;
+using AdBonusOffers;
 using UnityEngine;
 using Zenject;
 
@@ -20,6 +22,8 @@ public class ScriptableInstaller : ScriptableObjectInstaller
     [SerializeField] protected CardCollectionConfig _cardCollectionConfig;
     [SerializeField] protected ChestConfig _chestConfig;
     [SerializeField] protected LocalizationConfig _localizationConfig;
+    [SerializeField] protected AudioConfig _audioConfig;
+    [SerializeField] protected AdBonusOfferConfig _adBonusOfferConfig;
     
     public override void InstallBindings()
     {
@@ -66,5 +70,17 @@ public class ScriptableInstaller : ScriptableObjectInstaller
             : ScriptableObject.CreateInstance<LocalizationConfig>();
 
         Container.Bind<LocalizationConfig>().FromInstance(localizationConfig).AsSingle().NonLazy();
+
+        AudioConfig audioConfig = _audioConfig != null
+            ? _audioConfig
+            : ScriptableObject.CreateInstance<AudioConfig>();
+
+        Container.Bind<AudioConfig>().FromInstance(audioConfig).AsSingle().NonLazy();
+
+        AdBonusOfferConfig adBonusOfferConfig = _adBonusOfferConfig != null
+            ? _adBonusOfferConfig
+            : ScriptableObject.CreateInstance<AdBonusOfferConfig>();
+
+        Container.Bind<AdBonusOfferConfig>().FromInstance(adBonusOfferConfig).AsSingle().NonLazy();
     }
 }

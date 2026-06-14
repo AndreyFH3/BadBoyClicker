@@ -20,6 +20,8 @@ using CardCollectionMVP;
 using Chests;
 using ChestsMVP;
 using GameLocalization;
+using GameAudio;
+using AdBonusOffers;
 
 namespace Installer
 {
@@ -36,6 +38,8 @@ namespace Installer
         [SerializeField] private CardCollectionsView _cardCollectionsView;
         [SerializeField] private CardCollectionCardsView _cardCollectionCardsView;
         [SerializeField] private ChestOpenView _chestOpenView;
+        [SerializeField] private MonoBehaviour _adBonusOfferView;
+        [SerializeField] private AdBonusActiveEffectsView _adBonusActiveEffectsView;
 
         public override void InstallBindings()
         {
@@ -47,6 +51,7 @@ namespace Installer
             Container.Bind<QuestRuntimeSave>().AsSingle().NonLazy();
             Container.Bind<CardCollectionRuntimeSave>().AsSingle().NonLazy();
             Container.Bind<ILocalizationService>().To<LocalizationService>().AsSingle().NonLazy();
+            Container.Bind<IAudioService>().To<AudioService>().AsSingle().NonLazy();
             Localization.SetService(Container.Resolve<ILocalizationService>());
             Container.BindInterfacesTo<LocalizationInitializer>().AsSingle().NonLazy();
             Container.BindInitializableExecutionOrder<LocalizationInitializer>(-10000);
@@ -64,6 +69,8 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<CardCollectionService>().AsSingle().NonLazy();
             Container.Bind<IDailyLoginStartupGate>().To<DailyLoginStartupGate>().AsSingle().NonLazy();
             Container.Bind<IRewardedAdsService>().To<YGRewardedAdsService>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<AdBonusEffectService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<AdBonusOfferService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<Timer>().AsSingle().NonLazy();
 
             Container.BindInterfacesAndSelfTo<Wallet>().AsSingle().NonLazy();
@@ -114,6 +121,16 @@ namespace Installer
             else
                 Container.Bind<IChestOpenView>().To<ChestOpenNullView>().AsSingle().NonLazy();
 
+            if (_adBonusOfferView is IAdBonusOfferView adBonusOfferView)
+                Container.Bind<IAdBonusOfferView>().FromInstance(adBonusOfferView).AsSingle().NonLazy();
+            else
+                Container.Bind<IAdBonusOfferView>().FromInstance(CreateRuntimeAdBonusOfferView()).AsSingle().NonLazy();
+
+            if (_adBonusActiveEffectsView != null)
+                Container.BindInterfacesAndSelfTo<AdBonusActiveEffectsView>().FromInstance(_adBonusActiveEffectsView).AsSingle().NonLazy();
+            else
+                Container.BindInterfacesAndSelfTo<AdBonusActiveEffectsView>().FromInstance(CreateRuntimeAdBonusActiveEffectsView()).AsSingle().NonLazy();
+
             Container.BindInterfacesAndSelfTo<DailyLoginModel>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyLoginPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyQuestPresenter>().AsSingle().NonLazy();
@@ -124,9 +141,20 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<CardCollectionsPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CardCollectionCardsPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ChestOpenPresenter>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<AdBonusOfferPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<OfflineIncomeActivityTracker>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameStartRouter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<QuestService>().AsSingle().NonLazy();
+        }
+
+        private AdBonusOfferView CreateRuntimeAdBonusOfferView()
+        {
+            return new GameObject("AdBonusOfferView").AddComponent<AdBonusOfferView>();
+        }
+
+        private AdBonusActiveEffectsView CreateRuntimeAdBonusActiveEffectsView()
+        {
+            return new GameObject("AdBonusActiveEffectsView").AddComponent<AdBonusActiveEffectsView>();
         }
     }
 }

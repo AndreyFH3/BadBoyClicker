@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c122ed2d07e42e0b2e0c66969dd0f15, type: 3}
+  m_Name: AudioConfig
+  m_EditorClassIdentifier: Assembly-CSharp::GameAudio.AudioConfig
+  _cues:
+  - _id: 1
+    _clips:
+    - {fileID: 8300000, guid: 065a4bc2f10b1c4438c1e6c1b18bb4c0, type: 3}
+    _volume: 0.5
+    _pitchRange: {x: 1, y: 1}
+  - _id: 2
+    _clips:
+    - {fileID: 8300000, guid: 6d323168f182db84f93a6a018a244a1c, type: 3}
+    _volume: 0.24
+    _pitchRange: {x: 1, y: 1}
+  - _id: 6
+    _clips:
+    - {fileID: 8300000, guid: 0f8d3c9fca521ef40b22324fe5c0acef, type: 3}
+    _volume: 1
+    _pitchRange: {x: 1, y: 1}
+  - _id: 4
+    _clips:
+    - {fileID: 8300000, guid: 04d3f6302d287054f9282298b9c39029, type: 3}
+    _volume: 0.4
+    _pitchRange: {x: 1, y: 1}
+  - _id: 5
+    _clips:
+    - {fileID: 8300000, guid: 0c17025568717b24cbb1381c5d0fc81f, type: 3}
+    _volume: 0.4
+    _pitchRange: {x: 1, y: 1}
+  - _id: 7
+    _clips:
+    - {fileID: 8300000, guid: 668319324897fe941bb7dc4d0ca3bbfa, type: 3}
+    _volume: 0.4
+    _pitchRange: {x: 1, y: 1}
+  _music:
+    _tracks:
+    - {fileID: 8300000, guid: 33c1a761a49d157479b89b9358b6911b, type: 3}
+    _shuffle: 0
+    _crossfadeDuration: 1.5
+    _delayBetweenTracks: 0
+  _masterVolume: 1
+  _sfxVolume: 1
+  _musicVolume: 0.3
