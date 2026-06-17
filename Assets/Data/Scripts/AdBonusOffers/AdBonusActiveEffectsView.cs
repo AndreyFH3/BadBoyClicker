@@ -132,16 +132,25 @@ namespace AdBonusOffers
 
             if (_itemTemplate == null)
             {
-                var itemObject = new GameObject("EffectItemTemplate", typeof(RectTransform), typeof(Image), typeof(TextMeshProUGUI));
+                var itemObject = new GameObject("EffectItemTemplate", typeof(RectTransform), typeof(Image));
                 itemObject.transform.SetParent(_root, false);
                 var rect = itemObject.GetComponent<RectTransform>();
                 rect.sizeDelta = new Vector2(260f, 34f);
                 itemObject.GetComponent<Image>().color = new Color(0.05f, 0.08f, 0.1f, 0.9f);
-                _itemTemplate = itemObject.GetComponent<TextMeshProUGUI>();
+
+                var textObject = new GameObject("Text", typeof(RectTransform), typeof(TextMeshProUGUI));
+                textObject.transform.SetParent(itemObject.transform, false);
+                var textRect = textObject.GetComponent<RectTransform>();
+                textRect.anchorMin = Vector2.zero;
+                textRect.anchorMax = Vector2.one;
+                textRect.offsetMin = new Vector2(8f, 2f);
+                textRect.offsetMax = new Vector2(-8f, -2f);
+
+                _itemTemplate = textObject.GetComponent<TextMeshProUGUI>();
                 _itemTemplate.fontSize = 15;
                 _itemTemplate.color = Color.white;
                 _itemTemplate.alignment = TextAlignmentOptions.Center;
-                _itemTemplate.gameObject.SetActive(false);
+                itemObject.SetActive(false);
             }
         }
 

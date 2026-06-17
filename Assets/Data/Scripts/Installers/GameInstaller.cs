@@ -40,6 +40,7 @@ namespace Installer
         [SerializeField] private ChestOpenView _chestOpenView;
         [SerializeField] private MonoBehaviour _adBonusOfferView;
         [SerializeField] private AdBonusActiveEffectsView _adBonusActiveEffectsView;
+        [SerializeField] private RewardedAdErrorView _rewardedAdErrorView;
 
         public override void InstallBindings()
         {
@@ -69,6 +70,8 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<CardCollectionService>().AsSingle().NonLazy();
             Container.Bind<IDailyLoginStartupGate>().To<DailyLoginStartupGate>().AsSingle().NonLazy();
             Container.Bind<IRewardedAdsService>().To<YGRewardedAdsService>().AsSingle().NonLazy();
+            Container.Bind<IRewardOfferUiGate>().To<RewardOfferUiGate>().AsSingle().NonLazy();
+            Container.Bind<IRewardedAdErrorView>().FromInstance(GetRewardedAdErrorView()).AsSingle().NonLazy();
             Container.BindInterfacesTo<AdBonusEffectService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AdBonusOfferService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<Timer>().AsSingle().NonLazy();
@@ -155,6 +158,16 @@ namespace Installer
         private AdBonusActiveEffectsView CreateRuntimeAdBonusActiveEffectsView()
         {
             return new GameObject("AdBonusActiveEffectsView").AddComponent<AdBonusActiveEffectsView>();
+        }
+
+        private RewardedAdErrorView CreateRuntimeRewardedAdErrorView()
+        {
+            return new GameObject("RewardedAdErrorView").AddComponent<RewardedAdErrorView>();
+        }
+
+        private RewardedAdErrorView GetRewardedAdErrorView()
+        {
+            return _rewardedAdErrorView != null ? _rewardedAdErrorView : CreateRuntimeRewardedAdErrorView();
         }
     }
 }

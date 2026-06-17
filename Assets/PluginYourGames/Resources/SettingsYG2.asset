@@ -71,6 +71,7 @@ MonoBehaviour:
     saveLocal: 0
     saveCloud: 1
     flush: 0
+    labelAdvSimLabel: 0
   Basic:
     platform: {fileID: 11400000, guid: fabe82a4ab034324eb452cc7109f6d19, type: 2}
     autoApplySettings: 1
@@ -93,7 +94,7 @@ MonoBehaviour:
     advIntervalSimulation: 60
     durationAdv: 0.5
     loadAdv: 0
-    testFailAds: 0
+    testFailAds: 1
     pauseOnFocusGame: 0
   Templates:
     logoImageFormat: 0

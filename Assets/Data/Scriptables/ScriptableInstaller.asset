@@ -21,3 +21,4 @@ MonoBehaviour:
   _chestConfig: {fileID: 11400000, guid: 65d06ecece1443249390807a5a8d07fb, type: 2}
   _localizationConfig: {fileID: 11400000, guid: 5ff3821d613b6e94ba779ab5eed84355, type: 2}
   _audioConfig: {fileID: 11400000, guid: 0cd7f54270ff46efbe1350f37f0ce64e, type: 2}
+  _adBonusOfferConfig: {fileID: 11400000, guid: 8175c6d471f44ad0a43c19b7477f1e09, type: 2}

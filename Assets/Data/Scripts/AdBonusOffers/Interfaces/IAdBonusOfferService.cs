@@ -15,6 +15,7 @@ namespace AdBonusOffers
 
         bool TryShowNextOffer();
         void HideCurrentOffer();
+        void SetCurrentOfferTimerPaused(bool isPaused);
         void ClaimCurrentOffer();
         void ClaimCurrentOfferForHard();
         void CompleteRewardPresentation();

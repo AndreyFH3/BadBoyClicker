@@ -2,6 +2,7 @@ using System;
 using CardCollections;
 using Chests;
 using Core;
+using Core.Ads;
 using GameLocalization;
 using QuestSystem;
 using Utils;
@@ -14,15 +15,18 @@ namespace ChestsMVP
         private readonly IChestService _chestService;
         private readonly IChestOpenView _view;
         private readonly ILocalizationService _localization;
+        private readonly IRewardOfferUiGate _rewardOfferUiGate;
 
         public ChestOpenPresenter(
             IChestService chestService,
             IChestOpenView view,
-            ILocalizationService localization)
+            ILocalizationService localization,
+            IRewardOfferUiGate rewardOfferUiGate)
         {
             _chestService = chestService;
             _view = view;
             _localization = localization;
+            _rewardOfferUiGate = rewardOfferUiGate;
         }
 
         public void Initialize()
@@ -44,6 +48,7 @@ namespace ChestsMVP
                 return;
             }
 
+            _rewardOfferUiGate.Block(this);
             _view.Show(new ChestOpenViewData
             {
                 ChestTitle = _localization.Localize(result.Chest.TitleLocalizationKey, result.Chest.Title),
@@ -86,6 +91,7 @@ namespace ChestsMVP
 
         private void OnCloseRequested()
         {
+            _rewardOfferUiGate.Unblock(this);
             _view.Hide();
         }
     }

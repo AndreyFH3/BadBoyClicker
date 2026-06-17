@@ -78,6 +78,11 @@ namespace AdBonusOffers
             SetTexts(_confirmationDescriptionText, data.ConfirmationDescription);
             SetImage(_confirmationIcon, data.Icon);
 
+            if (_confirmAdButton != null)
+            {
+                _confirmAdButton.interactable = data.CanClaimWithAd;
+            }
+
             if (_confirmHardButton != null)
             {
                 _confirmHardButton.gameObject.SetActive(data.CanClaimForHard);

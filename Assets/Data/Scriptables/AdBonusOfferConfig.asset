@@ -12,7 +12,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c9fa62d4c29df4abca73c8ae582146, type: 3}
   m_Name: AdBonusOfferConfig
   m_EditorClassIdentifier: Assembly-CSharp::AdBonusOffers.AdBonusOfferConfig
-  _initialDelaySeconds: 15
-  _offerIntervalSeconds: 90
-  _visibleDurationSeconds: 20
-  _offers: []
+  _initialDelaySeconds: 3
+  _offerIntervalSeconds: 10
+  _visibleDurationSeconds: 15
+  _offers:
+  - _id: soft_money
+    _placementId: soft_money
+    _cardTitleLocalizationKey: 
+    _cardTitle: Free money
+    _cardDescription: Get 1000 coins
+    _confirmationTitleLocalizationKey: 
+    _confirmationTitle: 1000 coins
+    _confirmationDescription: Watch an ad and receive 1000 coins
+    _icon: {fileID: -7250565942822309144, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _weight: 1
+    _cooldownSeconds: 20
+    _hardPrice: 5
+    _rewards:
+    - _rewardType: 0
+      _currencyType: 0
+      _amount: 1000
+      _rewardId: 
+      _icon: {fileID: -7250565942822309144, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 1000 coins
+    _effects: []
+  - _id: chest
+    _placementId: chest
+    _cardTitleLocalizationKey: 
+    _cardTitle: Free chest
+    _cardDescription: Open a reward chest
+    _confirmationTitleLocalizationKey: 
+    _confirmationTitle: Reward chest
+    _confirmationDescription: Watch an ad and receive a chest
+    _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _weight: 1
+    _cooldownSeconds: 20
+    _hardPrice: 0
+    _rewards:
+    - _rewardType: 3
+      _currencyType: 0
+      _amount: 0
+      _rewardId: Chest_1
+      _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: Chest
+    _effects: []
+  - _id: click_x2
+    _placementId: click_x2
+    _cardTitleLocalizationKey: 
+    _cardTitle: Double clicks
+    _cardDescription: x2 click income for 60 seconds
+    _confirmationTitleLocalizationKey: 
+    _confirmationTitle: x2 click income
+    _confirmationDescription: Watch an ad to double click income for 60 seconds
+    _icon: {fileID: -7250565942822309144, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _weight: 1
+    _cooldownSeconds: 20
+    _hardPrice: 0
+    _rewards: []
+    _effects:
+    - _id: click_x2
+      _effectType: 1
+      _durationSeconds: 60
+      _multiplier: 2
+      _discountPercent: 0
+      _reward:
+        _rewardType: 0
+        _currencyType: 0
+        _amount: 0
+        _rewardId: 
+        _icon: {fileID: 0}
+        _displayTextLocalizationKey: 
+        _displayText: 
+  - _id: shop_discount
+    _placementId: shop_discount
+    _cardTitleLocalizationKey: 
+    _cardTitle: Shop sale
+    _cardDescription: 25% discount for 60 seconds
+    _confirmationTitleLocalizationKey: 
+    _confirmationTitle: 25% shop discount
+    _confirmationDescription: Watch an ad to activate the discount for 60 seconds
+    _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _weight: 1
+    _cooldownSeconds: 20
+    _hardPrice: 0
+    _rewards: []
+    _effects:
+    - _id: shop_discount
+      _effectType: 3
+      _durationSeconds: 60
+      _multiplier: 1
+      _discountPercent: 25
+      _reward:
+        _rewardType: 0
+        _currencyType: 0
+        _amount: 0
+        _rewardId: 
+        _icon: {fileID: 0}
+        _displayTextLocalizationKey: 
+        _displayText: 
+  _boosts: []

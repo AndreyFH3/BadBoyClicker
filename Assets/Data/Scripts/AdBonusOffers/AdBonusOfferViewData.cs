@@ -11,6 +11,7 @@ namespace AdBonusOffers
             string confirmationTitle,
             string confirmationDescription,
             Sprite icon,
+            bool canClaimWithAd,
             bool canClaimForHard,
             long hardPrice)
         {
@@ -20,6 +21,7 @@ namespace AdBonusOffers
             ConfirmationTitle = confirmationTitle;
             ConfirmationDescription = confirmationDescription;
             Icon = icon;
+            CanClaimWithAd = canClaimWithAd;
             CanClaimForHard = canClaimForHard;
             HardPrice = hardPrice;
         }
@@ -30,7 +32,22 @@ namespace AdBonusOffers
         public string ConfirmationTitle { get; }
         public string ConfirmationDescription { get; }
         public Sprite Icon { get; }
+        public bool CanClaimWithAd { get; }
         public bool CanClaimForHard { get; }
         public long HardPrice { get; }
+
+        public AdBonusOfferViewData WithAdClaimAvailability(bool canClaimWithAd)
+        {
+            return new AdBonusOfferViewData(
+                Id,
+                CardTitle,
+                CardDescription,
+                ConfirmationTitle,
+                ConfirmationDescription,
+                Icon,
+                canClaimWithAd,
+                CanClaimForHard,
+                HardPrice);
+        }
     }
 }

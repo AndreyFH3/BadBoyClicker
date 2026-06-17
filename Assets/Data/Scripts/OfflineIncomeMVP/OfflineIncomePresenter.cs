@@ -15,6 +15,8 @@ namespace OfflineIncome
         private OfflineIncomeModel _model;
         private IOfflineIncomeView _view;
         private IRewardedAdsService _adsService;
+        private IRewardedAdErrorView _adErrorView;
+        private IRewardOfferUiGate _rewardOfferUiGate;
         private Wallet _wallet;
         private GameConfig _config;
         private IDailyLoginStartupGate _dailyLoginStartupGate;
@@ -27,6 +29,8 @@ namespace OfflineIncome
             OfflineIncomeModel model,
             IOfflineIncomeView view,
             IRewardedAdsService adsService,
+            IRewardedAdErrorView adErrorView,
+            IRewardOfferUiGate rewardOfferUiGate,
             Wallet wallet,
             GameConfig config,
             IDailyLoginStartupGate dailyLoginStartupGate,
@@ -36,6 +40,8 @@ namespace OfflineIncome
             _model = model;
             _view = view;
             _adsService = adsService;
+            _adErrorView = adErrorView;
+            _rewardOfferUiGate = rewardOfferUiGate;
             _wallet = wallet;
             _config = config;
             _dailyLoginStartupGate = dailyLoginStartupGate;
@@ -69,6 +75,7 @@ namespace OfflineIncome
 
             if (_model.HasReward)
             {
+                _rewardOfferUiGate.Block(this);
                 _view.Show(_model.CreateViewData(_wallet));
                 return;
             }
@@ -105,7 +112,13 @@ namespace OfflineIncome
             _adsService.Show(
                 RewardedPlacementId,
                 () => AddReward(_config.OfflineIncome.AdMultiplier),
-                () => _view.Show(_model.CreateViewData(_wallet)));
+                OnRewardedAdFailed);
+        }
+
+        private void OnRewardedAdFailed()
+        {
+            _view.Show(_model.CreateViewData(_wallet));
+            _adErrorView.Show();
         }
 
         private void AddReward(int multiplier)
@@ -127,6 +140,7 @@ namespace OfflineIncome
             }
 
             _isCompleted = true;
+            _rewardOfferUiGate.Unblock(this);
             _view.Hide();
             Dispose();
 

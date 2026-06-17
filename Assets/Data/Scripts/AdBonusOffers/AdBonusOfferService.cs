@@ -26,6 +26,7 @@ namespace AdBonusOffers
         private float _nextOfferTimer;
         private float _visibleTimer;
         private bool _isClaimInProgress;
+        private bool _isCurrentOfferTimerPaused;
 
         public event Action<AdBonusOfferViewData> OfferShown;
         public event Action OfferHidden;
@@ -56,6 +57,7 @@ namespace AdBonusOffers
         public void Initialize()
         {
             _nextOfferTimer = _config.InitialDelaySeconds;
+            Debug.Log($"Ad bonus offers initialized. Offers: {_config.Offers?.Count ?? 0}, first offer in: {_nextOfferTimer:0.#}s.");
         }
 
         public void Tick()
@@ -69,7 +71,11 @@ namespace AdBonusOffers
 
             if (HasActiveOffer)
             {
-                TickVisibleOffer();
+                if (!_isCurrentOfferTimerPaused)
+                {
+                    TickVisibleOffer();
+                }
+
                 return;
             }
 
@@ -91,6 +97,7 @@ namespace AdBonusOffers
             }
 
             _visibleTimer = _config.VisibleDurationSeconds;
+            Debug.Log($"Ad bonus offer shown: {_currentOffer.Id}. Visible for {_visibleTimer:0.#}s.");
             OfferShown?.Invoke(CurrentOffer);
             return true;
         }
@@ -104,8 +111,14 @@ namespace AdBonusOffers
 
             _currentOffer = null;
             _visibleTimer = 0f;
+            _isCurrentOfferTimerPaused = false;
             ResetNextOfferTimer();
             OfferHidden?.Invoke();
+        }
+
+        public void SetCurrentOfferTimerPaused(bool isPaused)
+        {
+            _isCurrentOfferTimerPaused = isPaused && HasActiveOffer;
         }
 
         public void ClaimCurrentOffer()
@@ -117,6 +130,13 @@ namespace AdBonusOffers
 
             var offer = _currentOffer;
             var viewData = CurrentOffer;
+
+            if (!_adsService.IsAvailable(offer.PlacementId))
+            {
+                FailClaim(viewData);
+                return;
+            }
+
             _isClaimInProgress = true;
 
             _adsService.Show(
@@ -148,6 +168,7 @@ namespace AdBonusOffers
             _isClaimInProgress = false;
             _currentOffer = null;
             _visibleTimer = 0f;
+            _isCurrentOfferTimerPaused = false;
             ResetNextOfferTimer();
             OfferHidden?.Invoke();
             RewardGranted?.Invoke(viewData);
@@ -324,6 +345,7 @@ namespace AdBonusOffers
                 _localization.Localize(offer.ConfirmationTitleLocalizationKey, offer.ConfirmationTitle),
                 offer.ConfirmationDescription,
                 offer.Icon,
+                _adsService.IsAvailable(offer.PlacementId),
                 CanClaimForHard(offer),
                 offer.HardPrice);
         }
