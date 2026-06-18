@@ -8,6 +8,7 @@ using Chests;
 using GameLocalization;
 using GameAudio;
 using AdBonusOffers;
+using Customization;
 using UnityEngine;
 using Zenject;
 
@@ -24,6 +25,7 @@ public class ScriptableInstaller : ScriptableObjectInstaller
     [SerializeField] protected LocalizationConfig _localizationConfig;
     [SerializeField] protected AudioConfig _audioConfig;
     [SerializeField] protected AdBonusOfferConfig _adBonusOfferConfig;
+    [SerializeField] protected CustomizationConfig _customizationConfig;
     
     public override void InstallBindings()
     {
@@ -82,5 +84,11 @@ public class ScriptableInstaller : ScriptableObjectInstaller
             : ScriptableObject.CreateInstance<AdBonusOfferConfig>();
 
         Container.Bind<AdBonusOfferConfig>().FromInstance(adBonusOfferConfig).AsSingle().NonLazy();
+
+        CustomizationConfig customizationConfig = _customizationConfig != null
+            ? _customizationConfig
+            : ScriptableObject.CreateInstance<CustomizationConfig>();
+
+        Container.Bind<CustomizationConfig>().FromInstance(customizationConfig).AsSingle().NonLazy();
     }
 }

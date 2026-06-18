@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee3323dc226c06a4a82914ce9d2a7dcb, type: 3}
+  m_Name: CustomizationConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Customization.CustomizationConfig
+  _backgrounds:
+  - _id: back_01
+    _titleLocalizationKey: back_01_title_key
+    _title: Default
+    _descriptionLocalizationKey: back_01_description_key
+    _description: Some Description
+    _sprite: {fileID: 21300000, guid: 8a2a7953cc7acfe4c9b37686b952a562, type: 3}
+    _price: 0
+  - _id: back_02
+    _titleLocalizationKey: back_02_title_key
+    _title: Default_2
+    _descriptionLocalizationKey: back_02_description_key
+    _description: Some Description
+    _sprite: {fileID: 21300000, guid: 9ac0c218afc2c5048931f8f3feb15662, type: 3}
+    _price: 100
+  _cats:
+  - _id: cat_01
+    _titleLocalizationKey: cat_01_title_key
+    _title: cat_01
+    _descriptionLocalizationKey: cat_01_description_key
+    _description: Some Description
+    _sprite: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+    _price: 0
+  - _id: cat_02
+    _titleLocalizationKey: cat_02_title_key
+    _title: cat_02
+    _descriptionLocalizationKey: cat_02_description_key
+    _description: Some Description
+    _sprite: {fileID: 2779402041821275866, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
+    _price: 100
+  _priceIcon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}

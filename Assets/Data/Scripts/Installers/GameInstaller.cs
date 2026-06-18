@@ -22,6 +22,7 @@ using ChestsMVP;
 using GameLocalization;
 using GameAudio;
 using AdBonusOffers;
+using Customization;
 
 namespace Installer
 {
@@ -41,6 +42,7 @@ namespace Installer
         [SerializeField] private MonoBehaviour _adBonusOfferView;
         [SerializeField] private AdBonusActiveEffectsView _adBonusActiveEffectsView;
         [SerializeField] private RewardedAdErrorView _rewardedAdErrorView;
+        [SerializeField] private CustomizationView _customizationView;
 
         public override void InstallBindings()
         {
@@ -51,6 +53,7 @@ namespace Installer
             Container.Bind<PlayerProgressionRuntimeSave>().AsSingle().NonLazy();
             Container.Bind<QuestRuntimeSave>().AsSingle().NonLazy();
             Container.Bind<CardCollectionRuntimeSave>().AsSingle().NonLazy();
+            Container.Bind<CustomizationRuntimeSave>().AsSingle().NonLazy();
             Container.Bind<ILocalizationService>().To<LocalizationService>().AsSingle().NonLazy();
             Container.Bind<IAudioService>().To<AudioService>().AsSingle().NonLazy();
             Localization.SetService(Container.Resolve<ILocalizationService>());
@@ -68,6 +71,7 @@ namespace Installer
             Container.Bind<IDailyLoginService>().To<DailyLoginService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyQuestService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CardCollectionService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<CustomizationService>().AsSingle().NonLazy();
             Container.Bind<IDailyLoginStartupGate>().To<DailyLoginStartupGate>().AsSingle().NonLazy();
             Container.Bind<IRewardedAdsService>().To<YGRewardedAdsService>().AsSingle().NonLazy();
             Container.Bind<IRewardOfferUiGate>().To<RewardOfferUiGate>().AsSingle().NonLazy();
@@ -134,6 +138,11 @@ namespace Installer
             else
                 Container.BindInterfacesAndSelfTo<AdBonusActiveEffectsView>().FromInstance(CreateRuntimeAdBonusActiveEffectsView()).AsSingle().NonLazy();
 
+            if (_customizationView != null)
+                Container.Bind<ICustomizationView>().FromInstance(_customizationView).AsSingle().NonLazy();
+            else
+                Container.Bind<ICustomizationView>().To<CustomizationNullView>().AsSingle().NonLazy();
+
             Container.BindInterfacesAndSelfTo<DailyLoginModel>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyLoginPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyQuestPresenter>().AsSingle().NonLazy();
@@ -145,6 +154,8 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<CardCollectionCardsPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ChestOpenPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AdBonusOfferPresenter>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<CustomizationModel>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<CustomizationPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<OfflineIncomeActivityTracker>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameStartRouter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<QuestService>().AsSingle().NonLazy();

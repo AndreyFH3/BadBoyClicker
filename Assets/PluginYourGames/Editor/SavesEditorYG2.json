@@ -1,9 +1,9 @@
 {
-    "idSave": 15924,
+    "idSave": 16548,
     "GameSaveData": {
         "Wallet": {
-            "Soft": 473953,
-            "Middle": 350,
+            "Soft": 36253473,
+            "Middle": 365,
             "Hard": 192
         },
         "Shop": {
@@ -31,14 +31,14 @@
             ]
         },
         "OfflineIncome": {
-            "LastOnlineTicks": 639172269147824414
+            "LastOnlineTicks": 639174041395038578
         },
         "DailyLogin": {
-            "CurrentDayIndex": 0,
-            "LastClaimUtcTicks": 639171809932889748
+            "CurrentDayIndex": 2,
+            "LastClaimUtcTicks": 639174040567269924
         },
         "DailyQuests": {
-            "DayKey": "20260616",
+            "DayKey": "20260618",
             "Points": 0,
             "Quests": [
                 {
@@ -67,14 +67,14 @@
                 },
                 {
                     "Id": "5",
-                    "CurrentValue": 50,
-                    "IsCompleted": true,
+                    "CurrentValue": 41,
+                    "IsCompleted": false,
                     "IsPointsAdded": false
                 },
                 {
                     "Id": "6",
-                    "CurrentValue": 60,
-                    "IsCompleted": true,
+                    "CurrentValue": 41,
+                    "IsCompleted": false,
                     "IsPointsAdded": false
                 }
             ],
@@ -144,6 +144,18 @@
                     "Id": "0",
                     "IsRewardClaimed": true
                 }
+            ]
+        },
+        "Customization": {
+            "ActiveBackgroundId": "back_01",
+            "ActiveCatId": "cat_02",
+            "PurchasedBackgroundIds": [
+                "back_01",
+                "back_02"
+            ],
+            "PurchasedCatIds": [
+                "cat_01",
+                "cat_02"
             ]
         }
     }
