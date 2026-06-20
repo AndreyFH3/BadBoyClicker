@@ -10,6 +10,7 @@ namespace Customization
     {
         event Action Changed;
         event Action<CustomizationItemType, string> ActiveItemChanged;
+        event Action<CustomizationItemType, string, long> ItemBought;
 
         string ActiveBackgroundId { get; }
         string ActiveCatId { get; }

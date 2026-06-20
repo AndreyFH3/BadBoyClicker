@@ -1,44 +1,23 @@
 {
-    "idSave": 16548,
+    "idSave": 17771,
     "GameSaveData": {
         "Wallet": {
-            "Soft": 36253473,
-            "Middle": 365,
-            "Hard": 192
+            "Soft": 57,
+            "Middle": 4920,
+            "Hard": 137
         },
         "Shop": {
-            "Levels": [
-                {
-                    "Key": "Click:soft_paw",
-                    "Level": 6
-                },
-                {
-                    "Key": "AutoBuy:sleepy_cat",
-                    "Level": 11
-                },
-                {
-                    "Key": "AutoBuy:cat_bed",
-                    "Level": 10
-                },
-                {
-                    "Key": "AutoBuy:food_bowl",
-                    "Level": 10
-                },
-                {
-                    "Key": "AutoBuy:toy_mouse",
-                    "Level": 3
-                }
-            ]
+            "Levels": []
         },
         "OfflineIncome": {
-            "LastOnlineTicks": 639174041395038578
+            "LastOnlineTicks": 639175289721462716
         },
         "DailyLogin": {
-            "CurrentDayIndex": 2,
-            "LastClaimUtcTicks": 639174040567269924
+            "CurrentDayIndex": 0,
+            "LastClaimUtcTicks": 639175256939502457
         },
         "DailyQuests": {
-            "DayKey": "20260618",
+            "DayKey": "20260620",
             "Points": 0,
             "Quests": [
                 {
@@ -67,22 +46,22 @@
                 },
                 {
                     "Id": "5",
-                    "CurrentValue": 41,
-                    "IsCompleted": false,
+                    "CurrentValue": 50,
+                    "IsCompleted": true,
                     "IsPointsAdded": false
                 },
                 {
                     "Id": "6",
-                    "CurrentValue": 41,
-                    "IsCompleted": false,
+                    "CurrentValue": 60,
+                    "IsCompleted": true,
                     "IsPointsAdded": false
                 }
             ],
             "Milestones": []
         },
         "PlayerProgression": {
-            "CompletedLevels": 34,
-            "CurrentExperience": 100
+            "CompletedLevels": 35,
+            "CurrentExperience": 19
         },
         "Quests": {
             "Quests": [
@@ -147,8 +126,8 @@
             ]
         },
         "Customization": {
-            "ActiveBackgroundId": "back_01",
-            "ActiveCatId": "cat_02",
+            "ActiveBackgroundId": "back_02",
+            "ActiveCatId": "cat_01",
             "PurchasedBackgroundIds": [
                 "back_01",
                 "back_02"

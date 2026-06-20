@@ -4,6 +4,8 @@ namespace DailyLogin
 {
     public interface IDailyLoginService
     {
+        event System.Action<int, RewardConfig> RewardClaimed;
+
         bool CanClaim();
         int GetCurrentDayIndex();
         DailyLoginDayConfig GetCurrentRewardDay();

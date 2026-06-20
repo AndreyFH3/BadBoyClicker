@@ -14,6 +14,7 @@ namespace Customization
 
         public event Action Changed;
         public event Action<CustomizationItemType, string> ActiveItemChanged;
+        public event Action<CustomizationItemType, string, long> ItemBought;
 
         public string ActiveBackgroundId => _save.ActiveBackgroundId;
         public string ActiveCatId => _save.ActiveCatId;
@@ -74,6 +75,7 @@ namespace Customization
             }
 
             _save.AddPurchased(type, id);
+            ItemBought?.Invoke(type, id, item.Price);
             Select(type, id);
             Changed?.Invoke();
             return true;

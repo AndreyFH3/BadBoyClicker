@@ -23,6 +23,8 @@ using GameLocalization;
 using GameAudio;
 using AdBonusOffers;
 using Customization;
+using Analytics;
+using Purchases;
 
 namespace Installer
 {
@@ -32,6 +34,7 @@ namespace Installer
         [SerializeField] private WalletView _walletView;
         [SerializeField] private ClickInfoShower _clickInfo;
         [SerializeField] private ShopView _shopView;
+        [SerializeField] private ShopPurchaseConfirmationView _shopPurchaseConfirmationView;
         [SerializeField] private DailyLoginView _dailyLoginView;
         [SerializeField] private DailyQuestView _dailyQuestView;
         [SerializeField] private OfflineIncomeView _offlineIncomeView;
@@ -68,12 +71,13 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<PlayerFeatureUnlockService>().AsSingle().NonLazy();
             Container.Bind<ITimeService>().To<LocalTimeService>().AsSingle().NonLazy();
             Container.Bind<IRewardService>().To<RewardService>().AsSingle().NonLazy();
-            Container.Bind<IDailyLoginService>().To<DailyLoginService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<DailyLoginService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyQuestService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CardCollectionService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CustomizationService>().AsSingle().NonLazy();
             Container.Bind<IDailyLoginStartupGate>().To<DailyLoginStartupGate>().AsSingle().NonLazy();
             Container.Bind<IRewardedAdsService>().To<YGRewardedAdsService>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<PurchaseSystem>().AsSingle().NonLazy();
             Container.Bind<IRewardOfferUiGate>().To<RewardOfferUiGate>().AsSingle().NonLazy();
             Container.Bind<IRewardedAdErrorView>().FromInstance(GetRewardedAdErrorView()).AsSingle().NonLazy();
             Container.BindInterfacesTo<AdBonusEffectService>().AsSingle().NonLazy();
@@ -91,6 +95,10 @@ namespace Installer
 
             Container.BindInterfacesAndSelfTo<ShopModel>().AsSingle().NonLazy();
             Container.Bind<IShopView>().FromInstance(_shopView).AsSingle().NonLazy();
+            if (_shopPurchaseConfirmationView != null)
+                Container.Bind<IShopPurchaseConfirmationView>().FromInstance(_shopPurchaseConfirmationView).AsSingle().NonLazy();
+            else
+                Container.Bind<IShopPurchaseConfirmationView>().To<ShopPurchaseConfirmationNullView>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ShopPresenter>().AsSingle().NonLazy();
 
             if (_dailyLoginView != null)
@@ -159,6 +167,7 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<OfflineIncomeActivityTracker>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameStartRouter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<QuestService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<GameAnalyticsController>().AsSingle().NonLazy();
         }
 
         private AdBonusOfferView CreateRuntimeAdBonusOfferView()
