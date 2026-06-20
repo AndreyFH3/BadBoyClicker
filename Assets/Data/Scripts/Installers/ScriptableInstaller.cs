@@ -4,7 +4,11 @@ using DailyQuests;
 using PlayerFeatures;
 using QuestSystem;
 using CardCollections;
+using Chests;
 using GameLocalization;
+using GameAudio;
+using AdBonusOffers;
+using Customization;
 using UnityEngine;
 using Zenject;
 
@@ -17,7 +21,11 @@ public class ScriptableInstaller : ScriptableObjectInstaller
     [SerializeField] protected QuestConfig _questConfig;
     [SerializeField] protected DailyQuestConfig _dailyQuestConfig;
     [SerializeField] protected CardCollectionConfig _cardCollectionConfig;
+    [SerializeField] protected ChestConfig _chestConfig;
     [SerializeField] protected LocalizationConfig _localizationConfig;
+    [SerializeField] protected AudioConfig _audioConfig;
+    [SerializeField] protected AdBonusOfferConfig _adBonusOfferConfig;
+    [SerializeField] protected CustomizationConfig _customizationConfig;
     
     public override void InstallBindings()
     {
@@ -53,10 +61,34 @@ public class ScriptableInstaller : ScriptableObjectInstaller
 
         Container.Bind<CardCollectionConfig>().FromInstance(cardCollectionConfig).AsSingle().NonLazy();
 
+        ChestConfig chestConfig = _chestConfig != null
+            ? _chestConfig
+            : ScriptableObject.CreateInstance<ChestConfig>();
+
+        Container.Bind<ChestConfig>().FromInstance(chestConfig).AsSingle().NonLazy();
+
         LocalizationConfig localizationConfig = _localizationConfig != null
             ? _localizationConfig
             : ScriptableObject.CreateInstance<LocalizationConfig>();
 
         Container.Bind<LocalizationConfig>().FromInstance(localizationConfig).AsSingle().NonLazy();
+
+        AudioConfig audioConfig = _audioConfig != null
+            ? _audioConfig
+            : ScriptableObject.CreateInstance<AudioConfig>();
+
+        Container.Bind<AudioConfig>().FromInstance(audioConfig).AsSingle().NonLazy();
+
+        AdBonusOfferConfig adBonusOfferConfig = _adBonusOfferConfig != null
+            ? _adBonusOfferConfig
+            : ScriptableObject.CreateInstance<AdBonusOfferConfig>();
+
+        Container.Bind<AdBonusOfferConfig>().FromInstance(adBonusOfferConfig).AsSingle().NonLazy();
+
+        CustomizationConfig customizationConfig = _customizationConfig != null
+            ? _customizationConfig
+            : ScriptableObject.CreateInstance<CustomizationConfig>();
+
+        Container.Bind<CustomizationConfig>().FromInstance(customizationConfig).AsSingle().NonLazy();
     }
 }

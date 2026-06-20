@@ -20,6 +20,7 @@ namespace GameLocalization
         private void OnEnable()
         {
             Localization.ServiceChanged += OnLocalizationServiceChanged;
+            Localization.LanguageChanged += OnLanguageChanged;
 
             if (Localization.IsReady)
             {
@@ -38,6 +39,14 @@ namespace GameLocalization
         private void OnDisable()
         {
             Localization.ServiceChanged -= OnLocalizationServiceChanged;
+            Localization.LanguageChanged -= OnLanguageChanged;
+        }
+
+        public void Configure(string key, string fallback = null)
+        {
+            _key = key;
+            _fallback = fallback;
+            Refresh();
         }
 
         [ContextMenu("Refresh")]
@@ -60,6 +69,11 @@ namespace GameLocalization
             {
                 Refresh();
             }
+        }
+
+        private void OnLanguageChanged()
+        {
+            Refresh();
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using GameLocalization;
 using Zenject;
 namespace Shop
 {
@@ -6,12 +7,18 @@ namespace Shop
     {
         private IShopModel _model;
         private IShopView _view;
+        private IShopPurchaseConfirmationView _confirmationView;
+        private string _pendingPurchaseId;
 
         [Inject]
-        public void Construct(IShopModel model, IShopView view)
+        public void Construct(
+            IShopModel model,
+            IShopView view,
+            IShopPurchaseConfirmationView confirmationView)
         {
             _model = model;
             _view = view;
+            _confirmationView = confirmationView;
         }
 
         public void Initialize()
@@ -20,6 +27,9 @@ namespace Shop
             _view.OpenRequested += OnOpenRequested;
             _view.CloseRequested += OnCloseRequested;
             _view.OnBuy += OnBuyRequested;
+            _confirmationView.ConfirmRequested += OnPurchaseConfirmed;
+            _confirmationView.CancelRequested += OnPurchaseCanceled;
+            Localization.LanguageChanged += OnLanguageChanged;
 
             UpdateView(true);
         }
@@ -30,6 +40,9 @@ namespace Shop
             _view.OpenRequested -= OnOpenRequested;
             _view.CloseRequested -= OnCloseRequested;
             _view.OnBuy -= OnBuyRequested;
+            _confirmationView.ConfirmRequested -= OnPurchaseConfirmed;
+            _confirmationView.CancelRequested -= OnPurchaseCanceled;
+            Localization.LanguageChanged -= OnLanguageChanged;
         }
 
         private void OnStateChanged()
@@ -61,7 +74,38 @@ namespace Shop
 
         private void OnBuyRequested(string id)
         {
+            ShopPurchaseConfirmationData confirmationData = _model.GetPurchaseConfirmationData(id);
+            if (confirmationData != null)
+            {
+                _pendingPurchaseId = id;
+                _confirmationView.Show(confirmationData);
+                return;
+            }
+
             _model.Buy(id);
+        }
+
+        private void OnPurchaseConfirmed()
+        {
+            string id = _pendingPurchaseId;
+            _pendingPurchaseId = null;
+            _confirmationView.Hide();
+
+            if (!string.IsNullOrEmpty(id))
+            {
+                _model.Buy(id);
+            }
+        }
+
+        private void OnPurchaseCanceled()
+        {
+            _pendingPurchaseId = null;
+            _confirmationView.Hide();
+        }
+
+        private void OnLanguageChanged()
+        {
+            UpdateView(true);
         }
     }
 }

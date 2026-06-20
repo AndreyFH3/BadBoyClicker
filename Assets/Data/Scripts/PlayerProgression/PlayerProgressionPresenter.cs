@@ -1,4 +1,5 @@
 using System;
+using GameLocalization;
 using Zenject;
 
 namespace PlayerProgression
@@ -20,6 +21,7 @@ namespace PlayerProgression
             _service.Changed += UpdateView;
             _service.ExperienceAdded += OnExperienceAdded;
             _view.NewLevelRequested += OnNewLevelRequested;
+            Localization.LanguageChanged += UpdateView;
             UpdateView();
         }
 
@@ -28,6 +30,7 @@ namespace PlayerProgression
             _service.Changed -= UpdateView;
             _service.ExperienceAdded -= OnExperienceAdded;
             _view.NewLevelRequested -= OnNewLevelRequested;
+            Localization.LanguageChanged -= UpdateView;
         }
 
         private void UpdateView()

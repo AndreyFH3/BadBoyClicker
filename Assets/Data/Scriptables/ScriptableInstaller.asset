@@ -18,4 +18,8 @@ MonoBehaviour:
   _questConfig: {fileID: 11400000, guid: c3cfc2b8f4a34be4e874f9e807320652, type: 2}
   _dailyQuestConfig: {fileID: 11400000, guid: 241f2d166d2abf4418f81527dcb0fd2f, type: 2}
   _cardCollectionConfig: {fileID: 11400000, guid: d4a30b2eb6965c9408c784bcbf5f059d, type: 2}
+  _chestConfig: {fileID: 11400000, guid: 65d06ecece1443249390807a5a8d07fb, type: 2}
   _localizationConfig: {fileID: 11400000, guid: 5ff3821d613b6e94ba779ab5eed84355, type: 2}
+  _audioConfig: {fileID: 11400000, guid: 0cd7f54270ff46efbe1350f37f0ce64e, type: 2}
+  _adBonusOfferConfig: {fileID: 11400000, guid: 8175c6d471f44ad0a43c19b7477f1e09, type: 2}
+  _customizationConfig: {fileID: 11400000, guid: f2e55bd97e5f2bd4aba7fcc74b1fc412, type: 2}

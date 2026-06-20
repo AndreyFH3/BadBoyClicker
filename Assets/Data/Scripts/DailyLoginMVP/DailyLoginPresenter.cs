@@ -1,4 +1,6 @@
 using System;
+using Core.Ads;
+using GameLocalization;
 using PlayerFeatures;
 using Zenject;
 
@@ -11,6 +13,7 @@ namespace DailyLoginMVP
         private readonly IDailyLoginView _view;
         private readonly IDailyLoginStartupGate _startupGate;
         private readonly IPlayerFeatureUnlockService _featureUnlockService;
+        private readonly IRewardOfferUiGate _rewardOfferUiGate;
         private bool _isCompleted;
         private bool _isWaitingForUnlock;
 
@@ -19,18 +22,21 @@ namespace DailyLoginMVP
             DailyLoginModel model,
             IDailyLoginView view,
             IDailyLoginStartupGate startupGate,
-            IPlayerFeatureUnlockService featureUnlockService)
+            IPlayerFeatureUnlockService featureUnlockService,
+            IRewardOfferUiGate rewardOfferUiGate)
         {
             _container = container;
             _model = model;
             _view = view;
             _startupGate = startupGate;
             _featureUnlockService = featureUnlockService;
+            _rewardOfferUiGate = rewardOfferUiGate;
         }
 
         public void Initialize()
         {
             _view.ClaimRequested += Claim;
+            Localization.LanguageChanged += OnLanguageChanged;
 
             if (!_featureUnlockService.IsUnlocked(PlayerFeatureType.DailyLoginReward))
             {
@@ -47,6 +53,7 @@ namespace DailyLoginMVP
         {
             if (_model.HasReward)
             {
+                _rewardOfferUiGate.Block(this);
                 _view.Show(_model.CreateViewData());
                 return;
             }
@@ -57,6 +64,7 @@ namespace DailyLoginMVP
         public void Dispose()
         {
             _view.ClaimRequested -= Claim;
+            Localization.LanguageChanged -= OnLanguageChanged;
             _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;
         }
 
@@ -86,12 +94,21 @@ namespace DailyLoginMVP
             }
 
             _isCompleted = true;
+            _rewardOfferUiGate.Unblock(this);
             _view.Hide();
             Dispose();
 
             _container.Unbind<DailyLoginPresenter>();
             _container.Unbind<DailyLoginModel>();
             _startupGate.Complete();
+        }
+
+        private void OnLanguageChanged()
+        {
+            if (!_isCompleted && _model.HasReward)
+            {
+                _view.Show(_model.CreateViewData());
+            }
         }
     }
 }

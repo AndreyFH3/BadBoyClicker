@@ -7,6 +7,9 @@ namespace DailyQuests
     {
         int Points { get; }
         event Action Changed;
+        event Action<string, int> QuestPointsClaimed;
+        event Action<int> MilestoneClaimed;
+
         DailyQuestBoardViewData GetViewData();
         bool ClaimQuestPoints(string questId);
         bool ClaimMilestone(int requiredPoints);

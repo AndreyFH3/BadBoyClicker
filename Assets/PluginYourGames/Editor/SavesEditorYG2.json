@@ -1,88 +1,75 @@
 {
-    "idSave": 7384,
+    "idSave": 17771,
     "GameSaveData": {
         "Wallet": {
-            "Soft": 0,
-            "Middle": 145,
-            "Hard": 130
+            "Soft": 57,
+            "Middle": 4920,
+            "Hard": 137
         },
         "Shop": {
             "Levels": []
         },
         "OfflineIncome": {
-            "LastOnlineTicks": 639157336272202996
+            "LastOnlineTicks": 639175289721462716
         },
         "DailyLogin": {
-            "CurrentDayIndex": 1,
-            "LastClaimUtcTicks": 639157230957646253
+            "CurrentDayIndex": 0,
+            "LastClaimUtcTicks": 639175256939502457
         },
         "DailyQuests": {
-            "DayKey": "20260530",
-            "Points": 60,
+            "DayKey": "20260620",
+            "Points": 0,
             "Quests": [
                 {
                     "Id": "1",
                     "CurrentValue": 10,
                     "IsCompleted": true,
-                    "IsPointsAdded": true
+                    "IsPointsAdded": false
                 },
                 {
                     "Id": "2",
                     "CurrentValue": 20,
                     "IsCompleted": true,
-                    "IsPointsAdded": true
+                    "IsPointsAdded": false
                 },
                 {
                     "Id": "3",
                     "CurrentValue": 30,
                     "IsCompleted": true,
-                    "IsPointsAdded": true
+                    "IsPointsAdded": false
                 },
                 {
                     "Id": "4",
                     "CurrentValue": 40,
                     "IsCompleted": true,
-                    "IsPointsAdded": true
+                    "IsPointsAdded": false
                 },
                 {
                     "Id": "5",
                     "CurrentValue": 50,
                     "IsCompleted": true,
-                    "IsPointsAdded": true
+                    "IsPointsAdded": false
                 },
                 {
                     "Id": "6",
                     "CurrentValue": 60,
                     "IsCompleted": true,
-                    "IsPointsAdded": true
+                    "IsPointsAdded": false
                 }
             ],
-            "Milestones": [
-                {
-                    "RequiredPoints": 20,
-                    "IsClaimed": true
-                },
-                {
-                    "RequiredPoints": 40,
-                    "IsClaimed": true
-                },
-                {
-                    "RequiredPoints": 60,
-                    "IsClaimed": true
-                }
-            ]
+            "Milestones": []
         },
         "PlayerProgression": {
-            "CompletedLevels": 18,
-            "CurrentExperience": 0
+            "CompletedLevels": 35,
+            "CurrentExperience": 19
         },
         "Quests": {
             "Quests": [
                 {
                     "Id": "Second",
-                    "CurrentValue": 21266,
-                    "IsCompleted": false,
-                    "IsRewardClaimed": false
+                    "CurrentValue": 100000,
+                    "IsCompleted": true,
+                    "IsRewardClaimed": true
                 },
                 {
                     "Id": "first",
@@ -105,8 +92,50 @@
             ]
         },
         "CardCollections": {
-            "Cards": [],
-            "Collections": []
+            "Cards": [
+                {
+                    "Id": "0_2",
+                    "Amount": 5
+                },
+                {
+                    "Id": "0_4",
+                    "Amount": 4
+                },
+                {
+                    "Id": "0_5",
+                    "Amount": 4
+                },
+                {
+                    "Id": "0_3",
+                    "Amount": 3
+                },
+                {
+                    "Id": "0_6",
+                    "Amount": 1
+                },
+                {
+                    "Id": "0_1",
+                    "Amount": 1
+                }
+            ],
+            "Collections": [
+                {
+                    "Id": "0",
+                    "IsRewardClaimed": true
+                }
+            ]
+        },
+        "Customization": {
+            "ActiveBackgroundId": "back_02",
+            "ActiveCatId": "cat_01",
+            "PurchasedBackgroundIds": [
+                "back_01",
+                "back_02"
+            ],
+            "PurchasedCatIds": [
+                "cat_01",
+                "cat_02"
+            ]
         }
     }
 }

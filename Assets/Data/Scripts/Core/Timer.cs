@@ -2,6 +2,8 @@ using UnityEngine;
 using Zenject;
 using Shop;
 using PlayerProgression;
+using AdBonusOffers;
+using System;
 
 namespace Core
 {    
@@ -12,14 +14,20 @@ namespace Core
         private Wallet _wallet;
         private IShopRuntimeSave _shopSave;
         private IPlayerProgressionService _playerProgression;
+        private IAdBonusEffectService _bonusEffectService;
         private float _elapsed;
 
         [Inject]
-        public void Construct(Wallet wallet, IShopRuntimeSave shopSave, IPlayerProgressionService playerProgression)
+        public void Construct(
+            Wallet wallet,
+            IShopRuntimeSave shopSave,
+            IPlayerProgressionService playerProgression,
+            IAdBonusEffectService bonusEffectService)
         {
             _wallet = wallet;
             _shopSave = shopSave;
             _playerProgression = playerProgression;
+            _bonusEffectService = bonusEffectService;
         }
 
         public void Initialize()
@@ -29,7 +37,7 @@ namespace Core
 
         public void Tick()
         {
-            long income = _shopSave.AutoIncomePerSecond;
+            long income = ApplyMultiplier(_shopSave.AutoIncomePerSecond, _bonusEffectService?.PassiveIncomeMultiplier ?? 1f);
             if (income <= 0)
             {
                 _elapsed = 0f;
@@ -43,6 +51,16 @@ namespace Core
                 _wallet.AddSoft(income);
                 _playerProgression.AddExperience(PlayerExperienceSource.PassiveIncomeTick);
             }
+        }
+
+        private long ApplyMultiplier(long value, float multiplier)
+        {
+            if (value <= 0)
+            {
+                return 0;
+            }
+
+            return Math.Max(1, (long)Math.Ceiling(value * Math.Max(0f, multiplier)));
         }
     }
 }
