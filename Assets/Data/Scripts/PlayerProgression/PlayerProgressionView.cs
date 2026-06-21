@@ -39,25 +39,25 @@ namespace PlayerProgression
             if (_newLevelButton != null)
             {
                 _newLevelButton.onClick.AddListener(RequestNewLevel);
-                SetButtonText(_newLevelButton, "player_progression.new_level_button", "New level");
+                SetButtonText(_newLevelButton, "player_progression.new_level_button");
             }
 
             if (_levelUpConfirmButton != null)
             {
                 _levelUpConfirmButton.onClick.AddListener(ConfirmLevelUp);
-                SetButtonText(_levelUpConfirmButton, "player_progression.new_level_button", "New level");
+                SetButtonText(_levelUpConfirmButton, "player_progression.new_level_button");
             }
 
             if (_levelUpCancelButton != null)
             {
                 _levelUpCancelButton.onClick.AddListener(HideLevelUpOffer);
-                SetButtonText(_levelUpCancelButton, "common.cancel", "Cancel");
+                SetButtonText(_levelUpCancelButton, "common.cancel");
             }
 
             if (_levelUpResultCloseButton != null)
             {
                 _levelUpResultCloseButton.onClick.AddListener(HideLevelUpResult);
-                SetButtonText(_levelUpResultCloseButton, "common.ok", "OK");
+                SetButtonText(_levelUpResultCloseButton, "common.ok");
             }
 
             HideLevelUpOffer();
@@ -94,7 +94,7 @@ namespace PlayerProgression
         {
             if (_levelText != null)
             {
-                _levelText.text = Localization.Format("player_progression.level", "LVL {0}", level);
+                _levelText.text = Localization.Format("player_progression.level", level);
             }
 
             if (_experienceText != null)
@@ -155,7 +155,6 @@ namespace PlayerProgression
             {
                 _levelUpOfferText.text = Localization.Format(
                     "player_progression.level_up_offer",
-                    "Purchases and soft currency will be reset.\nYou will receive:\n{0}",
                     rewardDescription);
             }
 
@@ -177,7 +176,6 @@ namespace PlayerProgression
             {
                 _levelUpResultText.text = Localization.Format(
                     "player_progression.level_up_result",
-                    "New level reached!\n{0}",
                     rewardDescription);
             }
 
@@ -228,12 +226,12 @@ namespace PlayerProgression
             icon.enabled = sprite != null;
         }
 
-        private void SetButtonText(Button button, string key, string fallback)
+        private void SetButtonText(Button button, string key)
         {
             TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
             if (text != null)
             {
-                text.text = Localization.Tr(key, fallback);
+                text.text = Localization.Tr(key);
             }
         }
     }

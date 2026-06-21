@@ -92,8 +92,8 @@ namespace QuestSystem
         private QuestViewData CreateLocalizedViewData(Quest quest)
         {
             QuestViewData data = quest.CreateViewData();
-            data.Title = _localization.Localize(quest.Data.TitleLocalizationKey, quest.Data.Title);
-            data.Description = _localization.Localize(quest.Data.DescriptionLocalizationKey, quest.Data.Description);
+            data.Title = _localization.Localize(quest.Data.TitleLocalizationKey);
+            data.Description = _localization.Localize(quest.Data.DescriptionLocalizationKey);
             return data;
         }
 

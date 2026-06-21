@@ -50,7 +50,7 @@ namespace GameLocalization
                     localizedText = text.gameObject.AddComponent<LocalizedText>();
                 }
 
-                localizedText.Configure(key, source);
+                localizedText.Configure(key);
             }
         }
     }

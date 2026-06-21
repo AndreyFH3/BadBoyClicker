@@ -104,8 +104,8 @@ namespace DailyQuests
                     quests.Add(new DailyQuestViewData
                     {
                         Id = data.Id,
-                        Title = _localization.Localize(data.TitleLocalizationKey, data.Title),
-                        Description = _localization.Localize(data.DescriptionLocalizationKey, data.Description),
+                        Title = _localization.Localize(data.TitleLocalizationKey),
+                        Description = _localization.Localize(data.DescriptionLocalizationKey),
                         ProgressText = $"{currentValue}/{targetValue}",
                         CurrentValue = currentValue,
                         TargetValue = targetValue,
@@ -467,14 +467,13 @@ namespace DailyQuests
 
                 if (!string.IsNullOrEmpty(reward.DisplayTextLocalizationKey) || !string.IsNullOrEmpty(reward.DisplayText))
                 {
-                    parts.Add(_localization.Localize(reward.DisplayTextLocalizationKey, reward.DisplayText));
+                    parts.Add(_localization.Localize(reward.DisplayTextLocalizationKey));
                 }
                 else if (reward.RewardType == QuestRewardType.Currency)
                 {
                     string currency = _localization.Localize(
-                        $"currency.{reward.CurrencyType.ToString().ToLowerInvariant()}",
-                        reward.CurrencyType.ToString());
-                    parts.Add(_localization.Format("reward.currency_amount", "+{0} {1}", reward.Amount, currency));
+                        $"currency.{reward.CurrencyType.ToString().ToLowerInvariant()}");
+                    parts.Add(_localization.Format("reward.currency_amount", reward.Amount, currency));
                 }
                 else
                 {

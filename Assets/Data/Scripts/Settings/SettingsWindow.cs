@@ -180,22 +180,22 @@ namespace GameSettings
         {
             if (_titleText != null)
             {
-                _titleText.text = Localization.Tr("ui.settings", "Settings");
+                _titleText.text = Localization.Tr("ui.settings");
             }
 
             if (_soundLabelText != null)
             {
-                _soundLabelText.text = Localization.Tr("settings.sound", "Sound");
+                _soundLabelText.text = Localization.Tr("settings.sound");
             }
 
             if (_languageLabelText != null)
             {
-                _languageLabelText.text = Localization.Tr("settings.language", "Language");
+                _languageLabelText.text = Localization.Tr("settings.language");
             }
 
             if (_soundStateText != null)
             {
-                _soundStateText.text = Localization.Tr(_audioEnabled ? "common.on" : "common.off", _audioEnabled ? "On" : "Off");
+                _soundStateText.text = Localization.Tr(_audioEnabled ? "common.on" : "common.off");
             }
 
             foreach (LanguageOption option in _languageOptions)

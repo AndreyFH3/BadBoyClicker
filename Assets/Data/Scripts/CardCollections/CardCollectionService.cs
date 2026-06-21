@@ -302,8 +302,8 @@ namespace CardCollections
             return new CardCollectionViewData
             {
                 Id = collection.Id,
-                Title = _localization.Localize(collection.TitleLocalizationKey, collection.Title),
-                Description = _localization.Localize(collection.DescriptionLocalizationKey, collection.Description),
+                Title = _localization.Localize(collection.TitleLocalizationKey),
+                Description = _localization.Localize(collection.DescriptionLocalizationKey),
                 Cards = cards,
                 CollectedCards = collectedCards,
                 TotalCards = cards.Count,
@@ -322,8 +322,8 @@ namespace CardCollections
             {
                 Id = card.Id,
                 CollectionId = collectionId,
-                Title = _localization.Localize(card.TitleLocalizationKey, card.Title),
-                Description = _localization.Localize(card.DescriptionLocalizationKey, card.Description),
+                Title = _localization.Localize(card.TitleLocalizationKey),
+                Description = _localization.Localize(card.DescriptionLocalizationKey),
                 Stars = card.Stars,
                 CurrentAmount = amount,
                 RequiredAmount = card.RequiredAmount,

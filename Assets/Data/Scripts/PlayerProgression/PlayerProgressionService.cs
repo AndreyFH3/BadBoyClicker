@@ -188,7 +188,7 @@ namespace PlayerProgression
 
             if (middleReward > 0)
             {
-                builder.Append(_localization.Format("player_progression.reward.middle_currency", "+{0} decor currency", middleReward));
+                builder.Append(_localization.Format("player_progression.reward.middle_currency", middleReward));
             }
 
             var level = GetLevelData(completedLevels);
@@ -207,11 +207,11 @@ namespace PlayerProgression
                         builder.Append("\n");
                     }
 
-                    builder.Append(_localization.Format("player_progression.reward.bonus_percent", "+{0:0.#}% {1}", bonus.Percent, GetBonusName(bonus.Type)));
+                    builder.Append(_localization.Format("player_progression.reward.bonus_percent", bonus.Percent, GetBonusName(bonus.Type)));
                 }
             }
 
-            return builder.Length > 0 ? builder.ToString() : _localization.Localize("player_progression.reward.new_level", "New level");
+            return builder.Length > 0 ? builder.ToString() : _localization.Localize("player_progression.reward.new_level");
         }
 
         private string GetBonusName(PlayerProgressBonusType type)
@@ -219,9 +219,9 @@ namespace PlayerProgression
             switch (type)
             {
                 case PlayerProgressBonusType.ClickIncomePercent:
-                    return _localization.Localize("player_progression.bonus.click_income", "to click income");
+                    return _localization.Localize("player_progression.bonus.click_income");
                 case PlayerProgressBonusType.PassiveIncomePercent:
-                    return _localization.Localize("player_progression.bonus.passive_income", "to passive income");
+                    return _localization.Localize("player_progression.bonus.passive_income");
                 default:
                     return type.ToString();
             }

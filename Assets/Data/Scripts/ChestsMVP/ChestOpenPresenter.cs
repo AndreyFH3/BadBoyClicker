@@ -51,7 +51,7 @@ namespace ChestsMVP
             _rewardOfferUiGate.Block(this);
             _view.Show(new ChestOpenViewData
             {
-                ChestTitle = _localization.Localize(result.Chest.TitleLocalizationKey, result.Chest.Title),
+                ChestTitle = _localization.Localize(result.Chest.TitleLocalizationKey),
                 ChestIcon = result.Chest.Icon,
                 RewardText = result.Card != null ? CreateCardRewardText(result.Card) : CreateRewardText(result.Reward),
                 RewardIcon = result.Card != null ? result.Card.Icon : result.Reward?.Icon
@@ -60,7 +60,7 @@ namespace ChestsMVP
 
         private string CreateCardRewardText(CardCollectionConfig.CardData card)
         {
-            return _localization.Localize(card.TitleLocalizationKey, card.Title);
+            return _localization.Localize(card.TitleLocalizationKey);
         }
 
         private string CreateRewardText(QuestReward reward)
@@ -72,7 +72,7 @@ namespace ChestsMVP
 
             if (!string.IsNullOrEmpty(reward.DisplayTextLocalizationKey) || !string.IsNullOrEmpty(reward.DisplayText))
             {
-                return _localization.Localize(reward.DisplayTextLocalizationKey, reward.DisplayText);
+                return _localization.Localize(reward.DisplayTextLocalizationKey);
             }
 
             switch (reward.RewardType)

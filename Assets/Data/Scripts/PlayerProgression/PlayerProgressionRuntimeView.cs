@@ -43,7 +43,7 @@ namespace PlayerProgression
         {
             EnsureCreated();
 
-            _levelText.text = Localization.Format("player_progression.level", "LVL {0}", level);
+            _levelText.text = Localization.Format("player_progression.level", level);
             _experienceText.text = $"{experience.ConvertFromLongToString()} / {experienceToNextLevel.ConvertFromLongToString()}";
             _fill.fillAmount = Mathf.Clamp01(progress);
         }
@@ -76,11 +76,10 @@ namespace PlayerProgression
             _confirmAction = confirmAction;
             _popupText.text = Localization.Format(
                 "player_progression.level_up_offer_runtime",
-                "Purchases and soft currency will be reset.\n\nYou will receive:\n{0}",
                 rewardDescription);
             SetPopupIcon(rewardIcon);
             _popupConfirmButton.gameObject.SetActive(true);
-            _popupCancelButton.GetComponentInChildren<TextMeshProUGUI>().text = Localization.Tr("common.cancel", "Cancel");
+            _popupCancelButton.GetComponentInChildren<TextMeshProUGUI>().text = Localization.Tr("common.cancel");
             _popupRoot.SetActive(true);
         }
 
@@ -90,11 +89,10 @@ namespace PlayerProgression
             _confirmAction = null;
             _popupText.text = Localization.Format(
                 "player_progression.level_up_result_runtime",
-                "New level reached!\n\n{0}",
                 rewardDescription);
             SetPopupIcon(rewardIcon);
             _popupConfirmButton.gameObject.SetActive(false);
-            _popupCancelButton.GetComponentInChildren<TextMeshProUGUI>().text = Localization.Tr("common.ok", "OK");
+            _popupCancelButton.GetComponentInChildren<TextMeshProUGUI>().text = Localization.Tr("common.ok");
             _popupRoot.SetActive(true);
         }
 
@@ -160,7 +158,7 @@ namespace PlayerProgression
             addedTransform.sizeDelta = new Vector2(140f, 40f);
             _addedExperienceText.gameObject.SetActive(false);
 
-            _newLevelButton = CreateButton("NewLevelButton", _root.transform, Localization.Tr("player_progression.new_level_button", "New level"), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 1f), new Vector2(0f, -8f), new Vector2(180f, 34f));
+            _newLevelButton = CreateButton("NewLevelButton", _root.transform, Localization.Tr("player_progression.new_level_button"), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 1f), new Vector2(0f, -8f), new Vector2(180f, 34f));
             _newLevelButton.onClick.AddListener(() => NewLevelRequested?.Invoke());
             _newLevelButton.gameObject.SetActive(false);
 
@@ -242,10 +240,10 @@ namespace PlayerProgression
             textTransform.offsetMin = new Vector2(24f, 68f);
             textTransform.offsetMax = new Vector2(-24f, -72f);
 
-            _popupConfirmButton = CreateButton("Confirm", _popupRoot.transform, Localization.Tr("player_progression.new_level_button", "New level"), new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(28f, 22f), new Vector2(180f, 42f));
+            _popupConfirmButton = CreateButton("Confirm", _popupRoot.transform, Localization.Tr("player_progression.new_level_button"), new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(28f, 22f), new Vector2(180f, 42f));
             _popupConfirmButton.onClick.AddListener(ConfirmPopup);
 
-            _popupCancelButton = CreateButton("Cancel", _popupRoot.transform, Localization.Tr("common.cancel", "Cancel"), new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(-28f, 22f), new Vector2(140f, 42f));
+            _popupCancelButton = CreateButton("Cancel", _popupRoot.transform, Localization.Tr("common.cancel"), new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(-28f, 22f), new Vector2(140f, 42f));
             _popupCancelButton.onClick.AddListener(HidePopup);
 
             _popupRoot.SetActive(false);

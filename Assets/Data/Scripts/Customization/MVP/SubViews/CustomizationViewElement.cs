@@ -78,15 +78,15 @@ namespace Customization
         {
             if (data.IsSelected)
             {
-                return GameLocalization.Localization.Tr("customization.selected", "Selected");
+                return GameLocalization.Localization.Tr("customization.selected");
             }
 
             if (data.IsPurchased)
             {
-                return GameLocalization.Localization.Tr("customization.select", "Select");
+                return GameLocalization.Localization.Tr("customization.select");
             }
 
-            return GameLocalization.Localization.Tr("customization.buy", "Buy");
+            return GameLocalization.Localization.Tr("customization.buy");
         }
 
         private void RequestClick()

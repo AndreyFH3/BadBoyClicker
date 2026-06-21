@@ -22,9 +22,9 @@ namespace GameLocalization
             ServiceChanged?.Invoke();
         }
 
-        public static string Tr(string key, string fallback = null)
+        public static string Tr(string key)
         {
-            return _service == null ? fallback ?? key ?? string.Empty : _service.Localize(key, fallback);
+            return _service == null ? key ?? string.Empty : _service.Localize(key);
         }
 
         public static void SetLanguage(string language)
@@ -43,11 +43,11 @@ namespace GameLocalization
             }
         }
 
-        public static string Format(string key, string fallback, params object[] args)
+        public static string Format(string key, params object[] args)
         {
             return _service == null
-                ? string.Format(fallback ?? key ?? string.Empty, args)
-                : _service.Format(key, fallback, args);
+                ? string.Format(key ?? string.Empty, args)
+                : _service.Format(key, args);
         }
     }
 }

@@ -57,7 +57,7 @@ namespace DailyLoginMVP
         {
             if (!string.IsNullOrEmpty(reward.DisplayTextLocalizationKey) || !string.IsNullOrEmpty(reward.DisplayText))
             {
-                return _localization.Localize(reward.DisplayTextLocalizationKey, reward.DisplayText);
+                return _localization.Localize(reward.DisplayTextLocalizationKey);
             }
 
             switch (reward.RewardType)

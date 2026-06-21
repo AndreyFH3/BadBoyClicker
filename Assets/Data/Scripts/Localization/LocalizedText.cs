@@ -7,8 +7,6 @@ namespace GameLocalization
     public class LocalizedText : MonoBehaviour
     {
         [SerializeField] private string _key;
-        [TextArea]
-        [SerializeField] private string _fallback;
 
         private TMP_Text _text;
 
@@ -42,10 +40,9 @@ namespace GameLocalization
             Localization.LanguageChanged -= OnLanguageChanged;
         }
 
-        public void Configure(string key, string fallback = null)
+        public void Configure(string key)
         {
             _key = key;
-            _fallback = fallback;
             Refresh();
         }
 
@@ -59,7 +56,7 @@ namespace GameLocalization
 
             if (_text != null)
             {
-                _text.text = Localization.Tr(_key, _fallback);
+                _text.text = Localization.Tr(_key);
             }
         }
 

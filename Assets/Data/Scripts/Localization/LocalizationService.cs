@@ -45,11 +45,11 @@ namespace GameLocalization
             }
         }
 
-        public string Localize(string key, string fallback = null)
+        public string Localize(string key)
         {
             if (string.IsNullOrEmpty(key))
             {
-                return fallback ?? string.Empty;
+                return key ?? string.Empty;
             }
 
             EnsureBuilt();
@@ -78,12 +78,12 @@ namespace GameLocalization
                 Debug.LogError($"key <color=red>{key}</color> is not in Dictionary!");
             }
 
-            return fallback ?? key;
+            return key;
         }
 
-        public string Format(string key, string fallback, params object[] args)
+        public string Format(string key, params object[] args)
         {
-            string format = Localize(key, fallback);
+            string format = Localize(key);
             return args == null || args.Length == 0 ? format : string.Format(format, args);
         }
 

@@ -34,8 +34,8 @@ namespace Core.Ads
         public void Show()
         {
             BuildRuntimeUiIfNeeded();
-            SetText(_titleText, Localization.Tr("error_title", "Ad error"));
-            SetText(_messageText, Localization.Tr("error_description", "Something went wrong while showing the ad. Please try again later."));
+            SetText(_titleText, Localization.Tr("error_title"));
+            SetText(_messageText, Localization.Tr("error_description"));
 
             if (_root != null)
             {

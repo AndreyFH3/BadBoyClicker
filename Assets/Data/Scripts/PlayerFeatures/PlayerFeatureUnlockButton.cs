@@ -15,7 +15,6 @@ namespace PlayerFeatures
         [SerializeField] private Sprite _unlockedIcon;
         [SerializeField] private TextMeshProUGUI _lockedText;
         [SerializeField] private string _lockedTextLocalizationKey = "player_features.locked_level";
-        [SerializeField] private string _lockedTextFormat = "Unlocks at level {0}";
 
         private IPlayerFeatureUnlockService _featureUnlockService;
 
@@ -86,7 +85,7 @@ namespace PlayerFeatures
             if (_lockedText != null)
             {
                 _lockedText.gameObject.SetActive(!isUnlocked);
-                _lockedText.text = Localization.Format(_lockedTextLocalizationKey, _lockedTextFormat, requiredLevel);
+                _lockedText.text = Localization.Format(_lockedTextLocalizationKey, requiredLevel);
             }
         }
 

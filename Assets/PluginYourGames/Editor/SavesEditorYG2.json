@@ -1,23 +1,23 @@
 {
-    "idSave": 17771,
+    "idSave": 18193,
     "GameSaveData": {
         "Wallet": {
-            "Soft": 57,
-            "Middle": 4920,
+            "Soft": 66,
+            "Middle": 4925,
             "Hard": 137
         },
         "Shop": {
             "Levels": []
         },
         "OfflineIncome": {
-            "LastOnlineTicks": 639175289721462716
+            "LastOnlineTicks": 639176244157413300
         },
         "DailyLogin": {
-            "CurrentDayIndex": 0,
-            "LastClaimUtcTicks": 639175256939502457
+            "CurrentDayIndex": 1,
+            "LastClaimUtcTicks": 639176241178446986
         },
         "DailyQuests": {
-            "DayKey": "20260620",
+            "DayKey": "20260621",
             "Points": 0,
             "Quests": [
                 {
@@ -60,8 +60,8 @@
             "Milestones": []
         },
         "PlayerProgression": {
-            "CompletedLevels": 35,
-            "CurrentExperience": 19
+            "CompletedLevels": 36,
+            "CurrentExperience": 22
         },
         "Quests": {
             "Quests": [

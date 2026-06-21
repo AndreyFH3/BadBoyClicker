@@ -102,16 +102,15 @@ namespace Shop
             }
 
             var data = item.PaidData;
-            string name = _localization.Localize(data.NameLocalizationKey, data.Name);
+            string name = _localization.Localize(data.NameLocalizationKey);
             string price = GetPaidPriceText(data);
-            string reward = _localization.Localize(data.RewardTextLocalizationKey, data.RewardText);
+            string reward = _localization.Localize(data.RewardTextLocalizationKey);
 
             return new ShopPurchaseConfirmationData
             {
                 Id = data.Id,
                 Description = _localization.Format(
                     "shop.purchase.confirmation",
-                    "Buy {0} for {1}?\nYou will receive: {2}",
                     name,
                     price,
                     reward)
@@ -219,11 +218,11 @@ namespace Shop
                 Id = item.ClickData.Id,
                 Type = item.Type,
                 Icon = item.ClickData.Icon,
-                Name = _localization.Localize(item.ClickData.NameLocalizationKey, item.ClickData.Name),
-                Level = _localization.Format("shop.item.level", "Level {0}", level),
+                Name = _localization.Localize(item.ClickData.NameLocalizationKey),
+                Level = _localization.Format("shop.item.level", level),
                 PriceIcon = GetPriceIcon(item),
                 Price = price.ConvertFromLongToString(),
-                Bonus = _localization.Format("shop.item.bonus", "+{0}", item.ClickData.BaseBonus.ConvertFromLongToString()),
+                Bonus = _localization.Format("shop.item.bonus", item.ClickData.BaseBonus.ConvertFromLongToString()),
                 CanBuy = CanBuy(item, price)
             };
         }
@@ -237,11 +236,11 @@ namespace Shop
                 Id = data.Id,
                 Type = item.Type,
                 Icon = data.Icon,
-                Name = _localization.Localize(data.NameLocalizationKey, data.Name),
+                Name = _localization.Localize(data.NameLocalizationKey),
                 Level = string.Empty,
                 PriceIcon = GetPriceIcon(item),
                 Price = GetPaidPriceText(data),
-                Bonus = _localization.Localize(data.RewardTextLocalizationKey, data.RewardText),
+                Bonus = _localization.Localize(data.RewardTextLocalizationKey),
                 CanBuy = CanBuy(item, 0)
             };
         }
@@ -375,7 +374,6 @@ namespace Shop
 
             return _localization.Format(
                 "shop.purchase.ingame_price",
-                "{0} {1}",
                 data.PriceAmount.ConvertFromLongToString(),
                 GetCurrencyName(data.PriceCurrencyType));
         }
@@ -385,11 +383,11 @@ namespace Shop
             switch (currencyType)
             {
                 case QuestRewardCurrencyType.Soft:
-                    return _localization.Localize("currency.soft", "coins");
+                    return _localization.Localize("currency.soft");
                 case QuestRewardCurrencyType.Decor:
-                    return _localization.Localize("currency.decor", "decor");
+                    return _localization.Localize("currency.decor");
                 case QuestRewardCurrencyType.Hard:
-                    return _localization.Localize("currency.hard", "gems");
+                    return _localization.Localize("currency.hard");
                 default:
                     return currencyType.ToString();
             }

@@ -340,9 +340,9 @@ namespace AdBonusOffers
 
             return new AdBonusOfferViewData(
                 offer.Id,
-                _localization.Localize(offer.CardTitleLocalizationKey, offer.CardTitle),
+                _localization.Localize(offer.CardTitleLocalizationKey),
                 offer.CardDescription,
-                _localization.Localize(offer.ConfirmationTitleLocalizationKey, offer.ConfirmationTitle),
+                _localization.Localize(offer.ConfirmationTitleLocalizationKey),
                 offer.ConfirmationDescription,
                 offer.Icon,
                 _adsService.IsAvailable(offer.PlacementId),
