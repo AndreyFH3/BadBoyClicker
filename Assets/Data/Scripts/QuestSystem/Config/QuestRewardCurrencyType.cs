@@ -4,6 +4,7 @@ namespace QuestSystem
     {
         Soft = 0,
         Decor = 1,
-        Hard = 2
+        Hard = 2,
+        Yan = 3
     }
 }

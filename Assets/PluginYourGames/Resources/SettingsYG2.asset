@@ -21,7 +21,7 @@ MonoBehaviour:
   Localization:
     setLanguageMod: 1
   Metrica:
-    enable: 1
+    enable: 0
     metricaCounterID: 0
     log: 1
     useYandexMetrica: 1
@@ -29,39 +29,30 @@ MonoBehaviour:
     durationPayPanel: 1
     testBuyFail: 0
     purshases:
-    - id: hard_currency_pack_1
-      title: Small Gem Pack
-      description: Gives 100 gems
+    - id: gun
+      title: Gun
+      description: Product - Gun
+      imageURI: demo image
+      price: 5 YAN
+      priceValue: 5
+      priceCurrencyCode: YAN
+      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
+      consumed: 1
+    - id: armor
+      title: Armor
+      description: Product - Armor
       imageURI: demo image
       price: 10 YAN
       priceValue: 10
       priceCurrencyCode: YAN
       currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
       consumed: 1
-    - id: hard_currency_pack_2
-      title: Medium Gem Pack
-      description: Gives 250 gems
+    - id: grenade
+      title: Grenade
+      description: Product - Grenade
       imageURI: demo image
-      price: 25 YAN
-      priceValue: 25
-      priceCurrencyCode: YAN
-      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
-      consumed: 1
-    - id: hard_currency_pack_3
-      title: Large Gem Pack
-      description: Gives 650 gems
-      imageURI: demo image
-      price: 60 YAN
-      priceValue: 60
-      priceCurrencyCode: YAN
-      currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
-      consumed: 1
-    - id: hard_currency_pack_4
-      title: Mega Gem Pack
-      description: Gives 1500 gems
-      imageURI: demo image
-      price: 120 YAN
-      priceValue: 120
+      price: 30 YAN
+      priceValue: 30
       priceCurrencyCode: YAN
       currencyImageURL: https://yastatic.net/s3/games-static/static-data/images/payments/sdk/currency-icon-s@2x.png
       consumed: 1
@@ -82,7 +73,7 @@ MonoBehaviour:
     flush: 0
     labelAdvSimLabel: 0
   Basic:
-    platform: {fileID: 11400000, guid: fabe82a4ab034324eb452cc7109f6d19, type: 2}
+    platform: {fileID: 0}
     autoApplySettings: 1
     autoPauseGame: 1
     editTimeScale: 1

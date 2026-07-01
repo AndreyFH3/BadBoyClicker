@@ -17,6 +17,7 @@ namespace Core
         private Wallet _wallet;
         private IShopRuntimeSave _shopSave;
         private IOfflineIncomeRuntimeSave _offlineIncomeSave;
+        private OfflineIncomeModel _offlineIncomeModel;
         private IDailyLoginRuntimeSave _dailyLoginSave;
         private IDailyQuestService _dailyQuestService;
         private DailyQuestRuntimeSave _dailyQuestSave;
@@ -35,6 +36,7 @@ namespace Core
             Wallet wallet,
             IShopRuntimeSave shopSave,
             IOfflineIncomeRuntimeSave offlineIncomeSave,
+            OfflineIncomeModel offlineIncomeModel,
             IDailyLoginRuntimeSave dailyLoginSave,
             IDailyQuestService dailyQuestService,
             DailyQuestRuntimeSave dailyQuestSave,
@@ -50,6 +52,7 @@ namespace Core
             _wallet = wallet;
             _shopSave = shopSave;
             _offlineIncomeSave = offlineIncomeSave;
+            _offlineIncomeModel = offlineIncomeModel;
             _dailyLoginSave = dailyLoginSave;
             _dailyQuestService = dailyQuestService;
             _dailyQuestSave = dailyQuestSave;
@@ -117,6 +120,9 @@ namespace Core
                 _cardCollectionService.Set(data.CardCollections);
                 _customizationService.Set(data.Customization);
                 _shopSave.Recalculate(_config);
+                // Snapshot the offline reward now that both the shop (AutoIncomePerSecond)
+                // and the last-online timestamp are applied. Runs once per session.
+                _offlineIncomeModel.RecalculateFromSave();
             }
             finally
             {

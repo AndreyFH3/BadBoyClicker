@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using Core;
-using UnityEngine;
 
 namespace PlayerProgression
 {
@@ -10,8 +10,8 @@ namespace PlayerProgression
         long ExperienceToNextLevel { get; }
         float CurrentProgress { get; }
         bool CanCompleteLevel { get; }
-        string NextLevelRewardDescription { get; }
-        Sprite NextLevelRewardIcon { get; }
+        IReadOnlyList<LevelRewardEntry> NextLevelRewards { get; }
+        string NextLevelLossText { get; }
         float ClickIncomeMultiplier { get; }
         float PassiveIncomeMultiplier { get; }
         event System.Action Changed;

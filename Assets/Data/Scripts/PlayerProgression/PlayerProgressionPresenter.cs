@@ -55,17 +55,17 @@ namespace PlayerProgression
                 return;
             }
 
-            _view.ShowLevelUpOffer(ConfirmLevelUp, _service.NextLevelRewardDescription, _service.NextLevelRewardIcon);
+            _view.ShowLevelUpOffer(ConfirmLevelUp, _service.NextLevelRewards, _service.NextLevelLossText);
         }
 
         private void ConfirmLevelUp()
         {
-            string rewardDescription = _service.NextLevelRewardDescription;
-            var rewardIcon = _service.NextLevelRewardIcon;
+            var rewards = _service.NextLevelRewards;
+            int previousLevel = _service.CurrentLevel;
 
             if (_service.CompleteLevel())
             {
-                _view.ShowLevelUpResult(rewardDescription, rewardIcon);
+                _view.ShowLevelUpResult(previousLevel, _service.CurrentLevel, rewards);
             }
         }
     }

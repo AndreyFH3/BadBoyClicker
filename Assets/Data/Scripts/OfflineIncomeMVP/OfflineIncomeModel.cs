@@ -14,6 +14,7 @@ namespace OfflineIncome
         private IShopRuntimeSave _shopSave;
         private IOfflineIncomeRuntimeSave _save;
         private IPlayerFeatureUnlockService _featureUnlockService;
+        private bool _pendingRewardCalculated;
 
         public long PendingReward { get; private set; }
         public bool HasReward => PendingReward > 0;
@@ -35,6 +36,21 @@ namespace OfflineIncome
 
         public void Initialize()
         {
+        }
+
+        // Called once right after the save data is loaded (see SaveYGController.Load).
+        // Computing the snapshot in Initialize() is unsafe: on platforms where the SDK
+        // data arrives asynchronously, Initialize() runs before the save is applied, so
+        // LastOnlineTicks / AutoIncomePerSecond would still be empty and the reward would
+        // silently be zero on every re-entry.
+        public void RecalculateFromSave()
+        {
+            if (_pendingRewardCalculated)
+            {
+                return;
+            }
+
+            _pendingRewardCalculated = true;
             CalculatePendingReward();
         }
 

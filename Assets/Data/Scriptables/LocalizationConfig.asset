@@ -132,9 +132,21 @@ MonoBehaviour:
   - _key: shop.item.bonus
     _values:
     - _language: ru
-      _text: +{0}
+      _text: +{0} {1}
     - _language: en
-      _text: +{0}
+      _text: +{0} {1}
+  - _key: shop.item.per_second
+    _values:
+    - _language: ru
+      _text: "\u0432 \u0441\u0435\u043A\u0443\u043D\u0434\u0443"
+    - _language: en
+      _text: per second
+  - _key: shop.item.per_click
+    _values:
+    - _language: ru
+      _text: "\u0437\u0430 \u043A\u043B\u0438\u043A"
+    - _language: en
+      _text: per click
   - _key: shop.item.soft_paw.name
     _values:
     - _language: ru
@@ -448,6 +460,24 @@ MonoBehaviour:
         \u0441\u0435\u0433\u043E\u0434\u043D\u044F"
     - _language: en
       _text: Click 60 times today
+  - _key: daily_quest.points_suffix
+    _values:
+    - _language: ru
+      _text: "очков"
+    - _language: en
+      _text: points
+  - _key: daily_quest.claim_button
+    _values:
+    - _language: ru
+      _text: "Забрать!"
+    - _language: en
+      _text: Claim!
+  - _key: daily_quest.claimed_button
+    _values:
+    - _language: ru
+      _text: "Забрано"
+    - _language: en
+      _text: Claimed
   - _key: card_collection.0.title
     _values:
     - _language: ru
@@ -710,6 +740,32 @@ MonoBehaviour:
       _text: +{0:0.#}% {1}
     - _language: en
       _text: +{0:0.#}% {1}
+  - _key: player_progression.reward.amount
+    _values:
+    - _language: ru
+      _text: +{0}
+    - _language: en
+      _text: +{0}
+  - _key: player_progression.reward.percent
+    _values:
+    - _language: ru
+      _text: +{0:0.#}%
+    - _language: en
+      _text: +{0:0.#}%
+  - _key: player_progression.level_up_loss
+    _values:
+    - _language: ru
+      _text: "\u0411\u0443\u0434\u0443\u0442 \u0441\u0431\u0440\u043E\u0448\u0435\u043D\u044B
+        \u043F\u043E\u043A\u0443\u043F\u043A\u0438 \u0438 \u043C\u044F\u0433\u043A\u0430\u044F
+        \u0432\u0430\u043B\u044E\u0442\u0430."
+    - _language: en
+      _text: Your upgrades and soft currency will be reset.
+  - _key: player_progression.level_up_result_title
+    _values:
+    - _language: ru
+      _text: "\u041C\u043E\u043B\u043E\u0434\u0435\u0446! \u0422\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u043B:"
+    - _language: en
+      _text: 'Well done! You earned:'
   - _key: player_progression.reward.new_level
     _values:
     - _language: ru
@@ -745,3 +801,224 @@ MonoBehaviour:
         \u0442\u0430\u043A \u0432\u043E \u0432\u0440\u0435\u043C\u044F \u0432\u043E\u0441\u043F\u0440\u043E\u0438\u0437\u0432\u0435\u0434\u0435\u043D\u0438\u044F
         \u0440\u0435\u043A\u043B\u0430\u043C\u044B. \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435
         \u043F\u043E\u0437\u0436\u0435"
+  - _key: Crystall_text
+    _values:
+    - _language: ru
+      _text: "\u041A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u044B"
+    - _language: en
+      _text: Crystals
+  - _key: beauty_text
+    _values:
+    - _language: ru
+      _text: "\u041C\u0435\u0448\u043E\u0447\u043A\u0438 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
+        \u043C\u044F\u0442\u043E\u0439"
+    - _language: en
+      _text: Catnip bags
+  - _key: coins_text
+    _values:
+    - _language: ru
+      _text: "\u0417\u043E\u043B\u043E\u0442\u043E"
+    - _language: en
+      _text: Gold
+  - _key: shop.paid.hard_currency_pack_1.name
+    _values:
+    - _language: ru
+      _text: "\u041C\u0430\u043B\u0435\u043D\u044C\u043A\u0438\u0439 \u043D\u0430\u0431\u043E\u0440
+        \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u043E\u0432"
+    - _language: en
+      _text: Small Gem Pack
+  - _key: shop.paid.hard_currency_pack_2.name
+    _values:
+    - _language: ru
+      _text: "\u0421\u0440\u0435\u0434\u043D\u0438\u0439 \u043D\u0430\u0431\u043E\u0440
+        \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u043E\u0432"
+    - _language: en
+      _text: Medium Gem Pack
+  - _key: shop.paid.hard_currency_pack_3.name
+    _values:
+    - _language: ru
+      _text: "\u0411\u043E\u043B\u044C\u0448\u043E\u0439 \u043D\u0430\u0431\u043E\u0440
+        \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u043E\u0432"
+    - _language: en
+      _text: Large Gem Pack
+  - _key: shop.paid.hard_currency_pack_4.name
+    _values:
+    - _language: ru
+      _text: "\u041E\u0433\u0440\u043E\u043C\u043D\u044B\u0439 \u043D\u0430\u0431\u043E\u0440
+        \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u043E\u0432"
+    - _language: en
+      _text: Mega Gem Pack
+  - _key: shop.paid.hard_currency_pack_1.reward
+    _values:
+    - _language: ru
+      _text: "+100 \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u043E\u0432"
+    - _language: en
+      _text: +100 gems
+  - _key: shop.paid.hard_currency_pack_2.reward
+    _values:
+    - _language: ru
+      _text: "+250 \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u043E\u0432"
+    - _language: en
+      _text: +250 gems
+  - _key: shop.paid.hard_currency_pack_3.reward
+    _values:
+    - _language: ru
+      _text: "+650 \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u043E\u0432"
+    - _language: en
+      _text: +650 gems
+  - _key: shop.paid.hard_currency_pack_4.reward
+    _values:
+    - _language: ru
+      _text: "+1500 \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u043E\u0432"
+    - _language: en
+      _text: +1500 gems
+  - _key: shop.paid.soft_currency_pack_1.name
+    _values:
+    - _language: ru
+      _text: "\u041C\u0430\u043B\u0435\u043D\u044C\u043A\u0438\u0439 \u043D\u0430\u0431\u043E\u0440
+        \u0437\u043E\u043B\u043E\u0442\u0430"
+    - _language: en
+      _text: Small Coin Pack
+  - _key: shop.paid.soft_currency_pack_2.name
+    _values:
+    - _language: ru
+      _text: "\u0421\u0440\u0435\u0434\u043D\u0438\u0439 \u043D\u0430\u0431\u043E\u0440
+        \u0437\u043E\u043B\u043E\u0442\u0430"
+    - _language: en
+      _text: Medium Coin Pack
+  - _key: shop.paid.soft_currency_pack_3.name
+    _values:
+    - _language: ru
+      _text: "\u0411\u043E\u043B\u044C\u0448\u043E\u0439 \u043D\u0430\u0431\u043E\u0440
+        \u0437\u043E\u043B\u043E\u0442\u0430"
+    - _language: en
+      _text: Large Coin Pack
+  - _key: shop.paid.soft_currency_pack_4.name
+    _values:
+    - _language: ru
+      _text: "\u041E\u0433\u0440\u043E\u043C\u043D\u044B\u0439 \u043D\u0430\u0431\u043E\u0440
+        \u0437\u043E\u043B\u043E\u0442\u0430"
+    - _language: en
+      _text: Mega Coin Pack
+  - _key: shop.paid.soft_currency_pack_1.reward
+    _values:
+    - _language: ru
+      _text: "+10000 \u0437\u043E\u043B\u043E\u0442\u0430"
+    - _language: en
+      _text: +10000 coins
+  - _key: shop.paid.soft_currency_pack_2.reward
+    _values:
+    - _language: ru
+      _text: "+30000 \u0437\u043E\u043B\u043E\u0442\u0430"
+    - _language: en
+      _text: +30000 coins
+  - _key: shop.paid.soft_currency_pack_3.reward
+    _values:
+    - _language: ru
+      _text: "+80000 \u0437\u043E\u043B\u043E\u0442\u0430"
+    - _language: en
+      _text: +80000 coins
+  - _key: shop.paid.soft_currency_pack_4.reward
+    _values:
+    - _language: ru
+      _text: "+200000 \u0437\u043E\u043B\u043E\u0442\u0430"
+    - _language: en
+      _text: +200000 coins
+  - _key: shop.paid.decor_currency_pack_1.name
+    _values:
+    - _language: ru
+      _text: "\u041C\u0430\u043B\u0435\u043D\u044C\u043A\u0438\u0439 \u043D\u0430\u0431\u043E\u0440
+        \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
+        \u043C\u044F\u0442\u043E\u0439"
+    - _language: en
+      _text: Small Catnip Pack
+  - _key: shop.paid.decor_currency_pack_2.name
+    _values:
+    - _language: ru
+      _text: "\u0421\u0440\u0435\u0434\u043D\u0438\u0439 \u043D\u0430\u0431\u043E\u0440
+        \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
+        \u043C\u044F\u0442\u043E\u0439"
+    - _language: en
+      _text: Medium Catnip Pack
+  - _key: shop.paid.decor_currency_pack_3.name
+    _values:
+    - _language: ru
+      _text: "\u0411\u043E\u043B\u044C\u0448\u043E\u0439 \u043D\u0430\u0431\u043E\u0440
+        \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
+        \u043C\u044F\u0442\u043E\u0439"
+    - _language: en
+      _text: Large Catnip Pack
+  - _key: shop.paid.decor_currency_pack_4.name
+    _values:
+    - _language: ru
+      _text: "\u041E\u0433\u0440\u043E\u043C\u043D\u044B\u0439 \u043D\u0430\u0431\u043E\u0440
+        \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
+        \u043C\u044F\u0442\u043E\u0439"
+    - _language: en
+      _text: Mega Catnip Pack
+  - _key: shop.paid.decor_currency_pack_1.reward
+    _values:
+    - _language: ru
+      _text: "+25 \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
+        \u043C\u044F\u0442\u043E\u0439"
+    - _language: en
+      _text: +25 catnip bags
+  - _key: shop.paid.decor_currency_pack_2.reward
+    _values:
+    - _language: ru
+      _text: "+75 \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
+        \u043C\u044F\u0442\u043E\u0439"
+    - _language: en
+      _text: +75 catnip bags
+  - _key: shop.paid.decor_currency_pack_3.reward
+    _values:
+    - _language: ru
+      _text: "+200 \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
+        \u043C\u044F\u0442\u043E\u0439"
+    - _language: en
+      _text: +200 catnip bags
+  - _key: shop.paid.decor_currency_pack_4.reward
+    _values:
+    - _language: ru
+      _text: "+500 \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
+        \u043C\u044F\u0442\u043E\u0439"
+    - _language: en
+      _text: +500 catnip bags
+  - _key: reward
+    _values:
+    - _language: en
+      _text: Reward
+    - _language: ru
+      _text: "\u041D\u0430\u0433\u0440\u0430\u0434\u0430"
+  - _key: You_want_new_level
+    _values:
+    - _language: en
+      _text: 'Go to level {0}? '
+    - _language: ru
+      _text: "\u041F\u0435\u0440\u0435\u0439\u0442\u0438 \u043D\u0430 \u0443\u0440\u043E\u0432\u0435\u043D\u044C
+        {0}?"
+  - _key: Congratulations_text
+    _values:
+    - _language: en
+      _text: Congratulations!
+    - _language: ru
+      _text: "\u041F\u043E\u0437\u0434\u0440\u0430\u0432\u043B\u044F\u0435\u043C!"
+  - _key: Level_up_btn_text
+    _values:
+    - _language: en
+      _text: Level up!
+    - _language: ru
+      _text: "\u041F\u0435\u0440\u0435\u0439\u0442\u0438!"
+  - _key: no_text
+    _values:
+    - _language: en
+      _text: No
+    - _language: ru
+      _text: "\u041D\u0435\u0442"
+  - _key: this_action_cannot_cancel
+    _values:
+    - _language: en
+      _text: This action cannot be undone!
+    - _language: ru
+      _text: "\u042D\u0442\u043E \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0435
+        \u043D\u0435\u043B\u044C\u0437\u044F \u043E\u0442\u043C\u0435\u043D\u0438\u0442\u044C"

@@ -9,6 +9,7 @@ using GameLocalization;
 using AdBonusOffers;
 using Purchases;
 using QuestSystem;
+using Rewards;
 
 namespace Shop
 {
@@ -222,7 +223,10 @@ namespace Shop
                 Level = _localization.Format("shop.item.level", level),
                 PriceIcon = GetPriceIcon(item),
                 Price = price.ConvertFromLongToString(),
-                Bonus = _localization.Format("shop.item.bonus", item.ClickData.BaseBonus.ConvertFromLongToString()),
+                Bonus = _localization.Format(
+                    "shop.item.bonus",
+                    GetEffectiveBonus(item).ConvertFromLongToString(),
+                    _localization.Localize(GetBonusRateLocalizationKey(item.Type))),
                 CanBuy = CanBuy(item, price)
             };
         }
@@ -241,8 +245,99 @@ namespace Shop
                 PriceIcon = GetPriceIcon(item),
                 Price = GetPaidPriceText(data),
                 Bonus = _localization.Localize(data.RewardTextLocalizationKey),
-                CanBuy = CanBuy(item, 0)
+                CanBuy = CanBuy(item, 0),
+                RewardGroup = DetermineRewardGroup(data.Rewards),
+                IsRealMoney = data.PurchaseKind == GameConfig.PaidShopPurchaseKind.RealMoney,
+                Rewards = BuildRewardDisplays(data.Rewards)
             };
+        }
+
+        private ShopRewardGroup DetermineRewardGroup(IReadOnlyList<QuestReward> rewards)
+        {
+            if (rewards == null)
+            {
+                return ShopRewardGroup.Soft;
+            }
+
+            // Group by the first currency reward the offer grants; non-currency
+            // rewards (backgrounds, boosts, chests) don't define a slot on their own.
+            foreach (var reward in rewards)
+            {
+                if (reward == null || reward.RewardType != QuestRewardType.Currency)
+                {
+                    continue;
+                }
+
+                return ToRewardGroup(reward.CurrencyType);
+            }
+
+            return ShopRewardGroup.Soft;
+        }
+
+        private static ShopRewardGroup ToRewardGroup(QuestRewardCurrencyType currencyType)
+        {
+            switch (currencyType)
+            {
+                case QuestRewardCurrencyType.Hard:
+                    return ShopRewardGroup.Hard;
+                case QuestRewardCurrencyType.Decor:
+                    return ShopRewardGroup.Decor;
+                default:
+                    return ShopRewardGroup.Soft;
+            }
+        }
+
+        private List<RewardDisplay> BuildRewardDisplays(IReadOnlyList<QuestReward> rewards)
+        {
+            if (rewards == null || rewards.Count == 0)
+            {
+                return null;
+            }
+
+            var displays = new List<RewardDisplay>(rewards.Count);
+            foreach (var reward in rewards)
+            {
+                if (reward == null)
+                {
+                    continue;
+                }
+
+                displays.Add(new RewardDisplay
+                {
+                    Icon = reward.Icon,
+                    Amount = reward.Amount > 0 ? reward.Amount.ConvertFromLongToString() : string.Empty
+                });
+            }
+
+            return displays;
+        }
+
+        // Bonus shown on the card is the effective per-purchase gain, i.e. the
+        // config BaseBonus scaled by the player-progression multiplier, so the
+        // number matches what the upgrade actually adds to income (see
+        // ShopRuntimeSave.Recalculate). The multiplication is done in double,
+        // not float, because long values can exceed float's ~7 significant
+        // digits and would otherwise lose precision at high levels.
+        private long GetEffectiveBonus(ShopItem item)
+        {
+            long baseBonus = item.ClickData.BaseBonus;
+            if (baseBonus <= 0)
+            {
+                return 0;
+            }
+
+            float multiplier = item.Type == ShopItemType.AutoBuy
+                ? _playerProgression?.PassiveIncomeMultiplier ?? 1f
+                : _playerProgression?.ClickIncomeMultiplier ?? 1f;
+
+            return Math.Max(1, (long)Math.Round(baseBonus * (double)Math.Max(0f, multiplier)));
+        }
+
+        private static string GetBonusRateLocalizationKey(ShopItemType type)
+        {
+            return type == ShopItemType.AutoBuy
+                ? "shop.item.per_second"
+                : "shop.item.per_click";
         }
 
         private long CalculatePrice(long basePrice, int level)
@@ -372,10 +467,7 @@ namespace Shop
                 return _purchaseSystem.GetPrice(data.PaymentId, data.PriceText);
             }
 
-            return _localization.Format(
-                "shop.purchase.ingame_price",
-                data.PriceAmount.ConvertFromLongToString(),
-                GetCurrencyName(data.PriceCurrencyType));
+            return _localization.Format(data.PriceAmount.ConvertFromLongToString(), GetCurrencyName(data.PriceCurrencyType));
         }
 
         private string GetCurrencyName(QuestRewardCurrencyType currencyType)

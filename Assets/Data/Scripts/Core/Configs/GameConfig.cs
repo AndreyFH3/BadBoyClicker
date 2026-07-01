@@ -29,10 +29,12 @@ namespace Core
         public class PlayerProgressionData
         {
             [SerializeField] private long _middleRewardPerLevel = 5;
+            [SerializeField] private Sprite _middleRewardIcon;
             [SerializeField] private List<ExperienceRewardData> _experienceRewards = new();
             [SerializeField] private List<PlayerLevelData> _levels = new();
 
             public long MiddleRewardPerLevel => _middleRewardPerLevel;
+            public Sprite MiddleRewardIcon => _middleRewardIcon;
             public IReadOnlyList<ExperienceRewardData> ExperienceRewards => _experienceRewards;
             public IReadOnlyList<PlayerLevelData> Levels => _levels;
         }
@@ -51,11 +53,9 @@ namespace Core
         public class PlayerLevelData
         {
             [SerializeField] private long _experienceToComplete = 100;
-            [SerializeField] private Sprite _rewardIcon;
             [SerializeField] private List<PlayerProgressBonusData> _bonuses = new();
 
             public long ExperienceToComplete => _experienceToComplete;
-            public Sprite RewardIcon => _rewardIcon;
             public IReadOnlyList<PlayerProgressBonusData> Bonuses => _bonuses;
         }
 
@@ -64,9 +64,11 @@ namespace Core
         {
             [SerializeField] private PlayerProgressBonusType _type;
             [SerializeField] private float _percent;
+            [SerializeField] private Sprite _icon;
 
             public PlayerProgressBonusType Type => _type;
             public float Percent => _percent;
+            public Sprite Icon => _icon;
         }
 
         [System.Serializable]

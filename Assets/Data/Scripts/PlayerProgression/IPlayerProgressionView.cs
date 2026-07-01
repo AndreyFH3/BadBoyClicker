@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace PlayerProgression
 {
     public interface IPlayerProgressionView
@@ -7,7 +9,7 @@ namespace PlayerProgression
         void UpdateState(int level, long experience, long experienceToNextLevel, float progress);
         void SetNewLevelAvailable(bool isAvailable);
         void ShowAddedExperience(long amount);
-        void ShowLevelUpOffer(System.Action confirmAction, string rewardDescription, UnityEngine.Sprite rewardIcon);
-        void ShowLevelUpResult(string rewardDescription, UnityEngine.Sprite rewardIcon);
+        void ShowLevelUpOffer(System.Action confirmAction, IReadOnlyList<LevelRewardEntry> rewards, string lossText);
+        void ShowLevelUpResult(int previousLevel, int newLevel, IReadOnlyList<LevelRewardEntry> rewards);
     }
 }

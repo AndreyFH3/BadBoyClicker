@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Rewards;
+using UnityEngine;
 
 namespace DailyQuests
 {
@@ -7,6 +9,7 @@ namespace DailyQuests
         public string Id;
         public string Title;
         public string Description;
+        public Sprite Icon;
         public string ProgressText;
         public long CurrentValue;
         public long TargetValue;
@@ -20,9 +23,9 @@ namespace DailyQuests
     public class DailyQuestMilestoneViewData
     {
         public int RequiredPoints;
-        public bool IsUnlocked;
         public bool IsClaimed;
-        public string RewardText;
+        public bool CanClaim;
+        public IReadOnlyList<RewardDisplay> Rewards;
     }
 
     public class DailyQuestBoardViewData

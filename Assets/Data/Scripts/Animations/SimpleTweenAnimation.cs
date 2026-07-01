@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
@@ -43,7 +44,13 @@ public class SimpleTweenAnimation : MonoBehaviour
         LocalRotate,
         Fade,
         Color,
-        FillAmount
+        FillAmount,
+        PunchScale,
+        PunchPosition,
+        PunchRotation,
+        ShakePosition,
+        ShakeScale,
+        ShakeRotation
     }
 
     [Serializable]
@@ -64,7 +71,7 @@ public class SimpleTweenAnimation : MonoBehaviour
         public Ease ease = Ease.OutQuad;
 
         [Header("Loop")]
-        public int loops = 0; // 0 = play once
+        public int loops = 0; // 0 or 1 = play once
         public LoopType loopType = LoopType.Restart;
 
         [Header("Options")]
@@ -84,6 +91,23 @@ public class SimpleTweenAnimation : MonoBehaviour
         [Header("Color Values")]
         public Color toColor = Color.white;
         public Color fromColor = Color.white;
+
+        [Header("Punch / Shake")]
+        public int vibrato = 10;
+        public float elasticity = 1f;
+        public float randomness = 90f;
+        public bool snapping = false;
+
+        [Header("Events")]
+        public UnityEvent onStepComplete;
+
+        public bool IsPunchOrShake =>
+            animationType == TweenAnimationType.PunchScale ||
+            animationType == TweenAnimationType.PunchPosition ||
+            animationType == TweenAnimationType.PunchRotation ||
+            animationType == TweenAnimationType.ShakePosition ||
+            animationType == TweenAnimationType.ShakeScale ||
+            animationType == TweenAnimationType.ShakeRotation;
     }
 
     [Header("Playback")]
@@ -92,13 +116,33 @@ public class SimpleTweenAnimation : MonoBehaviour
     [SerializeField] private bool _rebuildOnPlay = true;
     [SerializeField] private bool _playBackwards = false;
 
+    [Tooltip("Restore original values captured before the sequence started when it is rewound.")]
+    [SerializeField] private bool _restoreOnRewind = true;
+    [Tooltip("Restore original values when the object is disabled while playing.")]
+    [SerializeField] private bool _restoreOnDisable = false;
+
+    [Header("Events")]
+    [SerializeField] private UnityEvent _onPlay;
+    [SerializeField] private UnityEvent _onStepComplete;
+    [SerializeField] private UnityEvent _onComplete;
+
     [Header("Steps")]
     [SerializeField] private List<TweenStep> _steps = new();
 
     private Sequence _sequence;
+    private Action _runtimeOnComplete;
+
+    // Snapshot of original values captured before the sequence modifies targets.
+    private readonly List<Action> _restoreActions = new();
+    private readonly HashSet<Component> _snapshotTargets = new();
 
     public bool IsPlaying => _sequence != null && _sequence.IsActive() && _sequence.IsPlaying();
     public bool IsInitialized => _sequence != null && _sequence.IsActive();
+    public Sequence Sequence => _sequence;
+
+    public UnityEvent OnPlayEvent => _onPlay;
+    public UnityEvent OnStepCompleteEvent => _onStepComplete;
+    public UnityEvent OnCompleteEvent => _onComplete;
 
     private void Start()
     {
@@ -116,6 +160,9 @@ public class SimpleTweenAnimation : MonoBehaviour
     {
         if (_sequence != null && _sequence.IsActive())
             _sequence.Pause();
+
+        if (_restoreOnDisable)
+            RestoreOriginals();
     }
 
     private void OnDestroy()
@@ -138,6 +185,17 @@ public class SimpleTweenAnimation : MonoBehaviour
             _sequence.PlayForward();
     }
 
+    /// <summary>
+    /// Plays the sequence and invokes <paramref name="onComplete"/> when it finishes.
+    /// Returns the underlying Sequence for further chaining if needed.
+    /// </summary>
+    public Sequence Play(Action onComplete)
+    {
+        _runtimeOnComplete = onComplete;
+        Play();
+        return _sequence;
+    }
+
     [ContextMenu("Restart")]
     public void Restart()
     {
@@ -146,9 +204,14 @@ public class SimpleTweenAnimation : MonoBehaviour
             return;
 
         if (_playBackwards)
+        {
+            _sequence.Complete();
             _sequence.PlayBackwards();
+        }
         else
+        {
             _sequence.Restart();
+        }
     }
 
     [ContextMenu("Rewind")]
@@ -159,6 +222,9 @@ public class SimpleTweenAnimation : MonoBehaviour
 
         _sequence.Rewind();
         _sequence.Pause();
+
+        if (_restoreOnRewind)
+            RestoreOriginals();
     }
 
     [ContextMenu("Complete")]
@@ -184,6 +250,9 @@ public class SimpleTweenAnimation : MonoBehaviour
     {
         Kill();
 
+        _restoreActions.Clear();
+        _snapshotTargets.Clear();
+
         _sequence = DOTween.Sequence();
         _sequence.SetAutoKill(_autoKill);
         _sequence.Pause();
@@ -202,6 +271,29 @@ public class SimpleTweenAnimation : MonoBehaviour
             else
                 _sequence.Join(tween);
         }
+
+        _sequence.OnStart(HandlePlay);
+        _sequence.OnStepComplete(HandleStepComplete);
+        _sequence.OnComplete(HandleComplete);
+    }
+
+    private void HandlePlay() => _onPlay?.Invoke();
+
+    private void HandleStepComplete() => _onStepComplete?.Invoke();
+
+    private void HandleComplete()
+    {
+        _onComplete?.Invoke();
+
+        Action cb = _runtimeOnComplete;
+        _runtimeOnComplete = null;
+        cb?.Invoke();
+    }
+
+    private void RestoreOriginals()
+    {
+        for (int i = _restoreActions.Count - 1; i >= 0; i--)
+            _restoreActions[i]?.Invoke();
     }
 
     private Tween CreateTween(TweenStep step)
@@ -214,6 +306,8 @@ public class SimpleTweenAnimation : MonoBehaviour
             return null;
         }
 
+        CaptureOriginal(target);
+
         Tween tween = step.animationType switch
         {
             TweenAnimationType.Move => CreateMoveTween(target, step),
@@ -225,6 +319,12 @@ public class SimpleTweenAnimation : MonoBehaviour
             TweenAnimationType.Fade => CreateFadeTween(target, step),
             TweenAnimationType.Color => CreateColorTween(target, step),
             TweenAnimationType.FillAmount => CreateFillAmountTween(target, step),
+            TweenAnimationType.PunchScale => CreatePunchScaleTween(target, step),
+            TweenAnimationType.PunchPosition => CreatePunchPositionTween(target, step),
+            TweenAnimationType.PunchRotation => CreatePunchRotationTween(target, step),
+            TweenAnimationType.ShakePosition => CreateShakePositionTween(target, step),
+            TweenAnimationType.ShakeScale => CreateShakeScaleTween(target, step),
+            TweenAnimationType.ShakeRotation => CreateShakeRotationTween(target, step),
             _ => null
         };
 
@@ -248,8 +348,11 @@ public class SimpleTweenAnimation : MonoBehaviour
              .SetUpdate(step.ignoreTimeScale)
              .SetTarget(target);
 
-        if (step.isRelative)
+        if (step.isRelative && !step.IsPunchOrShake)
             tween.SetRelative();
+
+        if (step.onStepComplete != null)
+            tween.OnComplete(() => step.onStepComplete.Invoke());
     }
 
     private Component ResolveTarget(TweenStep step)
@@ -308,6 +411,96 @@ public class SimpleTweenAnimation : MonoBehaviour
         return null;
     }
 
+    private void CaptureOriginal(Component target)
+    {
+        if (target == null || !_snapshotTargets.Add(target))
+            return;
+
+        switch (target)
+        {
+            case RectTransform rt:
+            {
+                Vector2 anchored = rt.anchoredPosition;
+                Vector3 localPos = rt.localPosition;
+                Vector3 pos = rt.position;
+                Vector3 localScale = rt.localScale;
+                Quaternion localRot = rt.localRotation;
+                Quaternion rot = rt.rotation;
+                _restoreActions.Add(() =>
+                {
+                    if (rt == null) return;
+                    rt.anchoredPosition = anchored;
+                    rt.localPosition = localPos;
+                    rt.position = pos;
+                    rt.localScale = localScale;
+                    rt.localRotation = localRot;
+                    rt.rotation = rot;
+                });
+                break;
+            }
+
+            case Transform tr:
+            {
+                Vector3 localPos = tr.localPosition;
+                Vector3 pos = tr.position;
+                Vector3 localScale = tr.localScale;
+                Quaternion localRot = tr.localRotation;
+                Quaternion rot = tr.rotation;
+                _restoreActions.Add(() =>
+                {
+                    if (tr == null) return;
+                    tr.localPosition = localPos;
+                    tr.position = pos;
+                    tr.localScale = localScale;
+                    tr.localRotation = localRot;
+                    tr.rotation = rot;
+                });
+                break;
+            }
+
+            case CanvasGroup cg:
+            {
+                float alpha = cg.alpha;
+                _restoreActions.Add(() => { if (cg != null) cg.alpha = alpha; });
+                break;
+            }
+
+            case Image img:
+            {
+                Color color = img.color;
+                float fill = img.fillAmount;
+                _restoreActions.Add(() =>
+                {
+                    if (img == null) return;
+                    img.color = color;
+                    img.fillAmount = fill;
+                });
+                break;
+            }
+
+            case TMP_Text tmp:
+            {
+                Color color = tmp.color;
+                _restoreActions.Add(() => { if (tmp != null) tmp.color = color; });
+                break;
+            }
+
+            case Graphic g:
+            {
+                Color color = g.color;
+                _restoreActions.Add(() => { if (g != null) g.color = color; });
+                break;
+            }
+
+            case SpriteRenderer sr:
+            {
+                Color color = sr.color;
+                _restoreActions.Add(() => { if (sr != null) sr.color = color; });
+                break;
+            }
+        }
+    }
+
     private Tween CreateMoveTween(Component target, TweenStep step)
     {
         if (target is not Transform tr)
@@ -316,7 +509,7 @@ public class SimpleTweenAnimation : MonoBehaviour
         if (step.setFrom && step.useCustomFromValue)
             tr.position = step.fromVector3;
 
-        var tweener = tr.DOMove(step.toVector3, step.duration);
+        var tweener = tr.DOMove(step.toVector3, step.duration).SetOptions(step.snapping);
 
         if (step.setFrom && !step.useCustomFromValue)
             tweener.From();
@@ -332,7 +525,7 @@ public class SimpleTweenAnimation : MonoBehaviour
         if (step.setFrom && step.useCustomFromValue)
             tr.localPosition = step.fromVector3;
 
-        var tweener = tr.DOLocalMove(step.toVector3, step.duration);
+        var tweener = tr.DOLocalMove(step.toVector3, step.duration).SetOptions(step.snapping);
 
         if (step.setFrom && !step.useCustomFromValue)
             tweener.From();
@@ -351,7 +544,7 @@ public class SimpleTweenAnimation : MonoBehaviour
         if (step.setFrom && step.useCustomFromValue)
             rectTransform.anchoredPosition = from;
 
-        var tweener = rectTransform.DOAnchorPos(to, step.duration);
+        var tweener = rectTransform.DOAnchorPos(to, step.duration).SetOptions(step.snapping);
 
         if (step.setFrom && !step.useCustomFromValue)
             tweener.From();
@@ -542,5 +735,53 @@ public class SimpleTweenAnimation : MonoBehaviour
             tweener.From();
 
         return tweener;
+    }
+
+    private Tween CreatePunchScaleTween(Component target, TweenStep step)
+    {
+        if (target is not Transform tr)
+            return null;
+
+        return tr.DOPunchScale(step.toVector3, step.duration, step.vibrato, step.elasticity);
+    }
+
+    private Tween CreatePunchPositionTween(Component target, TweenStep step)
+    {
+        if (target is not Transform tr)
+            return null;
+
+        return tr.DOPunchPosition(step.toVector3, step.duration, step.vibrato, step.elasticity, step.snapping);
+    }
+
+    private Tween CreatePunchRotationTween(Component target, TweenStep step)
+    {
+        if (target is not Transform tr)
+            return null;
+
+        return tr.DOPunchRotation(step.toVector3, step.duration, step.vibrato, step.elasticity);
+    }
+
+    private Tween CreateShakePositionTween(Component target, TweenStep step)
+    {
+        if (target is not Transform tr)
+            return null;
+
+        return tr.DOShakePosition(step.duration, step.toVector3, step.vibrato, step.randomness, step.snapping);
+    }
+
+    private Tween CreateShakeScaleTween(Component target, TweenStep step)
+    {
+        if (target is not Transform tr)
+            return null;
+
+        return tr.DOShakeScale(step.duration, step.toVector3, step.vibrato, step.randomness);
+    }
+
+    private Tween CreateShakeRotationTween(Component target, TweenStep step)
+    {
+        if (target is not Transform tr)
+            return null;
+
+        return tr.DOShakeRotation(step.duration, step.toVector3, step.vibrato, step.randomness);
     }
 }

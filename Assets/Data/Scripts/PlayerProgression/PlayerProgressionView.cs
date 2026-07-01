@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -14,23 +15,32 @@ namespace PlayerProgression
         [SerializeField] private TextMeshProUGUI _experienceText;
         [SerializeField] private TextMeshProUGUI _addedExperienceText;
         [SerializeField] private RectTransform _addedExperienceStartPoint;
+        [Header("Reward entry")]
+        [SerializeField] private LevelRewardEntryView _rewardEntryPrefab;
         [Header("Warning")]
         [SerializeField] private Button _newLevelButton;
         [SerializeField] private GameObject _levelUpOfferRoot;
-        [SerializeField] private TextMeshProUGUI _levelUpOfferText;
-        [SerializeField] private Image _levelUpOfferIcon;
+        [SerializeField] private TextMeshProUGUI _levelUpOfferLossText;
+        [SerializeField] private Transform _levelUpOfferRewardsContainer;
         [SerializeField] private Button _levelUpConfirmButton;
         [SerializeField] private Button _levelUpCancelButton;
-        [Header("LevelUp")] 
+        [Header("LevelUp")]
         [SerializeField] private GameObject _levelUpResultRoot;
         [SerializeField] private TextMeshProUGUI _levelUpResultText;
-        [SerializeField] private Image _levelUpResultIcon;
-  
+        [SerializeField] private TextMeshProUGUI _levelUpTransitionText;
+        [SerializeField] private Transform _levelUpResultRewardsContainer;
         [SerializeField] private Button _levelUpResultCloseButton;
+
+        private readonly List<LevelRewardEntryView> _offerEntries = new();
+        private readonly List<LevelRewardEntryView> _resultEntries = new();
 
         private Tween _fillTween;
         private Sequence _addedExperienceSequence;
+        private Tween _newLevelButtonTween;
+        private Sequence _resultCelebrationSequence;
         private System.Action _confirmLevelUpAction;
+
+        private const float NewLevelButtonAnimationDuration = 0.2f;
 
         public event System.Action NewLevelRequested;
 
@@ -68,6 +78,8 @@ namespace PlayerProgression
         {
             _fillTween?.Kill();
             _addedExperienceSequence?.Kill();
+            _newLevelButtonTween?.Kill();
+            _resultCelebrationSequence?.Kill();
 
             if (_newLevelButton != null)
             {
@@ -140,25 +152,46 @@ namespace PlayerProgression
 
         public void SetNewLevelAvailable(bool isAvailable)
         {
-            if (_newLevelButton != null)
+            if (_newLevelButton == null)
             {
-                _newLevelButton.gameObject.SetActive(isAvailable);
-                _newLevelButton.interactable = isAvailable;
+                return;
+            }
+
+            _newLevelButtonTween?.Kill();
+
+            RectTransform buttonTransform = _newLevelButton.transform as RectTransform;
+            _newLevelButton.interactable = isAvailable;
+
+            if (isAvailable)
+            {
+                _newLevelButton.gameObject.SetActive(true);
+                Vector3 startScale = buttonTransform.localScale;
+                startScale.x = 0f;
+                buttonTransform.localScale = startScale;
+
+                _newLevelButtonTween = buttonTransform
+                    .DOScaleX(1f, NewLevelButtonAnimationDuration)
+                    .SetEase(Ease.OutBack);
+            }
+            else
+            {
+                _newLevelButtonTween = buttonTransform
+                    .DOScaleX(0f, NewLevelButtonAnimationDuration)
+                    .SetEase(Ease.InBack)
+                    .OnComplete(() => _newLevelButton.gameObject.SetActive(false));
             }
         }
 
-        public void ShowLevelUpOffer(System.Action confirmAction, string rewardDescription, Sprite rewardIcon)
+        public void ShowLevelUpOffer(System.Action confirmAction, IReadOnlyList<LevelRewardEntry> rewards, string lossText)
         {
             _confirmLevelUpAction = confirmAction;
 
-            if (_levelUpOfferText != null)
-            {
-                _levelUpOfferText.text = Localization.Format(
-                    "player_progression.level_up_offer",
-                    rewardDescription);
-            }
+            PopulateRewards(_levelUpOfferRewardsContainer, _offerEntries, rewards);
 
-            SetIcon(_levelUpOfferIcon, rewardIcon);
+            if (_levelUpOfferLossText != null)
+            {
+                _levelUpOfferLossText.text = lossText;
+            }
 
             if (_levelUpOfferRoot != null)
             {
@@ -170,20 +203,26 @@ namespace PlayerProgression
             }
         }
 
-        public void ShowLevelUpResult(string rewardDescription, Sprite rewardIcon)
+        public void ShowLevelUpResult(int previousLevel, int newLevel, IReadOnlyList<LevelRewardEntry> rewards)
         {
             if (_levelUpResultText != null)
             {
-                _levelUpResultText.text = Localization.Format(
-                    "player_progression.level_up_result",
-                    rewardDescription);
+                _levelUpResultText.text = Localization.Tr("player_progression.level_up_result_title");
             }
 
-            SetIcon(_levelUpResultIcon, rewardIcon);
+            if (_levelUpTransitionText != null)
+            {
+                string from = Localization.Format("player_progression.level", previousLevel);
+                string to = Localization.Format("player_progression.level", newLevel);
+                _levelUpTransitionText.text = $"{from} -> {to}";
+            }
+
+            PopulateRewards(_levelUpResultRewardsContainer, _resultEntries, rewards);
 
             if (_levelUpResultRoot != null)
             {
                 _levelUpResultRoot.SetActive(true);
+                PlayResultCelebration();
             }
         }
 
@@ -215,15 +254,56 @@ namespace PlayerProgression
             }
         }
 
-        private void SetIcon(Image icon, Sprite sprite)
+        private void PopulateRewards(Transform container, List<LevelRewardEntryView> spawned, IReadOnlyList<LevelRewardEntry> rewards)
         {
-            if (icon == null)
+            for (int i = 0; i < spawned.Count; i++)
+            {
+                if (spawned[i] != null)
+                {
+                    Destroy(spawned[i].gameObject);
+                }
+            }
+
+            spawned.Clear();
+
+            if (container == null || _rewardEntryPrefab == null || rewards == null)
             {
                 return;
             }
+            _rewardEntryPrefab.gameObject.SetActive(false);
+            foreach (LevelRewardEntry reward in rewards)
+            {
+                LevelRewardEntryView entry = Instantiate(_rewardEntryPrefab, container);
+                entry.gameObject.SetActive(true);
+                entry.Setup(reward);
+                spawned.Add(entry);
+            }
+        }
 
-            icon.sprite = sprite;
-            icon.enabled = sprite != null;
+        private void PlayResultCelebration()
+        {
+            _resultCelebrationSequence?.Kill();
+
+            Transform root = _levelUpResultRoot.transform;
+            root.localScale = Vector3.one * 0.7f;
+
+            _resultCelebrationSequence = DOTween.Sequence()
+                .Append(root.DOScale(1f, 0.35f).SetEase(Ease.OutBack));
+
+            for (int i = 0; i < _resultEntries.Count; i++)
+            {
+                LevelRewardEntryView entry = _resultEntries[i];
+                if (entry == null)
+                {
+                    continue;
+                }
+
+                Transform entryTransform = entry.transform;
+                entryTransform.localScale = Vector3.zero;
+                _resultCelebrationSequence.Insert(
+                    0.15f + i * 0.08f,
+                    entryTransform.DOScale(1f, 0.25f).SetEase(Ease.OutBack));
+            }
         }
 
         private void SetButtonText(Button button, string key)

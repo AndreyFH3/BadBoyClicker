@@ -64,7 +64,10 @@ namespace Shop
                 return 0;
             }
 
-            return Math.Max(1, (long)Math.Ceiling(value * Math.Max(0f, multiplier)));
+            // Multiply in double: long can exceed float's ~7 significant digits,
+            // so multiplying by a float multiplier here would lose precision on
+            // large income values.
+            return Math.Max(1, (long)Math.Ceiling(value * (double)Math.Max(0f, multiplier)));
         }
 
         private long CalculateBonus(IReadOnlyList<GameConfig.ShopDataClick> items, ShopItemType type)

@@ -6,7 +6,9 @@ using Installer.Init;
 using PlayerProgression;
 using PlayerFeatures;
 using QuestSystem;
+using Rewards;
 using Shop;
+using Utils;
 using Zenject;
 using GameLocalization;
 
@@ -106,6 +108,7 @@ namespace DailyQuests
                         Id = data.Id,
                         Title = _localization.Localize(data.TitleLocalizationKey),
                         Description = _localization.Localize(data.DescriptionLocalizationKey),
+                        Icon = data.Icon,
                         ProgressText = $"{currentValue}/{targetValue}",
                         CurrentValue = currentValue,
                         TargetValue = targetValue,
@@ -129,12 +132,13 @@ namespace DailyQuests
                         continue;
                     }
 
+                    bool isClaimed = _save.IsMilestoneClaimed(data.RequiredPoints);
                     milestones.Add(new DailyQuestMilestoneViewData
                     {
                         RequiredPoints = data.RequiredPoints,
-                        IsUnlocked = _save.Points >= data.RequiredPoints,
-                        IsClaimed = _save.IsMilestoneClaimed(data.RequiredPoints),
-                        RewardText = CreateRewardText(data.Rewards)
+                        IsClaimed = isClaimed,
+                        CanClaim = _save.Points >= data.RequiredPoints && !isClaimed,
+                        Rewards = BuildRewardDisplays(data.Rewards)
                     });
                 }
             }
@@ -450,14 +454,14 @@ namespace DailyQuests
             return max;
         }
 
-        private string CreateRewardText(IReadOnlyList<QuestReward> rewards)
+        private static List<RewardDisplay> BuildRewardDisplays(IReadOnlyList<QuestReward> rewards)
         {
             if (rewards == null || rewards.Count == 0)
             {
-                return string.Empty;
+                return null;
             }
 
-            var parts = new List<string>(rewards.Count);
+            var displays = new List<RewardDisplay>(rewards.Count);
             foreach (var reward in rewards)
             {
                 if (reward == null)
@@ -465,23 +469,14 @@ namespace DailyQuests
                     continue;
                 }
 
-                if (!string.IsNullOrEmpty(reward.DisplayTextLocalizationKey) || !string.IsNullOrEmpty(reward.DisplayText))
+                displays.Add(new RewardDisplay
                 {
-                    parts.Add(_localization.Localize(reward.DisplayTextLocalizationKey));
-                }
-                else if (reward.RewardType == QuestRewardType.Currency)
-                {
-                    string currency = _localization.Localize(
-                        $"currency.{reward.CurrencyType.ToString().ToLowerInvariant()}");
-                    parts.Add(_localization.Format("reward.currency_amount", reward.Amount, currency));
-                }
-                else
-                {
-                    parts.Add(string.IsNullOrEmpty(reward.RewardId) ? reward.RewardType.ToString() : reward.RewardId);
-                }
+                    Icon = reward.Icon,
+                    Amount = reward.Amount > 0 ? reward.Amount.ConvertFromLongToString() : string.Empty
+                });
             }
 
-            return string.Join(", ", parts);
+            return displays;
         }
     }
 }

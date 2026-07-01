@@ -14,6 +14,12 @@ namespace Shop
         [SerializeField] private Transform _clicksRoot;
         [SerializeField] private Transform _autoBuysRoot;
         [SerializeField] private Transform _paidBuysRoot;
+        [Tooltip("Optional. When assigned, offers that reward crystals (hard) go here instead of the shared paid root.")]
+        [SerializeField] private Transform _paidHardRoot;
+        [Tooltip("Optional. When assigned, offers that reward decor currency go here instead of the shared paid root.")]
+        [SerializeField] private Transform _paidDecorRoot;
+        [Tooltip("Optional. When assigned, offers that reward soft currency go here instead of the shared paid root.")]
+        [SerializeField] private Transform _paidSoftRoot;
         [SerializeField] private CanvasGroup _clicksCanvasGroup;
         [SerializeField] private CanvasGroup _autoBuysCanvasGroup;
         [SerializeField] private CanvasGroup _paidBuysCanvasGroup;
@@ -21,10 +27,13 @@ namespace Shop
         [SerializeField] private Button _autoBuysTabButton;
         [SerializeField] private Button _paidBuysTabButton;
         [SerializeField] private float _tabFadeDuration = 0.2f;
+        [Tooltip("Prefab used for soft-currency upgrades (clicks / auto-buys).")]
         [SerializeField] private ShopViewElement _reference;
+        [Tooltip("Prefab used for paid offers. Falls back to the standard reference when not assigned.")]
+        [SerializeField] private PaidShopViewElement _paidReference;
         [SerializeField] private TextMeshProUGUI _earnPerSecond;
-        
-        private readonly Dictionary<ShopItemType, Dictionary<string, ShopViewElement>> _shopElements = new();
+
+        private readonly Dictionary<ShopItemType, Dictionary<string, ShopViewElementBase>> _shopElements = new();
         private ShopItemType _activeTab = ShopItemType.Click;
 
         public event Action OpenRequested;
@@ -38,6 +47,8 @@ namespace Shop
             EnsureElements();
             if (_reference != null)
                 _reference.gameObject.SetActive(false);
+            if (_paidReference != null)
+                _paidReference.gameObject.SetActive(false);
             AddTabListeners();
             SetActiveTab(_activeTab);
         }
@@ -58,7 +69,7 @@ namespace Shop
         public void SetData(List<ShopElementData> datas)
         {
             EnsureElements();
-            if (_reference == null || datas == null)
+            if (datas == null || (_reference == null && _paidReference == null))
             {
                 return;
             }
@@ -128,18 +139,27 @@ namespace Shop
                 return;
             }
 
-            if (_reference == null)
+            ShopViewElementBase reference = GetReference(data.Type);
+            if (reference == null)
                 return;
 
-            Transform root = GetRoot(data.Type);
+            Transform root = GetRoot(data);
             if (root == null)
                 return;
 
-            var instance = Instantiate(_reference, root);
+            var instance = Instantiate(reference, root);
             instance.Init(data);
             instance.gameObject.SetActive(true);
             instance.OnClick += UpdateElement;
             elements.Add(data.Id, instance);
+        }
+
+        private ShopViewElementBase GetReference(ShopItemType type)
+        {
+            if (type == ShopItemType.PaidBuy && _paidReference != null)
+                return _paidReference;
+
+            return _reference;
         }
 
         private void SetActiveTab(ShopItemType type)
@@ -150,18 +170,42 @@ namespace Shop
             SetRootState(_paidBuysCanvasGroup, type == ShopItemType.PaidBuy);
         }
 
-        private Transform GetRoot(ShopItemType type)
+        private Transform GetRoot(ShopElementData data)
         {
-            switch (type)
+            switch (data.Type)
             {
                 case ShopItemType.Click:
                     return _clicksRoot != null ? _clicksRoot : _shopRoot;
                 case ShopItemType.AutoBuy:
                     return _autoBuysRoot != null ? _autoBuysRoot : _shopRoot;
                 case ShopItemType.PaidBuy:
-                    return _paidBuysRoot != null ? _paidBuysRoot : _shopRoot;
+                    return GetPaidRoot(data);
                 default:
                     return _shopRoot;
+            }
+        }
+
+        private Transform GetPaidRoot(ShopElementData data)
+        {
+            Transform groupRoot = GetRewardGroupRoot(data.RewardGroup);
+            if (groupRoot != null)
+                return groupRoot;
+
+            return _paidBuysRoot != null ? _paidBuysRoot : _shopRoot;
+        }
+
+        private Transform GetRewardGroupRoot(ShopRewardGroup group)
+        {
+            switch (group)
+            {
+                case ShopRewardGroup.Hard:
+                    return _paidHardRoot;
+                case ShopRewardGroup.Decor:
+                    return _paidDecorRoot;
+                case ShopRewardGroup.Soft:
+                    return _paidSoftRoot;
+                default:
+                    return null;
             }
         }
 
@@ -215,7 +259,7 @@ namespace Shop
         private void EnsureElements(ShopItemType type)
         {
             if (!_shopElements.ContainsKey(type))
-                _shopElements.Add(type, new Dictionary<string, ShopViewElement>());
+                _shopElements.Add(type, new Dictionary<string, ShopViewElementBase>());
         }
     }
 }

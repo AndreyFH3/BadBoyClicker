@@ -1,5 +1,5 @@
 using System;
-using System.Text;
+using System.Collections.Generic;
 using Core;
 using Shop;
 using UnityEngine;
@@ -21,8 +21,8 @@ namespace PlayerProgression
         public long ExperienceToNextLevel => GetLevelExperienceRequirement(_save.CompletedLevels);
         public float CurrentProgress => ExperienceToNextLevel <= 0 ? 0f : Math.Min(1f, (float)CurrentExperience / ExperienceToNextLevel);
         public bool CanCompleteLevel => ExperienceToNextLevel > 0 && CurrentExperience >= ExperienceToNextLevel;
-        public string NextLevelRewardDescription => CreateRewardDescription(_save.CompletedLevels);
-        public Sprite NextLevelRewardIcon => GetLevelData(_save.CompletedLevels)?.RewardIcon;
+        public IReadOnlyList<LevelRewardEntry> NextLevelRewards => CreateRewardEntries(_save.CompletedLevels);
+        public string NextLevelLossText => _localization.Format("You_want_new_level", CurrentLevel + 1);
         public float ClickIncomeMultiplier => 1f + GetBonusPercent(PlayerProgressBonusType.ClickIncomePercent) / 100f;
         public float PassiveIncomeMultiplier => 1f + GetBonusPercent(PlayerProgressBonusType.PassiveIncomePercent) / 100f;
 
@@ -181,18 +181,19 @@ namespace PlayerProgression
             return levels[completedLevels % levels.Count];
         }
 
-        private string CreateRewardDescription(int completedLevels)
+        private List<LevelRewardEntry> CreateRewardEntries(int completedLevels)
         {
-            var builder = new StringBuilder();
-            long middleReward = GetMiddleRewardPerLevel();
+            var entries = new List<LevelRewardEntry>();
 
+            long middleReward = GetMiddleRewardPerLevel();
             if (middleReward > 0)
             {
-                builder.Append(_localization.Format("player_progression.reward.middle_currency", middleReward));
+                entries.Add(new LevelRewardEntry(
+                    _config?.PlayerProgression?.MiddleRewardIcon,
+                    _localization.Format("player_progression.reward.amount", middleReward)));
             }
 
-            var level = GetLevelData(completedLevels);
-            var bonuses = level?.Bonuses;
+            var bonuses = GetLevelData(completedLevels)?.Bonuses;
             if (bonuses != null)
             {
                 foreach (var bonus in bonuses)
@@ -202,29 +203,24 @@ namespace PlayerProgression
                         continue;
                     }
 
-                    if (builder.Length > 0)
-                    {
-                        builder.Append("\n");
-                    }
-
-                    builder.Append(_localization.Format("player_progression.reward.bonus_percent", bonus.Percent, GetBonusName(bonus.Type)));
+                    entries.Add(new LevelRewardEntry(
+                        bonus.Icon,
+                        _localization.Format("player_progression.reward.percent", bonus.Percent),
+                        GetBonusDescription(bonus.Type)));
                 }
             }
 
-            return builder.Length > 0 ? builder.ToString() : _localization.Localize("player_progression.reward.new_level");
+            return entries;
         }
 
-        private string GetBonusName(PlayerProgressBonusType type)
+        private string GetBonusDescription(PlayerProgressBonusType type)
         {
-            switch (type)
+            return type switch
             {
-                case PlayerProgressBonusType.ClickIncomePercent:
-                    return _localization.Localize("player_progression.bonus.click_income");
-                case PlayerProgressBonusType.PassiveIncomePercent:
-                    return _localization.Localize("player_progression.bonus.passive_income");
-                default:
-                    return type.ToString();
-            }
+                PlayerProgressBonusType.ClickIncomePercent => _localization.Localize("player_progression.bonus.click_income"),
+                PlayerProgressBonusType.PassiveIncomePercent => _localization.Localize("player_progression.bonus.passive_income"),
+                _ => null
+            };
         }
     }
 }

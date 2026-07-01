@@ -20,12 +20,12 @@ namespace PlayerProgression
         {
         }
 
-        public void ShowLevelUpOffer(System.Action confirmAction, string rewardDescription, UnityEngine.Sprite rewardIcon)
+        public void ShowLevelUpOffer(System.Action confirmAction, System.Collections.Generic.IReadOnlyList<LevelRewardEntry> rewards, string lossText)
         {
             confirmAction?.Invoke();
         }
 
-        public void ShowLevelUpResult(string rewardDescription, UnityEngine.Sprite rewardIcon)
+        public void ShowLevelUpResult(int previousLevel, int newLevel, System.Collections.Generic.IReadOnlyList<LevelRewardEntry> rewards)
         {
         }
     }

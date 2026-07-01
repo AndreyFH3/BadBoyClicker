@@ -199,11 +199,11 @@ MonoBehaviour:
   - _id: hard_currency_pack_1
     _purchaseKind: 0
     _paymentId: hard_currency_pack_1
-    _priceCurrencyType: 0
+    _priceCurrencyType: 3
     _priceAmount: 0
     _nameLocalizationKey: shop.paid.hard_currency_pack_1.name
     _name: Small Gem Pack
-    _icon: {fileID: 0}
+    _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _priceText: 10 YAN
     _rewardTextLocalizationKey: shop.paid.hard_currency_pack_1.reward
     _rewardText: +100 gems
@@ -218,11 +218,11 @@ MonoBehaviour:
   - _id: hard_currency_pack_2
     _purchaseKind: 0
     _paymentId: hard_currency_pack_2
-    _priceCurrencyType: 0
+    _priceCurrencyType: 3
     _priceAmount: 0
     _nameLocalizationKey: shop.paid.hard_currency_pack_2.name
     _name: Medium Gem Pack
-    _icon: {fileID: 0}
+    _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _priceText: 25 YAN
     _rewardTextLocalizationKey: shop.paid.hard_currency_pack_2.reward
     _rewardText: +250 gems
@@ -237,11 +237,11 @@ MonoBehaviour:
   - _id: hard_currency_pack_3
     _purchaseKind: 0
     _paymentId: hard_currency_pack_3
-    _priceCurrencyType: 0
+    _priceCurrencyType: 3
     _priceAmount: 0
     _nameLocalizationKey: shop.paid.hard_currency_pack_3.name
     _name: Large Gem Pack
-    _icon: {fileID: 0}
+    _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _priceText: 60 YAN
     _rewardTextLocalizationKey: shop.paid.hard_currency_pack_3.reward
     _rewardText: +650 gems
@@ -256,11 +256,11 @@ MonoBehaviour:
   - _id: hard_currency_pack_4
     _purchaseKind: 0
     _paymentId: hard_currency_pack_4
-    _priceCurrencyType: 0
+    _priceCurrencyType: 3
     _priceAmount: 0
     _nameLocalizationKey: shop.paid.hard_currency_pack_4.name
     _name: Mega Gem Pack
-    _icon: {fileID: 0}
+    _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _priceText: 120 YAN
     _rewardTextLocalizationKey: shop.paid.hard_currency_pack_4.reward
     _rewardText: +1500 gems
@@ -279,7 +279,7 @@ MonoBehaviour:
     _priceAmount: 10
     _nameLocalizationKey: shop.paid.soft_currency_pack_1.name
     _name: Small Coin Pack
-    _icon: {fileID: 0}
+    _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _priceText: 
     _rewardTextLocalizationKey: shop.paid.soft_currency_pack_1.reward
     _rewardText: +10000 coins
@@ -298,7 +298,7 @@ MonoBehaviour:
     _priceAmount: 25
     _nameLocalizationKey: shop.paid.soft_currency_pack_2.name
     _name: Medium Coin Pack
-    _icon: {fileID: 0}
+    _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _priceText: 
     _rewardTextLocalizationKey: shop.paid.soft_currency_pack_2.reward
     _rewardText: +30000 coins
@@ -317,7 +317,7 @@ MonoBehaviour:
     _priceAmount: 60
     _nameLocalizationKey: shop.paid.soft_currency_pack_3.name
     _name: Large Coin Pack
-    _icon: {fileID: 0}
+    _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _priceText: 
     _rewardTextLocalizationKey: shop.paid.soft_currency_pack_3.reward
     _rewardText: +80000 coins
@@ -336,7 +336,7 @@ MonoBehaviour:
     _priceAmount: 120
     _nameLocalizationKey: shop.paid.soft_currency_pack_4.name
     _name: Mega Coin Pack
-    _icon: {fileID: 0}
+    _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _priceText: 
     _rewardTextLocalizationKey: shop.paid.soft_currency_pack_4.reward
     _rewardText: +200000 coins
@@ -355,7 +355,7 @@ MonoBehaviour:
     _priceAmount: 15
     _nameLocalizationKey: shop.paid.decor_currency_pack_1.name
     _name: Small Decor Pack
-    _icon: {fileID: 0}
+    _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _priceText: 
     _rewardTextLocalizationKey: shop.paid.decor_currency_pack_1.reward
     _rewardText: +25 decor
@@ -374,7 +374,7 @@ MonoBehaviour:
     _priceAmount: 35
     _nameLocalizationKey: shop.paid.decor_currency_pack_2.name
     _name: Medium Decor Pack
-    _icon: {fileID: 0}
+    _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _priceText: 
     _rewardTextLocalizationKey: shop.paid.decor_currency_pack_2.reward
     _rewardText: +75 decor
@@ -393,7 +393,7 @@ MonoBehaviour:
     _priceAmount: 80
     _nameLocalizationKey: shop.paid.decor_currency_pack_3.name
     _name: Large Decor Pack
-    _icon: {fileID: 0}
+    _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _priceText: 
     _rewardTextLocalizationKey: shop.paid.decor_currency_pack_3.reward
     _rewardText: +200 decor
@@ -412,7 +412,7 @@ MonoBehaviour:
     _priceAmount: 160
     _nameLocalizationKey: shop.paid.decor_currency_pack_4.name
     _name: Mega Decor Pack
-    _icon: {fileID: 0}
+    _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _priceText: 
     _rewardTextLocalizationKey: shop.paid.decor_currency_pack_4.reward
     _rewardText: +500 decor
@@ -433,6 +433,7 @@ MonoBehaviour:
     _minSecondsToShow: 0
   _playerProgression:
     _middleRewardPerLevel: 5
+    _middleRewardIcon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _experienceRewards:
     - _source: 0
       _experience: 1
@@ -442,22 +443,23 @@ MonoBehaviour:
       _experience: 10
     _levels:
     - _experienceToComplete: 100
-      _rewardIcon: {fileID: -4439254127691508170, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
       _bonuses:
       - _type: 0
         _percent: 5
+        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
     - _experienceToComplete: 100
-      _rewardIcon: {fileID: -4439254127691508170, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
       _bonuses:
       - _type: 1
         _percent: 10
+        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
     - _experienceToComplete: 100
-      _rewardIcon: {fileID: -4439254127691508170, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
       _bonuses:
       - _type: 0
         _percent: 5
+        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
       - _type: 1
         _percent: 5
+        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
   _data:
     _scenesId:
       _mainSceneId: 

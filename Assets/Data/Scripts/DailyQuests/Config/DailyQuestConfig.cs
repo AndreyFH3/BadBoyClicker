@@ -22,6 +22,7 @@ namespace DailyQuests
             [SerializeField] private string _descriptionLocalizationKey;
             [TextArea]
             [SerializeField] private string _description;
+            [SerializeField] private Sprite _icon;
             [SerializeField] private QuestObjectiveType _objectiveType;
             [Min(1)]
             [SerializeField] private long _targetValue = 1;
@@ -34,6 +35,7 @@ namespace DailyQuests
             public string Title => string.IsNullOrEmpty(_title) ? _id : _title;
             public string DescriptionLocalizationKey => _descriptionLocalizationKey;
             public string Description => _description;
+            public Sprite Icon => _icon;
             public QuestObjectiveType ObjectiveType => _objectiveType;
             public long TargetValue => _targetValue;
             public string TargetId => _targetId;

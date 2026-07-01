@@ -1,67 +1,125 @@
 {
-    "idSave": 18193,
+    "idSave": 5446,
     "GameSaveData": {
         "Wallet": {
-            "Soft": 66,
-            "Middle": 4925,
-            "Hard": 137
+            "Soft": 30628,
+            "Middle": 60,
+            "Hard": 80
         },
         "Shop": {
-            "Levels": []
+            "Levels": [
+                {
+                    "Key": "Click:soft_paw",
+                    "Level": 19
+                },
+                {
+                    "Key": "AutoBuy:sleepy_cat",
+                    "Level": 18
+                },
+                {
+                    "Key": "AutoBuy:cat_bed",
+                    "Level": 31
+                },
+                {
+                    "Key": "Click:sharp_claws",
+                    "Level": 24
+                },
+                {
+                    "Key": "Click:cat_energy",
+                    "Level": 17
+                },
+                {
+                    "Key": "AutoBuy:toy_mouse",
+                    "Level": 14
+                },
+                {
+                    "Key": "AutoBuy:food_bowl",
+                    "Level": 26
+                },
+                {
+                    "Key": "AutoBuy:scratching_post",
+                    "Level": 4
+                },
+                {
+                    "Key": "Click:quick_dash",
+                    "Level": 19
+                },
+                {
+                    "Key": "Click:hunting_instinct",
+                    "Level": 11
+                },
+                {
+                    "Key": "Click:tail_agility",
+                    "Level": 11
+                }
+            ]
         },
         "OfflineIncome": {
-            "LastOnlineTicks": 639176244157413300
+            "LastOnlineTicks": 639185263993147197
         },
         "DailyLogin": {
-            "CurrentDayIndex": 1,
-            "LastClaimUtcTicks": 639176241178446986
+            "CurrentDayIndex": 0,
+            "LastClaimUtcTicks": 0
         },
         "DailyQuests": {
-            "DayKey": "20260621",
-            "Points": 0,
+            "DayKey": "20260701",
+            "Points": 60,
             "Quests": [
                 {
                     "Id": "1",
                     "CurrentValue": 10,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "2",
                     "CurrentValue": 20,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "3",
                     "CurrentValue": 30,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "4",
                     "CurrentValue": 40,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "5",
                     "CurrentValue": 50,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "6",
                     "CurrentValue": 60,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 }
             ],
-            "Milestones": []
+            "Milestones": [
+                {
+                    "RequiredPoints": 20,
+                    "IsClaimed": true
+                },
+                {
+                    "RequiredPoints": 60,
+                    "IsClaimed": true
+                },
+                {
+                    "RequiredPoints": 40,
+                    "IsClaimed": true
+                }
+            ]
         },
         "PlayerProgression": {
-            "CompletedLevels": 36,
-            "CurrentExperience": 22
+            "CompletedLevels": 5,
+            "CurrentExperience": 100
         },
         "Quests": {
             "Quests": [
@@ -78,63 +136,31 @@
                     "IsRewardClaimed": true
                 },
                 {
-                    "Id": "Third",
-                    "CurrentValue": 10,
+                    "Id": "Fourth",
+                    "CurrentValue": 5,
                     "IsCompleted": true,
                     "IsRewardClaimed": true
                 },
                 {
-                    "Id": "Fourth",
-                    "CurrentValue": 5,
+                    "Id": "Third",
+                    "CurrentValue": 10,
                     "IsCompleted": true,
                     "IsRewardClaimed": true
                 }
             ]
         },
         "CardCollections": {
-            "Cards": [
-                {
-                    "Id": "0_2",
-                    "Amount": 5
-                },
-                {
-                    "Id": "0_4",
-                    "Amount": 4
-                },
-                {
-                    "Id": "0_5",
-                    "Amount": 4
-                },
-                {
-                    "Id": "0_3",
-                    "Amount": 3
-                },
-                {
-                    "Id": "0_6",
-                    "Amount": 1
-                },
-                {
-                    "Id": "0_1",
-                    "Amount": 1
-                }
-            ],
-            "Collections": [
-                {
-                    "Id": "0",
-                    "IsRewardClaimed": true
-                }
-            ]
+            "Cards": [],
+            "Collections": []
         },
         "Customization": {
-            "ActiveBackgroundId": "back_02",
+            "ActiveBackgroundId": "back_01",
             "ActiveCatId": "cat_01",
             "PurchasedBackgroundIds": [
-                "back_01",
-                "back_02"
+                "back_01"
             ],
             "PurchasedCatIds": [
-                "cat_01",
-                "cat_02"
+                "cat_01"
             ]
         }
     }

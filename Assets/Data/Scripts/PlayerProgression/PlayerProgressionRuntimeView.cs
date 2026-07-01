@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 using Core;
 using TMPro;
 using UnityEngine;
@@ -70,30 +72,53 @@ namespace PlayerProgression
             _addedExperienceText.CrossFadeAlpha(0f, 0.45f, false);
         }
 
-        public void ShowLevelUpOffer(Action confirmAction, string rewardDescription, Sprite rewardIcon)
+        public void ShowLevelUpOffer(Action confirmAction, IReadOnlyList<LevelRewardEntry> rewards, string lossText)
         {
             EnsureCreated();
             _confirmAction = confirmAction;
             _popupText.text = Localization.Format(
                 "player_progression.level_up_offer_runtime",
-                rewardDescription);
-            SetPopupIcon(rewardIcon);
+                $"{lossText}\n\n{BuildRewardsText(rewards)}");
+            SetPopupIcon(null);
             _popupConfirmButton.gameObject.SetActive(true);
             _popupCancelButton.GetComponentInChildren<TextMeshProUGUI>().text = Localization.Tr("common.cancel");
             _popupRoot.SetActive(true);
         }
 
-        public void ShowLevelUpResult(string rewardDescription, Sprite rewardIcon)
+        public void ShowLevelUpResult(int previousLevel, int newLevel, IReadOnlyList<LevelRewardEntry> rewards)
         {
             EnsureCreated();
             _confirmAction = null;
+            string from = Localization.Format("player_progression.level", previousLevel);
+            string to = Localization.Format("player_progression.level", newLevel);
             _popupText.text = Localization.Format(
                 "player_progression.level_up_result_runtime",
-                rewardDescription);
-            SetPopupIcon(rewardIcon);
+                $"{from} → {to}\n\n{BuildRewardsText(rewards)}");
+            SetPopupIcon(null);
             _popupConfirmButton.gameObject.SetActive(false);
             _popupCancelButton.GetComponentInChildren<TextMeshProUGUI>().text = Localization.Tr("common.ok");
             _popupRoot.SetActive(true);
+        }
+
+        private static string BuildRewardsText(IReadOnlyList<LevelRewardEntry> rewards)
+        {
+            if (rewards == null)
+            {
+                return string.Empty;
+            }
+
+            var builder = new StringBuilder();
+            foreach (LevelRewardEntry reward in rewards)
+            {
+                if (builder.Length > 0)
+                {
+                    builder.Append('\n');
+                }
+
+                builder.Append(reward.Text);
+            }
+
+            return builder.ToString();
         }
 
         private void EnsureCreated()
