@@ -16,7 +16,7 @@ MonoBehaviour:
   - _id: Chest_1
     _titleLocalizationKey: chest.chest_1.title
     _title: Chest 1
-    _icon: {fileID: 0}
+    _icon: {fileID: 2507892199236850859, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
     _rewards:
     - _rarityWeight: 70
       _rewardKind: 0
@@ -25,8 +25,8 @@ MonoBehaviour:
         _currencyType: 0
         _amount: 100
         _rewardId: 
-        _icon: {fileID: 0}
-        _displayTextLocalizationKey: 
+        _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+        _displayTextLocalizationKey: soft_text
         _displayText: 100 Soft
       _cardCollectionId: 
       _cardStars: 1
@@ -51,20 +51,20 @@ MonoBehaviour:
         _currencyType: 1
         _amount: 10
         _rewardId: 
-        _icon: {fileID: 0}
-        _displayTextLocalizationKey: 
+        _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+        _displayTextLocalizationKey: decor_text
         _displayText: 10 Decor
       _cardCollectionId: 
       _cardStars: 1
-      _allowDuplicateCards: 1
+      _allowDuplicateCards: 0
     - _rarityWeight: 5
       _rewardKind: 0
       _reward:
         _rewardType: 0
         _currencyType: 2
         _amount: 1
-        _rewardId: 
-        _icon: {fileID: 0}
+        _rewardId: hard_text
+        _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
         _displayTextLocalizationKey: 
         _displayText: 1 Hard
       _cardCollectionId: 

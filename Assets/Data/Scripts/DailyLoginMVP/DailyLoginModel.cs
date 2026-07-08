@@ -42,7 +42,12 @@ namespace DailyLoginMVP
                 rewards.Add(new DailyLoginRewardViewData(
                     reward.Icon,
                     CreateRewardText(reward),
-                    i == currentDayIndex));
+                    _localization.Format("day_text", i + 1),
+                    reward.RewardType == RewardType.Currency,
+                    i == currentDayIndex,
+                    i < currentDayIndex,
+                    i > currentDayIndex,
+                    dayConfigs[i].IsMilestone));
             }
 
             return new DailyLoginViewData(rewards);
@@ -63,9 +68,12 @@ namespace DailyLoginMVP
             switch (reward.RewardType)
             {
                 case RewardType.Currency:
-                    return reward.Amount.ConvertFromLongToString();
+                    return reward.HasAmountRange
+                        ? $"{reward.Amount.ConvertFromLongToString()}-{reward.AmountMax.ConvertFromLongToString()}"
+                        : reward.Amount.ConvertFromLongToString();
                 case RewardType.Boost:
                 case RewardType.Chest:
+                case RewardType.Cosmetic:
                     return reward.RewardId;
                 default:
                     return string.Empty;

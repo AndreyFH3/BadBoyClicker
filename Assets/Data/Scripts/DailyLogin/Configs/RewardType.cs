@@ -4,6 +4,7 @@ namespace DailyLogin
     {
         Currency = 0,
         Boost = 1,
-        Chest = 2
+        Chest = 2,
+        Cosmetic = 3
     }
 }

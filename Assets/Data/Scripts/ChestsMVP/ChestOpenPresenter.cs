@@ -12,6 +12,8 @@ namespace ChestsMVP
 {
     public class ChestOpenPresenter : IInitializable, IDisposable
     {
+        private const string OpenHintLocalizationKey = "chest_open_hint";
+
         private readonly IChestService _chestService;
         private readonly IChestOpenView _view;
         private readonly ILocalizationService _localization;
@@ -53,6 +55,7 @@ namespace ChestsMVP
             {
                 ChestTitle = _localization.Localize(result.Chest.TitleLocalizationKey),
                 ChestIcon = result.Chest.Icon,
+                OpenHintText = _localization.Localize(OpenHintLocalizationKey),
                 RewardText = result.Card != null ? CreateCardRewardText(result.Card) : CreateRewardText(result.Reward),
                 RewardIcon = result.Card != null ? result.Card.Icon : result.Reward?.Icon
             });

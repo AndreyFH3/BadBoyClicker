@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using PlayerFeatures;
 using QuestSystem;
+using Rewards;
+using Utils;
 using Zenject;
 using GameLocalization;
 
@@ -48,7 +50,6 @@ namespace CardCollections
         {
             RebuildIndex();
             _featureUnlockService.FeatureUnlocked += OnFeatureUnlocked;
-            TryClaimCompletedRewards();
         }
 
         public void Dispose()
@@ -128,7 +129,6 @@ namespace CardCollections
 
             _save.SetCardAmount(cardId, Math.Max(0, amount));
             NotifyCardAndCollection(cardId);
-            TryClaimCompletedRewards();
             Changed?.Invoke();
             return true;
         }
@@ -157,6 +157,28 @@ namespace CardCollections
             return true;
         }
 
+        public bool TryClaimReward(string collectionId)
+        {
+            if (!IsUnlocked)
+            {
+                return false;
+            }
+
+            var collection = GetCollection(collectionId);
+            if (collection == null || _save.IsRewardClaimed(collection.Id) || !IsCollectionCompleted(collection))
+            {
+                return false;
+            }
+
+            _rewardService.GiveRewards(collection.Rewards);
+            _save.MarkRewardClaimed(collection.Id);
+
+            var viewData = CreateCollectionViewData(collection);
+            CollectionRewardClaimed?.Invoke(viewData);
+            CollectionChanged?.Invoke(viewData);
+            return true;
+        }
+
         public void ResetAllProgress()
         {
             if (!IsUnlocked)
@@ -181,7 +203,6 @@ namespace CardCollections
         {
             _save.Set(data);
             RebuildIndex();
-            TryClaimCompletedRewards();
             Changed?.Invoke();
         }
 
@@ -226,30 +247,6 @@ namespace CardCollections
                     _cardsById.Add(card.Id, card);
                     _collectionsByCardId.Add(card.Id, collection);
                 }
-            }
-        }
-
-        private void TryClaimCompletedRewards()
-        {
-            if (!IsUnlocked)
-            {
-                return;
-            }
-
-            foreach (var collection in Collections)
-            {
-                if (collection == null || string.IsNullOrEmpty(collection.Id) ||
-                    _save.IsRewardClaimed(collection.Id) || !IsCollectionCompleted(collection))
-                {
-                    continue;
-                }
-
-                _rewardService.GiveRewards(collection.Rewards);
-                _save.MarkRewardClaimed(collection.Id);
-
-                var viewData = CreateCollectionViewData(collection);
-                CollectionRewardClaimed?.Invoke(viewData);
-                CollectionChanged?.Invoke(viewData);
             }
         }
 
@@ -310,8 +307,34 @@ namespace CardCollections
                 CollectedStars = collectedStars,
                 TotalStars = totalStars,
                 IsCompleted = IsCollectionCompleted(collection),
-                IsRewardClaimed = _save.IsRewardClaimed(collection.Id)
+                IsRewardClaimed = _save.IsRewardClaimed(collection.Id),
+                Rewards = BuildRewardDisplays(collection.Rewards)
             };
+        }
+
+        private static List<RewardDisplay> BuildRewardDisplays(IReadOnlyList<QuestReward> rewards)
+        {
+            if (rewards == null || rewards.Count == 0)
+            {
+                return null;
+            }
+
+            var displays = new List<RewardDisplay>(rewards.Count);
+            foreach (var reward in rewards)
+            {
+                if (reward == null)
+                {
+                    continue;
+                }
+
+                displays.Add(new RewardDisplay
+                {
+                    Icon = reward.Icon,
+                    Amount = reward.Amount > 0 ? reward.Amount.ConvertFromLongToString() : string.Empty
+                });
+            }
+
+            return displays;
         }
 
         private CardViewData CreateCardViewData(string collectionId, CardCollectionConfig.CardData card)
@@ -366,8 +389,6 @@ namespace CardCollections
             {
                 return;
             }
-
-            TryClaimCompletedRewards();
 
             foreach (var collection in Collections)
             {

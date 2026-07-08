@@ -17,6 +17,7 @@ namespace OfflineIncome
         private bool _pendingRewardCalculated;
 
         public long PendingReward { get; private set; }
+        public long PendingElapsedSeconds { get; private set; }
         public bool HasReward => PendingReward > 0;
 
         [Inject]
@@ -59,7 +60,8 @@ namespace OfflineIncome
             return new OfflineIncomeViewData(
                 PendingReward,
                 _config.OfflineIncome.HardClaimCost,
-                wallet.CanSpendHard(_config.OfflineIncome.HardClaimCost));
+                wallet.CanSpendHard(_config.OfflineIncome.HardClaimCost),
+                PendingElapsedSeconds);
         }
 
         public long ConsumeReward(int multiplier = 1)
@@ -89,6 +91,7 @@ namespace OfflineIncome
             {
                 _save.SetLastOnlineTicks(nowTicks);
                 PendingReward = 0;
+                PendingElapsedSeconds = 0;
                 return;
             }
 
@@ -98,6 +101,7 @@ namespace OfflineIncome
             {
                 _save.SetLastOnlineTicks(nowTicks);
                 PendingReward = 0;
+                PendingElapsedSeconds = 0;
                 return;
             }
 
@@ -109,10 +113,12 @@ namespace OfflineIncome
             {
                 _save.SetLastOnlineTicks(nowTicks);
                 PendingReward = 0;
+                PendingElapsedSeconds = 0;
                 return;
             }
 
             PendingReward = elapsedSeconds * _shopSave.AutoIncomePerSecond;
+            PendingElapsedSeconds = elapsedSeconds;
             _save.SetLastOnlineTicks(nowTicks);
         }
     }

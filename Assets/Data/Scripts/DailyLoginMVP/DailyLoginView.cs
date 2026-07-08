@@ -9,7 +9,8 @@ namespace DailyLoginMVP
     public class DailyLoginView : MonoBehaviour, IDailyLoginView
     {
         [SerializeField] private GameObject _root;
-        [SerializeField] private Transform _rewardsRoot;
+        [SerializeField] private List<RectTransform> _rewardLines = new();
+        [SerializeField] private int _maxItemsPerLine = 7;
         [SerializeField] private DailyLoginRewardItemView _rewardItemPrefab;
         [SerializeField] private Image _fallbackIcon;
         [SerializeField] private TextMeshProUGUI _fallbackText;
@@ -42,14 +43,20 @@ namespace DailyLoginMVP
             Root.SetActive(true);
             ClearSpawnedItems();
 
-            if (_rewardItemPrefab != null && _rewardsRoot != null && data.Rewards != null)
+            if (_rewardItemPrefab != null && _rewardLines.Count > 0 && data.Rewards != null)
             {
-                _rewardItemPrefab.gameObject.SetActive(true);
                 for (int i = 0; i < data.Rewards.Count; i++)
                 {
-                    DailyLoginRewardItemView item = Instantiate(_rewardItemPrefab, _rewardsRoot);
-                    item.gameObject.SetActive(true);
+                    RectTransform line = GetLineForIndex(i);
+                    if (line == null)
+                    {
+                        break;
+                    }
+
+                    DailyLoginRewardItemView item = Instantiate(_rewardItemPrefab, line);
+                    item.gameObject.SetActive(false);
                     item.SetData(data.Rewards[i]);
+                    item.gameObject.SetActive(true);
                     _spawnedRewardItems.Add(item);
                 }
 
@@ -58,6 +65,12 @@ namespace DailyLoginMVP
             }
 
             SetFallbackReward(GetCurrentReward(data));
+        }
+
+        private RectTransform GetLineForIndex(int index)
+        {
+            int lineIndex = _maxItemsPerLine > 0 ? index / _maxItemsPerLine : 0;
+            return lineIndex < _rewardLines.Count ? _rewardLines[lineIndex] : null;
         }
 
         public void Hide()

@@ -8,6 +8,8 @@ namespace AdBonusOffers
 {
     public class AdBonusEffectService : IAdBonusEffectService, IBoostRewardService, ITickable
     {
+        private const float MaxTickDeltaSeconds = 1f;
+
         private readonly List<ActiveEffect> _activeEffects = new();
         private readonly List<AdBonusActiveEffectViewData> _activeEffectViewData = new();
         private AdBonusOfferConfig _config;
@@ -29,19 +31,9 @@ namespace AdBonusOffers
 
         public void Tick()
         {
-            bool changed = false;
+            TickEffectTimers();
 
-            for (int i = _activeEffects.Count - 1; i >= 0; i--)
-            {
-                var effect = _activeEffects[i];
-                effect.RemainingSeconds -= Time.deltaTime;
-
-                if (effect.RemainingSeconds <= 0f)
-                {
-                    _activeEffects.RemoveAt(i);
-                    changed = true;
-                }
-            }
+            bool changed = RemoveExpiredEffects();
 
             RebuildViewData();
 
@@ -49,6 +41,37 @@ namespace AdBonusOffers
             {
                 Changed?.Invoke();
             }
+        }
+
+        private void TickEffectTimers()
+        {
+            if (Time.timeScale <= 0f)
+            {
+                return;
+            }
+
+            float delta = Mathf.Min(Time.unscaledDeltaTime, MaxTickDeltaSeconds);
+
+            foreach (var effect in _activeEffects)
+            {
+                effect.RemainingSeconds -= delta;
+            }
+        }
+
+        private bool RemoveExpiredEffects()
+        {
+            bool removed = false;
+
+            for (int i = _activeEffects.Count - 1; i >= 0; i--)
+            {
+                if (_activeEffects[i].IsExpired)
+                {
+                    _activeEffects.RemoveAt(i);
+                    removed = true;
+                }
+            }
+
+            return removed;
         }
 
         public void Apply(AdBonusOfferConfig.AdBonusEffectData effect)
@@ -104,12 +127,18 @@ namespace AdBonusOffers
 
             foreach (var effect in _activeEffects)
             {
+                if (effect.IsExpired)
+                {
+                    continue;
+                }
+
                 _activeEffectViewData.Add(new AdBonusActiveEffectViewData(
                     effect.Id,
                     effect.Type,
                     effect.Multiplier,
                     effect.DiscountPercent,
-                    effect.RemainingSeconds));
+                    effect.RemainingSeconds,
+                    effect.DurationSeconds));
             }
         }
 
@@ -138,7 +167,7 @@ namespace AdBonusOffers
 
             foreach (var effect in _activeEffects)
             {
-                if (effect.Type == type)
+                if (effect.Type == type && !effect.IsExpired)
                 {
                     result = Mathf.Max(result, effect.Multiplier);
                 }
@@ -153,7 +182,7 @@ namespace AdBonusOffers
 
             foreach (var effect in _activeEffects)
             {
-                if (effect.Type == AdBonusEffectType.ShopDiscountPercent)
+                if (effect.Type == AdBonusEffectType.ShopDiscountPercent && !effect.IsExpired)
                 {
                     result = Mathf.Max(result, effect.DiscountPercent);
                 }
@@ -168,6 +197,7 @@ namespace AdBonusOffers
             public readonly string Id;
             public readonly float Multiplier;
             public readonly float DiscountPercent;
+            public readonly float DurationSeconds;
             public float RemainingSeconds;
 
             public ActiveEffect(AdBonusOfferConfig.AdBonusEffectData data)
@@ -176,8 +206,11 @@ namespace AdBonusOffers
                 Type = data.EffectType;
                 Multiplier = data.Multiplier;
                 DiscountPercent = data.DiscountPercent;
+                DurationSeconds = data.DurationSeconds;
                 RemainingSeconds = data.DurationSeconds;
             }
+
+            public bool IsExpired => RemainingSeconds <= 0f;
         }
     }
 }

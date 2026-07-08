@@ -67,7 +67,14 @@ MonoBehaviour:
       _requiredAmount: 0
       _stars: 1
       _icon: {fileID: 7419883896294469389, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
-    _rewards: []
+    _rewards:
+    - _rewardType: 0
+      _currencyType: 0
+      _amount: 100000
+      _rewardId: 
+      _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 
   - _id: 1
     _titleLocalizationKey: card_collection.1.title
     _title: 
@@ -122,4 +129,11 @@ MonoBehaviour:
       _requiredAmount: 0
       _stars: 1
       _icon: {fileID: -726316802023506734, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
-    _rewards: []
+    _rewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 1500
+      _rewardId: 
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 

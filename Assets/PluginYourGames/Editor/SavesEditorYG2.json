@@ -1,124 +1,111 @@
 {
-    "idSave": 5446,
+    "idSave": 14595,
     "GameSaveData": {
         "Wallet": {
-            "Soft": 30628,
-            "Middle": 60,
-            "Hard": 80
+            "Soft": 704045,
+            "Middle": 585,
+            "Hard": 166
         },
         "Shop": {
             "Levels": [
                 {
                     "Key": "Click:soft_paw",
-                    "Level": 19
-                },
-                {
-                    "Key": "AutoBuy:sleepy_cat",
-                    "Level": 18
-                },
-                {
-                    "Key": "AutoBuy:cat_bed",
-                    "Level": 31
+                    "Level": 11
                 },
                 {
                     "Key": "Click:sharp_claws",
-                    "Level": 24
+                    "Level": 11
                 },
                 {
                     "Key": "Click:cat_energy",
-                    "Level": 17
-                },
-                {
-                    "Key": "AutoBuy:toy_mouse",
-                    "Level": 14
-                },
-                {
-                    "Key": "AutoBuy:food_bowl",
-                    "Level": 26
-                },
-                {
-                    "Key": "AutoBuy:scratching_post",
-                    "Level": 4
+                    "Level": 12
                 },
                 {
                     "Key": "Click:quick_dash",
-                    "Level": 19
-                },
-                {
-                    "Key": "Click:hunting_instinct",
-                    "Level": 11
+                    "Level": 1
                 },
                 {
                     "Key": "Click:tail_agility",
-                    "Level": 11
+                    "Level": 12
+                },
+                {
+                    "Key": "Click:hunting_instinct",
+                    "Level": 3
+                },
+                {
+                    "Key": "Click:cat_training",
+                    "Level": 8
+                },
+                {
+                    "Key": "Click:wild_thrill",
+                    "Level": 8
+                },
+                {
+                    "Key": "Click:night_hunt",
+                    "Level": 10
+                },
+                {
+                    "Key": "Click:predator_instinct",
+                    "Level": 2
+                },
+                {
+                    "Key": "Click:royal_grace",
+                    "Level": 14
                 }
             ]
         },
         "OfflineIncome": {
-            "LastOnlineTicks": 639185263993147197
+            "LastOnlineTicks": 639191237781648909
         },
         "DailyLogin": {
-            "CurrentDayIndex": 0,
-            "LastClaimUtcTicks": 0
+            "CurrentDayIndex": 5,
+            "LastClaimUtcTicks": 639191184996938128
         },
         "DailyQuests": {
-            "DayKey": "20260701",
-            "Points": 60,
+            "DayKey": "20260708",
+            "Points": 0,
             "Quests": [
                 {
                     "Id": "1",
                     "CurrentValue": 10,
                     "IsCompleted": true,
-                    "IsPointsAdded": true
+                    "IsPointsAdded": false
                 },
                 {
                     "Id": "2",
                     "CurrentValue": 20,
                     "IsCompleted": true,
-                    "IsPointsAdded": true
+                    "IsPointsAdded": false
                 },
                 {
                     "Id": "3",
                     "CurrentValue": 30,
                     "IsCompleted": true,
-                    "IsPointsAdded": true
+                    "IsPointsAdded": false
                 },
                 {
                     "Id": "4",
                     "CurrentValue": 40,
                     "IsCompleted": true,
-                    "IsPointsAdded": true
+                    "IsPointsAdded": false
                 },
                 {
                     "Id": "5",
                     "CurrentValue": 50,
                     "IsCompleted": true,
-                    "IsPointsAdded": true
+                    "IsPointsAdded": false
                 },
                 {
                     "Id": "6",
                     "CurrentValue": 60,
                     "IsCompleted": true,
-                    "IsPointsAdded": true
+                    "IsPointsAdded": false
                 }
             ],
-            "Milestones": [
-                {
-                    "RequiredPoints": 20,
-                    "IsClaimed": true
-                },
-                {
-                    "RequiredPoints": 60,
-                    "IsClaimed": true
-                },
-                {
-                    "RequiredPoints": 40,
-                    "IsClaimed": true
-                }
-            ]
+            "Milestones": []
         },
         "PlayerProgression": {
-            "CompletedLevels": 5,
+            "CompletedLevels": 14,
             "CurrentExperience": 100
         },
         "Quests": {
@@ -150,8 +137,38 @@
             ]
         },
         "CardCollections": {
-            "Cards": [],
-            "Collections": []
+            "Cards": [
+                {
+                    "Id": "0_4",
+                    "Amount": 6
+                },
+                {
+                    "Id": "0_5",
+                    "Amount": 7
+                },
+                {
+                    "Id": "0_1",
+                    "Amount": 8
+                },
+                {
+                    "Id": "0_6",
+                    "Amount": 7
+                },
+                {
+                    "Id": "0_2",
+                    "Amount": 6
+                },
+                {
+                    "Id": "0_3",
+                    "Amount": 3
+                }
+            ],
+            "Collections": [
+                {
+                    "Id": "0",
+                    "IsRewardClaimed": true
+                }
+            ]
         },
         "Customization": {
             "ActiveBackgroundId": "back_01",

@@ -1,4 +1,5 @@
 using Core;
+using QuestSystem;
 using UnityEngine;
 using Zenject;
 
@@ -10,6 +11,7 @@ namespace DailyLogin
 
         [InjectOptional] private IBoostRewardService _boostRewardService;
         [InjectOptional] private IChestRewardService _chestRewardService;
+        [InjectOptional] private IQuestBackgroundRewardService _backgroundRewardService;
 
         public RewardService(Wallet wallet)
         {
@@ -26,13 +28,16 @@ namespace DailyLogin
             switch (reward.RewardType)
             {
                 case RewardType.Currency:
-                    GiveCurrency(reward.CurrencyType, reward.Amount);
+                    GiveCurrency(reward.CurrencyType, reward.RollAmount());
                     break;
                 case RewardType.Boost:
                     GiveBoost(reward.RewardId);
                     break;
                 case RewardType.Chest:
                     GiveChest(reward.RewardId);
+                    break;
+                case RewardType.Cosmetic:
+                    GiveCosmetic(reward.RewardId);
                     break;
                 default:
                     Debug.LogWarning($"Unsupported reward type: {reward.RewardType}");
@@ -87,6 +92,17 @@ namespace DailyLogin
             }
 
             _chestRewardService.GiveChest(chestId);
+        }
+
+        private void GiveCosmetic(string cosmeticId)
+        {
+            if (_backgroundRewardService == null)
+            {
+                Debug.LogWarning($"Cosmetic reward service is not bound. Cosmetic was not granted: {cosmeticId}");
+                return;
+            }
+
+            _backgroundRewardService.GiveBackground(cosmeticId);
         }
     }
 }

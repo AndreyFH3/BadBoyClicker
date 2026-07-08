@@ -6,6 +6,7 @@ namespace CardCollectionMVP
     public interface ICardCollectionCardsView
     {
         event Action CloseRequested;
+        event Action CollectRequested;
 
         void SetVisible(bool isVisible);
         void SetData(CardCollectionViewData collection);

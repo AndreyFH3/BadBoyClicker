@@ -27,6 +27,7 @@ namespace CardCollectionMVP
             _service.Changed += UpdateView;
             _service.CollectionChanged += OnCollectionChanged;
             _view.CollectionSelected += OnCollectionSelected;
+            _view.CollectRequested += OnCollectRequested;
             _selectionModel.SelectedCollectionChanged += OnSelectedCollectionChanged;
             Localization.LanguageChanged += UpdateView;
 
@@ -38,6 +39,7 @@ namespace CardCollectionMVP
             _service.Changed -= UpdateView;
             _service.CollectionChanged -= OnCollectionChanged;
             _view.CollectionSelected -= OnCollectionSelected;
+            _view.CollectRequested -= OnCollectRequested;
             _selectionModel.SelectedCollectionChanged -= OnSelectedCollectionChanged;
             Localization.LanguageChanged -= UpdateView;
         }
@@ -80,6 +82,14 @@ namespace CardCollectionMVP
         private void OnSelectedCollectionChanged(string collectionId)
         {
             _view.SetVisible(_service.IsUnlocked && string.IsNullOrEmpty(collectionId));
+        }
+
+        private void OnCollectRequested(string collectionId)
+        {
+            if (_service.IsUnlocked)
+            {
+                _service.TryClaimReward(collectionId);
+            }
         }
     }
 }

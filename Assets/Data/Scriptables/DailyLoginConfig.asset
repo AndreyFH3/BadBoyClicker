@@ -17,20 +17,69 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 100
+      _amountMax: 0
       _rewardId: first
       _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 100
       _displayText: 100
+    _isMilestone: 0
   - _reward:
       _rewardType: 0
       _currencyType: 1
       _amount: 15
+      _amountMax: 0
       _rewardId: second
       _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 15
       _displayText: 15
+    _isMilestone: 0
   - _reward:
       _rewardType: 0
       _currencyType: 2
       _amount: 20
+      _amountMax: 0
       _rewardId: third
       _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 20
       _displayText: 20
+    _isMilestone: 0
+  - _reward:
+      _rewardType: 2
+      _currencyType: 2
+      _amount: 20
+      _amountMax: 0
+      _rewardId: third
+      _icon: {fileID: -4439254127691508170, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _displayTextLocalizationKey: Chest
+      _displayText: 20
+    _isMilestone: 0
+  - _reward:
+      _rewardType: 0
+      _currencyType: 2
+      _amount: 40
+      _amountMax: 0
+      _rewardId: third
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 40
+      _displayText: 20
+    _isMilestone: 0
+  - _reward:
+      _rewardType: 0
+      _currencyType: 2
+      _amount: 50
+      _amountMax: 0
+      _rewardId: third
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 20
+    _isMilestone: 0
+  - _reward:
+      _rewardType: 1
+      _currencyType: 2
+      _amount: 60
+      _amountMax: 0
+      _rewardId: third
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 20
+      _displayText: 20
+    _isMilestone: 0

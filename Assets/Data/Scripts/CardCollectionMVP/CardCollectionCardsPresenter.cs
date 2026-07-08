@@ -25,6 +25,7 @@ namespace CardCollectionMVP
         public void Initialize()
         {
             _view.CloseRequested += OnCloseRequested;
+            _view.CollectRequested += OnCollectRequested;
             _selectionModel.SelectedCollectionChanged += OnSelectedCollectionChanged;
             _service.CollectionChanged += OnCollectionChanged;
             _service.CardChanged += OnCardChanged;
@@ -37,6 +38,7 @@ namespace CardCollectionMVP
         public void Dispose()
         {
             _view.CloseRequested -= OnCloseRequested;
+            _view.CollectRequested -= OnCollectRequested;
             _selectionModel.SelectedCollectionChanged -= OnSelectedCollectionChanged;
             _service.CollectionChanged -= OnCollectionChanged;
             _service.CardChanged -= OnCardChanged;
@@ -91,6 +93,14 @@ namespace CardCollectionMVP
         private void OnCloseRequested()
         {
             _selectionModel.Clear();
+        }
+
+        private void OnCollectRequested()
+        {
+            if (_service.IsUnlocked)
+            {
+                _service.TryClaimReward(_selectionModel.SelectedCollectionId);
+            }
         }
     }
 }

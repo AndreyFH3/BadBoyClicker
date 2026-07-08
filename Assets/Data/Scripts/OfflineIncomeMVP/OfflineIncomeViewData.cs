@@ -6,13 +6,15 @@ namespace OfflineIncome
         public readonly long DoubledReward;
         public readonly int HardClaimCost;
         public readonly bool CanClaimForHard;
+        public readonly long ElapsedSeconds;
 
-        public OfflineIncomeViewData(long reward, int hardClaimCost, bool canClaimForHard)
+        public OfflineIncomeViewData(long reward, int hardClaimCost, bool canClaimForHard, long elapsedSeconds)
         {
             Reward = reward;
             DoubledReward = reward * 2;
             HardClaimCost = hardClaimCost;
             CanClaimForHard = canClaimForHard;
+            ElapsedSeconds = elapsedSeconds;
         }
     }
 }

@@ -10,7 +10,7 @@ using Zenject;
 
 namespace AdBonusOffers
 {
-    public class AdBonusOfferService : IAdBonusOfferService, IInitializable, ITickable
+    public class AdBonusOfferService : IAdBonusOfferService, IInitializable, ITickable, IDisposable
     {
         private readonly Dictionary<string, float> _cooldowns = new();
         private readonly List<string> _expiredCooldowns = new();
@@ -36,6 +36,7 @@ namespace AdBonusOffers
         public bool HasActiveOffer => _currentOffer != null;
         public AdBonusOfferViewData CurrentOffer => CreateViewData(_currentOffer);
         public float CurrentOfferRemainingSeconds => HasActiveOffer ? Mathf.Max(0f, _visibleTimer) : 0f;
+        private bool HasAnyActiveEffect => _effectService.ActiveEffects.Count > 0;
 
         [Inject]
         public void Construct(
@@ -57,7 +58,21 @@ namespace AdBonusOffers
         public void Initialize()
         {
             _nextOfferTimer = _config.InitialDelaySeconds;
+            _effectService.Changed += OnActiveEffectsChanged;
             Debug.Log($"Ad bonus offers initialized. Offers: {_config.Offers?.Count ?? 0}, first offer in: {_nextOfferTimer:0.#}s.");
+        }
+
+        public void Dispose()
+        {
+            _effectService.Changed -= OnActiveEffectsChanged;
+        }
+
+        private void OnActiveEffectsChanged()
+        {
+            if (HasActiveOffer && !_isClaimInProgress && HasAnyActiveEffect)
+            {
+                HideCurrentOffer();
+            }
         }
 
         public void Tick()
@@ -84,7 +99,7 @@ namespace AdBonusOffers
 
         public bool TryShowNextOffer()
         {
-            if (HasActiveOffer || _isClaimInProgress)
+            if (HasActiveOffer || _isClaimInProgress || HasAnyActiveEffect)
             {
                 return false;
             }
@@ -125,6 +140,12 @@ namespace AdBonusOffers
         {
             if (!HasActiveOffer || _isClaimInProgress)
             {
+                return;
+            }
+
+            if (HasAnyActiveEffect)
+            {
+                HideCurrentOffer();
                 return;
             }
 
@@ -340,14 +361,126 @@ namespace AdBonusOffers
 
             return new AdBonusOfferViewData(
                 offer.Id,
-                _localization.Localize(offer.CardTitleLocalizationKey),
-                offer.CardDescription,
-                _localization.Localize(offer.ConfirmationTitleLocalizationKey),
-                offer.ConfirmationDescription,
+                ResolveRewardTitle(offer),
+                ResolveRewardValueText(offer),
+                BuildConfirmationDescription(offer),
+                BuildResultDescription(offer),
                 offer.Icon,
                 _adsService.IsAvailable(offer.PlacementId),
                 CanClaimForHard(offer),
                 offer.HardPrice);
+        }
+
+        private string ResolveRewardTitle(AdBonusOfferConfig.AdBonusOfferData offer)
+        {
+            if (HasRewards(offer))
+            {
+                var reward = offer.Rewards[0];
+                if (reward == null)
+                {
+                    return LocalizeOrFallback(offer.ConfirmationTitleLocalizationKey, offer.ConfirmationTitle);
+                }
+
+                if (reward.RewardType == QuestRewardType.Currency)
+                {
+                    return _localization.Localize(GetCurrencyNameKey(reward.CurrencyType));
+                }
+
+                if (!string.IsNullOrEmpty(reward.DisplayTextLocalizationKey))
+                {
+                    return _localization.Localize(reward.DisplayTextLocalizationKey);
+                }
+
+                return string.IsNullOrEmpty(reward.DisplayText) ? reward.RewardId : reward.DisplayText;
+            }
+
+            return LocalizeOrFallback(offer.ConfirmationTitleLocalizationKey, offer.ConfirmationTitle);
+        }
+
+        private string ResolveRewardValueText(AdBonusOfferConfig.AdBonusOfferData offer)
+        {
+            if (!HasRewards(offer))
+            {
+                return string.Empty;
+            }
+
+            var reward = offer.Rewards[0];
+            if (reward != null && reward.RewardType == QuestRewardType.Currency && reward.Amount > 0)
+            {
+                return $"+{reward.Amount.ConvertFromLongToString()}";
+            }
+
+            return string.Empty;
+        }
+
+        private string BuildConfirmationDescription(AdBonusOfferConfig.AdBonusOfferData offer)
+        {
+            string description = LocalizeOrFallback(offer.ConfirmationDescriptionLocalizationKey, offer.ConfirmationDescription);
+            return AppendDuration(offer, description);
+        }
+
+        private string BuildResultDescription(AdBonusOfferConfig.AdBonusOfferData offer)
+        {
+            string description = LocalizeOrFallback(offer.ResultDescriptionLocalizationKey, offer.ResultDescription);
+            return AppendDuration(offer, description);
+        }
+
+        private string AppendDuration(AdBonusOfferConfig.AdBonusOfferData offer, string description)
+        {
+            var effect = GetFirstTimedEffect(offer);
+            if (effect == null || effect.DurationSeconds <= 0f)
+            {
+                return description;
+            }
+
+            string durationLine = _localization.Format("ad_bonus.duration", Mathf.RoundToInt(effect.DurationSeconds));
+            return string.IsNullOrEmpty(description) ? durationLine : $"{description}\n{durationLine}";
+        }
+
+        private AdBonusOfferConfig.AdBonusEffectData GetFirstTimedEffect(AdBonusOfferConfig.AdBonusOfferData offer)
+        {
+            if (!HasEffects(offer))
+            {
+                return null;
+            }
+
+            foreach (var effect in offer.Effects)
+            {
+                if (effect != null && effect.EffectType != AdBonusEffectType.QuestReward)
+                {
+                    return effect;
+                }
+            }
+
+            return null;
+        }
+
+        private string GetCurrencyNameKey(QuestRewardCurrencyType currencyType)
+        {
+            switch (currencyType)
+            {
+                case QuestRewardCurrencyType.Soft:
+                    return "currency.soft";
+                case QuestRewardCurrencyType.Decor:
+                    return "currency.decor";
+                case QuestRewardCurrencyType.Hard:
+                    return "currency.hard";
+                case QuestRewardCurrencyType.Yan:
+                    return "currency.yan";
+                default:
+                    return "currency.soft";
+            }
+        }
+
+        private string LocalizeOrFallback(string key, string fallback)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                return fallback;
+            }
+
+            string localized = _localization.Localize(key);
+            return string.IsNullOrEmpty(localized) || localized == key ? fallback : localized;
         }
 
         private bool CanClaimForHard(AdBonusOfferConfig.AdBonusOfferData offer)

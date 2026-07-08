@@ -12,6 +12,12 @@ namespace CardCollectionMVP
             remove { }
         }
 
+        public event Action<string> CollectRequested
+        {
+            add { }
+            remove { }
+        }
+
         public void SetVisible(bool isVisible)
         {
         }

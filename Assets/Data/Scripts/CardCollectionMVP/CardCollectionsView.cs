@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CardCollections;
 using DG.Tweening;
 using UnityEngine;
+using Zenject;
 
 namespace CardCollectionMVP
 {
@@ -17,10 +18,18 @@ namespace CardCollectionMVP
         [SerializeField] private Ease _hideEase = Ease.InQuad;
 
         private readonly Dictionary<string, CardCollectionItemView> _items = new();
+        private DiContainer _container;
         private Tween _visibilityTween;
         private bool _isVisible;
 
         public event Action<string> CollectionSelected;
+        public event Action<string> CollectRequested;
+
+        [Inject]
+        private void Construct(DiContainer container)
+        {
+            _container = container;
+        }
 
         private void Awake()
         {
@@ -39,6 +48,7 @@ namespace CardCollectionMVP
                 if (item != null)
                 {
                     item.Selected -= OnCollectionSelected;
+                    item.CollectRequested -= OnCollectRequested;
                 }
             }
         }
@@ -153,8 +163,10 @@ namespace CardCollectionMVP
 
             Transform root = _collectionsRoot != null ? _collectionsRoot : transform;
             item = Instantiate(_collectionReference, root);
+            _container?.Inject(item);
             item.gameObject.SetActive(true);
             item.Selected += OnCollectionSelected;
+            item.CollectRequested += OnCollectRequested;
             _items[id] = item;
             return item;
         }
@@ -162,6 +174,11 @@ namespace CardCollectionMVP
         private void OnCollectionSelected(string collectionId)
         {
             CollectionSelected?.Invoke(collectionId);
+        }
+
+        private void OnCollectRequested(string collectionId)
+        {
+            CollectRequested?.Invoke(collectionId);
         }
     }
 }

@@ -24,6 +24,7 @@ namespace CardCollections
         bool TrySetCardAmount(string cardId, int amount);
         bool TryResetCard(string cardId);
         bool TryResetCollectionProgress(string collectionId);
+        bool TryClaimReward(string collectionId);
         void ResetAllProgress();
     }
 }

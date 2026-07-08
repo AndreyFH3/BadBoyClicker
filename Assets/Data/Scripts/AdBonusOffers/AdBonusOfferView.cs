@@ -12,14 +12,13 @@ namespace AdBonusOffers
         [SerializeField] private GameObject _cardRoot;
         [SerializeField] private Button _cardButton;
         [SerializeField] private Image _cardIcon;
-        [SerializeField] private TextMeshProUGUI _cardTitleText;
-        [SerializeField] private TextMeshProUGUI _cardDescriptionText;
         [SerializeField] private TextMeshProUGUI _cardTimerText;
 
         [Header("Confirmation")]
         [SerializeField] private GameObject _confirmationRoot;
         [SerializeField] private Image _confirmationIcon;
         [SerializeField] private TextMeshProUGUI _confirmationTitleText;
+        [SerializeField] private TextMeshProUGUI _confirmationValueText;
         [SerializeField] private TextMeshProUGUI _confirmationDescriptionText;
         [SerializeField] private Button _confirmAdButton;
         [SerializeField] private Button _confirmHardButton;
@@ -30,6 +29,7 @@ namespace AdBonusOffers
         [SerializeField] private GameObject _resultRoot;
         [SerializeField] private Image _resultIcon;
         [SerializeField] private TextMeshProUGUI _resultTitleText;
+        [SerializeField] private TextMeshProUGUI _resultValueText;
         [SerializeField] private TextMeshProUGUI _resultDescriptionText;
         [SerializeField] private Button _resultCloseButton;
 
@@ -55,8 +55,6 @@ namespace AdBonusOffers
 
         public void ShowCard(AdBonusOfferViewData data)
         {
-            SetTexts(_cardTitleText, data.CardTitle);
-            SetTexts(_cardDescriptionText, data.CardDescription);
             SetImage(_cardIcon, data.Icon);
             SetActive(_cardRoot, true);
         }
@@ -74,8 +72,9 @@ namespace AdBonusOffers
         public void ShowConfirmation(AdBonusOfferViewData data)
         {
             HideCard();
-            SetTexts(_confirmationTitleText, data.ConfirmationTitle);
-            SetTexts(_confirmationDescriptionText, data.ConfirmationDescription);
+            SetTexts(_confirmationTitleText, ComposeTitle(data, _confirmationValueText));
+            SetTexts(_confirmationValueText, data.RewardValueText);
+            SetTexts(_confirmationDescriptionText, data.Description);
             SetImage(_confirmationIcon, data.Icon);
 
             if (_confirmAdButton != null)
@@ -105,8 +104,9 @@ namespace AdBonusOffers
 
         public void ShowRewardResult(AdBonusOfferViewData data)
         {
-            SetTexts(_resultTitleText, "Reward received");
-            SetTexts(_resultDescriptionText, data.ConfirmationTitle);
+            SetTexts(_resultTitleText, ComposeTitle(data, _resultValueText));
+            SetTexts(_resultValueText, data.RewardValueText);
+            SetTexts(_resultDescriptionText, data.ResultDescription);
             SetImage(_resultIcon, data.Icon);
             SetActive(_resultRoot, true);
         }
@@ -211,17 +211,16 @@ namespace AdBonusOffers
             _cardRoot = CreatePanel("AdBonusCard", parent, new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(-24f, -140f), new Vector2(300f, 92f), new Color(0.08f, 0.1f, 0.12f, 0.94f));
             _cardButton = _cardRoot.AddComponent<Button>();
             _cardIcon = CreateImage("Icon", _cardRoot.transform, new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), new Vector2(44f, 0f), new Vector2(56f, 56f));
-            _cardTitleText = CreateText("Title", _cardRoot.transform, 18, TextAlignmentOptions.Left, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0f, 1f), new Vector2(84f, -18f), new Vector2(-18f, 28f));
-            _cardDescriptionText = CreateText("Description", _cardRoot.transform, 14, TextAlignmentOptions.Left, new Vector2(0f, 0f), new Vector2(1f, 0f), new Vector2(0f, 0f), new Vector2(84f, 18f), new Vector2(-86f, 28f));
             _cardTimerText = CreateText("Timer", _cardRoot.transform, 14, TextAlignmentOptions.Right, new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(-18f, 18f), new Vector2(70f, 28f));
         }
 
         private void BuildConfirmation(Transform parent)
         {
-            _confirmationRoot = CreatePanel("AdBonusConfirmation", parent, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(460f, 320f), new Color(0.06f, 0.07f, 0.09f, 0.98f));
+            _confirmationRoot = CreatePanel("AdBonusConfirmation", parent, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(460f, 360f), new Color(0.06f, 0.07f, 0.09f, 0.98f));
             _confirmationIcon = CreateImage("Icon", _confirmationRoot.transform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -58f), new Vector2(72f, 72f));
             _confirmationTitleText = CreateText("Title", _confirmationRoot.transform, 24, TextAlignmentOptions.Center, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -116f), new Vector2(-48f, 40f));
-            _confirmationDescriptionText = CreateText("Description", _confirmationRoot.transform, 17, TextAlignmentOptions.Center, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -170f), new Vector2(-52f, 64f));
+            _confirmationValueText = CreateText("Value", _confirmationRoot.transform, 20, TextAlignmentOptions.Center, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -152f), new Vector2(-48f, 30f));
+            _confirmationDescriptionText = CreateText("Description", _confirmationRoot.transform, 17, TextAlignmentOptions.Center, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -186f), new Vector2(-52f, 64f));
             _confirmAdButton = CreateButton("AdButton", _confirmationRoot.transform, "Watch ad", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 82f), new Vector2(240f, 48f));
             _confirmHardButton = CreateButton("HardButton", _confirmationRoot.transform, "Get for hard", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 28f), new Vector2(240f, 42f));
             _confirmHardText = _confirmHardButton.GetComponentInChildren<TextMeshProUGUI>();
@@ -230,10 +229,11 @@ namespace AdBonusOffers
 
         private void BuildResult(Transform parent)
         {
-            _resultRoot = CreatePanel("AdBonusResult", parent, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(380f, 240f), new Color(0.06f, 0.07f, 0.09f, 0.98f));
+            _resultRoot = CreatePanel("AdBonusResult", parent, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(380f, 280f), new Color(0.06f, 0.07f, 0.09f, 0.98f));
             _resultIcon = CreateImage("Icon", _resultRoot.transform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -52f), new Vector2(68f, 68f));
             _resultTitleText = CreateText("Title", _resultRoot.transform, 24, TextAlignmentOptions.Center, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -112f), new Vector2(-48f, 40f));
-            _resultDescriptionText = CreateText("Description", _resultRoot.transform, 18, TextAlignmentOptions.Center, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -158f), new Vector2(-48f, 42f));
+            _resultValueText = CreateText("Value", _resultRoot.transform, 20, TextAlignmentOptions.Center, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -148f), new Vector2(-48f, 30f));
+            _resultDescriptionText = CreateText("Description", _resultRoot.transform, 16, TextAlignmentOptions.Center, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -182f), new Vector2(-48f, 42f));
             _resultCloseButton = CreateButton("Ok", _resultRoot.transform, "OK", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 30f), new Vector2(160f, 44f));
         }
 
@@ -290,6 +290,16 @@ namespace AdBonusOffers
             var label = CreateText("Text", buttonObject.transform, 17, TextAlignmentOptions.Center, Vector2.zero, Vector2.one, new Vector2(0.5f, 0.5f), Vector2.zero, Vector2.zero);
             label.text = text;
             return button;
+        }
+
+        private string ComposeTitle(AdBonusOfferViewData data, TextMeshProUGUI valueText)
+        {
+            if (valueText == null && !string.IsNullOrEmpty(data.RewardValueText))
+            {
+                return $"{data.RewardTitle} {data.RewardValueText}";
+            }
+
+            return data.RewardTitle;
         }
 
         private void SetImage(Image image, Sprite sprite)

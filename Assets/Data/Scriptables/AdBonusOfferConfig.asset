@@ -12,18 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c9fa62d4c29df4abca73c8ae582146, type: 3}
   m_Name: AdBonusOfferConfig
   m_EditorClassIdentifier: Assembly-CSharp::AdBonusOffers.AdBonusOfferConfig
-  _initialDelaySeconds: 3
-  _offerIntervalSeconds: 10
-  _visibleDurationSeconds: 15
+  _initialDelaySeconds: 10
+  _offerIntervalSeconds: 5
+  _visibleDurationSeconds: 5
   _offers:
   - _id: soft_money
     _placementId: soft_money
-    _cardTitleLocalizationKey: 
-    _cardTitle: Free money
-    _cardDescription: Get 1000 coins
-    _confirmationTitleLocalizationKey: 
+    _confirmationTitleLocalizationKey:
     _confirmationTitle: 1000 coins
+    _confirmationDescriptionLocalizationKey: ad_bonus.soft_money.confirm_description
     _confirmationDescription: Watch an ad and receive 1000 coins
+    _resultDescriptionLocalizationKey: ad_bonus.soft_money.result_description
+    _resultDescription:
     _icon: {fileID: -7250565942822309144, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _weight: 1
     _cooldownSeconds: 20
@@ -39,12 +39,12 @@ MonoBehaviour:
     _effects: []
   - _id: chest
     _placementId: chest
-    _cardTitleLocalizationKey: 
-    _cardTitle: Free chest
-    _cardDescription: Open a reward chest
-    _confirmationTitleLocalizationKey: 
+    _confirmationTitleLocalizationKey: ad_bonus.chest.title
     _confirmationTitle: Reward chest
+    _confirmationDescriptionLocalizationKey: ad_bonus.chest.confirm_description
     _confirmationDescription: Watch an ad and receive a chest
+    _resultDescriptionLocalizationKey: ad_bonus.chest.result_description
+    _resultDescription:
     _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _weight: 1
     _cooldownSeconds: 20
@@ -55,17 +55,17 @@ MonoBehaviour:
       _amount: 0
       _rewardId: Chest_1
       _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey: 
+      _displayTextLocalizationKey: ad_bonus.chest.title
       _displayText: Chest
     _effects: []
   - _id: click_x2
     _placementId: click_x2
-    _cardTitleLocalizationKey: 
-    _cardTitle: Double clicks
-    _cardDescription: x2 click income for 60 seconds
-    _confirmationTitleLocalizationKey: 
+    _confirmationTitleLocalizationKey: ad_bonus.click_x2.title
     _confirmationTitle: x2 click income
+    _confirmationDescriptionLocalizationKey: ad_bonus.click_x2.confirm_description
     _confirmationDescription: Watch an ad to double click income for 60 seconds
+    _resultDescriptionLocalizationKey: ad_bonus.click_x2.result_description
+    _resultDescription:
     _icon: {fileID: -7250565942822309144, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _weight: 1
     _cooldownSeconds: 20
@@ -87,12 +87,12 @@ MonoBehaviour:
         _displayText: 
   - _id: shop_discount
     _placementId: shop_discount
-    _cardTitleLocalizationKey: 
-    _cardTitle: Shop sale
-    _cardDescription: 25% discount for 60 seconds
-    _confirmationTitleLocalizationKey: 
+    _confirmationTitleLocalizationKey: ad_bonus.shop_discount.title
     _confirmationTitle: 25% shop discount
+    _confirmationDescriptionLocalizationKey: ad_bonus.shop_discount.confirm_description
     _confirmationDescription: Watch an ad to activate the discount for 60 seconds
+    _resultDescriptionLocalizationKey: ad_bonus.shop_discount.result_description
+    _resultDescription:
     _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _weight: 1
     _cooldownSeconds: 20

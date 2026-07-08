@@ -25,14 +25,14 @@ namespace AdBonusOffers
         {
             [SerializeField] private string _id;
             [SerializeField] private string _placementId;
-            [SerializeField] private string _cardTitleLocalizationKey;
-            [SerializeField] private string _cardTitle;
-            [TextArea]
-            [SerializeField] private string _cardDescription;
             [SerializeField] private string _confirmationTitleLocalizationKey;
             [SerializeField] private string _confirmationTitle;
+            [SerializeField] private string _confirmationDescriptionLocalizationKey;
             [TextArea]
             [SerializeField] private string _confirmationDescription;
+            [SerializeField] private string _resultDescriptionLocalizationKey;
+            [TextArea]
+            [SerializeField] private string _resultDescription;
             [SerializeField] private Sprite _icon;
             [Min(1)]
             [SerializeField] private int _weight = 1;
@@ -45,12 +45,12 @@ namespace AdBonusOffers
 
             public string Id => _id;
             public string PlacementId => string.IsNullOrEmpty(_placementId) ? _id : _placementId;
-            public string CardTitleLocalizationKey => _cardTitleLocalizationKey;
-            public string CardTitle => string.IsNullOrEmpty(_cardTitle) ? _id : _cardTitle;
-            public string CardDescription => _cardDescription;
             public string ConfirmationTitleLocalizationKey => _confirmationTitleLocalizationKey;
-            public string ConfirmationTitle => string.IsNullOrEmpty(_confirmationTitle) ? CardTitle : _confirmationTitle;
+            public string ConfirmationTitle => string.IsNullOrEmpty(_confirmationTitle) ? _id : _confirmationTitle;
+            public string ConfirmationDescriptionLocalizationKey => _confirmationDescriptionLocalizationKey;
             public string ConfirmationDescription => _confirmationDescription;
+            public string ResultDescriptionLocalizationKey => _resultDescriptionLocalizationKey;
+            public string ResultDescription => string.IsNullOrEmpty(_resultDescription) ? _confirmationDescription : _resultDescription;
             public Sprite Icon => _icon;
             public int Weight => Mathf.Max(1, _weight);
             public float CooldownSeconds => Mathf.Max(0f, _cooldownSeconds);

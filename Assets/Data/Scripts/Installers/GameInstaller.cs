@@ -41,6 +41,7 @@ namespace Installer
         [SerializeField] private PlayerProgressionView _playerProgressionView;
         [SerializeField] private CardCollectionsView _cardCollectionsView;
         [SerializeField] private CardCollectionCardsView _cardCollectionCardsView;
+        [SerializeField] private CardCollectionRewardWindow _cardCollectionRewardWindow;
         [SerializeField] private ChestOpenView _chestOpenView;
         [SerializeField] private MonoBehaviour _adBonusOfferView;
         [SerializeField] private AdBonusActiveEffectsView _adBonusActiveEffectsView;
@@ -130,6 +131,11 @@ namespace Installer
                 Container.Bind<ICardCollectionCardsView>().FromInstance(_cardCollectionCardsView).AsSingle().NonLazy();
             else
                 Container.Bind<ICardCollectionCardsView>().To<CardCollectionCardsNullView>().AsSingle().NonLazy();
+
+            if (_cardCollectionRewardWindow != null)
+                Container.Bind<ICardCollectionRewardWindow>().FromInstance(_cardCollectionRewardWindow).AsSingle().NonLazy();
+            else
+                Container.Bind<ICardCollectionRewardWindow>().To<CardCollectionRewardNullWindow>().AsSingle().NonLazy();
 
             if (_chestOpenView != null)
                 Container.Bind<IChestOpenView>().FromInstance(_chestOpenView).AsSingle().NonLazy();

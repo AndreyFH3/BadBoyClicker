@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CardCollections;
 using DG.Tweening;
+using Rewards;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,10 +18,22 @@ namespace CardCollectionMVP
         [SerializeField] private TextMeshProUGUI _cardsProgressText;
         [SerializeField] private TextMeshProUGUI _starsProgressText;
         [SerializeField] private Image _progressFill;
-        [SerializeField] private GameObject _completedMarker;
-        [SerializeField] private GameObject _rewardClaimedMarker;
+
+        [Header("Cards")]
         [SerializeField] private Transform _cardsRoot;
         [SerializeField] private CardItemView _cardReference;
+
+        [Header("Rewards")]
+        [SerializeField] private Transform _rewardsRoot;
+        [SerializeField] private RewardView _rewardReference;
+
+        [Header("Collect")]
+        [SerializeField] private Button _collectButton;
+
+        [Header("Toggled when the reward is claimed")]
+        [SerializeField] private List<GameObject> _rewardClaimedEnableObjects = new();
+        [SerializeField] private List<GameObject> _rewardClaimedDisableObjects = new();
+
         [SerializeField] private Button _closeButton;
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private float _animationDuration = 0.2f;
@@ -27,10 +41,12 @@ namespace CardCollectionMVP
         [SerializeField] private Ease _hideEase = Ease.InQuad;
 
         private readonly Dictionary<string, CardItemView> _cards = new();
+        private readonly List<RewardView> _rewardViews = new();
         private Tween _visibilityTween;
         private bool _isVisible;
 
         public event Action CloseRequested;
+        public event Action CollectRequested;
 
         private void Awake()
         {
@@ -39,20 +55,35 @@ namespace CardCollectionMVP
                 _cardReference.gameObject.SetActive(false);
             }
 
+            if (_rewardReference != null)
+            {
+                _rewardReference.gameObject.SetActive(false);
+            }
+
             if (_closeButton != null)
             {
                 _closeButton.onClick.AddListener(RequestClose);
+            }
+
+            if (_collectButton != null)
+            {
+                _collectButton.onClick.AddListener(RequestCollect);
             }
         }
 
         private void OnDestroy()
         {
             _visibilityTween?.Kill();
-            ClearCards();
+            ClearContent();
 
             if (_closeButton != null)
             {
                 _closeButton.onClick.RemoveListener(RequestClose);
+            }
+
+            if (_collectButton != null)
+            {
+                _collectButton.onClick.RemoveListener(RequestCollect);
             }
         }
 
@@ -78,7 +109,7 @@ namespace CardCollectionMVP
 
                 if (!isVisible)
                 {
-                    ClearCards();
+                    ClearContent();
                 }
 
                 return;
@@ -109,7 +140,7 @@ namespace CardCollectionMVP
                     if (!_isVisible)
                     {
                         Root.SetActive(false);
-                        ClearCards();
+                        ClearContent();
                     }
 
                     _visibilityTween = null;
@@ -150,16 +181,8 @@ namespace CardCollectionMVP
                     : 0f;
             }
 
-            if (_completedMarker != null)
-            {
-                _completedMarker.SetActive(collection.IsCompleted);
-            }
-
-            if (_rewardClaimedMarker != null)
-            {
-                _rewardClaimedMarker.SetActive(collection.IsRewardClaimed);
-            }
-
+            UpdateCollectButton(collection);
+            SetRewards(collection.Rewards);
             SetCards(collection.Cards);
         }
 
@@ -170,7 +193,7 @@ namespace CardCollectionMVP
                 return;
             }
 
-            GetOrCreateCard(card.Id).SetData(card);
+            GetOrCreateCard(card);
         }
 
         private GameObject Root => _root != null ? _root : gameObject;
@@ -198,6 +221,40 @@ namespace CardCollectionMVP
             CloseRequested?.Invoke();
         }
 
+        private void RequestCollect()
+        {
+            CollectRequested?.Invoke();
+        }
+
+        private void UpdateCollectButton(CardCollectionViewData collection)
+        {
+            if (_collectButton != null)
+            {
+                _collectButton.interactable = collection.IsCompleted && !collection.IsRewardClaimed;
+            }
+
+            SetRewardClaimedObjects(collection.IsRewardClaimed);
+        }
+
+        private void SetRewardClaimedObjects(bool isRewardClaimed)
+        {
+            foreach (var go in _rewardClaimedDisableObjects)
+            {
+                if (go != null)
+                {
+                    go.SetActive(!isRewardClaimed);
+                }
+            }
+
+            foreach (var go in _rewardClaimedEnableObjects)
+            {
+                if (go != null)
+                {
+                    go.SetActive(isRewardClaimed);
+                }
+            }
+        }
+
         private void SetCards(IReadOnlyList<CardViewData> cards)
         {
             if (cards == null || _cardReference == null)
@@ -208,28 +265,31 @@ namespace CardCollectionMVP
 
             ClearCards();
 
-            foreach (var card in cards)
+            // Collected cards first, uncollected last; original config order preserved within each group.
+            foreach (var card in cards.OrderByDescending(card => card.IsCollected))
             {
                 if (card == null || string.IsNullOrEmpty(card.Id))
                 {
                     continue;
                 }
 
-                GetOrCreateCard(card.Id).SetData(card);
+                GetOrCreateCard(card);
             }
         }
 
-        private CardItemView GetOrCreateCard(string id)
+        private CardItemView GetOrCreateCard(CardViewData card)
         {
-            if (_cards.TryGetValue(id, out var item) && item != null)
+            if (_cards.TryGetValue(card.Id, out var item) && item != null)
             {
+                item.SetData(card);
                 return item;
             }
 
             Transform root = _cardsRoot != null ? _cardsRoot : transform;
             item = Instantiate(_cardReference, root);
+            item.SetData(card);
             item.gameObject.SetActive(true);
-            _cards[id] = item;
+            _cards[card.Id] = item;
             return item;
         }
 
@@ -244,6 +304,54 @@ namespace CardCollectionMVP
             }
 
             _cards.Clear();
+        }
+
+        private void SetRewards(IReadOnlyList<RewardDisplay> rewards)
+        {
+            if (_rewardsRoot == null || _rewardReference == null)
+            {
+                return;
+            }
+
+            int count = rewards?.Count ?? 0;
+
+            for (int i = 0; i < _rewardViews.Count; i++)
+            {
+                _rewardViews[i].gameObject.SetActive(i < count);
+            }
+
+            for (int i = 0; i < count; i++)
+            {
+                bool isNew = i >= _rewardViews.Count;
+                RewardView view = isNew ? Instantiate(_rewardReference, _rewardsRoot) : _rewardViews[i];
+
+                view.Set(rewards[i]);
+                view.gameObject.SetActive(true);
+
+                if (isNew)
+                {
+                    _rewardViews.Add(view);
+                }
+            }
+        }
+
+        private void ClearRewards()
+        {
+            foreach (var view in _rewardViews)
+            {
+                if (view != null)
+                {
+                    Destroy(view.gameObject);
+                }
+            }
+
+            _rewardViews.Clear();
+        }
+
+        private void ClearContent()
+        {
+            ClearCards();
+            ClearRewards();
         }
     }
 }

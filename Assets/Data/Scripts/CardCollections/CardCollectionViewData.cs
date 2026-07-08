@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Rewards;
 
 namespace CardCollections
 {
@@ -14,5 +15,6 @@ namespace CardCollections
         public bool IsCompleted;
         public bool IsRewardClaimed;
         public IReadOnlyList<CardViewData> Cards;
+        public IReadOnlyList<RewardDisplay> Rewards;
     }
 }
