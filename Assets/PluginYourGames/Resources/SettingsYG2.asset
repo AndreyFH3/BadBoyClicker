@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SettingsYG2
   m_EditorClassIdentifier: Assembly-CSharp::YG.InfoYG
   InterstitialAdv:
-    showFirstAdv: 0
+    showFirstAdv: 1
     interAdvInterval: 60
     postponeCallByFail: 0
     postponeCallTimer: 10
@@ -21,13 +21,13 @@ MonoBehaviour:
   Localization:
     setLanguageMod: 1
   Metrica:
-    enable: 0
+    enable: 1
     metricaCounterID: 0
     log: 1
     useYandexMetrica: 1
   Payments:
     durationPayPanel: 1
-    testBuyFail: 0
+    testBuyFail: 1
     purshases:
     - id: gun
       title: Gun
@@ -71,7 +71,6 @@ MonoBehaviour:
     saveLocal: 0
     saveCloud: 1
     flush: 0
-    labelAdvSimLabel: 0
   Basic:
     platform: {fileID: 0}
     autoApplySettings: 1
@@ -94,7 +93,7 @@ MonoBehaviour:
     advIntervalSimulation: 60
     durationAdv: 0.5
     loadAdv: 0
-    testFailAds: 0
+    testFailAds: 1
     pauseOnFocusGame: 0
   Templates:
     logoImageFormat: 0

@@ -1,61 +1,16 @@
 {
-    "idSave": 14595,
+    "idSave": 15727,
     "GameSaveData": {
         "Wallet": {
-            "Soft": 704045,
-            "Middle": 585,
-            "Hard": 166
+            "Soft": 52,
+            "Middle": 660,
+            "Hard": 396
         },
         "Shop": {
-            "Levels": [
-                {
-                    "Key": "Click:soft_paw",
-                    "Level": 11
-                },
-                {
-                    "Key": "Click:sharp_claws",
-                    "Level": 11
-                },
-                {
-                    "Key": "Click:cat_energy",
-                    "Level": 12
-                },
-                {
-                    "Key": "Click:quick_dash",
-                    "Level": 1
-                },
-                {
-                    "Key": "Click:tail_agility",
-                    "Level": 12
-                },
-                {
-                    "Key": "Click:hunting_instinct",
-                    "Level": 3
-                },
-                {
-                    "Key": "Click:cat_training",
-                    "Level": 8
-                },
-                {
-                    "Key": "Click:wild_thrill",
-                    "Level": 8
-                },
-                {
-                    "Key": "Click:night_hunt",
-                    "Level": 10
-                },
-                {
-                    "Key": "Click:predator_instinct",
-                    "Level": 2
-                },
-                {
-                    "Key": "Click:royal_grace",
-                    "Level": 14
-                }
-            ]
+            "Levels": []
         },
         "OfflineIncome": {
-            "LastOnlineTicks": 639191237781648909
+            "LastOnlineTicks": 639191276514646144
         },
         "DailyLogin": {
             "CurrentDayIndex": 5,
@@ -63,50 +18,63 @@
         },
         "DailyQuests": {
             "DayKey": "20260708",
-            "Points": 0,
+            "Points": 60,
             "Quests": [
                 {
                     "Id": "1",
                     "CurrentValue": 10,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "2",
                     "CurrentValue": 20,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "3",
                     "CurrentValue": 30,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "4",
                     "CurrentValue": 40,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "5",
                     "CurrentValue": 50,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 },
                 {
                     "Id": "6",
                     "CurrentValue": 60,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true
                 }
             ],
-            "Milestones": []
+            "Milestones": [
+                {
+                    "RequiredPoints": 20,
+                    "IsClaimed": true
+                },
+                {
+                    "RequiredPoints": 40,
+                    "IsClaimed": true
+                },
+                {
+                    "RequiredPoints": 60,
+                    "IsClaimed": true
+                }
+            ]
         },
         "PlayerProgression": {
-            "CompletedLevels": 14,
-            "CurrentExperience": 100
+            "CompletedLevels": 17,
+            "CurrentExperience": 96
         },
         "Quests": {
             "Quests": [
@@ -140,19 +108,19 @@
             "Cards": [
                 {
                     "Id": "0_4",
-                    "Amount": 6
+                    "Amount": 7
                 },
                 {
                     "Id": "0_5",
-                    "Amount": 7
-                },
-                {
-                    "Id": "0_1",
                     "Amount": 8
                 },
                 {
+                    "Id": "0_1",
+                    "Amount": 9
+                },
+                {
                     "Id": "0_6",
-                    "Amount": 7
+                    "Amount": 9
                 },
                 {
                     "Id": "0_2",
@@ -160,7 +128,7 @@
                 },
                 {
                     "Id": "0_3",
-                    "Amount": 3
+                    "Amount": 5
                 }
             ],
             "Collections": [
@@ -171,10 +139,11 @@
             ]
         },
         "Customization": {
-            "ActiveBackgroundId": "back_01",
+            "ActiveBackgroundId": "back_02",
             "ActiveCatId": "cat_01",
             "PurchasedBackgroundIds": [
-                "back_01"
+                "back_01",
+                "back_02"
             ],
             "PurchasedCatIds": [
                 "cat_01"

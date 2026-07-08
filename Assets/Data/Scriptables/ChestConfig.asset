@@ -16,7 +16,7 @@ MonoBehaviour:
   - _id: Chest_1
     _titleLocalizationKey: chest.chest_1.title
     _title: Chest 1
-    _icon: {fileID: 2507892199236850859, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+    _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
     _rewards:
     - _rarityWeight: 70
       _rewardKind: 0

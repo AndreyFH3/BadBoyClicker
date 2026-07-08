@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,8 @@ namespace ChestsMVP
         [SerializeField] private GameObject _root;
         [SerializeField] private Image _chestIcon;
         [SerializeField] private TextMeshProUGUI _chestTitle;
+        [Tooltip("Fade duration for the whole popup on Show()/Hide(). Uses the root CanvasGroup (added automatically if missing).")]
+        [SerializeField] private float _fadeDuration = 0.25f;
 
         [Header("Opening state")]
         [Tooltip("Enabled and interactable right after Show(). Requires a CanvasGroup. Its own tween must use Manual play mode - it is triggered from code.")]
@@ -33,6 +36,7 @@ namespace ChestsMVP
         [SerializeField] private TextMeshProUGUI _rewardText;
         [SerializeField] private Button _closeButton;
 
+        private CanvasGroup _rootCanvasGroup;
         private CanvasGroup _openStateCanvasGroup;
         private CanvasGroup _rewardCanvasGroup;
 
@@ -43,6 +47,7 @@ namespace ChestsMVP
 
         private void Awake()
         {
+            _rootCanvasGroup = GetOrAddCanvasGroup(Root);
             _openStateCanvasGroup = GetCanvasGroup(_openStateRoot);
             _rewardCanvasGroup = GetCanvasGroup(_rewardRoot);
 
@@ -56,7 +61,7 @@ namespace ChestsMVP
                 _closeButton.onClick.AddListener(RequestClose);
             }
 
-            Hide();
+            HideImmediate();
         }
 
         private void OnDestroy()
@@ -70,9 +75,11 @@ namespace ChestsMVP
             {
                 _closeButton.onClick.RemoveListener(RequestClose);
             }
+
+            DOTween.Kill(_rootCanvasGroup);
         }
 
-        public void Show(ChestOpenViewData data)
+        public async void Show(ChestOpenViewData data)
         {
             _pendingData = data;
             _isOpening = false;
@@ -99,13 +106,34 @@ namespace ChestsMVP
             // is guaranteed to fire again the next time RevealReward() enables it.
             SetCanvasGroupState(_rewardCanvasGroup, visible: false);
             SetActive(_rewardRoot, false);
+
+            // Whole popup: fades in from alpha 0, locked until the fade finishes.
+            SetCanvasGroupInteractable(_rootCanvasGroup, false);
+            SetCanvasGroupAlpha(_rootCanvasGroup, 0f);
+
+            await FadeCanvasGroupAsync(_rootCanvasGroup, 1f);
+
+            SetCanvasGroupInteractable(_rootCanvasGroup, true);
         }
 
-        public void Hide()
+        public async void Hide()
         {
             _isOpening = false;
             _pendingData = null;
 
+            SetCanvasGroupInteractable(_rootCanvasGroup, false);
+
+            await FadeCanvasGroupAsync(_rootCanvasGroup, 0f);
+
+            Root.SetActive(false);
+        }
+
+        private void HideImmediate()
+        {
+            _isOpening = false;
+            _pendingData = null;
+
+            SetCanvasGroupState(_rootCanvasGroup, visible: false);
             Root.SetActive(false);
         }
 
@@ -174,9 +202,40 @@ namespace ChestsMVP
             return completionSource.Awaitable;
         }
 
+        private Awaitable FadeCanvasGroupAsync(CanvasGroup canvasGroup, float targetAlpha)
+        {
+            var completionSource = new AwaitableCompletionSource();
+
+            if (canvasGroup == null)
+            {
+                completionSource.SetResult();
+                return completionSource.Awaitable;
+            }
+
+            // Finish (not abandon) any fade already running on this group so an interrupted
+            // Show()/Hide() call always resolves its waiter instead of leaving it hanging.
+            DOTween.Kill(canvasGroup, complete: true);
+
+            canvasGroup.DOFade(targetAlpha, _fadeDuration)
+                .SetTarget(canvasGroup)
+                .OnComplete(() => completionSource.SetResult());
+
+            return completionSource.Awaitable;
+        }
+
         private static CanvasGroup GetCanvasGroup(GameObject go)
         {
             return go != null ? go.GetComponent<CanvasGroup>() : null;
+        }
+
+        private static CanvasGroup GetOrAddCanvasGroup(GameObject go)
+        {
+            if (go == null)
+            {
+                return null;
+            }
+
+            return go.TryGetComponent(out CanvasGroup canvasGroup) ? canvasGroup : go.AddComponent<CanvasGroup>();
         }
 
         private static void SetCanvasGroupState(CanvasGroup canvasGroup, bool visible)

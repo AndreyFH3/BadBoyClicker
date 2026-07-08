@@ -21,7 +21,7 @@ namespace GameSettings
 
         [Header("Sound")]
         [SerializeField] private Button _soundToggleButton;
-        [SerializeField] private TMP_Text _soundStateText;
+        [SerializeField] private Image _soundStateText;
 
         [Header("Language")]
         [SerializeField] private List<LanguageOption> _languageOptions = new();
@@ -195,7 +195,7 @@ namespace GameSettings
 
             if (_soundStateText != null)
             {
-                _soundStateText.text = Localization.Tr(_audioEnabled ? "common.on" : "common.off");
+                _soundStateText.gameObject.SetActive(_audioEnabled);
             }
 
             foreach (LanguageOption option in _languageOptions)
