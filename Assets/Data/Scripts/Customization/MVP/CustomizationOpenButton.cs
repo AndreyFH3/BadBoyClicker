@@ -6,7 +6,7 @@ namespace Customization
     public class CustomizationOpenButton : MonoBehaviour
     {
         [SerializeField] private Button _button;
-        [SerializeField] private CustomizationView _view;
+        [SerializeField] private OpenWindow _window;
 
         private void Awake()
         {
@@ -34,9 +34,9 @@ namespace Customization
 
         public void Open()
         {
-            if (_view != null)
+            if (_window != null)
             {
-                _view.RequestOpen();
+                _window.Show();
             }
         }
     }

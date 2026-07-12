@@ -18,13 +18,13 @@ MonoBehaviour:
   _offers:
   - _id: soft_money
     _placementId: soft_money
-    _confirmationTitleLocalizationKey:
+    _confirmationTitleLocalizationKey: 
     _confirmationTitle: 1000 coins
     _confirmationDescriptionLocalizationKey: ad_bonus.soft_money.confirm_description
     _confirmationDescription: Watch an ad and receive 1000 coins
     _resultDescriptionLocalizationKey: ad_bonus.soft_money.result_description
-    _resultDescription:
-    _icon: {fileID: -7250565942822309144, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _resultDescription: 
+    _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _weight: 1
     _cooldownSeconds: 20
     _hardPrice: 5
@@ -44,7 +44,7 @@ MonoBehaviour:
     _confirmationDescriptionLocalizationKey: ad_bonus.chest.confirm_description
     _confirmationDescription: Watch an ad and receive a chest
     _resultDescriptionLocalizationKey: ad_bonus.chest.result_description
-    _resultDescription:
+    _resultDescription: 
     _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _weight: 1
     _cooldownSeconds: 20
@@ -65,8 +65,8 @@ MonoBehaviour:
     _confirmationDescriptionLocalizationKey: ad_bonus.click_x2.confirm_description
     _confirmationDescription: Watch an ad to double click income for 60 seconds
     _resultDescriptionLocalizationKey: ad_bonus.click_x2.result_description
-    _resultDescription:
-    _icon: {fileID: -7250565942822309144, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _resultDescription: 
+    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
     _weight: 1
     _cooldownSeconds: 20
     _hardPrice: 0
@@ -92,8 +92,8 @@ MonoBehaviour:
     _confirmationDescriptionLocalizationKey: ad_bonus.shop_discount.confirm_description
     _confirmationDescription: Watch an ad to activate the discount for 60 seconds
     _resultDescriptionLocalizationKey: ad_bonus.shop_discount.result_description
-    _resultDescription:
-    _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _resultDescription: 
+    _icon: {fileID: 6106692926879089763, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
     _weight: 1
     _cooldownSeconds: 20
     _hardPrice: 0

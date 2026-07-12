@@ -383,7 +383,7 @@ namespace AdBonusOffers
 
                 if (reward.RewardType == QuestRewardType.Currency)
                 {
-                    return _localization.Localize(GetCurrencyNameKey(reward.CurrencyType));
+                    return CapitalizeFirstLetter(_localization.Localize(GetCurrencyNameKey(reward.CurrencyType)));
                 }
 
                 if (!string.IsNullOrEmpty(reward.DisplayTextLocalizationKey))
@@ -399,42 +399,37 @@ namespace AdBonusOffers
 
         private string ResolveRewardValueText(AdBonusOfferConfig.AdBonusOfferData offer)
         {
-            if (!HasRewards(offer))
+            if (HasRewards(offer))
             {
-                return string.Empty;
+                var reward = offer.Rewards[0];
+                if (reward != null && reward.RewardType == QuestRewardType.Currency && reward.Amount > 0)
+                {
+                    return $"+{reward.Amount.ConvertFromLongToString()}";
+                }
             }
 
-            var reward = offer.Rewards[0];
-            if (reward != null && reward.RewardType == QuestRewardType.Currency && reward.Amount > 0)
-            {
-                return $"+{reward.Amount.ConvertFromLongToString()}";
-            }
-
-            return string.Empty;
+            return ResolveDurationText(offer);
         }
 
-        private string BuildConfirmationDescription(AdBonusOfferConfig.AdBonusOfferData offer)
-        {
-            string description = LocalizeOrFallback(offer.ConfirmationDescriptionLocalizationKey, offer.ConfirmationDescription);
-            return AppendDuration(offer, description);
-        }
-
-        private string BuildResultDescription(AdBonusOfferConfig.AdBonusOfferData offer)
-        {
-            string description = LocalizeOrFallback(offer.ResultDescriptionLocalizationKey, offer.ResultDescription);
-            return AppendDuration(offer, description);
-        }
-
-        private string AppendDuration(AdBonusOfferConfig.AdBonusOfferData offer, string description)
+        private string ResolveDurationText(AdBonusOfferConfig.AdBonusOfferData offer)
         {
             var effect = GetFirstTimedEffect(offer);
             if (effect == null || effect.DurationSeconds <= 0f)
             {
-                return description;
+                return string.Empty;
             }
 
-            string durationLine = _localization.Format("ad_bonus.duration", Mathf.RoundToInt(effect.DurationSeconds));
-            return string.IsNullOrEmpty(description) ? durationLine : $"{description}\n{durationLine}";
+            return _localization.Format("ad_bonus.duration", Mathf.RoundToInt(effect.DurationSeconds));
+        }
+
+        private string BuildConfirmationDescription(AdBonusOfferConfig.AdBonusOfferData offer)
+        {
+            return LocalizeOrFallback(offer.ConfirmationDescriptionLocalizationKey, offer.ConfirmationDescription);
+        }
+
+        private string BuildResultDescription(AdBonusOfferConfig.AdBonusOfferData offer)
+        {
+            return LocalizeOrFallback(offer.ResultDescriptionLocalizationKey, offer.ResultDescription);
         }
 
         private AdBonusOfferConfig.AdBonusEffectData GetFirstTimedEffect(AdBonusOfferConfig.AdBonusOfferData offer)
@@ -481,6 +476,16 @@ namespace AdBonusOffers
 
             string localized = _localization.Localize(key);
             return string.IsNullOrEmpty(localized) || localized == key ? fallback : localized;
+        }
+
+        private string CapitalizeFirstLetter(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return value;
+            }
+
+            return char.ToUpperInvariant(value[0]) + value.Substring(1);
         }
 
         private bool CanClaimForHard(AdBonusOfferConfig.AdBonusOfferData offer)

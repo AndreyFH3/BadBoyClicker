@@ -52,16 +52,19 @@ namespace QuestSystem
 
         public void Initialize()
         {
+#if UNITY_EDITOR
             _gameStartRouter.OnClickValueEvent += OnClicked;
             _wallet.SoftAdded += OnSoftEarned;
             _shopModel.ItemBought += OnShopItemBought;
             _playerProgression.LevelCompleted += OnPlayerLevelCompleted;
 
             RebuildQuests();
+#endif
         }
 
         public void Dispose()
         {
+#if UNITY_EDITOR
             _gameStartRouter.OnClickValueEvent -= OnClicked;
             _wallet.SoftAdded -= OnSoftEarned;
             _shopModel.ItemBought -= OnShopItemBought;
@@ -71,6 +74,7 @@ namespace QuestSystem
             {
                 quest.Changed -= OnQuestChanged;
             }
+#endif
         }
 
         public Quest GetQuest(string id)
@@ -118,35 +122,34 @@ namespace QuestSystem
             _quests.Clear();
             _questsById.Clear();
 
+#if UNITY_EDITOR
             var questDatas = _config?.Quests;
-            if (questDatas == null)
+            if (questDatas != null)
             {
-                Changed?.Invoke();
-                return;
-            }
-
-            foreach (var data in questDatas)
-            {
-                if (data == null || string.IsNullOrEmpty(data.Id) || _questsById.ContainsKey(data.Id))
+                foreach (var data in questDatas)
                 {
-                    continue;
-                }
+                    if (data == null || string.IsNullOrEmpty(data.Id) || _questsById.ContainsKey(data.Id))
+                    {
+                        continue;
+                    }
 
-                Quest quest = _factory.Create(data, _save.GetState(data.Id));
-                if (quest == null)
-                {
-                    continue;
-                }
+                    Quest quest = _factory.Create(data, _save.GetState(data.Id));
+                    if (quest == null)
+                    {
+                        continue;
+                    }
 
-                quest.Changed += OnQuestChanged;
-                _quests.Add(quest);
-                _questsById.Add(quest.Id, quest);
+                    quest.Changed += OnQuestChanged;
+                    _quests.Add(quest);
+                    _questsById.Add(quest.Id, quest);
 
-                if (TryGiveReward(quest))
-                {
-                    _save.SetQuestState(quest);
+                    if (TryGiveReward(quest))
+                    {
+                        _save.SetQuestState(quest);
+                    }
                 }
             }
+#endif
 
             Changed?.Invoke();
         }
@@ -167,6 +170,7 @@ namespace QuestSystem
             }
 
             _rewardService.GiveRewards(quest.Data.Rewards);
+            _playerProgression.AddExperience(PlayerExperienceSource.QuestCompleted, quest.Data.ExperienceReward);
             quest.MarkRewardClaimed();
             QuestRewardClaimed?.Invoke(quest);
             return true;

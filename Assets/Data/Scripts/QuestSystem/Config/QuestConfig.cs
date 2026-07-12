@@ -23,6 +23,7 @@ namespace QuestSystem
             [Min(1)]
             [SerializeField] private long _targetValue = 1;
             [SerializeField] private string _targetId;
+            [SerializeField] private long _experienceReward = 100;
             [SerializeField] private List<QuestReward> _rewards = new();
 
             public string Id => _id;
@@ -33,6 +34,7 @@ namespace QuestSystem
             public QuestObjectiveType ObjectiveType => _objectiveType;
             public long TargetValue => _targetValue;
             public string TargetId => _targetId;
+            public long ExperienceReward => _experienceReward;
             public IReadOnlyList<QuestReward> Rewards => _rewards;
         }
     }

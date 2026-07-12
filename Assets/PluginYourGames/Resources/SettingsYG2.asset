@@ -27,7 +27,7 @@ MonoBehaviour:
     useYandexMetrica: 1
   Payments:
     durationPayPanel: 1
-    testBuyFail: 1
+    testBuyFail: 0
     purshases:
     - id: gun
       title: Gun
@@ -93,7 +93,7 @@ MonoBehaviour:
     advIntervalSimulation: 60
     durationAdv: 0.5
     loadAdv: 0
-    testFailAds: 1
+    testFailAds: 0
     pauseOnFocusGame: 0
   Templates:
     logoImageFormat: 0

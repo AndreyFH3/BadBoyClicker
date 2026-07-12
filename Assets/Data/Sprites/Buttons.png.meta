@@ -1,10 +1,28 @@
 fileFormatVersion: 2
-guid: f473d3d524bc07843998123925fa2690
+guid: 994cb132d3b98864d8de9e28631abdf1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6123299755754754370
-    second: "\u0421\u043B\u043E\u0439 2_0"
+      213: 8838909127635220292
+    second: "ChatGPT Image 10 \u0438\u044E\u043B. 2026 \u0433., 21_15_36_0"
+  - first:
+      213: -7667715075032116499
+    second: "ChatGPT Image 10 \u0438\u044E\u043B. 2026 \u0433., 21_15_36_1"
+  - first:
+      213: -5556835868863629374
+    second: "ChatGPT Image 10 \u0438\u044E\u043B. 2026 \u0433., 21_15_36_2"
+  - first:
+      213: 7430540047982417739
+    second: "ChatGPT Image 10 \u0438\u044E\u043B. 2026 \u0433., 21_15_36_3"
+  - first:
+      213: -2914388129088486703
+    second: "ChatGPT Image 10 \u0438\u044E\u043B. 2026 \u0433., 21_15_36_4"
+  - first:
+      213: -488989789476642163
+    second: "ChatGPT Image 10 \u0438\u044E\u043B. 2026 \u0433., 21_15_36_5"
+  - first:
+      213: -8313085377595290103
+    second: "ChatGPT Image 10 \u0438\u044E\u043B. 2026 \u0433., 21_15_36_6"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -47,7 +65,7 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -72,10 +90,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 3
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -126,23 +144,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u0421\u043B\u043E\u0439 2_0"
+      name: Buttons_1
       rect:
         serializedVersion: 2
-        x: 70
-        y: 18
-        width: 779
-        height: 264
+        x: 50
+        y: 627
+        width: 668
+        height: 270
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 181, y: 117, z: 177, w: 83}
+      border: {x: 120, y: 105, z: 105, w: 78}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2419ffa6fa45af450800000000000000
-      internalID: 6123299755754754370
+      spriteID: 447b7a2650d1aaa70800000000000000
+      internalID: 8838909127635220292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons_2
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 192
+        width: 666
+        height: 277
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 120, y: 105, z: 105, w: 78}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d82a3739062c639f0800000000000000
+      internalID: -488989789476642163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons_3
+      rect:
+        serializedVersion: 2
+        x: 803
+        y: 192
+        width: 666
+        height: 276
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 120, y: 105, z: 105, w: 78}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90e40f8c4ecf1ac80800000000000000
+      internalID: -8313085377595290103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons_0
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 627
+        width: 663
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 120, y: 105, z: 105, w: 78}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 264fbfd34a1a9964dbec6036e6a5c12f
+      internalID: 1955470801
       vertices: []
       indices: 
       edges: []
@@ -151,7 +235,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: a71a57c51ad11c941a855a7a8fc62ad3
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +245,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\u0421\u043B\u043E\u0439 2_0": 6123299755754754370
+      Buttons_0: 1955470801
+      Buttons_1: 8838909127635220292
+      Buttons_2: -488989789476642163
+      Buttons_3: -8313085377595290103
+      "ChatGPT Image 10 \u0438\u044E\u043B. 2026 \u0433., 21_15_36_1": -7667715075032116499
+      "ChatGPT Image 10 \u0438\u044E\u043B. 2026 \u0433., 21_15_36_2": -5556835868863629374
+      "ChatGPT Image 10 \u0438\u044E\u043B. 2026 \u0433., 21_15_36_3": 7430540047982417739
+      "ChatGPT Image 10 \u0438\u044E\u043B. 2026 \u0433., 21_15_36_4": -2914388129088486703
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

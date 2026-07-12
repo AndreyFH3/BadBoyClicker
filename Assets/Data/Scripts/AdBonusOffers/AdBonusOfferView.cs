@@ -90,7 +90,7 @@ namespace AdBonusOffers
             if (_confirmHardText != null)
             {
                 _confirmHardText.text = data.CanClaimForHard
-                    ? $"Get for {data.HardPrice.ConvertFromLongToString()}"
+                    ? $"{data.HardPrice.ConvertFromLongToString()}"
                     : string.Empty;
             }
 

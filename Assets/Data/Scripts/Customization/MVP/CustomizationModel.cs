@@ -12,7 +12,6 @@ namespace Customization
         private ILocalizationService _localization;
         private CustomizationConfig _config;
 
-        public bool IsOpen { get; private set; }
         public event Action StateChanged;
 
         [Inject]
@@ -39,16 +38,6 @@ namespace Customization
             AddItems(result, CustomizationItemType.Background);
             AddItems(result, CustomizationItemType.Cat);
             return result;
-        }
-
-        public void Open()
-        {
-            SetOpenState(true);
-        }
-
-        public void Close()
-        {
-            SetOpenState(false);
         }
 
         public void BuyOrSelect(CustomizationItemType type, string id)
@@ -100,17 +89,6 @@ namespace Customization
             return type == CustomizationItemType.Background
                 ? _service.ActiveBackgroundId == id
                 : _service.ActiveCatId == id;
-        }
-
-        private void SetOpenState(bool isOpen)
-        {
-            if (IsOpen == isOpen)
-            {
-                return;
-            }
-
-            IsOpen = isOpen;
-            StateChanged?.Invoke();
         }
 
         private void OnServiceChanged()

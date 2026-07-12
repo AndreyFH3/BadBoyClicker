@@ -15,8 +15,6 @@ namespace Shop
 {
     public class ShopModel : IShopModel, IInitializable, IDisposable
     {
-        [SerializeField] private bool _isOpenOnStart;
-
         private const float PriceGrowth = 1.07f;
 
         private GameConfig _config;
@@ -30,7 +28,6 @@ namespace Shop
         private readonly Dictionary<string, ShopItem> _items = new();
         private readonly Dictionary<string, ShopItem> _paidItemsByPaymentId = new();
 
-        public bool IsOpen { get; private set; }
         public long AutoIncomePerSecond => _save?.AutoIncomePerSecond ?? 0;
 
         public event Action StateChanged;
@@ -58,7 +55,6 @@ namespace Shop
 
             BuildItems();
             _save.Recalculate(_config);
-            IsOpen = _isOpenOnStart;
         }
 
         public void Initialize()
@@ -139,30 +135,9 @@ namespace Shop
             }
 
             _save.AddLevel(item.Type, item.ClickData.Id);
-            _playerProgression.AddExperience(PlayerExperienceSource.ShopPurchase);
+            _playerProgression.AddExperience(PlayerExperienceSource.ShopPurchase, price);
             _save.Recalculate(_config);
             ItemBought?.Invoke(item.ClickData.Id);
-            StateChanged?.Invoke();
-        }
-
-        public void Open()
-        {
-            SetOpenState(true);
-        }
-
-        public void Close()
-        {
-            SetOpenState(false);
-        }
-
-        private void SetOpenState(bool isOpen)
-        {
-            if (IsOpen == isOpen)
-            {
-                return;
-            }
-
-            IsOpen = isOpen;
             StateChanged?.Invoke();
         }
 

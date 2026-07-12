@@ -24,21 +24,17 @@ namespace Shop
         public void Initialize()
         {
             _model.StateChanged += OnStateChanged;
-            _view.OpenRequested += OnOpenRequested;
-            _view.CloseRequested += OnCloseRequested;
             _view.OnBuy += OnBuyRequested;
             _confirmationView.ConfirmRequested += OnPurchaseConfirmed;
             _confirmationView.CancelRequested += OnPurchaseCanceled;
             Localization.LanguageChanged += OnLanguageChanged;
 
-            UpdateView(true);
+            UpdateView();
         }
 
         public void Dispose()
         {
             _model.StateChanged -= OnStateChanged;
-            _view.OpenRequested -= OnOpenRequested;
-            _view.CloseRequested -= OnCloseRequested;
             _view.OnBuy -= OnBuyRequested;
             _confirmationView.ConfirmRequested -= OnPurchaseConfirmed;
             _confirmationView.CancelRequested -= OnPurchaseCanceled;
@@ -51,25 +47,10 @@ namespace Shop
         }
 
 
-        private void UpdateView(bool isForec = false)
+        private void UpdateView()
         {
-            _view.SetOpenState(_model.IsOpen);
             _view.SetEarnPerSecond(_model.AutoIncomePerSecond);
-
-            if (!_view.IsActive && !isForec)
-                return;
-
             _view.SetData(_model.GetAllData());
-        }
-
-        private void OnOpenRequested()
-        {
-            _model.Open();
-        }
-
-        private void OnCloseRequested()
-        {
-            _model.Close();
         }
 
         private void OnBuyRequested(string id)
@@ -105,7 +86,7 @@ namespace Shop
 
         private void OnLanguageChanged()
         {
-            UpdateView(true);
+            UpdateView();
         }
     }
 }

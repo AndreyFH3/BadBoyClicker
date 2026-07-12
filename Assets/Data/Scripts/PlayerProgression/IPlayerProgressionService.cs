@@ -18,7 +18,7 @@ namespace PlayerProgression
         event System.Action<long> ExperienceAdded;
         event System.Action<int> LevelCompleted;
 
-        void AddExperience(PlayerExperienceSource source);
+        void AddExperience(PlayerExperienceSource source, long contextAmount = 0);
         bool CompleteLevel();
     }
 }

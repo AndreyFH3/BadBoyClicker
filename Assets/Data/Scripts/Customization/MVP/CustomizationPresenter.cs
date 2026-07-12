@@ -19,49 +19,22 @@ namespace Customization
         public void Initialize()
         {
             _model.StateChanged += UpdateView;
-            _view.OpenRequested += OnOpenRequested;
-            _view.CloseRequested += OnCloseRequested;
             _view.ItemClicked += OnItemClicked;
-            Localization.LanguageChanged += ForceUpdateView;
+            Localization.LanguageChanged += UpdateView;
 
-            ForceUpdateView();
+            UpdateView();
         }
 
         public void Dispose()
         {
             _model.StateChanged -= UpdateView;
-            _view.OpenRequested -= OnOpenRequested;
-            _view.CloseRequested -= OnCloseRequested;
             _view.ItemClicked -= OnItemClicked;
-            Localization.LanguageChanged -= ForceUpdateView;
+            Localization.LanguageChanged -= UpdateView;
         }
 
         private void UpdateView()
         {
-            _view.SetOpenState(_model.IsOpen);
-
-            if (!_view.IsActive)
-            {
-                return;
-            }
-
             _view.SetData(_model.GetAllData());
-        }
-
-        private void ForceUpdateView()
-        {
-            _view.SetOpenState(_model.IsOpen);
-            _view.SetData(_model.GetAllData());
-        }
-
-        private void OnOpenRequested()
-        {
-            _model.Open();
-        }
-
-        private void OnCloseRequested()
-        {
-            _model.Close();
         }
 
         private void OnItemClicked(CustomizationItemType type, string id)

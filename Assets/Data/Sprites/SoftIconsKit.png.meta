@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: 9c150f5639f7409439f0a55c0594fd3d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5548852401424306639
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_0"
+  - first:
+      213: -4545782910502339972
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_1"
+  - first:
+      213: -3318265969319785442
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_2"
+  - first:
+      213: 342032488681681036
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_3"
+  - first:
+      213: 604537203266997512
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_4"
+  - first:
+      213: 2025788352034883514
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_5"
+  - first:
+      213: 254235491185066319
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_6"
+  - first:
+      213: -6615479691379320253
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_7"
+  - first:
+      213: 3287885838500074183
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_8"
+  - first:
+      213: 356985085617845694
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_9"
+  - first:
+      213: 6766861861981507550
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_10"
+  - first:
+      213: 6106692926879089763
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_11"
+  - first:
+      213: 5970089715425159284
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_12"
+  - first:
+      213: 5711418953157387106
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_13"
+  - first:
+      213: 1591732168375440406
+    second: "ChatGPT Image 9 \u0438\u044E\u043B. 2026 \u0433., 14_30_14_14"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: soft_0
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 710
+        width: 241
+        height: 231
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13ee706d3248ef2b0800000000000000
+      internalID: -5548852401424306639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_01
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 709
+        width: 263
+        height: 244
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7a777907822ae0c0800000000000000
+      internalID: -4545782910502339972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_02
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 705
+        width: 267
+        height: 248
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1c4d6c8ea623f1d0800000000000000
+      internalID: -3318265969319785442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_03
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 709
+        width: 290
+        height: 245
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c80b38d7cb42fb400800000000000000
+      internalID: 342032488681681036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_04
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 710
+        width: 297
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80dcc36226fb36800800000000000000
+      internalID: 604537203266997512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_10
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 90
+        width: 253
+        height: 287
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab7c929e5cb0d1c10800000000000000
+      internalID: 2025788352034883514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_05
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 424
+        width: 250
+        height: 243
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f41026d05d9378300800000000000000
+      internalID: 254235491185066319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_06
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 420
+        width: 307
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34a568065481134a0800000000000000
+      internalID: -6615479691379320253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_07
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 423
+        width: 265
+        height: 234
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c295d900cae0ad20800000000000000
+      internalID: 3287885838500074183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_13
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 90
+        width: 306
+        height: 290
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb53d524b0444f400800000000000000
+      internalID: 356985085617845694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_08
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 422
+        width: 290
+        height: 244
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edfcb87d209b8ed50800000000000000
+      internalID: 6766861861981507550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_09
+      rect:
+        serializedVersion: 2
+        x: 1230
+        y: 423
+        width: 275
+        height: 234
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 364c403ccd45fb450800000000000000
+      internalID: 6106692926879089763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_11
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 97
+        width: 243
+        height: 275
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 478212d17f40ad250800000000000000
+      internalID: 5970089715425159284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_12
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 90
+        width: 298
+        height: 279
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 263216a0749034f40800000000000000
+      internalID: 5711418953157387106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: soft_14
+      rect:
+        serializedVersion: 2
+        x: 1222
+        y: 89
+        width: 284
+        height: 281
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 614949949f7f61610800000000000000
+      internalID: 1591732168375440406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 1422ee95a9cf0ff43948063b5738fc38
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      soft_0: -5548852401424306639
+      soft_01: -4545782910502339972
+      soft_02: -3318265969319785442
+      soft_03: 342032488681681036
+      soft_04: 604537203266997512
+      soft_05: 254235491185066319
+      soft_06: -6615479691379320253
+      soft_07: 3287885838500074183
+      soft_08: 6766861861981507550
+      soft_09: 6106692926879089763
+      soft_10: 2025788352034883514
+      soft_11: 5970089715425159284
+      soft_12: 5711418953157387106
+      soft_13: 356985085617845694
+      soft_14: 1591732168375440406
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

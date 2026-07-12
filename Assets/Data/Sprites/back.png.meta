@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b2cd950e453a9d2429cc4c218e45bcbd
+guid: 4ed13fcc2bf799c438a8a0e63c2e99ea
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6875450167305815761
-    second: "ChatGPT Image 1 \u0438\u044E\u043B. 2026 \u0433., 23_31_42_0"
+      213: -4571828015118065507
+    second: back_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 3
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "ChatGPT Image 1 \u0438\u044E\u043B. 2026 \u0433., 23_31_42_0"
+      name: back_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1536
-        height: 1024
+        width: 603
+        height: 257
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 79, y: 77, z: 105, w: 74}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d6c92ddf718a6f50800000000000000
-      internalID: 6875450167305815761
+      spriteID: d9065b094aa9d80c0800000000000000
+      internalID: -4571828015118065507
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9f9fa449148015940aa988fd095da381
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "ChatGPT Image 1 \u0438\u044E\u043B. 2026 \u0433., 23_31_42_0": 6875450167305815761
+      back_0: -4571828015118065507
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -18,6 +18,7 @@ MonoBehaviour:
     _title: 
     _descriptionLocalizationKey: daily_quest.1.description
     _description: 10
+    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
     _objectiveType: 0
     _targetValue: 10
     _targetId: 
@@ -27,6 +28,7 @@ MonoBehaviour:
     _title: 
     _descriptionLocalizationKey: daily_quest.2.description
     _description: 20
+    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
     _objectiveType: 0
     _targetValue: 20
     _targetId: 
@@ -36,6 +38,7 @@ MonoBehaviour:
     _title: 
     _descriptionLocalizationKey: daily_quest.3.description
     _description: 30
+    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
     _objectiveType: 0
     _targetValue: 30
     _targetId: 
@@ -45,6 +48,7 @@ MonoBehaviour:
     _title: 
     _descriptionLocalizationKey: daily_quest.4.description
     _description: 40
+    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
     _objectiveType: 0
     _targetValue: 40
     _targetId: 
@@ -54,6 +58,7 @@ MonoBehaviour:
     _title: 
     _descriptionLocalizationKey: daily_quest.5.description
     _description: 50
+    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
     _objectiveType: 0
     _targetValue: 50
     _targetId: 
@@ -63,10 +68,21 @@ MonoBehaviour:
     _title: 
     _descriptionLocalizationKey: daily_quest.6.description
     _description: 60
+    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
     _objectiveType: 0
     _targetValue: 60
     _targetId: 
     _points: 10
+  - _id: 7
+    _titleLocalizationKey: daily_quest.7.title
+    _title: 
+    _descriptionLocalizationKey: daily_quest.7.description
+    _description: 60
+    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _objectiveType: 0
+    _targetValue: 1200
+    _targetId: 
+    _points: 20
   _milestones:
   - _requiredPoints: 20
     _rewards:
@@ -75,6 +91,7 @@ MonoBehaviour:
       _amount: 10
       _rewardId: 
       _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
       _displayText: 
   - _requiredPoints: 40
     _rewards:
@@ -83,12 +100,14 @@ MonoBehaviour:
       _amount: 20
       _rewardId: 
       _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
       _displayText: 
-  - _requiredPoints: 60
+  - _requiredPoints: 80
     _rewards:
     - _rewardType: 0
       _currencyType: 2
       _amount: 30
       _rewardId: 
       _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
       _displayText: 

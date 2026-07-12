@@ -8,6 +8,8 @@ namespace Core.Ads
         private Action _pendingRewarded;
         private Action _pendingFailed;
 
+        public event Action AdRewarded;
+
         public bool IsAvailable(string placementId)
         {
             return YG2.isSDKEnabled && !YG2.nowAdsShow;
@@ -26,6 +28,7 @@ namespace Core.Ads
             _pendingRewarded = () =>
             {
                 CleanupPendingCallbacks();
+                AdRewarded?.Invoke();
                 onRewarded?.Invoke();
             };
 

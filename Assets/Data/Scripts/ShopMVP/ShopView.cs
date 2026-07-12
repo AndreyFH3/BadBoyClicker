@@ -36,11 +36,7 @@ namespace Shop
         private readonly Dictionary<ShopItemType, Dictionary<string, ShopViewElementBase>> _shopElements = new();
         private ShopItemType _activeTab = ShopItemType.Click;
 
-        public event Action OpenRequested;
-        public event Action CloseRequested;
         public event Action<string> OnBuy;
-
-        public bool IsActive => gameObject.activeInHierarchy;
 
         private void Awake()
         {
@@ -56,14 +52,6 @@ namespace Shop
         private void OnDestroy()
         {
             RemoveTabListeners();
-        }
-
-        public void SetOpenState(bool isOpen)
-        {
-            if (gameObject.activeSelf == isOpen)
-                return;
-
-            gameObject.SetActive(isOpen);
         }
 
         public void SetData(List<ShopElementData> datas)
@@ -100,16 +88,6 @@ namespace Shop
                 return;
 
             SetElementData(data);
-        }
-
-        public void RequestOpen()
-        {
-            OpenRequested?.Invoke();
-        }
-
-        public void RequestClose()
-        {
-            CloseRequested?.Invoke();
         }
 
         public void RequestClickTab()

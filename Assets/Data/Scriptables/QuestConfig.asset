@@ -21,7 +21,8 @@ MonoBehaviour:
       \u043F\u043E \u043A\u043E\u0442\u0438\u043A\u0443"
     _objectiveType: 0
     _targetValue: 100
-    _targetId: 
+    _targetId:
+    _experienceReward: 100
     _rewards:
     - _rewardType: 0
       _currencyType: 2
@@ -37,7 +38,8 @@ MonoBehaviour:
       \u043C\u043E\u043D\u0435\u0442\u043E\u043A"
     _objectiveType: 1
     _targetValue: 100000
-    _targetId: 
+    _targetId:
+    _experienceReward: 250
     _rewards:
     - _rewardType: 0
       _currencyType: 0
@@ -60,7 +62,8 @@ MonoBehaviour:
       \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435"
     _objectiveType: 2
     _targetValue: 10
-    _targetId: 
+    _targetId:
+    _experienceReward: 350
     _rewards:
     - _rewardType: 3
       _currencyType: 1
@@ -75,7 +78,8 @@ MonoBehaviour:
     _description: 
     _objectiveType: 3
     _targetValue: 5
-    _targetId: 
+    _targetId:
+    _experienceReward: 500
     _rewards:
     - _rewardType: 3
       _currencyType: 1
