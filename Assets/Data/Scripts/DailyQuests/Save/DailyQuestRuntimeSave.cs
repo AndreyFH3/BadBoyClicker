@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Core;
 
 namespace DailyQuests
@@ -11,6 +12,7 @@ namespace DailyQuests
 
         public string DayKey { get; private set; }
         public int Points { get; private set; }
+        public float AvgIncomePerSecond { get; private set; }
         public event Action Changed;
 
         public DailyQuestSaveData.DailyQuestState GetQuestState(string id)
@@ -25,12 +27,33 @@ namespace DailyQuests
             return _milestones.TryGetValue(requiredPoints, out var state) && state.IsClaimed;
         }
 
-        public void ResetForDay(string dayKey)
+        public void ResetForDay(string dayKey, IReadOnlyCollection<string> preserveQuestIds = null)
         {
             DayKey = dayKey;
             Points = 0;
-            _quests.Clear();
             _milestones.Clear();
+
+            if (preserveQuestIds == null || preserveQuestIds.Count == 0)
+            {
+                _quests.Clear();
+            }
+            else
+            {
+                var toRemove = new List<string>();
+                foreach (var kvp in _quests)
+                {
+                    if (!preserveQuestIds.Contains(kvp.Key))
+                    {
+                        toRemove.Add(kvp.Key);
+                    }
+                }
+
+                foreach (var id in toRemove)
+                {
+                    _quests.Remove(id);
+                }
+            }
+
             Changed?.Invoke();
         }
 
@@ -56,6 +79,17 @@ namespace DailyQuests
             Changed?.Invoke();
         }
 
+        public void SetAvgIncomePerSecond(float avgIncomePerSecond)
+        {
+            if (avgIncomePerSecond < 0 || avgIncomePerSecond == AvgIncomePerSecond)
+            {
+                return;
+            }
+
+            AvgIncomePerSecond = avgIncomePerSecond;
+            Changed?.Invoke();
+        }
+
         public void SetMilestoneClaimed(int requiredPoints)
         {
             _milestones[requiredPoints] = new DailyQuestSaveData.DailyQuestMilestoneState
@@ -74,6 +108,7 @@ namespace DailyQuests
 
             DayKey = data?.DayKey;
             Points = data?.Points ?? 0;
+            AvgIncomePerSecond = data?.AvgIncomePerSecond ?? 0f;
 
             if (data?.Quests != null)
             {
@@ -122,6 +157,7 @@ namespace DailyQuests
             {
                 DayKey = DayKey,
                 Points = Points,
+                AvgIncomePerSecond = AvgIncomePerSecond,
                 Quests = quests,
                 Milestones = milestones
             };

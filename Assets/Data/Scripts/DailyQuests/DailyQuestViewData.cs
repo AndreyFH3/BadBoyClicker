@@ -18,6 +18,7 @@ namespace DailyQuests
         public bool IsCompleted;
         public bool IsPointsClaimed;
         public bool CanClaimPoints;
+        public IReadOnlyList<RewardDisplay> Rewards;
     }
 
     public class DailyQuestMilestoneViewData

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
+using YG;
 
 public class OpenWindow : MonoBehaviour
 {
@@ -57,6 +58,7 @@ public class OpenWindow : MonoBehaviour
 
         HiddenWindows.Remove(this);
         _currentWindow = this;
+        YG2.InterstitialAdvShow();
         ShowInternal();
     }
 

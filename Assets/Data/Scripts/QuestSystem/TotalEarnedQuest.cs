@@ -1,8 +1,8 @@
 namespace QuestSystem
 {
-    public class EarnSoftQuest : Quest
+    public class TotalEarnedQuest : Quest
     {
-        public EarnSoftQuest(QuestConfig.QuestData data, long currentValue, bool isCompleted, bool isRewardClaimed)
+        public TotalEarnedQuest(QuestConfig.QuestData data, long currentValue, bool isCompleted, bool isRewardClaimed)
             : base(data, currentValue, isCompleted, isRewardClaimed)
         {
         }

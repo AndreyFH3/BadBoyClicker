@@ -1,8 +1,8 @@
 namespace QuestSystem
 {
-    public class BuyShopItemQuest : Quest
+    public class ShopBuyQuest : Quest
     {
-        public BuyShopItemQuest(QuestConfig.QuestData data, long currentValue, bool isCompleted, bool isRewardClaimed)
+        public ShopBuyQuest(QuestConfig.QuestData data, long currentValue, bool isCompleted, bool isRewardClaimed)
             : base(data, currentValue, isCompleted, isRewardClaimed)
         {
         }

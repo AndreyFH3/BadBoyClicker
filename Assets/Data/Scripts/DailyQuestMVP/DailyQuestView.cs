@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using DailyQuests;
 using DG.Tweening;
 using TMPro;
@@ -93,16 +94,28 @@ namespace DailyQuestMVP
                 return;
             }
 
-            foreach (var quest in quests)
-            {
-                if (quest == null || string.IsNullOrEmpty(quest.Id))
-                {
-                    continue;
-                }
+            var orderedQuests = quests
+                .Where(quest => quest != null && !string.IsNullOrEmpty(quest.Id))
+                .OrderBy(GetQuestSortOrder);
 
+            int siblingIndex = 0;
+            foreach (var quest in orderedQuests)
+            {
                 DailyQuestViewElement element = GetOrCreateQuestElement(quest.Id);
                 element.SetData(quest);
+                element.transform.SetSiblingIndex(siblingIndex);
+                siblingIndex++;
             }
+        }
+
+        private static int GetQuestSortOrder(DailyQuestViewData quest)
+        {
+            if (quest.CanClaimPoints)
+            {
+                return 0;
+            }
+
+            return quest.IsPointsClaimed ? 2 : 1;
         }
 
         private void SetMilestones(IReadOnlyList<DailyQuestMilestoneViewData> milestones)

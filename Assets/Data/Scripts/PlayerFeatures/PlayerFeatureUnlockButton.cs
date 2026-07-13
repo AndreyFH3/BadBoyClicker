@@ -10,11 +10,9 @@ namespace PlayerFeatures
     {
         [SerializeField] private PlayerFeatureType _feature;
         [SerializeField] private Button _button;
-        [SerializeField] private Image _icon;
-        [SerializeField] private Sprite _lockedIcon;
-        [SerializeField] private Sprite _unlockedIcon;
+        [SerializeField] private GameObject _unlockedObject;
+        [SerializeField] private GameObject _lockedObject;
         [SerializeField] private TextMeshProUGUI _lockedText;
-        [SerializeField] private string _lockedTextLocalizationKey = "player_features.locked_level";
 
         private IPlayerFeatureUnlockService _featureUnlockService;
 
@@ -73,19 +71,20 @@ namespace PlayerFeatures
                 _button.interactable = isUnlocked;
             }
 
-            if (_icon != null)
+            if (_unlockedObject != null)
             {
-                Sprite sprite = isUnlocked ? _unlockedIcon : _lockedIcon;
-                if (sprite != null)
-                {
-                    _icon.sprite = sprite;
-                }
+                _unlockedObject.SetActive(isUnlocked);
+            }
+
+            if (_lockedObject != null)
+            {
+                _lockedObject.SetActive(!isUnlocked);
             }
 
             if (_lockedText != null)
             {
                 _lockedText.gameObject.SetActive(!isUnlocked);
-                _lockedText.text = Localization.Format(_lockedTextLocalizationKey, requiredLevel);
+                _lockedText.text = Localization.Format("player_progression.level", requiredLevel);
             }
         }
 

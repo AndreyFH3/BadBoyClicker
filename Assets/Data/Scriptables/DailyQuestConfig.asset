@@ -13,76 +13,158 @@ MonoBehaviour:
   m_Name: DailyQuestConfig
   m_EditorClassIdentifier: Assembly-CSharp::DailyQuests.DailyQuestConfig
   _quests:
-  - _id: 1
-    _titleLocalizationKey: daily_quest.1.title
-    _title: 
-    _descriptionLocalizationKey: daily_quest.1.description
-    _description: 10
+  - _id: click_test
+    _titleLocalizationKey: daily_quest.type.click.title
+    _title:
+    _descriptionLocalizationKey: daily_quest.type.click.description
+    _description:
     _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
     _objectiveType: 0
-    _targetValue: 10
+    _resetPolicy: 0
+    _targetValue: 1000
+    _targetId:
+    _points: 10
+    _rewards:
+    - _rewardType: 3
+      _currencyType: 0
+      _amount: 0
+      _rewardId: Chest_1
+      _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
+  - _id: balance_test
+    _titleLocalizationKey: daily_quest.type.balance.title
+    _title: 
+    _descriptionLocalizationKey: daily_quest.type.balance.description
+    _description: 
+    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _objectiveType: 4
+    _resetPolicy: 0
+    _targetValue: 25000
     _targetId: 
     _points: 10
-  - _id: 2
-    _titleLocalizationKey: daily_quest.2.title
+    _rewards:
+    - _rewardType: 3
+      _currencyType: 0
+      _amount: 0
+      _rewardId: Chest_1
+      _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 
+  - _id: total_earned_test
+    _titleLocalizationKey: daily_quest.type.total_earned.title
     _title: 
-    _descriptionLocalizationKey: daily_quest.2.description
-    _description: 20
+    _descriptionLocalizationKey: daily_quest.type.total_earned.description
+    _description: 
     _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    _objectiveType: 0
-    _targetValue: 20
+    _objectiveType: 1
+    _resetPolicy: 0
+    _targetValue: 5000
     _targetId: 
     _points: 10
-  - _id: 3
-    _titleLocalizationKey: daily_quest.3.title
+    _rewards:
+    - _rewardType: 3
+      _currencyType: 0
+      _amount: 0
+      _rewardId: Chest_1
+      _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 
+  - _id: shop_buy_test
+    _titleLocalizationKey: daily_quest.type.shop_buy.title
     _title: 
-    _descriptionLocalizationKey: daily_quest.3.description
-    _description: 30
+    _descriptionLocalizationKey: daily_quest.type.shop_buy.description
+    _description: 
     _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    _objectiveType: 0
-    _targetValue: 30
-    _targetId: 
-    _points: 10
-  - _id: 4
-    _titleLocalizationKey: daily_quest.4.title
-    _title: 
-    _descriptionLocalizationKey: daily_quest.4.description
-    _description: 40
-    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    _objectiveType: 0
-    _targetValue: 40
-    _targetId: 
-    _points: 10
-  - _id: 5
-    _titleLocalizationKey: daily_quest.5.title
-    _title: 
-    _descriptionLocalizationKey: daily_quest.5.description
-    _description: 50
-    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    _objectiveType: 0
+    _objectiveType: 2
+    _resetPolicy: 0
     _targetValue: 50
     _targetId: 
     _points: 10
-  - _id: 6
-    _titleLocalizationKey: daily_quest.6.title
+    _rewards:
+    - _rewardType: 3
+      _currencyType: 0
+      _amount: 0
+      _rewardId: Chest_1
+      _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 
+  - _id: shop_spent_test
+    _titleLocalizationKey: daily_quest.type.shop_spent.title
     _title: 
-    _descriptionLocalizationKey: daily_quest.6.description
-    _description: 60
+    _descriptionLocalizationKey: daily_quest.type.shop_spent.description
+    _description: 
     _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    _objectiveType: 0
-    _targetValue: 60
+    _objectiveType: 6
+    _resetPolicy: 0
+    _targetValue: 15000
     _targetId: 
     _points: 10
-  - _id: 7
-    _titleLocalizationKey: daily_quest.7.title
+    _rewards:
+    - _rewardType: 3
+      _currencyType: 0
+      _amount: 0
+      _rewardId: Chest_1
+      _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 
+  - _id: player_level_test
+    _titleLocalizationKey: daily_quest.type.player_level.title
     _title: 
-    _descriptionLocalizationKey: daily_quest.7.description
-    _description: 60
+    _descriptionLocalizationKey: daily_quest.type.player_level.description
+    _description: 
     _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    _objectiveType: 0
-    _targetValue: 1200
+    _objectiveType: 3
+    _resetPolicy: 1
+    _targetValue: 2
     _targetId: 
-    _points: 20
+    _points: 10
+    _rewards:
+    - _rewardType: 3
+      _currencyType: 0
+      _amount: 0
+      _rewardId: Chest_1
+      _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 
+  - _id: watch_ad_test
+    _titleLocalizationKey: daily_quest.type.watch_ad.title
+    _title: 
+    _descriptionLocalizationKey: daily_quest.type.watch_ad.description
+    _description: 
+    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _objectiveType: 8
+    _resetPolicy: 0
+    _targetValue: 1
+    _targetId: 
+    _points: 10
+    _rewards:
+    - _rewardType: 3
+      _currencyType: 0
+      _amount: 0
+      _rewardId: Chest_1
+      _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
+  - _id: play_time_test
+    _titleLocalizationKey: daily_quest.type.play_time.title
+    _title:
+    _descriptionLocalizationKey: daily_quest.type.play_time.description
+    _description:
+    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _objectiveType: 9
+    _resetPolicy: 2
+    _targetValue: 300
+    _targetId:
+    _points: 10
+    _rewards:
+    - _rewardType: 3
+      _currencyType: 0
+      _amount: 0
+      _rewardId: Chest_1
+      _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
   _milestones:
   - _requiredPoints: 20
     _rewards:

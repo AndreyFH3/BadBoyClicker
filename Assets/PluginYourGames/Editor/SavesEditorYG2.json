@@ -1,113 +1,148 @@
 {
-    "idSave": 2927,
+    "idSave": 17113,
     "GameSaveData": {
         "Wallet": {
-            "Soft": 1714,
-            "Middle": 45,
-            "Hard": 50
+            "Soft": 7905,
+            "Middle": 160,
+            "Hard": 32
         },
         "Shop": {
             "Levels": [
                 {
-                    "Key": "Click:sharp_claws",
-                    "Level": 2
+                    "Key": "Click:soft_paw",
+                    "Level": 5
                 },
                 {
-                    "Key": "Click:soft_paw",
-                    "Level": 3
+                    "Key": "Click:sharp_claws",
+                    "Level": 8
+                },
+                {
+                    "Key": "Click:quick_dash",
+                    "Level": 1
+                },
+                {
+                    "Key": "Click:cat_energy",
+                    "Level": 5
                 }
             ]
         },
         "OfflineIncome": {
-            "LastOnlineTicks": 639194343876495436
+            "LastOnlineTicks": 639194670971428294
         },
         "DailyLogin": {
-            "CurrentDayIndex": 2,
-            "LastClaimUtcTicks": 639194343038220538
+            "CurrentDayIndex": 1,
+            "LastClaimUtcTicks": 639194511450412617
         },
         "DailyQuests": {
             "DayKey": "20260712",
-            "Points": 0,
+            "Points": 60,
+            "AvgIncomePerSecond": 0.0,
             "Quests": [
                 {
-                    "Id": "1",
-                    "CurrentValue": 10,
-                    "IsCompleted": true,
-                    "IsPointsAdded": false
-                },
-                {
-                    "Id": "2",
-                    "CurrentValue": 20,
-                    "IsCompleted": true,
-                    "IsPointsAdded": false
-                },
-                {
-                    "Id": "3",
-                    "CurrentValue": 30,
-                    "IsCompleted": true,
-                    "IsPointsAdded": false
-                },
-                {
-                    "Id": "4",
-                    "CurrentValue": 40,
-                    "IsCompleted": true,
-                    "IsPointsAdded": false
-                },
-                {
-                    "Id": "5",
+                    "Id": "shop_buy_test",
                     "CurrentValue": 50,
                     "IsCompleted": true,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": true,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
                 },
                 {
-                    "Id": "6",
-                    "CurrentValue": 60,
-                    "IsCompleted": true,
-                    "IsPointsAdded": false
-                },
-                {
-                    "Id": "7",
-                    "CurrentValue": 90,
+                    "Id": "click_test",
+                    "CurrentValue": 620,
                     "IsCompleted": false,
-                    "IsPointsAdded": false
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
+                },
+                {
+                    "Id": "player_level_test",
+                    "CurrentValue": 2,
+                    "IsCompleted": true,
+                    "IsPointsAdded": true,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
+                },
+                {
+                    "Id": "play_time_test",
+                    "CurrentValue": 300,
+                    "IsCompleted": true,
+                    "IsPointsAdded": true,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
+                },
+                {
+                    "Id": "shop_spent_test",
+                    "CurrentValue": 1074070,
+                    "IsCompleted": true,
+                    "IsPointsAdded": true,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 1074070,
+                    "HasEffectiveTarget": true
+                },
+                {
+                    "Id": "total_earned_test",
+                    "CurrentValue": 1074070,
+                    "IsCompleted": true,
+                    "IsPointsAdded": true,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 1074070,
+                    "HasEffectiveTarget": true
+                },
+                {
+                    "Id": "balance_test",
+                    "CurrentValue": 644442,
+                    "IsCompleted": true,
+                    "IsPointsAdded": true,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 644442,
+                    "HasEffectiveTarget": true
+                },
+                {
+                    "Id": "watch_ad_test",
+                    "CurrentValue": 1,
+                    "IsCompleted": true,
+                    "IsPointsAdded": true,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
                 }
             ],
             "Milestones": []
         },
         "PlayerProgression": {
-            "CompletedLevels": 3,
-            "CurrentExperience": 149
+            "CompletedLevels": 7,
+            "CurrentExperience": 370
         },
         "Quests": {
-            "Quests": [
-                {
-                    "Id": "Second",
-                    "CurrentValue": 100000,
-                    "IsCompleted": true,
-                    "IsRewardClaimed": true
-                },
-                {
-                    "Id": "first",
-                    "CurrentValue": 100,
-                    "IsCompleted": true,
-                    "IsRewardClaimed": true
-                },
-                {
-                    "Id": "Third",
-                    "CurrentValue": 10,
-                    "IsCompleted": true,
-                    "IsRewardClaimed": true
-                },
-                {
-                    "Id": "Fourth",
-                    "CurrentValue": 3,
-                    "IsCompleted": false,
-                    "IsRewardClaimed": false
-                }
-            ]
+            "Quests": []
         },
         "CardCollections": {
-            "Cards": [],
+            "Cards": [
+                {
+                    "Id": "0_4",
+                    "Amount": 4
+                },
+                {
+                    "Id": "0_1",
+                    "Amount": 2
+                },
+                {
+                    "Id": "0_2",
+                    "Amount": 1
+                }
+            ],
             "Collections": []
         },
         "Customization": {

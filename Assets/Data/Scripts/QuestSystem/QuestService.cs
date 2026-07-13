@@ -191,9 +191,9 @@ namespace QuestSystem
         {
             foreach (var quest in _quests)
             {
-                if (quest is EarnSoftQuest earnSoftQuest)
+                if (quest is TotalEarnedQuest totalEarnedQuest)
                 {
-                    earnSoftQuest.OnSoftEarned(amount);
+                    totalEarnedQuest.OnSoftEarned(amount);
                 }
             }
         }
@@ -202,9 +202,9 @@ namespace QuestSystem
         {
             foreach (var quest in _quests)
             {
-                if (quest is BuyShopItemQuest buyShopItemQuest)
+                if (quest is ShopBuyQuest shopBuyQuest)
                 {
-                    buyShopItemQuest.OnShopItemBought(itemId);
+                    shopBuyQuest.OnShopItemBought(itemId);
                 }
             }
         }
@@ -213,9 +213,9 @@ namespace QuestSystem
         {
             foreach (var quest in _quests)
             {
-                if (quest is CompletePlayerLevelQuest completePlayerLevelQuest)
+                if (quest is PlayerLevelQuest playerLevelQuest)
                 {
-                    completePlayerLevelQuest.OnPlayerLevelCompleted();
+                    playerLevelQuest.OnPlayerLevelCompleted();
                 }
             }
         }

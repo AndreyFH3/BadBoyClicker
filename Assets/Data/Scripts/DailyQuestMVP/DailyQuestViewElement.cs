@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Utils;
 
 namespace DailyQuestMVP
 {
@@ -81,12 +82,12 @@ namespace DailyQuestMVP
 
             if (_progressText != null)
             {
-                _progressText.text = data.ProgressText;
+                _progressText.text = $"{data.CurrentValue.ConvertFromLongToString()}/{data.TargetValue.ConvertFromLongToString()}";
             }
 
             if (_pointsText != null)
             {
-                _pointsText.text = $"+{data.Points} {Localization.Tr(PointsSuffixKey)}";
+                _pointsText.text = $"+{((long)data.Points).ConvertFromLongToString()} {Localization.Tr(PointsSuffixKey)}";
             }
 
             ApplyState(GetState(data));

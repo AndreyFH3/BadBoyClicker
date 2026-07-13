@@ -7,6 +7,7 @@ namespace DailyQuests
     {
         public string DayKey;
         public int Points;
+        public float AvgIncomePerSecond;
         public DailyQuestState[] Quests;
         public DailyQuestMilestoneState[] Milestones;
 
@@ -17,6 +18,10 @@ namespace DailyQuests
             public long CurrentValue;
             public bool IsCompleted;
             public bool IsPointsAdded;
+            public long BaselineValue;
+            public bool HasBaseline;
+            public long EffectiveTargetValue;
+            public bool HasEffectiveTarget;
         }
 
         [Serializable]

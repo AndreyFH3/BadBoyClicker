@@ -6,6 +6,7 @@ using Shop;
 using UnityEngine;
 using Zenject;
 using GameLocalization;
+using QuestSystem;
 
 namespace PlayerProgression
 {
@@ -17,6 +18,7 @@ namespace PlayerProgression
         private LazyInject<IShopRuntimeSave> _shopSave;
         private LazyInject<IRewardedAdsService> _rewardedAds;
         private ILocalizationService _localization;
+        private IQuestRewardService _rewardService;
 
         public int CurrentLevel => _save.CompletedLevels + 1;
         public long CurrentExperience => _save.CurrentExperience;
@@ -33,7 +35,7 @@ namespace PlayerProgression
         public event Action<int> LevelCompleted;
 
         [Inject]
-        public void Construct(GameConfig config, Wallet wallet, PlayerProgressionRuntimeSave save, LazyInject<IShopRuntimeSave> shopSave, LazyInject<IRewardedAdsService> rewardedAds, ILocalizationService localization)
+        public void Construct(GameConfig config, Wallet wallet, PlayerProgressionRuntimeSave save, LazyInject<IShopRuntimeSave> shopSave, LazyInject<IRewardedAdsService> rewardedAds, ILocalizationService localization, IQuestRewardService rewardService)
         {
             _config = config;
             _wallet = wallet;
@@ -41,6 +43,7 @@ namespace PlayerProgression
             _shopSave = shopSave;
             _rewardedAds = rewardedAds;
             _localization = localization;
+            _rewardService = rewardService;
         }
 
         public void Initialize()
@@ -94,6 +97,7 @@ namespace PlayerProgression
             _wallet.ResetSoft();
             _shopSave.Value.ResetLevels();
             _wallet.AddMiddle(GetDecorReward(_save.CompletedLevels));
+            _rewardService.GiveRewards(GetLevelData(_save.CompletedLevels)?.Rewards);
             _save.SetState(completedLevels, 0);
             _shopSave.Value.Recalculate(_config);
             LevelCompleted?.Invoke(completedLevels);
@@ -168,8 +172,9 @@ namespace PlayerProgression
 
         private long GetLevelExperienceRequirement(int completedLevels)
         {
-            var level = GetLevelData(completedLevels);
-            return level == null ? 0 : Math.Max(0, level.ExperienceToComplete);
+            long baseExperience = Math.Max(1, _config?.PlayerProgression?.BaseExperienceToComplete ?? 1000);
+            float growth = Math.Max(1f, _config?.PlayerProgression?.ExperienceGrowth ?? 1f);
+            return (long)Math.Ceiling(baseExperience * Math.Pow(growth, completedLevels));
         }
 
         private long GetDecorReward(int completedLevels)
@@ -244,6 +249,20 @@ namespace PlayerProgression
                         bonus.Icon,
                         _localization.Format("player_progression.reward.percent", bonus.Percent),
                         GetBonusDescription(bonus.Type)));
+                }
+            }
+
+            var rewards = GetLevelData(completedLevels)?.Rewards;
+            if (rewards != null)
+            {
+                foreach (var reward in rewards)
+                {
+                    if (reward == null)
+                    {
+                        continue;
+                    }
+
+                    entries.Add(new LevelRewardEntry(reward.Icon, reward.DisplayText));
                 }
             }
 

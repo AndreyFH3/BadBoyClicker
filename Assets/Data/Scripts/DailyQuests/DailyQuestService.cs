@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Core;
+using Core.Ads;
 using Core.Time;
 using Installer.Init;
 using PlayerProgression;
@@ -9,13 +10,16 @@ using QuestSystem;
 using Rewards;
 using Shop;
 using Utils;
+using UnityEngine;
 using Zenject;
 using GameLocalization;
 
 namespace DailyQuests
 {
-    public class DailyQuestService : IDailyQuestService, IInitializable, IDisposable
+    public class DailyQuestService : IDailyQuestService, IInitializable, IDisposable, ITickable
     {
+        private const float BaseIncomeFallback = 50f;
+
         private DailyQuestConfig _config;
         private DailyQuestRuntimeSave _save;
         private IQuestRewardService _rewardService;
@@ -25,9 +29,12 @@ namespace DailyQuests
         private Wallet _wallet;
         private IShopModel _shopModel;
         private IPlayerProgressionService _playerProgression;
+        private IRewardedAdsService _rewardedAds;
         private ILocalizationService _localization;
         private bool _isUnlocked;
         private bool _isProgressListening;
+        private float _sessionSeconds;
+        private long _sessionSoftEarned;
 
         public int Points => _save.Points;
         public event Action Changed;
@@ -45,6 +52,7 @@ namespace DailyQuests
             Wallet wallet,
             IShopModel shopModel,
             IPlayerProgressionService playerProgression,
+            IRewardedAdsService rewardedAds,
             ILocalizationService localization)
         {
             _config = config;
@@ -56,6 +64,7 @@ namespace DailyQuests
             _wallet = wallet;
             _shopModel = shopModel;
             _playerProgression = playerProgression;
+            _rewardedAds = rewardedAds;
             _localization = localization;
         }
 
@@ -63,6 +72,9 @@ namespace DailyQuests
         {
             _save.Changed += OnSaveChanged;
             _featureUnlockService.FeatureUnlocked += OnFeatureUnlocked;
+            Application.quitting += OnApplicationQuitting;
+
+            ResetSessionQuests();
 
             _isUnlocked = _featureUnlockService.IsUnlocked(PlayerFeatureType.DailyQuest);
             if (_isUnlocked)
@@ -73,11 +85,28 @@ namespace DailyQuests
             Changed?.Invoke();
         }
 
+        public void Tick()
+        {
+            if (!IsFeatureUnlocked())
+            {
+                return;
+            }
+
+            _sessionSeconds += UnityEngine.Time.deltaTime;
+            UpdateMaxProgress(QuestObjectiveType.PlayTime, null, (long)_sessionSeconds);
+        }
+
         public void Dispose()
         {
             _save.Changed -= OnSaveChanged;
             _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;
+            Application.quitting -= OnApplicationQuitting;
             StopProgressListening();
+        }
+
+        private void OnApplicationQuitting()
+        {
+            CheckpointAvgIncome();
         }
 
         public DailyQuestBoardViewData GetViewData()
@@ -101,13 +130,13 @@ namespace DailyQuests
                     }
 
                     var state = _save.GetQuestState(data.Id);
-                    long targetValue = Math.Max(1, data.TargetValue);
+                    long targetValue = GetTargetValue(data, state);
                     long currentValue = Math.Min(targetValue, Math.Max(0, state.CurrentValue));
                     quests.Add(new DailyQuestViewData
                     {
                         Id = data.Id,
                         Title = _localization.Localize(data.TitleLocalizationKey),
-                        Description = _localization.Localize(data.DescriptionLocalizationKey),
+                        Description = _localization.Format(data.DescriptionLocalizationKey, targetValue.ConvertFromLongToString()),
                         Icon = data.Icon,
                         ProgressText = $"{currentValue}/{targetValue}",
                         CurrentValue = currentValue,
@@ -116,7 +145,8 @@ namespace DailyQuests
                         Points = data.Points,
                         IsCompleted = state.IsCompleted,
                         IsPointsClaimed = state.IsPointsAdded,
-                        CanClaimPoints = state.IsCompleted && !state.IsPointsAdded
+                        CanClaimPoints = state.IsCompleted && !state.IsPointsAdded,
+                        Rewards = BuildRewardDisplays(data.Rewards)
                     });
                 }
             }
@@ -183,6 +213,7 @@ namespace DailyQuests
             state.IsPointsAdded = true;
             _save.SetQuestState(state);
             _save.AddPoints(data.Points);
+            _rewardService.GiveRewards(data.Rewards);
             QuestPointsClaimed?.Invoke(questId, data.Points);
             Changed?.Invoke();
             return true;
@@ -264,8 +295,11 @@ namespace DailyQuests
 
             _gameStartRouter.OnClickValueEvent += OnClicked;
             _wallet.SoftAdded += OnSoftEarned;
+            _wallet.SoftSpent += OnSoftSpent;
+            _wallet.OnChanged += OnWalletChanged;
             _shopModel.ItemBought += OnShopItemBought;
             _playerProgression.LevelCompleted += OnPlayerLevelCompleted;
+            _rewardedAds.AdRewarded += OnAdRewarded;
             _isProgressListening = true;
         }
 
@@ -278,8 +312,11 @@ namespace DailyQuests
 
             _gameStartRouter.OnClickValueEvent -= OnClicked;
             _wallet.SoftAdded -= OnSoftEarned;
+            _wallet.SoftSpent -= OnSoftSpent;
+            _wallet.OnChanged -= OnWalletChanged;
             _shopModel.ItemBought -= OnShopItemBought;
             _playerProgression.LevelCompleted -= OnPlayerLevelCompleted;
+            _rewardedAds.AdRewarded -= OnAdRewarded;
             _isProgressListening = false;
         }
 
@@ -308,7 +345,176 @@ namespace DailyQuests
             string todayKey = GetTodayKey();
             if (_save.DayKey != todayKey)
             {
-                _save.ResetForDay(todayKey);
+                _save.ResetForDay(todayKey, GetUntilCompletedQuestIds());
+            }
+
+            EnsureBaselines();
+            EnsureEffectiveTargets();
+        }
+
+        private void EnsureBaselines()
+        {
+            var questDatas = _config?.Quests;
+            if (questDatas == null)
+            {
+                return;
+            }
+
+            foreach (var data in questDatas)
+            {
+                if (data == null || string.IsNullOrEmpty(data.Id) || data.ObjectiveType != QuestObjectiveType.PlayerLevel)
+                {
+                    continue;
+                }
+
+                var state = _save.GetQuestState(data.Id);
+                if (state.IsCompleted || state.HasBaseline)
+                {
+                    continue;
+                }
+
+                state.Id = data.Id;
+                state.HasBaseline = true;
+                state.BaselineValue = _playerProgression.CurrentLevel;
+                _save.SetQuestState(state);
+            }
+        }
+
+        private void EnsureEffectiveTargets()
+        {
+            var questDatas = _config?.Quests;
+            if (questDatas == null)
+            {
+                return;
+            }
+
+            foreach (var data in questDatas)
+            {
+                if (data == null || string.IsNullOrEmpty(data.Id) || !UsesIncomeScaledTarget(data.ObjectiveType))
+                {
+                    continue;
+                }
+
+                var state = _save.GetQuestState(data.Id);
+                if (state.IsCompleted || state.HasEffectiveTarget)
+                {
+                    continue;
+                }
+
+                state.Id = data.Id;
+                state.HasEffectiveTarget = true;
+                state.EffectiveTargetValue = GetScaledTarget(data.ObjectiveType, GetAvgIncomePerSecond());
+                _save.SetQuestState(state);
+            }
+        }
+
+        private static bool UsesIncomeScaledTarget(QuestObjectiveType type)
+        {
+            return type == QuestObjectiveType.Balance
+                || type == QuestObjectiveType.TotalEarned
+                || type == QuestObjectiveType.ShopSpent;
+        }
+
+        private long GetTargetValue(DailyQuestConfig.DailyQuestData data, DailyQuestSaveData.DailyQuestState state)
+        {
+            if (UsesIncomeScaledTarget(data.ObjectiveType) && state.HasEffectiveTarget)
+            {
+                return Math.Max(1, state.EffectiveTargetValue);
+            }
+
+            return Math.Max(1, data.TargetValue);
+        }
+
+        private float GetAvgIncomePerSecond()
+        {
+            float avgIncome = _save.AvgIncomePerSecond;
+            return avgIncome > 0f ? avgIncome : BaseIncomeFallback;
+        }
+
+        // Checkpoints the running session's average soft income (earned ÷ elapsed
+        // seconds) so the next day's quest targets scale to how the player has
+        // actually been playing, not a live snapshot that could swing wildly.
+        private void CheckpointAvgIncome()
+        {
+            if (_sessionSeconds <= 0f)
+            {
+                return;
+            }
+
+            float avgIncome = _sessionSoftEarned / _sessionSeconds;
+            _save.SetAvgIncomePerSecond(avgIncome);
+        }
+
+        // Target = how much of this currency the player's recent average income
+        // would produce over targetTime, floored at minTarget so early/low-income
+        // players still get a meaningful goal.
+        private static long GetScaledTarget(QuestObjectiveType type, float avgIncomePerSecond)
+        {
+            float targetTimeSeconds;
+            long minTarget;
+            switch (type)
+            {
+                case QuestObjectiveType.TotalEarned:
+                    targetTimeSeconds = 300f;
+                    minTarget = 5000L;
+                    break;
+                case QuestObjectiveType.ShopSpent:
+                    targetTimeSeconds = 300f;
+                    minTarget = 15000L;
+                    break;
+                case QuestObjectiveType.Balance:
+                    targetTimeSeconds = 180f;
+                    minTarget = 25000L;
+                    break;
+                default:
+                    targetTimeSeconds = 300f;
+                    minTarget = 1L;
+                    break;
+            }
+
+            long targetByIncome = (long)(avgIncomePerSecond * targetTimeSeconds);
+            return Math.Max(targetByIncome, minTarget);
+        }
+
+        private List<string> GetUntilCompletedQuestIds()
+        {
+            var ids = new List<string>();
+            var questDatas = _config?.Quests;
+            if (questDatas == null)
+            {
+                return ids;
+            }
+
+            foreach (var data in questDatas)
+            {
+                if (data != null && !string.IsNullOrEmpty(data.Id) && data.ResetPolicy == DailyQuestResetPolicy.UntilCompleted)
+                {
+                    ids.Add(data.Id);
+                }
+            }
+
+            return ids;
+        }
+
+        private void ResetSessionQuests()
+        {
+            _sessionSeconds = 0f;
+            _sessionSoftEarned = 0;
+
+            var questDatas = _config?.Quests;
+            if (questDatas == null)
+            {
+                return;
+            }
+
+            foreach (var data in questDatas)
+            {
+                if (data == null || string.IsNullOrEmpty(data.Id) || data.ResetPolicy != DailyQuestResetPolicy.PerSession)
+                {
+                    continue;
+                }
+
+                _save.SetQuestState(new DailyQuestSaveData.DailyQuestState { Id = data.Id });
             }
         }
 
@@ -325,17 +531,34 @@ namespace DailyQuests
 
         private void OnSoftEarned(long amount)
         {
-            AddProgress(QuestObjectiveType.EarnSoft, null, amount);
+            _sessionSoftEarned += amount;
+            AddProgress(QuestObjectiveType.TotalEarned, null, amount);
+        }
+
+        private void OnSoftSpent(long amount)
+        {
+            AddProgress(QuestObjectiveType.ShopSpent, null, amount);
+        }
+
+        private void OnWalletChanged()
+        {
+            UpdateMaxProgress(QuestObjectiveType.Balance, null, _wallet.Soft);
         }
 
         private void OnShopItemBought(string itemId)
         {
-            AddProgress(QuestObjectiveType.BuyShopItem, itemId, 1);
+            AddProgress(QuestObjectiveType.ShopBuy, itemId, 1);
         }
 
         private void OnPlayerLevelCompleted(int completedLevel)
         {
-            AddProgress(QuestObjectiveType.CompletePlayerLevel, null, 1);
+            CheckpointAvgIncome();
+            UpdateDeltaProgress(QuestObjectiveType.PlayerLevel, null, _playerProgression.CurrentLevel);
+        }
+
+        private void OnAdRewarded()
+        {
+            AddProgress(QuestObjectiveType.WatchAd, null, 1);
         }
 
         private void AddProgress(QuestObjectiveType objectiveType, string targetId, long amount)
@@ -372,9 +595,101 @@ namespace DailyQuests
                     continue;
                 }
 
-                long targetValue = Math.Max(1, data.TargetValue);
+                long targetValue = GetTargetValue(data, state);
                 state.Id = data.Id;
                 state.CurrentValue = Math.Min(targetValue, Math.Max(0, state.CurrentValue) + amount);
+                state.IsCompleted = state.CurrentValue >= targetValue;
+                _save.SetQuestState(state);
+                changed = true;
+            }
+
+            if (changed)
+            {
+                Changed?.Invoke();
+            }
+        }
+
+        private void UpdateMaxProgress(QuestObjectiveType objectiveType, string targetId, long absoluteValue)
+        {
+            if (!IsFeatureUnlocked())
+            {
+                return;
+            }
+
+            EnsureToday();
+
+            var questDatas = _config?.Quests;
+            if (questDatas == null)
+            {
+                return;
+            }
+
+            bool changed = false;
+            foreach (var data in questDatas)
+            {
+                if (!CanProgress(data, objectiveType, targetId))
+                {
+                    continue;
+                }
+
+                var state = _save.GetQuestState(data.Id);
+                if (state.IsCompleted || absoluteValue <= state.CurrentValue)
+                {
+                    continue;
+                }
+
+                long targetValue = GetTargetValue(data, state);
+                state.Id = data.Id;
+                state.CurrentValue = Math.Min(targetValue, absoluteValue);
+                state.IsCompleted = state.CurrentValue >= targetValue;
+                _save.SetQuestState(state);
+                changed = true;
+            }
+
+            if (changed)
+            {
+                Changed?.Invoke();
+            }
+        }
+
+        private void UpdateDeltaProgress(QuestObjectiveType objectiveType, string targetId, long currentAbsoluteValue)
+        {
+            if (!IsFeatureUnlocked())
+            {
+                return;
+            }
+
+            EnsureToday();
+
+            var questDatas = _config?.Quests;
+            if (questDatas == null)
+            {
+                return;
+            }
+
+            bool changed = false;
+            foreach (var data in questDatas)
+            {
+                if (!CanProgress(data, objectiveType, targetId))
+                {
+                    continue;
+                }
+
+                var state = _save.GetQuestState(data.Id);
+                if (state.IsCompleted || !state.HasBaseline)
+                {
+                    continue;
+                }
+
+                long targetValue = GetTargetValue(data, state);
+                long delta = Math.Max(0, currentAbsoluteValue - state.BaselineValue);
+                if (delta <= state.CurrentValue)
+                {
+                    continue;
+                }
+
+                state.Id = data.Id;
+                state.CurrentValue = Math.Min(targetValue, delta);
                 state.IsCompleted = state.CurrentValue >= targetValue;
                 _save.SetQuestState(state);
                 changed = true;

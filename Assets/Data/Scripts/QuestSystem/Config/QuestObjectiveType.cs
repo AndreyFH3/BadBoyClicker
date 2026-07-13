@@ -3,8 +3,12 @@ namespace QuestSystem
     public enum QuestObjectiveType
     {
         Click = 0,
-        EarnSoft = 1,
-        BuyShopItem = 2,
-        CompletePlayerLevel = 3
+        TotalEarned = 1,
+        ShopBuy = 2,
+        PlayerLevel = 3,
+        Balance = 4,
+        ShopSpent = 6,
+        WatchAd = 8,
+        PlayTime = 9
     }
 }

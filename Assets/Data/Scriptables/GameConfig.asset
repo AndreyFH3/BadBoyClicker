@@ -17,184 +17,184 @@ MonoBehaviour:
     _nameLocalizationKey: shop.item.soft_paw.name
     _name: "\u041C\u044F\u0433\u043A\u0430\u044F \u043B\u0430\u043F\u043A\u0430"
     _icon: {fileID: -5548852401424306639, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 10
+    _basePrice: 15
     _baseBonus: 1
   - _id: sharp_claws
     _nameLocalizationKey: shop.item.sharp_claws.name
     _name: "\u041E\u0441\u0442\u0440\u044B\u0435 \u043A\u043E\u0433\u043E\u0442\u043A\u0438"
     _icon: {fileID: -4545782910502339972, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 30
+    _basePrice: 50
     _baseBonus: 3
   - _id: cat_energy
     _nameLocalizationKey: shop.item.cat_energy.name
     _name: "\u041A\u043E\u0448\u0430\u0447\u044C\u044F \u044D\u043D\u0435\u0440\u0433\u0438\u044F"
     _icon: {fileID: -3318265969319785442, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 100
-    _baseBonus: 8
+    _basePrice: 180
+    _baseBonus: 10
   - _id: quick_dash
     _nameLocalizationKey: shop.item.quick_dash.name
     _name: "\u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u0440\u044B\u0432\u043E\u043A"
     _icon: {fileID: 342032488681681036, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 800
-    _baseBonus: 40
+    _basePrice: 2500
+    _baseBonus: 60
   - _id: hunting_instinct
     _nameLocalizationKey: shop.item.hunting_instinct.name
     _name: "\u041E\u0445\u043E\u0442\u043D\u0438\u0447\u0438\u0439 \u0438\u043D\u0441\u0442\u0438\u043D\u043A\u0442"
     _icon: {fileID: 604537203266997512, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 3200
-    _baseBonus: 100
+    _basePrice: 12000
+    _baseBonus: 180
   - _id: tail_agility
     _nameLocalizationKey: shop.item.tail_agility.name
     _name: "\u041B\u043E\u0432\u043A\u043E\u0441\u0442\u044C \u0445\u0432\u043E\u0441\u0442\u0430"
     _icon: {fileID: 254235491185066319, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 13000
-    _baseBonus: 250
+    _basePrice: 60000
+    _baseBonus: 550
   - _id: cat_training
     _nameLocalizationKey: shop.item.cat_training.name
     _name: "\u0422\u0440\u0435\u043D\u0438\u0440\u043E\u0432\u043A\u0430 \u043A\u043E\u0442\u0430"
     _icon: {fileID: -6615479691379320253, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 130000
-    _baseBonus: 1200
+    _basePrice: 800000
+    _baseBonus: 3500
   - _id: wild_thrill
     _nameLocalizationKey: shop.item.wild_thrill.name
     _name: "\u0414\u0438\u043A\u0438\u0439 \u0430\u0437\u0430\u0440\u0442"
     _icon: {fileID: 3287885838500074183, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 650000
-    _baseBonus: 3000
+    _basePrice: 5000000
+    _baseBonus: 10000
   - _id: night_hunt
     _nameLocalizationKey: shop.item.night_hunt.name
     _name: "\u041D\u043E\u0447\u043D\u0430\u044F \u043E\u0445\u043E\u0442\u0430"
     _icon: {fileID: 6766861861981507550, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 3200000
-    _baseBonus: 7500
+    _basePrice: 30000000
+    _baseBonus: 30000
   - _id: predator_instinct
     _nameLocalizationKey: shop.item.predator_instinct.name
     _name: "\u0418\u043D\u0441\u0442\u0438\u043D\u043A\u0442 \u0445\u0438\u0449\u043D\u0438\u043A\u0430"
     _icon: {fileID: 6106692926879089763, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 38000000
-    _baseBonus: 45000
+    _basePrice: 450000000
+    _baseBonus: 180000
   - _id: royal_grace
     _nameLocalizationKey: shop.item.royal_grace.name
     _name: "\u041A\u043E\u0440\u043E\u043B\u0435\u0432\u0441\u043A\u0430\u044F \u0433\u0440\u0430\u0446\u0438\u044F"
     _icon: {fileID: 2025788352034883514, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 190000000
-    _baseBonus: 135000
+    _basePrice: 20000000000
+    _baseBonus: 600000
   - _id: alpha_cat
     _nameLocalizationKey: shop.item.alpha_cat.name
     _name: "\u0410\u043B\u044C\u0444\u0430-\u043A\u043E\u0442"
     _icon: {fileID: 5970089715425159284, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 950000000
-    _baseBonus: 400000
+    _basePrice: 20000000000
+    _baseBonus: 2000000
   - _id: yard_legend
     _nameLocalizationKey: shop.item.yard_legend.name
     _name: "\u041B\u0435\u0433\u0435\u043D\u0434\u0430 \u0434\u0432\u043E\u0440\u0430"
     _icon: {fileID: 5711418953157387106, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 14000000000
-    _baseBonus: 2400000
+    _basePrice: 350000000000
+    _baseBonus: 12000000
   - _id: cat_god
     _nameLocalizationKey: shop.item.cat_god.name
     _name: "\u041A\u043E\u0448\u0430\u0447\u0438\u0439 \u0431\u043E\u0433"
     _icon: {fileID: 356985085617845694, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 84000000000
-    _baseBonus: 7200000
+    _basePrice: 2500000000000
+    _baseBonus: 40000000
   - _id: absolute_predator
     _nameLocalizationKey: shop.item.absolute_predator.name
     _name: "\u0410\u0431\u0441\u043E\u043B\u044E\u0442\u043D\u044B\u0439 \u0445\u0438\u0449\u043D\u0438\u043A"
     _icon: {fileID: 1591732168375440406, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-    _basePrice: 500000000000
-    _baseBonus: 22000000
+    _basePrice: 18000000000000
+    _baseBonus: 130000000
   _autoBuys:
   - _id: sleepy_cat
     _nameLocalizationKey: shop.item.sleepy_cat.name
     _name: "\u0421\u043E\u043D\u043D\u044B\u0439 \u043A\u043E\u0442\u0438\u043A"
     _icon: {fileID: 7793763888116114537, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 15
+    _basePrice: 20
     _baseBonus: 5
   - _id: cat_bed
     _nameLocalizationKey: shop.item.cat_bed.name
     _name: "\u041B\u0435\u0436\u0430\u043D\u043A\u0430"
     _icon: {fileID: 309322037522388633, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 45
+    _basePrice: 70
     _baseBonus: 15
   - _id: food_bowl
     _nameLocalizationKey: shop.item.food_bowl.name
     _name: "\u041C\u0438\u0441\u043A\u0430 \u0441 \u0435\u0434\u043E\u0439"
     _icon: {fileID: -9001296366528516101, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 150
-    _baseBonus: 40
+    _basePrice: 250
+    _baseBonus: 50
   - _id: toy_mouse
     _nameLocalizationKey: shop.item.toy_mouse.name
     _name: "\u0418\u0433\u0440\u0443\u0448\u0435\u0447\u043D\u0430\u044F \u043C\u044B\u0448\u044C"
     _icon: {fileID: -5589978439229316004, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 1200
-    _baseBonus: 200
+    _basePrice: 3500
+    _baseBonus: 300
   - _id: scratching_post
     _nameLocalizationKey: shop.item.scratching_post.name
     _name: "\u041A\u043E\u0433\u0442\u0435\u0442\u043E\u0447\u043A\u0430"
     _icon: {fileID: 2078818959348289317, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 4800
-    _baseBonus: 500
+    _basePrice: 17000
+    _baseBonus: 900
   - _id: cat_house
     _nameLocalizationKey: shop.item.cat_house.name
     _name: "\u0414\u043E\u043C\u0438\u043A \u043A\u043E\u0442\u0430"
     _icon: {fileID: -8940632453920092423, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 19000
-    _baseBonus: 1250
+    _basePrice: 85000
+    _baseBonus: 2800
   - _id: auto_feeder
     _nameLocalizationKey: shop.item.auto_feeder.name
     _name: "\u0410\u0432\u0442\u043E\u043A\u043E\u0440\u043C\u0443\u0448\u043A\u0430"
     _icon: {fileID: 3023662979109774271, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 190000
-    _baseBonus: 6000
+    _basePrice: 1100000
+    _baseBonus: 17000
   - _id: robo_toy
     _nameLocalizationKey: shop.item.robo_toy.name
     _name: "\u0420\u043E\u0431\u043E-\u0438\u0433\u0440\u0443\u0448\u043A\u0430"
     _icon: {fileID: 2873340442510483029, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 950000
-    _baseBonus: 15000
+    _basePrice: 7000000
+    _baseBonus: 50000
   - _id: cat_helper
     _nameLocalizationKey: shop.item.cat_helper.name
     _name: "\u041A\u043E\u0448\u0430\u0447\u0438\u0439 \u043F\u043E\u043C\u043E\u0449\u043D\u0438\u043A"
     _icon: {fileID: -5902411876663814002, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 4800000
-    _baseBonus: 37500
+    _basePrice: 42000000
+    _baseBonus: 150000
   - _id: mini_food_farm
     _nameLocalizationKey: shop.item.mini_food_farm.name
     _name: "\u041C\u0438\u043D\u0438-\u0444\u0435\u0440\u043C\u0430 \u0435\u0434\u044B"
     _icon: {fileID: 7027040346589413109, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 57000000
-    _baseBonus: 225000
+    _basePrice: 630000000
+    _baseBonus: 900000
   - _id: cat_manager
     _nameLocalizationKey: shop.item.cat_manager.name
     _name: "\u041A\u043E\u0442-\u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440"
     _icon: {fileID: 6405794910122493469, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 285000000
-    _baseBonus: 675000
+    _basePrice: 4200000000
+    _baseBonus: 3000000
   - _id: treat_factory
     _nameLocalizationKey: shop.item.treat_factory.name
     _name: "\u0424\u0430\u0431\u0440\u0438\u043A\u0430 \u043B\u0430\u043A\u043E\u043C\u0441\u0442\u0432"
     _icon: {fileID: -6337228667840402679, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 1400000000
-    _baseBonus: 2000000
+    _basePrice: 28000000000
+    _baseBonus: 10000000
   - _id: cat_business
     _nameLocalizationKey: shop.item.cat_business.name
     _name: "\u041A\u043E\u0448\u0430\u0447\u0438\u0439 \u0431\u0438\u0437\u043D\u0435\u0441"
     _icon: {fileID: -6804951833156848296, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 21000000
-    _baseBonus: 12000000
+    _basePrice: 490000000000
+    _baseBonus: 60000000
   - _id: cat_empire
     _nameLocalizationKey: shop.item.cat_empire.name
     _name: "\u0418\u043C\u043F\u0435\u0440\u0438\u044F \u043A\u043E\u0442\u043E\u0432"
     _icon: {fileID: 3135033732253177112, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 126000000000
-    _baseBonus: 36000000
+    _basePrice: 3500000000000
+    _baseBonus: 200000000
   - _id: endless_food_supply
     _nameLocalizationKey: shop.item.endless_food_supply.name
     _name: "\u0411\u0435\u0441\u043A\u043E\u043D\u0435\u0447\u043D\u044B\u0439 \u0437\u0430\u043F\u0430\u0441
       \u0435\u0434\u044B"
     _icon: {fileID: -7461660128459096750, guid: c896f8e08445b1e498c1065c574dd646, type: 3}
-    _basePrice: 750000000000
-    _baseBonus: 110000000
+    _basePrice: 25000000000000
+    _baseBonus: 650000000
   _paidBuys:
   - _id: hard_currency_pack_1
     _purchaseKind: 0
@@ -434,7 +434,9 @@ MonoBehaviour:
   _playerProgression:
     _middleRewardPerLevel: 5
     _middleRewardIcon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-    _purchaseExperiencePercent: 10
+    _purchaseExperiencePercent: 0.5
+    _baseExperienceToComplete: 1000
+    _experienceGrowth: 1.4
     _experienceRewards:
     - _source: 0
       _experience: 1
@@ -445,255 +447,228 @@ MonoBehaviour:
     - _source: 3
       _experience: 50
     _levels:
-    - _experienceToComplete: 150
-      _decorReward: 5
+    - _decorReward: 5
       _bonuses:
       - _type: 0
-        _percent: 5
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 200
-      _decorReward: 5
+      _rewards: []
+    - _decorReward: 5
       _bonuses:
       - _type: 1
-        _percent: 10
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 300
-      _decorReward: 5
+      _rewards: []
+    - _decorReward: 5
       _bonuses:
       - _type: 0
-        _percent: 5
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _rewards: []
+    - _decorReward: 10
+      _bonuses:
       - _type: 1
-        _percent: 5
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 450
-      _decorReward: 10
+      _rewards:
+      - _rewardType: 3
+        _currencyType: 0
+        _amount: 0
+        _rewardId: Chest_1
+        _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+        _displayTextLocalizationKey: chest.chest_1.title
+        _displayText: Chest
+    - _decorReward: 10
       _bonuses:
       - _type: 0
-        _percent: 10
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 650
-      _decorReward: 10
+      _rewards: []
+    - _decorReward: 10
       _bonuses:
       - _type: 1
-        _percent: 15
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 900
-      _decorReward: 10
+      _rewards: []
+    - _decorReward: 15
       _bonuses:
       - _type: 0
-        _percent: 5
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _rewards: []
+    - _decorReward: 15
+      _bonuses:
       - _type: 1
-        _percent: 10
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 1200
-      _decorReward: 15
+      _rewards: []
+    - _decorReward: 15
       _bonuses:
       - _type: 0
-        _percent: 10
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 1600
-      _decorReward: 15
+      _rewards:
+      - _rewardType: 3
+        _currencyType: 0
+        _amount: 0
+        _rewardId: Chest_1
+        _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+        _displayTextLocalizationKey: chest.chest_1.title
+        _displayText: Chest
+    - _decorReward: 20
       _bonuses:
       - _type: 1
-        _percent: 10
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 2100
-      _decorReward: 15
+      _rewards: []
+    - _decorReward: 20
       _bonuses:
       - _type: 0
-        _percent: 15
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _rewards: []
+    - _decorReward: 20
+      _bonuses:
       - _type: 1
-        _percent: 5
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 2700
-      _decorReward: 20
+      _rewards: []
+    - _decorReward: 25
       _bonuses:
       - _type: 0
-        _percent: 5
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _rewards: []
+    - _decorReward: 25
+      _bonuses:
       - _type: 1
-        _percent: 15
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 3400
-      _decorReward: 20
+      _rewards:
+      - _rewardType: 3
+        _currencyType: 0
+        _amount: 0
+        _rewardId: Chest_1
+        _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+        _displayTextLocalizationKey: chest.chest_1.title
+        _displayText: Chest
+    - _decorReward: 30
       _bonuses:
       - _type: 0
-        _percent: 10
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      - _type: 1
-        _percent: 10
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 4200
-      _decorReward: 20
+      _rewards: []
+    - _decorReward: 30
       _bonuses:
       - _type: 1
-        _percent: 20
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 5100
-      _decorReward: 25
+      _rewards: []
+    - _decorReward: 35
       _bonuses:
       - _type: 0
-        _percent: 15
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _rewards: []
+    - _decorReward: 35
+      _bonuses:
       - _type: 1
-        _percent: 10
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 6200
-      _decorReward: 25
+      _rewards: []
+    - _decorReward: 40
       _bonuses:
       - _type: 0
-        _percent: 10
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _rewards:
+      - _rewardType: 3
+        _currencyType: 0
+        _amount: 0
+        _rewardId: Chest_1
+        _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+        _displayTextLocalizationKey: chest.chest_1.title
+        _displayText: Chest
+    - _decorReward: 50
+      _bonuses:
       - _type: 1
-        _percent: 15
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 7500
-      _decorReward: 30
+      _rewards: []
+    - _decorReward: 60
       _bonuses:
       - _type: 0
-        _percent: 20
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _rewards: []
+    - _decorReward: 70
+      _bonuses:
       - _type: 1
-        _percent: 10
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 9000
-      _decorReward: 30
+      _rewards: []
+    - _decorReward: 85
       _bonuses:
       - _type: 0
-        _percent: 10
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _rewards: []
+    - _decorReward: 100
+      _bonuses:
       - _type: 1
-        _percent: 20
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 10800
-      _decorReward: 35
+      _rewards:
+      - _rewardType: 3
+        _currencyType: 0
+        _amount: 0
+        _rewardId: Chest_1
+        _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+        _displayTextLocalizationKey: chest.chest_1.title
+        _displayText: Chest
+    - _decorReward: 120
       _bonuses:
       - _type: 0
-        _percent: 15
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _rewards: []
+    - _decorReward: 140
+      _bonuses:
       - _type: 1
-        _percent: 15
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 13000
-      _decorReward: 35
+      _rewards: []
+    - _decorReward: 160
       _bonuses:
       - _type: 0
-        _percent: 20
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _rewards: []
+    - _decorReward: 180
+      _bonuses:
       - _type: 1
-        _percent: 10
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 15500
-      _decorReward: 40
+      _rewards: []
+    - _decorReward: 190
       _bonuses:
       - _type: 0
-        _percent: 10
+        _percent: 2
         _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      - _type: 1
-        _percent: 25
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 18500
-      _decorReward: 50
+      _rewards:
+      - _rewardType: 3
+        _currencyType: 0
+        _amount: 0
+        _rewardId: Chest_1
+        _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+        _displayTextLocalizationKey: chest.chest_1.title
+        _displayText: Chest
+    - _decorReward: 200
       _bonuses:
-      - _type: 0
-        _percent: 25
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
       - _type: 1
-        _percent: 15
+        _percent: 2
         _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 23000
-      _decorReward: 60
-      _bonuses:
-      - _type: 0
-        _percent: 15
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      - _type: 1
-        _percent: 20
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 29000
-      _decorReward: 70
-      _bonuses:
-      - _type: 0
-        _percent: 20
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      - _type: 1
-        _percent: 15
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 36000
-      _decorReward: 85
-      _bonuses:
-      - _type: 0
-        _percent: 15
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      - _type: 1
-        _percent: 25
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 45000
-      _decorReward: 100
-      _bonuses:
-      - _type: 0
-        _percent: 25
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      - _type: 1
-        _percent: 15
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 55000
-      _decorReward: 120
-      _bonuses:
-      - _type: 0
-        _percent: 20
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      - _type: 1
-        _percent: 25
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 60000
-      _decorReward: 140
-      _bonuses:
-      - _type: 0
-        _percent: 25
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      - _type: 1
-        _percent: 20
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 65000
-      _decorReward: 160
-      _bonuses:
-      - _type: 0
-        _percent: 30
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      - _type: 1
-        _percent: 25
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 70000
-      _decorReward: 180
-      _bonuses:
-      - _type: 0
-        _percent: 25
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      - _type: 1
-        _percent: 30
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 75000
-      _decorReward: 190
-      _bonuses:
-      - _type: 0
-        _percent: 35
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      - _type: 1
-        _percent: 30
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-    - _experienceToComplete: 80000
-      _decorReward: 200
-      _bonuses:
-      - _type: 0
-        _percent: 50
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      - _type: 1
-        _percent: 50
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _rewards: []
   _data:
     _scenesId:
       _mainSceneId: 

@@ -1,8 +1,8 @@
 namespace QuestSystem
 {
-    public class CompletePlayerLevelQuest : Quest
+    public class PlayerLevelQuest : Quest
     {
-        public CompletePlayerLevelQuest(QuestConfig.QuestData data, long currentValue, bool isCompleted, bool isRewardClaimed)
+        public PlayerLevelQuest(QuestConfig.QuestData data, long currentValue, bool isCompleted, bool isRewardClaimed)
             : base(data, currentValue, isCompleted, isRewardClaimed)
         {
         }

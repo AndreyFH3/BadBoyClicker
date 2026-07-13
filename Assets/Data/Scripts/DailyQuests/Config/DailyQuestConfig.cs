@@ -24,11 +24,13 @@ namespace DailyQuests
             [SerializeField] private string _description;
             [SerializeField] private Sprite _icon;
             [SerializeField] private QuestObjectiveType _objectiveType;
+            [SerializeField] private DailyQuestResetPolicy _resetPolicy = DailyQuestResetPolicy.Daily;
             [Min(1)]
             [SerializeField] private long _targetValue = 1;
             [SerializeField] private string _targetId;
             [Min(1)]
             [SerializeField] private int _points = 10;
+            [SerializeField] private List<QuestReward> _rewards = new();
 
             public string Id => _id;
             public string TitleLocalizationKey => _titleLocalizationKey;
@@ -37,9 +39,11 @@ namespace DailyQuests
             public string Description => _description;
             public Sprite Icon => _icon;
             public QuestObjectiveType ObjectiveType => _objectiveType;
+            public DailyQuestResetPolicy ResetPolicy => _resetPolicy;
             public long TargetValue => _targetValue;
             public string TargetId => _targetId;
             public int Points => _points;
+            public IReadOnlyList<QuestReward> Rewards => _rewards;
         }
 
         [System.Serializable]
