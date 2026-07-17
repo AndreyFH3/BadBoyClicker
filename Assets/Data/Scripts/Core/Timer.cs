@@ -37,7 +37,9 @@ namespace Core
 
         public void Tick()
         {
-            long income = ApplyMultiplier(_shopSave.AutoIncomePerSecond, _bonusEffectService?.PassiveIncomeMultiplier ?? 1f);
+            long income = ApplyMultiplier(
+                _shopSave.AutoIncomePerSecond,
+                (_bonusEffectService?.PassiveIncomeMultiplier ?? 1f) * (_bonusEffectService?.AllIncomeMultiplier ?? 1f));
             if (income <= 0)
             {
                 _elapsed = 0f;

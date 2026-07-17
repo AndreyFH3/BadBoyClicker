@@ -25,6 +25,7 @@ using AdBonusOffers;
 using Customization;
 using Analytics;
 using Purchases;
+using RewardActivation;
 
 namespace Installer
 {
@@ -44,6 +45,7 @@ namespace Installer
         [SerializeField] private CardCollectionRewardWindow _cardCollectionRewardWindow;
         [SerializeField] private ChestOpenView _chestOpenView;
         [SerializeField] private MonoBehaviour _adBonusOfferView;
+        [SerializeField] private MonoBehaviour _rewardActivationView;
         [SerializeField] private AdBonusActiveEffectsView _adBonusActiveEffectsView;
         [SerializeField] private RewardedAdErrorView _rewardedAdErrorView;
         [SerializeField] private CustomizationView _customizationView;
@@ -52,6 +54,7 @@ namespace Installer
         {
             Container.BindInterfacesAndSelfTo<ShopRuntimeSave>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<OfflineIncomeRuntimeSave>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<OfflineIncomeCustomRewardService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyLoginRuntimeSave>().AsSingle().NonLazy();
             Container.Bind<DailyQuestRuntimeSave>().AsSingle().NonLazy();
             Container.Bind<PlayerProgressionRuntimeSave>().AsSingle().NonLazy();
@@ -67,6 +70,7 @@ namespace Installer
             Container.BindInitializableExecutionOrder<StaticTextLocalizationInitializer>(-9999);
             Container.Bind<QuestFactory>().AsSingle().NonLazy();
             Container.Bind<IQuestRewardService>().To<QuestRewardService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<RewardActivationService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ChestRewardService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerProgressionService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerFeatureUnlockService>().AsSingle().NonLazy();
@@ -147,6 +151,11 @@ namespace Installer
             else
                 Container.Bind<IAdBonusOfferView>().FromInstance(CreateRuntimeAdBonusOfferView()).AsSingle().NonLazy();
 
+            if (_rewardActivationView is IRewardActivationView rewardActivationView)
+                Container.Bind<IRewardActivationView>().FromInstance(rewardActivationView).AsSingle().NonLazy();
+            else
+                Container.Bind<IRewardActivationView>().FromInstance(CreateRuntimeRewardActivationView()).AsSingle().NonLazy();
+
             if (_adBonusActiveEffectsView != null)
                 Container.BindInterfacesAndSelfTo<AdBonusActiveEffectsView>().FromInstance(_adBonusActiveEffectsView).AsSingle().NonLazy();
             else
@@ -179,6 +188,11 @@ namespace Installer
         private AdBonusOfferView CreateRuntimeAdBonusOfferView()
         {
             return new GameObject("AdBonusOfferView").AddComponent<AdBonusOfferView>();
+        }
+
+        private RewardActivationView CreateRuntimeRewardActivationView()
+        {
+            return new GameObject("RewardActivationView").AddComponent<RewardActivationView>();
         }
 
         private AdBonusActiveEffectsView CreateRuntimeAdBonusActiveEffectsView()

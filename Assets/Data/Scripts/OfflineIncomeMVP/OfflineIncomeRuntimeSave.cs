@@ -5,6 +5,7 @@ namespace OfflineIncome
     public class OfflineIncomeRuntimeSave : IOfflineIncomeRuntimeSave
     {
         public long LastOnlineTicks { get; private set; }
+        public bool PendingDoubleNextReward { get; private set; }
         public event Action Changed;
 
         public void SetLastOnlineTicks(long ticks)
@@ -18,9 +19,21 @@ namespace OfflineIncome
             Changed?.Invoke();
         }
 
+        public void SetPendingDoubleNextReward(bool value)
+        {
+            if (PendingDoubleNextReward == value)
+            {
+                return;
+            }
+
+            PendingDoubleNextReward = value;
+            Changed?.Invoke();
+        }
+
         public void Set(SaveData data)
         {
             LastOnlineTicks = data.LastOnlineTicks;
+            PendingDoubleNextReward = data.PendingDoubleNextReward;
             Changed?.Invoke();
         }
 
@@ -28,7 +41,8 @@ namespace OfflineIncome
         {
             return new SaveData
             {
-                LastOnlineTicks = LastOnlineTicks
+                LastOnlineTicks = LastOnlineTicks,
+                PendingDoubleNextReward = PendingDoubleNextReward
             };
         }
 
@@ -36,6 +50,7 @@ namespace OfflineIncome
         public struct SaveData
         {
             public long LastOnlineTicks;
+            public bool PendingDoubleNextReward;
         }
     }
 }

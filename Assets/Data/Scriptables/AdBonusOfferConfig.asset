@@ -112,4 +112,211 @@ MonoBehaviour:
         _icon: {fileID: 0}
         _displayTextLocalizationKey: 
         _displayText: 
-  _boosts: []
+  - _id: exp_x2
+    _placementId: exp_x2
+    _confirmationTitleLocalizationKey: ad_bonus.exp_x2.title
+    _confirmationTitle: x2 experience
+    _confirmationDescriptionLocalizationKey: ad_bonus.exp_x2.confirm_description
+    _confirmationDescription: Watch an ad to double experience gain for 30 seconds
+    _resultDescriptionLocalizationKey: ad_bonus.exp_x2.result_description
+    _resultDescription:
+    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _weight: 1
+    _cooldownSeconds: 20
+    _hardPrice: 0
+    _rewards: []
+    _effects:
+    - _id: exp_x2
+      _effectType: 5
+      _durationSeconds: 30
+      _multiplier: 2
+      _discountPercent: 0
+      _reward:
+        _rewardType: 0
+        _currencyType: 0
+        _amount: 0
+        _rewardId:
+        _icon: {fileID: 0}
+        _displayTextLocalizationKey:
+        _displayText:
+  _boosts:
+  - _id: click_x2_5min
+    _effectType: 1
+    _durationSeconds: 300
+    _multiplier: 2
+    _discountPercent: 0
+    _reward:
+      _rewardType: 0
+      _currencyType: 0
+      _amount: 0
+      _rewardId:
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey:
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: shop_discount_33_10min
+    _effectType: 3
+    _durationSeconds: 600
+    _multiplier: 1
+    _discountPercent: 33
+    _reward:
+      _rewardType: 0
+      _currencyType: 0
+      _amount: 0
+      _rewardId:
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey:
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: click_x2_10min
+    _effectType: 1
+    _durationSeconds: 600
+    _multiplier: 2
+    _discountPercent: 0
+    _reward:
+      _rewardType: 0
+      _currencyType: 0
+      _amount: 0
+      _rewardId:
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey:
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: shop_discount_30_15min
+    _effectType: 3
+    _durationSeconds: 900
+    _multiplier: 1
+    _discountPercent: 30
+    _reward:
+      _rewardType: 0
+      _currencyType: 0
+      _amount: 0
+      _rewardId:
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey:
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: click_x3_10min
+    _effectType: 1
+    _durationSeconds: 600
+    _multiplier: 3
+    _discountPercent: 0
+    _reward:
+      _rewardType: 0
+      _currencyType: 0
+      _amount: 0
+      _rewardId:
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey:
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: click_x2_15min
+    _effectType: 1
+    _durationSeconds: 900
+    _multiplier: 2
+    _discountPercent: 0
+    _reward:
+      _rewardType: 0
+      _currencyType: 0
+      _amount: 0
+      _rewardId:
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey:
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: passive_x2_20min
+    _effectType: 2
+    _durationSeconds: 1200
+    _multiplier: 2
+    _discountPercent: 0
+    _reward:
+      _rewardType: 0
+      _currencyType: 0
+      _amount: 0
+      _rewardId:
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey:
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: shop_discount_30_20min
+    _effectType: 3
+    _durationSeconds: 1200
+    _multiplier: 1
+    _discountPercent: 30
+    _reward:
+      _rewardType: 0
+      _currencyType: 0
+      _amount: 0
+      _rewardId:
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey:
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: gold_fever_60s
+    _effectType: 4
+    _durationSeconds: 60
+    _multiplier: 5
+    _discountPercent: 0
+    _reward:
+      _rewardType: 0
+      _currencyType: 0
+      _amount: 0
+      _rewardId:
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey:
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: exp_x2_5min
+    _effectType: 5
+    _durationSeconds: 300
+    _multiplier: 2
+    _discountPercent: 0
+    _reward:
+      _rewardType: 0
+      _currencyType: 0
+      _amount: 0
+      _rewardId:
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey:
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:

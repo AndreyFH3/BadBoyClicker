@@ -39,6 +39,9 @@ namespace Chests
             [Range(1, 5)]
             [SerializeField] private int _cardStars = 1;
             [SerializeField] private bool _allowDuplicateCards = true;
+            [SerializeField] private long _minAmount;
+            [SerializeField] private long _maxAmount;
+            [SerializeField] private bool _scaleWithIncomeMultiplier;
 
             public int RarityWeight => Math.Max(1, _rarityWeight);
             public ChestRewardKind RewardKind => _rewardKind;
@@ -46,6 +49,10 @@ namespace Chests
             public string CardCollectionId => _cardCollectionId;
             public int CardStars => Math.Max(1, _cardStars);
             public bool AllowDuplicateCards => _allowDuplicateCards;
+            public long MinAmount => _minAmount;
+            public long MaxAmount => _maxAmount;
+            public bool HasAmountRange => _maxAmount > _minAmount && _minAmount > 0;
+            public bool ScaleWithIncomeMultiplier => _scaleWithIncomeMultiplier;
         }
 
         public enum ChestRewardKind

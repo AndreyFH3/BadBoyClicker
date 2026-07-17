@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Core;
 using DailyLogin;
+using RewardActivation;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +15,7 @@ namespace QuestSystem
         [InjectOptional] private IBoostRewardService _boostRewardService;
         [InjectOptional] private IQuestBackgroundRewardService _backgroundRewardService;
         [InjectOptional] private IQuestCustomRewardService _customRewardService;
+        [InjectOptional] private IRewardActivationService _activationService;
 
         public QuestRewardService(Wallet wallet, DiContainer container)
         {
@@ -41,6 +43,17 @@ namespace QuestSystem
                 return;
             }
 
+            if (reward.RequiresActivation && _activationService != null)
+            {
+                _activationService.Enqueue(reward, () => GrantNow(reward));
+                return;
+            }
+
+            GrantNow(reward);
+        }
+
+        private void GrantNow(QuestReward reward)
+        {
             switch (reward.RewardType)
             {
                 case QuestRewardType.Currency:

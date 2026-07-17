@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using CardCollections;
 using Core;
 using DailyLogin;
+using PlayerProgression;
 using QuestSystem;
 using UnityEngine;
 using Zenject;
@@ -13,6 +15,7 @@ namespace Chests
         private readonly ChestConfig _config;
         private readonly Wallet _wallet;
         private readonly ICardCollectionService _cardCollectionService;
+        private readonly IPlayerProgressionService _playerProgression;
         private readonly Dictionary<string, ChestConfig.ChestData> _chestsById = new();
 
         [InjectOptional] private IBoostRewardService _boostRewardService;
@@ -24,11 +27,13 @@ namespace Chests
         public ChestRewardService(
             ChestConfig config,
             Wallet wallet,
-            ICardCollectionService cardCollectionService)
+            ICardCollectionService cardCollectionService,
+            IPlayerProgressionService playerProgression)
         {
             _config = config;
             _wallet = wallet;
             _cardCollectionService = cardCollectionService;
+            _playerProgression = playerProgression;
         }
 
         public void Initialize()
@@ -79,6 +84,7 @@ namespace Chests
                     }
 
                     reward = entry.Reward;
+                    ApplyAmountOverride(entry, reward);
                     GiveReward(reward);
                     break;
                 case ChestConfig.ChestRewardKind.RandomCard:
@@ -146,7 +152,7 @@ namespace Chests
                 return null;
             }
 
-            int roll = Random.Range(0, totalWeight);
+            int roll = UnityEngine.Random.Range(0, totalWeight);
             foreach (var reward in chest.Rewards)
             {
                 if (reward == null || !IsRewardEntryValid(reward))
@@ -202,7 +208,7 @@ namespace Chests
                 return false;
             }
 
-            selectedCard = candidates[Random.Range(0, candidates.Count)];
+            selectedCard = candidates[UnityEngine.Random.Range(0, candidates.Count)];
             return _cardCollectionService.TryAddCard(selectedCard.Id);
         }
 
@@ -235,6 +241,23 @@ namespace Chests
             }
 
             return result;
+        }
+
+        private void ApplyAmountOverride(ChestConfig.ChestRewardEntry entry, QuestReward reward)
+        {
+            if (reward.RewardType != QuestRewardType.Currency || !entry.HasAmountRange)
+            {
+                return;
+            }
+
+            long amount = UnityEngine.Random.Range((int)entry.MinAmount, (int)entry.MaxAmount + 1);
+            if (entry.ScaleWithIncomeMultiplier)
+            {
+                float multiplier = _playerProgression?.ClickIncomeMultiplier ?? 1f;
+                amount = Math.Max(1, (long)Math.Ceiling(amount * Math.Max(0f, multiplier)));
+            }
+
+            reward.SetAmount(amount);
         }
 
         private void GiveReward(QuestReward reward)

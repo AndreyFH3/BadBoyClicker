@@ -29,11 +29,12 @@ namespace DailyLoginMVP
         {
             IReadOnlyList<DailyLoginDayConfig> dayConfigs = _dailyLoginService.GetRewardDays();
             int currentDayIndex = _dailyLoginService.GetCurrentDayIndex();
+            int currentCycle = _dailyLoginService.GetCurrentCycle();
             List<DailyLoginRewardViewData> rewards = new();
 
             for (int i = 0; i < dayConfigs.Count; i++)
             {
-                RewardConfig reward = dayConfigs[i]?.Reward;
+                RewardConfig reward = dayConfigs[i]?.GetReward(currentCycle);
                 if (reward == null)
                 {
                     continue;
@@ -60,9 +61,14 @@ namespace DailyLoginMVP
 
         private string CreateRewardText(RewardConfig reward)
         {
-            if (!string.IsNullOrEmpty(reward.DisplayTextLocalizationKey) || !string.IsNullOrEmpty(reward.DisplayText))
+            if (!string.IsNullOrEmpty(reward.DisplayTextLocalizationKey))
             {
                 return _localization.Localize(reward.DisplayTextLocalizationKey);
+            }
+
+            if (!string.IsNullOrEmpty(reward.DisplayText))
+            {
+                return reward.DisplayText;
             }
 
             switch (reward.RewardType)

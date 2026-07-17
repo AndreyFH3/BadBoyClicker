@@ -7,5 +7,6 @@ namespace DailyLogin
     {
         public int CurrentDayIndex;
         public long LastClaimUtcTicks;
+        public int CompletedCycles;
     }
 }

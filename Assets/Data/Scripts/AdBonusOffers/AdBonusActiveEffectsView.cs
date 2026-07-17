@@ -87,6 +87,8 @@ namespace AdBonusOffers
                 AdBonusEffectType.ClickIncomeMultiplier => _localization.Format("ad_bonus.effect.click_multiplier", $"{effect.Multiplier:0.#}"),
                 AdBonusEffectType.PassiveIncomeMultiplier => _localization.Format("ad_bonus.effect.passive_multiplier", $"{effect.Multiplier:0.#}"),
                 AdBonusEffectType.ShopDiscountPercent => _localization.Format("ad_bonus.effect.shop_discount", $"{effect.DiscountPercent:0.#}"),
+                AdBonusEffectType.AllIncomeMultiplier => _localization.Format("ad_bonus.effect.all_income_multiplier", $"{effect.Multiplier:0.#}"),
+                AdBonusEffectType.ExperienceMultiplier => _localization.Format("ad_bonus.effect.experience_multiplier", $"{effect.Multiplier:0.#}"),
                 _ => effect.Type.ToString()
             };
 

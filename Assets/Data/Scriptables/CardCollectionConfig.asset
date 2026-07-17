@@ -13,127 +13,417 @@ MonoBehaviour:
   m_Name: CardCollectionConfig
   m_EditorClassIdentifier: Assembly-CSharp::CardCollections.CardCollectionConfig
   _collections:
-  - _id: 0
-    _titleLocalizationKey: card_collection.0.title
-    _title: 
-    _descriptionLocalizationKey: card_collection.0.description
-    _description: 
-    _cards:
-    - _id: 0_1
-      _titleLocalizationKey: card_collection.card.0_1.title
-      _title: 123
-      _descriptionLocalizationKey: card_collection.card.0_1.description
-      _description: 123
-      _requiredAmount: 0
-      _stars: 1
-      _icon: {fileID: -1435123845590555009, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
-    - _id: 0_2
-      _titleLocalizationKey: card_collection.card.0_2.title
-      _title: 
-      _descriptionLocalizationKey: card_collection.card.0_2.description
-      _description: 
-      _requiredAmount: 0
-      _stars: 1
-      _icon: {fileID: -1937676155757957757, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
-    - _id: 0_3
-      _titleLocalizationKey: card_collection.card.0_3.title
-      _title: 
-      _descriptionLocalizationKey: card_collection.card.0_3.description
-      _description: 
-      _requiredAmount: 0
-      _stars: 1
-      _icon: {fileID: 3811987700599746683, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
-    - _id: 0_4
-      _titleLocalizationKey: card_collection.card.0_4.title
-      _title: 
-      _descriptionLocalizationKey: card_collection.card.0_4.description
-      _description: 
-      _requiredAmount: 0
-      _stars: 1
-      _icon: {fileID: -83566590225105562, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
-    - _id: 0_5
-      _titleLocalizationKey: card_collection.card.0_5.title
-      _title: 
-      _descriptionLocalizationKey: card_collection.card.0_5.description
-      _description: 
-      _requiredAmount: 0
-      _stars: 1
-      _icon: {fileID: 3122708759700704995, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
-    - _id: 0_6
-      _titleLocalizationKey: card_collection.card.0_6.title
-      _title: 
-      _descriptionLocalizationKey: card_collection.card.0_6.description
-      _description: 
-      _requiredAmount: 0
-      _stars: 1
-      _icon: {fileID: 7419883896294469389, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
-    _rewards:
-    - _rewardType: 0
-      _currencyType: 0
-      _amount: 100000
-      _rewardId: 
-      _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey: 
-      _displayText: 
   - _id: 1
     _titleLocalizationKey: card_collection.1.title
-    _title: 
+    _title:
     _descriptionLocalizationKey: card_collection.1.description
-    _description: 
+    _description:
     _cards:
     - _id: 1_1
       _titleLocalizationKey: card_collection.card.1_1.title
-      _title: 
+      _title:
       _descriptionLocalizationKey: card_collection.card.1_1.description
-      _description: 
-      _requiredAmount: 0
+      _description:
+      _requiredAmount: 1
       _stars: 1
       _icon: {fileID: 2125897330413865003, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
     - _id: 1_2
       _titleLocalizationKey: card_collection.card.1_2.title
-      _title: 
+      _title:
       _descriptionLocalizationKey: card_collection.card.1_2.description
-      _description: 
-      _requiredAmount: 0
+      _description:
+      _requiredAmount: 1
       _stars: 1
       _icon: {fileID: 1537972319798792046, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
     - _id: 1_3
       _titleLocalizationKey: card_collection.card.1_3.title
-      _title: 
+      _title:
       _descriptionLocalizationKey: card_collection.card.1_3.description
-      _description: 
-      _requiredAmount: 0
+      _description:
+      _requiredAmount: 1
       _stars: 1
       _icon: {fileID: 8020217996901168981, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
     - _id: 1_4
       _titleLocalizationKey: card_collection.card.1_4.title
-      _title: 
+      _title:
       _descriptionLocalizationKey: card_collection.card.1_4.description
-      _description: 
-      _requiredAmount: 0
-      _stars: 1
+      _description:
+      _requiredAmount: 1
+      _stars: 2
       _icon: {fileID: 8020785636586205456, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
     - _id: 1_5
       _titleLocalizationKey: card_collection.card.1_5.title
-      _title: 
+      _title:
       _descriptionLocalizationKey: card_collection.card.1_5.description
-      _description: 
-      _requiredAmount: 0
-      _stars: 1
+      _description:
+      _requiredAmount: 1
+      _stars: 2
       _icon: {fileID: 2779402041821275866, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
     - _id: 1_6
       _titleLocalizationKey: card_collection.card.1_6.title
-      _title: 
+      _title:
       _descriptionLocalizationKey: card_collection.card.1_6.description
-      _description: 
-      _requiredAmount: 0
-      _stars: 1
+      _description:
+      _requiredAmount: 1
+      _stars: 3
       _icon: {fileID: -726316802023506734, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
     _rewards:
-    - _rewardType: 0
-      _currencyType: 2
-      _amount: 1500
-      _rewardId: 
-      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey: 
-      _displayText: 
+    - _rewardType: 4
+      _currencyType: 0
+      _amount: 10
+      _rewardId: card_collection_bonus_passive_income_10
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey: card_collection.reward.1.text
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: 2
+    _titleLocalizationKey: card_collection.2.title
+    _title:
+    _descriptionLocalizationKey: card_collection.2.description
+    _description:
+    _cards:
+    - _id: 2_1
+      _titleLocalizationKey: card_collection.card.2_1.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.2_1.description
+      _description:
+      _requiredAmount: 1
+      _stars: 1
+      _icon: {fileID: 0}
+    - _id: 2_2
+      _titleLocalizationKey: card_collection.card.2_2.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.2_2.description
+      _description:
+      _requiredAmount: 1
+      _stars: 1
+      _icon: {fileID: 0}
+    - _id: 2_3
+      _titleLocalizationKey: card_collection.card.2_3.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.2_3.description
+      _description:
+      _requiredAmount: 1
+      _stars: 2
+      _icon: {fileID: 0}
+    - _id: 2_4
+      _titleLocalizationKey: card_collection.card.2_4.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.2_4.description
+      _description:
+      _requiredAmount: 1
+      _stars: 2
+      _icon: {fileID: 0}
+    - _id: 2_5
+      _titleLocalizationKey: card_collection.card.2_5.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.2_5.description
+      _description:
+      _requiredAmount: 1
+      _stars: 3
+      _icon: {fileID: 0}
+    - _id: 2_6
+      _titleLocalizationKey: card_collection.card.2_6.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.2_6.description
+      _description:
+      _requiredAmount: 1
+      _stars: 3
+      _icon: {fileID: 0}
+    _rewards:
+    - _rewardType: 4
+      _currencyType: 0
+      _amount: 10
+      _rewardId: card_collection_bonus_click_power_10
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey: card_collection.reward.2.text
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: 3
+    _titleLocalizationKey: card_collection.3.title
+    _title:
+    _descriptionLocalizationKey: card_collection.3.description
+    _description:
+    _cards:
+    - _id: 3_1
+      _titleLocalizationKey: card_collection.card.3_1.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.3_1.description
+      _description:
+      _requiredAmount: 1
+      _stars: 2
+      _icon: {fileID: 0}
+    - _id: 3_2
+      _titleLocalizationKey: card_collection.card.3_2.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.3_2.description
+      _description:
+      _requiredAmount: 1
+      _stars: 2
+      _icon: {fileID: 0}
+    - _id: 3_3
+      _titleLocalizationKey: card_collection.card.3_3.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.3_3.description
+      _description:
+      _requiredAmount: 1
+      _stars: 3
+      _icon: {fileID: 0}
+    - _id: 3_4
+      _titleLocalizationKey: card_collection.card.3_4.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.3_4.description
+      _description:
+      _requiredAmount: 1
+      _stars: 3
+      _icon: {fileID: 0}
+    - _id: 3_5
+      _titleLocalizationKey: card_collection.card.3_5.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.3_5.description
+      _description:
+      _requiredAmount: 1
+      _stars: 4
+      _icon: {fileID: 0}
+    - _id: 3_6
+      _titleLocalizationKey: card_collection.card.3_6.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.3_6.description
+      _description:
+      _requiredAmount: 1
+      _stars: 4
+      _icon: {fileID: 0}
+    _rewards:
+    - _rewardType: 4
+      _currencyType: 0
+      _amount: 10
+      _rewardId: card_collection_bonus_shop_discount_10
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey: card_collection.reward.3.text
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: 4
+    _titleLocalizationKey: card_collection.4.title
+    _title:
+    _descriptionLocalizationKey: card_collection.4.description
+    _description:
+    _cards:
+    - _id: 4_1
+      _titleLocalizationKey: card_collection.card.4_1.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.4_1.description
+      _description:
+      _requiredAmount: 1
+      _stars: 2
+      _icon: {fileID: 0}
+    - _id: 4_2
+      _titleLocalizationKey: card_collection.card.4_2.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.4_2.description
+      _description:
+      _requiredAmount: 1
+      _stars: 3
+      _icon: {fileID: 0}
+    - _id: 4_3
+      _titleLocalizationKey: card_collection.card.4_3.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.4_3.description
+      _description:
+      _requiredAmount: 1
+      _stars: 3
+      _icon: {fileID: 0}
+    - _id: 4_4
+      _titleLocalizationKey: card_collection.card.4_4.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.4_4.description
+      _description:
+      _requiredAmount: 1
+      _stars: 4
+      _icon: {fileID: 0}
+    - _id: 4_5
+      _titleLocalizationKey: card_collection.card.4_5.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.4_5.description
+      _description:
+      _requiredAmount: 1
+      _stars: 4
+      _icon: {fileID: 0}
+    - _id: 4_6
+      _titleLocalizationKey: card_collection.card.4_6.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.4_6.description
+      _description:
+      _requiredAmount: 1
+      _stars: 5
+      _icon: {fileID: 0}
+    _rewards:
+    - _rewardType: 4
+      _currencyType: 0
+      _amount: 0
+      _rewardId: card_collection_unlock_skin_mythic
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey: card_collection.reward.4.text
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: 0
+    _titleLocalizationKey: card_collection.0.title
+    _title:
+    _descriptionLocalizationKey: card_collection.0.description
+    _description:
+    _cards:
+    - _id: 0_1
+      _titleLocalizationKey: card_collection.card.0_1.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.0_1.description
+      _description:
+      _requiredAmount: 1
+      _stars: 3
+      _icon: {fileID: -1435123845590555009, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
+    - _id: 0_2
+      _titleLocalizationKey: card_collection.card.0_2.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.0_2.description
+      _description:
+      _requiredAmount: 1
+      _stars: 3
+      _icon: {fileID: -1937676155757957757, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
+    - _id: 0_3
+      _titleLocalizationKey: card_collection.card.0_3.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.0_3.description
+      _description:
+      _requiredAmount: 1
+      _stars: 4
+      _icon: {fileID: 3811987700599746683, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
+    - _id: 0_4
+      _titleLocalizationKey: card_collection.card.0_4.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.0_4.description
+      _description:
+      _requiredAmount: 1
+      _stars: 4
+      _icon: {fileID: -83566590225105562, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
+    - _id: 0_5
+      _titleLocalizationKey: card_collection.card.0_5.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.0_5.description
+      _description:
+      _requiredAmount: 1
+      _stars: 5
+      _icon: {fileID: 3122708759700704995, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
+    - _id: 0_6
+      _titleLocalizationKey: card_collection.card.0_6.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.0_6.description
+      _description:
+      _requiredAmount: 1
+      _stars: 5
+      _icon: {fileID: 7419883896294469389, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
+    _rewards:
+    - _rewardType: 4
+      _currencyType: 0
+      _amount: 25
+      _rewardId: card_collection_bonus_offline_income_25
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey: card_collection.reward.0.text
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: 5
+    _titleLocalizationKey: card_collection.5.title
+    _title:
+    _descriptionLocalizationKey: card_collection.5.description
+    _description:
+    _cards:
+    - _id: 5_1
+      _titleLocalizationKey: card_collection.card.5_1.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.5_1.description
+      _description:
+      _requiredAmount: 1
+      _stars: 4
+      _icon: {fileID: 0}
+    - _id: 5_2
+      _titleLocalizationKey: card_collection.card.5_2.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.5_2.description
+      _description:
+      _requiredAmount: 1
+      _stars: 4
+      _icon: {fileID: 0}
+    - _id: 5_3
+      _titleLocalizationKey: card_collection.card.5_3.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.5_3.description
+      _description:
+      _requiredAmount: 1
+      _stars: 5
+      _icon: {fileID: 0}
+    - _id: 5_4
+      _titleLocalizationKey: card_collection.card.5_4.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.5_4.description
+      _description:
+      _requiredAmount: 1
+      _stars: 5
+      _icon: {fileID: 0}
+    - _id: 5_5
+      _titleLocalizationKey: card_collection.card.5_5.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.5_5.description
+      _description:
+      _requiredAmount: 1
+      _stars: 5
+      _icon: {fileID: 0}
+    - _id: 5_6
+      _titleLocalizationKey: card_collection.card.5_6.title
+      _title:
+      _descriptionLocalizationKey: card_collection.card.5_6.description
+      _description:
+      _requiredAmount: 1
+      _stars: 5
+      _icon: {fileID: 0}
+    _rewards:
+    - _rewardType: 4
+      _currencyType: 0
+      _amount: 0
+      _rewardId: card_collection_unlock_skin_legendary
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey: card_collection.reward.5.skin.text
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+    - _rewardType: 4
+      _currencyType: 0
+      _amount: 0
+      _rewardId: card_collection_unlock_title_legendary
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey: card_collection.reward.5.title.text
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:

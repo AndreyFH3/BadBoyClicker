@@ -72,7 +72,14 @@ namespace OfflineIncome
                 return 0;
             }
 
-            long reward = PendingReward * Math.Max(1, multiplier);
+            int effectiveMultiplier = Math.Max(1, multiplier);
+            if (_save.PendingDoubleNextReward)
+            {
+                effectiveMultiplier *= 2;
+                _save.SetPendingDoubleNextReward(false);
+            }
+
+            long reward = PendingReward * effectiveMultiplier;
             PendingReward = 0;
             RecordCurrentTime();
             return reward;

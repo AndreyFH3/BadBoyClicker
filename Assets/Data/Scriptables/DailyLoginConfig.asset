@@ -16,70 +16,153 @@ MonoBehaviour:
   - _reward:
       _rewardType: 0
       _currencyType: 0
-      _amount: 100
+      _amount: 200
       _amountMax: 0
-      _rewardId: first
+      _rewardId: soft
       _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey: 100
-      _displayText: 100
+      _displayTextLocalizationKey:
+      _displayText:
     _isMilestone: 0
+    _cycleRewards:
+    - _rewardType: 0
+      _currencyType: 0
+      _amount: 200
+      _amountMax: 0
+      _rewardId: soft
+      _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
+    - _rewardType: 0
+      _currencyType: 0
+      _amount: 300
+      _amountMax: 0
+      _rewardId: soft
+      _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
+    - _rewardType: 0
+      _currencyType: 0
+      _amount: 400
+      _amountMax: 0
+      _rewardId: soft
+      _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
+    - _rewardType: 0
+      _currencyType: 0
+      _amount: 500
+      _amountMax: 0
+      _rewardId: soft
+      _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
+  - _reward:
+      _rewardType: 2
+      _currencyType: 0
+      _amount: 1
+      _amountMax: 0
+      _rewardId: Chest_1
+      _icon: {fileID: -4439254127691508170, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _displayTextLocalizationKey:
+      _displayText: Common chest
+    _isMilestone: 0
+  - _reward:
+      _rewardType: 0
+      _currencyType: 2
+      _amount: 5
+      _amountMax: 0
+      _rewardId: hard
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
+    _isMilestone: 0
+    _cycleRewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 5
+      _amountMax: 0
+      _rewardId: hard
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 7
+      _amountMax: 0
+      _rewardId: hard
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 10
+      _amountMax: 0
+      _rewardId: hard
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
   - _reward:
       _rewardType: 0
       _currencyType: 1
-      _amount: 15
+      _amount: 30
       _amountMax: 0
-      _rewardId: second
+      _rewardId: decor
       _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey: 15
-      _displayText: 15
+      _displayTextLocalizationKey:
+      _displayText:
     _isMilestone: 0
-  - _reward:
-      _rewardType: 0
-      _currencyType: 2
-      _amount: 20
+    _cycleRewards:
+    - _rewardType: 0
+      _currencyType: 1
+      _amount: 30
       _amountMax: 0
-      _rewardId: third
-      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey: 20
-      _displayText: 20
+      _rewardId: decor
+      _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
+    - _rewardType: 0
+      _currencyType: 1
+      _amount: 40
+      _amountMax: 0
+      _rewardId: decor
+      _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
+    - _rewardType: 0
+      _currencyType: 1
+      _amount: 50
+      _amountMax: 0
+      _rewardId: decor
+      _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey:
+      _displayText:
+  - _reward:
+      _rewardType: 1
+      _currencyType: 0
+      _amount: 0
+      _amountMax: 0
+      _rewardId: click_x2_15min
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey:
+      _displayText: x2 click income (15 min)
     _isMilestone: 0
   - _reward:
       _rewardType: 2
-      _currencyType: 2
-      _amount: 20
+      _currencyType: 0
+      _amount: 1
       _amountMax: 0
-      _rewardId: third
+      _rewardId: Chest_2
       _icon: {fileID: -4439254127691508170, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      _displayTextLocalizationKey: Chest
-      _displayText: 20
+      _displayTextLocalizationKey:
+      _displayText: Rare chest
     _isMilestone: 0
   - _reward:
-      _rewardType: 0
-      _currencyType: 2
-      _amount: 40
+      _rewardType: 2
+      _currencyType: 0
+      _amount: 1
       _amountMax: 0
-      _rewardId: third
-      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey: 40
-      _displayText: 20
-    _isMilestone: 0
-  - _reward:
-      _rewardType: 0
-      _currencyType: 2
-      _amount: 50
-      _amountMax: 0
-      _rewardId: third
-      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey: 
-      _displayText: 20
-    _isMilestone: 0
-  - _reward:
-      _rewardType: 1
-      _currencyType: 2
-      _amount: 60
-      _amountMax: 0
-      _rewardId: third
-      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey: 20
-      _displayText: 20
-    _isMilestone: 0
+      _rewardId: Chest_2
+      _icon: {fileID: -4439254127691508170, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _displayTextLocalizationKey:
+      _displayText: Rare chest
+    _isMilestone: 1

@@ -9,6 +9,8 @@ namespace AdBonusOffers
 
         float ClickIncomeMultiplier { get; }
         float PassiveIncomeMultiplier { get; }
+        float AllIncomeMultiplier { get; }
+        float ExperienceMultiplier { get; }
         float ShopPriceMultiplier { get; }
         IReadOnlyList<AdBonusActiveEffectViewData> ActiveEffects { get; }
 

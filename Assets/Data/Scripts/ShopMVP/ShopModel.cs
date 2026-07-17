@@ -15,7 +15,7 @@ namespace Shop
 {
     public class ShopModel : IShopModel, IInitializable, IDisposable
     {
-        private const float PriceGrowth = 1.12f;
+        private const float PriceGrowth = 1.18f;
 
         private GameConfig _config;
         private Wallet _wallet;

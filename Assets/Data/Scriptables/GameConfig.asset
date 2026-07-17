@@ -196,82 +196,198 @@ MonoBehaviour:
     _basePrice: 25000000000000
     _baseBonus: 650000000
   _paidBuys:
-  - _id: hard_currency_pack_1
+  - _id: Hard_buy_1
     _purchaseKind: 0
-    _paymentId: hard_currency_pack_1
+    _paymentId: Hard_buy_1
     _priceCurrencyType: 3
     _priceAmount: 0
-    _nameLocalizationKey: shop.paid.hard_currency_pack_1.name
-    _name: Small Gem Pack
+    _nameLocalizationKey: shop.paid.Hard_buy_1.name
+    _name: Handful of Coins
     _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-    _priceText: 10 YAN
-    _rewardTextLocalizationKey: shop.paid.hard_currency_pack_1.reward
-    _rewardText: +100 gems
+    _priceText: 50 YAN
+    _rewardTextLocalizationKey: shop.paid.Hard_buy_1.reward
+    _rewardText: +50 gems
     _rewards:
     - _rewardType: 0
       _currencyType: 2
-      _amount: 100
+      _amount: 50
       _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey: shop.paid.hard_currency_pack_1.reward
-      _displayText: +100 gems
-  - _id: hard_currency_pack_2
+      _displayTextLocalizationKey: shop.paid.Hard_buy_1.reward
+      _displayText: +50 gems
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
+  - _id: Hard_buy_2
     _purchaseKind: 0
-    _paymentId: hard_currency_pack_2
+    _paymentId: Hard_buy_2
     _priceCurrencyType: 3
     _priceAmount: 0
-    _nameLocalizationKey: shop.paid.hard_currency_pack_2.name
-    _name: Medium Gem Pack
+    _nameLocalizationKey: shop.paid.Hard_buy_2.name
+    _name: Cat's Pouch
     _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-    _priceText: 25 YAN
-    _rewardTextLocalizationKey: shop.paid.hard_currency_pack_2.reward
-    _rewardText: +250 gems
+    _priceText: 150 YAN
+    _rewardTextLocalizationKey: shop.paid.Hard_buy_2.reward
+    _rewardText: +160 gems
     _rewards:
     - _rewardType: 0
       _currencyType: 2
-      _amount: 250
+      _amount: 160
       _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey: shop.paid.hard_currency_pack_2.reward
-      _displayText: +250 gems
-  - _id: hard_currency_pack_3
+      _displayTextLocalizationKey: shop.paid.Hard_buy_2.reward
+      _displayText: +160 gems
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
+  - _id: Hard_buy_3
     _purchaseKind: 0
-    _paymentId: hard_currency_pack_3
+    _paymentId: Hard_buy_3
     _priceCurrencyType: 3
     _priceAmount: 0
-    _nameLocalizationKey: shop.paid.hard_currency_pack_3.name
-    _name: Large Gem Pack
+    _nameLocalizationKey: shop.paid.Hard_buy_3.name
+    _name: Treasure Chest
     _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-    _priceText: 60 YAN
-    _rewardTextLocalizationKey: shop.paid.hard_currency_pack_3.reward
-    _rewardText: +650 gems
+    _priceText: 250 YAN
+    _rewardTextLocalizationKey: shop.paid.Hard_buy_3.reward
+    _rewardText: +330 gems
     _rewards:
     - _rewardType: 0
       _currencyType: 2
-      _amount: 650
+      _amount: 330
       _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey: shop.paid.hard_currency_pack_3.reward
-      _displayText: +650 gems
-  - _id: hard_currency_pack_4
+      _displayTextLocalizationKey: shop.paid.Hard_buy_3.reward
+      _displayText: +330 gems
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
+  - _id: Hard_buy_4
     _purchaseKind: 0
-    _paymentId: hard_currency_pack_4
+    _paymentId: Hard_buy_4
     _priceCurrencyType: 3
     _priceAmount: 0
-    _nameLocalizationKey: shop.paid.hard_currency_pack_4.name
-    _name: Mega Gem Pack
+    _nameLocalizationKey: shop.paid.Hard_buy_4.name
+    _name: Golden Yarn Ball
     _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-    _priceText: 120 YAN
-    _rewardTextLocalizationKey: shop.paid.hard_currency_pack_4.reward
-    _rewardText: +1500 gems
+    _priceText: 500 YAN
+    _rewardTextLocalizationKey: shop.paid.Hard_buy_4.reward
+    _rewardText: +800 gems
     _rewards:
     - _rewardType: 0
       _currencyType: 2
-      _amount: 1500
+      _amount: 800
       _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey: shop.paid.hard_currency_pack_4.reward
-      _displayText: +1500 gems
+      _displayTextLocalizationKey: shop.paid.Hard_buy_4.reward
+      _displayText: +800 gems
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
+  - _id: Hard_buy_5
+    _purchaseKind: 0
+    _paymentId: Hard_buy_5
+    _priceCurrencyType: 3
+    _priceAmount: 0
+    _nameLocalizationKey: shop.paid.Hard_buy_5.name
+    _name: Bag of Gold
+    _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _priceText: 750 YAN
+    _rewardTextLocalizationKey: shop.paid.Hard_buy_5.reward
+    _rewardText: +1400 gems
+    _rewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 1400
+      _rewardId: 
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey: shop.paid.Hard_buy_5.reward
+      _displayText: +1400 gems
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
+  - _id: Hard_buy_6
+    _purchaseKind: 0
+    _paymentId: Hard_buy_6
+    _priceCurrencyType: 3
+    _priceAmount: 0
+    _nameLocalizationKey: shop.paid.Hard_buy_6.name
+    _name: Imperial Treasury
+    _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _priceText: 1000 YAN
+    _rewardTextLocalizationKey: shop.paid.Hard_buy_6.reward
+    _rewardText: +2200 gems
+    _rewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 2200
+      _rewardId: 
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey: shop.paid.Hard_buy_6.reward
+      _displayText: +2200 gems
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
+  - _id: Hard_buy_7
+    _purchaseKind: 0
+    _paymentId: Hard_buy_7
+    _priceCurrencyType: 3
+    _priceAmount: 0
+    _nameLocalizationKey: shop.paid.Hard_buy_7.name
+    _name: Cat's Bank
+    _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _priceText: 1500 YAN
+    _rewardTextLocalizationKey: shop.paid.Hard_buy_7.reward
+    _rewardText: +3800 gems
+    _rewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 3800
+      _rewardId: 
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey: shop.paid.Hard_buy_7.reward
+      _displayText: +3800 gems
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
+  - _id: Hard_buy_8
+    _purchaseKind: 0
+    _paymentId: Hard_buy_8
+    _priceCurrencyType: 3
+    _priceAmount: 0
+    _nameLocalizationKey: shop.paid.Hard_buy_8.name
+    _name: Emperor's Chest
+    _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _priceText: 2500 YAN
+    _rewardTextLocalizationKey: shop.paid.Hard_buy_8.reward
+    _rewardText: +7000 gems
+    _rewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 7000
+      _rewardId: 
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey: shop.paid.Hard_buy_8.reward
+      _displayText: +7000 gems
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: soft_currency_pack_1
     _purchaseKind: 1
     _paymentId: 
@@ -291,6 +407,11 @@ MonoBehaviour:
       _icon: {fileID: 0}
       _displayTextLocalizationKey: shop.paid.soft_currency_pack_1.reward
       _displayText: +10000 coins
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: soft_currency_pack_2
     _purchaseKind: 1
     _paymentId: 
@@ -310,6 +431,11 @@ MonoBehaviour:
       _icon: {fileID: 0}
       _displayTextLocalizationKey: shop.paid.soft_currency_pack_2.reward
       _displayText: +30000 coins
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: soft_currency_pack_3
     _purchaseKind: 1
     _paymentId: 
@@ -329,6 +455,11 @@ MonoBehaviour:
       _icon: {fileID: 0}
       _displayTextLocalizationKey: shop.paid.soft_currency_pack_3.reward
       _displayText: +80000 coins
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: soft_currency_pack_4
     _purchaseKind: 1
     _paymentId: 
@@ -348,6 +479,11 @@ MonoBehaviour:
       _icon: {fileID: 0}
       _displayTextLocalizationKey: shop.paid.soft_currency_pack_4.reward
       _displayText: +200000 coins
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: decor_currency_pack_1
     _purchaseKind: 1
     _paymentId: 
@@ -367,6 +503,11 @@ MonoBehaviour:
       _icon: {fileID: 0}
       _displayTextLocalizationKey: shop.paid.decor_currency_pack_1.reward
       _displayText: +25 decor
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: decor_currency_pack_2
     _purchaseKind: 1
     _paymentId: 
@@ -386,6 +527,11 @@ MonoBehaviour:
       _icon: {fileID: 0}
       _displayTextLocalizationKey: shop.paid.decor_currency_pack_2.reward
       _displayText: +75 decor
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: decor_currency_pack_3
     _purchaseKind: 1
     _paymentId: 
@@ -405,6 +551,11 @@ MonoBehaviour:
       _icon: {fileID: 0}
       _displayTextLocalizationKey: shop.paid.decor_currency_pack_3.reward
       _displayText: +200 decor
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: decor_currency_pack_4
     _purchaseKind: 1
     _paymentId: 
@@ -424,6 +575,83 @@ MonoBehaviour:
       _icon: {fileID: 0}
       _displayTextLocalizationKey: shop.paid.decor_currency_pack_4.reward
       _displayText: +500 decor
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
+  - _id: chest_3_purchase
+    _purchaseKind: 1
+    _paymentId: 
+    _priceCurrencyType: 2
+    _priceAmount: 15
+    _nameLocalizationKey: shop.paid.chest_3_purchase.name
+    _name: Card Chest
+    _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+    _priceText: 
+    _rewardTextLocalizationKey: shop.paid.chest_3_purchase.reward
+    _rewardText: Card Chest
+    _rewards:
+    - _rewardType: 3
+      _currencyType: 0
+      _amount: 0
+      _rewardId: Chest_3
+      _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+      _displayTextLocalizationKey: shop.paid.chest_3_purchase.reward
+      _displayText: Card Chest
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
+  - _id: chest_4_purchase
+    _purchaseKind: 1
+    _paymentId: 
+    _priceCurrencyType: 2
+    _priceAmount: 30
+    _nameLocalizationKey: shop.paid.chest_4_purchase.name
+    _name: Collection Chest
+    _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+    _priceText: 
+    _rewardTextLocalizationKey: shop.paid.chest_4_purchase.reward
+    _rewardText: Collection Chest
+    _rewards:
+    - _rewardType: 3
+      _currencyType: 0
+      _amount: 0
+      _rewardId: Chest_4
+      _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+      _displayTextLocalizationKey: shop.paid.chest_4_purchase.reward
+      _displayText: Collection Chest
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
+  - _id: chest_5_purchase
+    _purchaseKind: 1
+    _paymentId: 
+    _priceCurrencyType: 2
+    _priceAmount: 20
+    _nameLocalizationKey: shop.paid.chest_5_purchase.name
+    _name: Boost Chest
+    _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+    _priceText: 
+    _rewardTextLocalizationKey: shop.paid.chest_5_purchase.reward
+    _rewardText: Boost Chest
+    _rewards:
+    - _rewardType: 3
+      _currencyType: 0
+      _amount: 0
+      _rewardId: Chest_5
+      _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+      _displayTextLocalizationKey: shop.paid.chest_5_purchase.reward
+      _displayText: Boost Chest
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   _softPriceIcon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
   _paidPriceIcon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
   _offlineIncome:
@@ -434,7 +662,7 @@ MonoBehaviour:
   _playerProgression:
     _middleRewardPerLevel: 5
     _middleRewardIcon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-    _purchaseExperiencePercent: 0.5
+    _purchaseExperiencePercent: 0.1
     _baseExperienceToComplete: 1000
     _experienceGrowth: 1.4
     _experienceRewards:
@@ -478,6 +706,11 @@ MonoBehaviour:
         _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
         _displayTextLocalizationKey: chest.chest_1.title
         _displayText: Chest
+        _requiresActivation: 0
+        _activationTitleLocalizationKey: 
+        _activationTitle: 
+        _activationDescriptionLocalizationKey: 
+        _activationDescription: 
     - _decorReward: 10
       _bonuses:
       - _type: 0
@@ -515,6 +748,11 @@ MonoBehaviour:
         _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
         _displayTextLocalizationKey: chest.chest_1.title
         _displayText: Chest
+        _requiresActivation: 0
+        _activationTitleLocalizationKey: 
+        _activationTitle: 
+        _activationDescriptionLocalizationKey: 
+        _activationDescription: 
     - _decorReward: 20
       _bonuses:
       - _type: 1
@@ -552,6 +790,11 @@ MonoBehaviour:
         _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
         _displayTextLocalizationKey: chest.chest_1.title
         _displayText: Chest
+        _requiresActivation: 0
+        _activationTitleLocalizationKey: 
+        _activationTitle: 
+        _activationDescriptionLocalizationKey: 
+        _activationDescription: 
     - _decorReward: 30
       _bonuses:
       - _type: 0
@@ -589,6 +832,11 @@ MonoBehaviour:
         _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
         _displayTextLocalizationKey: chest.chest_1.title
         _displayText: Chest
+        _requiresActivation: 0
+        _activationTitleLocalizationKey: 
+        _activationTitle: 
+        _activationDescriptionLocalizationKey: 
+        _activationDescription: 
     - _decorReward: 50
       _bonuses:
       - _type: 1
@@ -626,6 +874,11 @@ MonoBehaviour:
         _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
         _displayTextLocalizationKey: chest.chest_1.title
         _displayText: Chest
+        _requiresActivation: 0
+        _activationTitleLocalizationKey: 
+        _activationTitle: 
+        _activationDescriptionLocalizationKey: 
+        _activationDescription: 
     - _decorReward: 120
       _bonuses:
       - _type: 0
@@ -663,6 +916,11 @@ MonoBehaviour:
         _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
         _displayTextLocalizationKey: chest.chest_1.title
         _displayText: Chest
+        _requiresActivation: 0
+        _activationTitleLocalizationKey: 
+        _activationTitle: 
+        _activationDescriptionLocalizationKey: 
+        _activationDescription: 
     - _decorReward: 200
       _bonuses:
       - _type: 1

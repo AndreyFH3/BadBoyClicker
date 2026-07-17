@@ -19,6 +19,8 @@ namespace AdBonusOffers
 
         public float ClickIncomeMultiplier => GetMaxMultiplier(AdBonusEffectType.ClickIncomeMultiplier);
         public float PassiveIncomeMultiplier => GetMaxMultiplier(AdBonusEffectType.PassiveIncomeMultiplier);
+        public float AllIncomeMultiplier => GetMaxMultiplier(AdBonusEffectType.AllIncomeMultiplier);
+        public float ExperienceMultiplier => GetMaxMultiplier(AdBonusEffectType.ExperienceMultiplier);
         public float ShopPriceMultiplier => 1f - GetMaxDiscountPercent() / 100f;
         public IReadOnlyList<AdBonusActiveEffectViewData> ActiveEffects => _activeEffectViewData;
 
@@ -89,6 +91,8 @@ namespace AdBonusOffers
                 case AdBonusEffectType.ClickIncomeMultiplier:
                 case AdBonusEffectType.PassiveIncomeMultiplier:
                 case AdBonusEffectType.ShopDiscountPercent:
+                case AdBonusEffectType.AllIncomeMultiplier:
+                case AdBonusEffectType.ExperienceMultiplier:
                     AddTimedEffect(effect);
                     break;
                 default:

@@ -50,6 +50,11 @@ namespace DailyLogin
             return NormalizeDayIndex(_runtimeSave.CurrentDayIndex);
         }
 
+        public int GetCurrentCycle()
+        {
+            return _runtimeSave.CompletedCycles;
+        }
+
         public DailyLoginDayConfig GetCurrentRewardDay()
         {
             if (_config == null || !_config.HasRewards)
@@ -81,13 +86,16 @@ namespace DailyLogin
                 return false;
             }
 
-            _rewardService.GiveReward(dayConfig.Reward);
-
             int currentDayIndex = GetCurrentDayIndex();
-            int nextDayIndex = NormalizeDayIndex(_runtimeSave.CurrentDayIndex + 1);
-            _runtimeSave.SetClaimState(nextDayIndex, _timeService.CurrentUtcTicks);
+            RewardConfig reward = dayConfig.GetReward(_runtimeSave.CompletedCycles);
+            _rewardService.GiveReward(reward);
 
-            RewardClaimed?.Invoke(currentDayIndex, dayConfig.Reward);
+            bool completesCycle = currentDayIndex >= _config.DaysCount - 1;
+            int nextDayIndex = NormalizeDayIndex(_runtimeSave.CurrentDayIndex + 1);
+            int nextCompletedCycles = completesCycle ? _runtimeSave.CompletedCycles + 1 : _runtimeSave.CompletedCycles;
+            _runtimeSave.SetClaimState(nextDayIndex, _timeService.CurrentUtcTicks, nextCompletedCycles);
+
+            RewardClaimed?.Invoke(currentDayIndex, reward);
             _saveSystem.Save();
             return true;
         }

@@ -16,7 +16,9 @@ namespace Installer.Init
         private IAdBonusEffectService _bonusEffectService;
         public System.Action<long> OnClickValueEvent;
 
-        private long CalculateValue => ApplyMultiplier(_shopSave.ClickValue, _bonusEffectService?.ClickIncomeMultiplier ?? 1f);
+        private long CalculateValue => ApplyMultiplier(
+            _shopSave.ClickValue,
+            (_bonusEffectService?.ClickIncomeMultiplier ?? 1f) * (_bonusEffectService?.AllIncomeMultiplier ?? 1f));
 
         [Inject]
         public void StartGame(

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using AdBonusOffers;
 using Core;
 using Core.Ads;
 using Shop;
@@ -19,6 +20,7 @@ namespace PlayerProgression
         private LazyInject<IRewardedAdsService> _rewardedAds;
         private ILocalizationService _localization;
         private IQuestRewardService _rewardService;
+        private IAdBonusEffectService _bonusEffectService;
 
         public int CurrentLevel => _save.CompletedLevels + 1;
         public long CurrentExperience => _save.CurrentExperience;
@@ -35,7 +37,7 @@ namespace PlayerProgression
         public event Action<int> LevelCompleted;
 
         [Inject]
-        public void Construct(GameConfig config, Wallet wallet, PlayerProgressionRuntimeSave save, LazyInject<IShopRuntimeSave> shopSave, LazyInject<IRewardedAdsService> rewardedAds, ILocalizationService localization, IQuestRewardService rewardService)
+        public void Construct(GameConfig config, Wallet wallet, PlayerProgressionRuntimeSave save, LazyInject<IShopRuntimeSave> shopSave, LazyInject<IRewardedAdsService> rewardedAds, ILocalizationService localization, IQuestRewardService rewardService, IAdBonusEffectService bonusEffectService)
         {
             _config = config;
             _wallet = wallet;
@@ -44,6 +46,7 @@ namespace PlayerProgression
             _rewardedAds = rewardedAds;
             _localization = localization;
             _rewardService = rewardService;
+            _bonusEffectService = bonusEffectService;
         }
 
         public void Initialize()
@@ -71,6 +74,9 @@ namespace PlayerProgression
             {
                 return;
             }
+
+            float experienceMultiplier = _bonusEffectService?.ExperienceMultiplier ?? 1f;
+            amount = Math.Max(1, (long)Math.Ceiling(amount * Math.Max(0f, experienceMultiplier)));
 
             int completedLevels = _save.CompletedLevels;
             long experience = _save.CurrentExperience + amount;

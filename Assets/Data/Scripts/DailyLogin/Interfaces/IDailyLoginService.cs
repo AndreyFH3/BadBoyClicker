@@ -8,6 +8,7 @@ namespace DailyLogin
 
         bool CanClaim();
         int GetCurrentDayIndex();
+        int GetCurrentCycle();
         DailyLoginDayConfig GetCurrentRewardDay();
         IReadOnlyList<DailyLoginDayConfig> GetRewardDays();
         bool Claim();
