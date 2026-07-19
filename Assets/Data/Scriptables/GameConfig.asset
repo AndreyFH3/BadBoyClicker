@@ -396,14 +396,15 @@ MonoBehaviour:
     _nameLocalizationKey: shop.paid.soft_currency_pack_1.name
     _name: Small Coin Pack
     _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-    _priceText: 
+    _priceText:
     _rewardTextLocalizationKey: shop.paid.soft_currency_pack_1.reward
     _rewardText: +10000 coins
+    _timeBasedRewardMinutes: 30
     _rewards:
     - _rewardType: 0
       _currencyType: 0
-      _amount: 10000
-      _rewardId: 
+      _amount: 0
+      _rewardId:
       _icon: {fileID: 0}
       _displayTextLocalizationKey: shop.paid.soft_currency_pack_1.reward
       _displayText: +10000 coins
@@ -420,14 +421,15 @@ MonoBehaviour:
     _nameLocalizationKey: shop.paid.soft_currency_pack_2.name
     _name: Medium Coin Pack
     _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-    _priceText: 
+    _priceText:
     _rewardTextLocalizationKey: shop.paid.soft_currency_pack_2.reward
     _rewardText: +30000 coins
+    _timeBasedRewardMinutes: 60
     _rewards:
     - _rewardType: 0
       _currencyType: 0
-      _amount: 30000
-      _rewardId: 
+      _amount: 0
+      _rewardId:
       _icon: {fileID: 0}
       _displayTextLocalizationKey: shop.paid.soft_currency_pack_2.reward
       _displayText: +30000 coins
@@ -444,14 +446,15 @@ MonoBehaviour:
     _nameLocalizationKey: shop.paid.soft_currency_pack_3.name
     _name: Large Coin Pack
     _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-    _priceText: 
+    _priceText:
     _rewardTextLocalizationKey: shop.paid.soft_currency_pack_3.reward
     _rewardText: +80000 coins
+    _timeBasedRewardMinutes: 180
     _rewards:
     - _rewardType: 0
       _currencyType: 0
-      _amount: 80000
-      _rewardId: 
+      _amount: 0
+      _rewardId:
       _icon: {fileID: 0}
       _displayTextLocalizationKey: shop.paid.soft_currency_pack_3.reward
       _displayText: +80000 coins
@@ -468,14 +471,15 @@ MonoBehaviour:
     _nameLocalizationKey: shop.paid.soft_currency_pack_4.name
     _name: Mega Coin Pack
     _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-    _priceText: 
+    _priceText:
     _rewardTextLocalizationKey: shop.paid.soft_currency_pack_4.reward
     _rewardText: +200000 coins
+    _timeBasedRewardMinutes: 480
     _rewards:
     - _rewardType: 0
       _currencyType: 0
-      _amount: 200000
-      _rewardId: 
+      _amount: 0
+      _rewardId:
       _icon: {fileID: 0}
       _displayTextLocalizationKey: shop.paid.soft_currency_pack_4.reward
       _displayText: +200000 coins
@@ -585,9 +589,9 @@ MonoBehaviour:
     _paymentId: 
     _priceCurrencyType: 2
     _priceAmount: 15
-    _nameLocalizationKey: shop.paid.chest_3_purchase.name
+    _nameLocalizationKey: chest.chest_3.title
     _name: Card Chest
-    _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+    _icon: {fileID: -7057432041066431953, guid: 70f431c04906996459960caf8a378d22, type: 3}
     _priceText: 
     _rewardTextLocalizationKey: shop.paid.chest_3_purchase.reward
     _rewardText: Card Chest
@@ -609,9 +613,9 @@ MonoBehaviour:
     _paymentId: 
     _priceCurrencyType: 2
     _priceAmount: 30
-    _nameLocalizationKey: shop.paid.chest_4_purchase.name
+    _nameLocalizationKey: chest.chest_4.title
     _name: Collection Chest
-    _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+    _icon: {fileID: 8956127547417997447, guid: 70f431c04906996459960caf8a378d22, type: 3}
     _priceText: 
     _rewardTextLocalizationKey: shop.paid.chest_4_purchase.reward
     _rewardText: Collection Chest
@@ -633,9 +637,9 @@ MonoBehaviour:
     _paymentId: 
     _priceCurrencyType: 2
     _priceAmount: 20
-    _nameLocalizationKey: shop.paid.chest_5_purchase.name
+    _nameLocalizationKey: chest.chest_5.title
     _name: Boost Chest
-    _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+    _icon: {fileID: 1208525442414262951, guid: 70f431c04906996459960caf8a378d22, type: 3}
     _priceText: 
     _rewardTextLocalizationKey: shop.paid.chest_5_purchase.reward
     _rewardText: Boost Chest
@@ -659,6 +663,7 @@ MonoBehaviour:
     _adMultiplier: 2
     _paidMultiplier: 2
     _minSecondsToShow: 0
+    _baseIncomePercent: 50
   _playerProgression:
     _middleRewardPerLevel: 5
     _middleRewardIcon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}

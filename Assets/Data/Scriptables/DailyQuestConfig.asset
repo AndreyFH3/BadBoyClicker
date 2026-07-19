@@ -18,7 +18,7 @@ MonoBehaviour:
     _title: 
     _descriptionLocalizationKey: daily_quest.type.click.description
     _description: 
-    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _icon: {fileID: -8075148566640098004, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 0
     _resetPolicy: 0
     _targetValue: 1000
@@ -39,14 +39,14 @@ MonoBehaviour:
       _activationDescription: 
   - _id: balance_test
     _titleLocalizationKey: daily_quest.type.balance.title
-    _title:
+    _title: 
     _descriptionLocalizationKey: daily_quest.type.balance.description
-    _description:
-    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _description: 
+    _icon: {fileID: 9007702836895937785, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 4
     _resetPolicy: 0
     _targetValue: 25000
-    _targetId:
+    _targetId: 
     _points: 3
     _rewards:
     - _rewardType: 3
@@ -66,7 +66,7 @@ MonoBehaviour:
     _title: 
     _descriptionLocalizationKey: daily_quest.type.total_earned.description
     _description: 
-    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _icon: {fileID: 464836272655179873, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 1
     _resetPolicy: 0
     _targetValue: 5000
@@ -90,7 +90,7 @@ MonoBehaviour:
     _title: 
     _descriptionLocalizationKey: daily_quest.type.shop_buy.description
     _description: 
-    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _icon: {fileID: -7263886858265052011, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 2
     _resetPolicy: 0
     _targetValue: 50
@@ -114,7 +114,7 @@ MonoBehaviour:
     _title: 
     _descriptionLocalizationKey: daily_quest.type.shop_spent.description
     _description: 
-    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _icon: {fileID: 2311272757980207322, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 6
     _resetPolicy: 0
     _targetValue: 15000
@@ -138,7 +138,7 @@ MonoBehaviour:
     _title: 
     _descriptionLocalizationKey: daily_quest.type.player_level.description
     _description: 
-    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _icon: {fileID: -6367816656384399069, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 3
     _resetPolicy: 1
     _targetValue: 2
@@ -162,7 +162,7 @@ MonoBehaviour:
     _title: 
     _descriptionLocalizationKey: daily_quest.type.watch_ad.description
     _description: 
-    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _icon: {fileID: -5531199727539077336, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 8
     _resetPolicy: 0
     _targetValue: 1
@@ -186,7 +186,7 @@ MonoBehaviour:
     _title: 
     _descriptionLocalizationKey: daily_quest.type.play_time.description
     _description: 
-    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _icon: {fileID: -7321143754752364359, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 9
     _resetPolicy: 2
     _targetValue: 300

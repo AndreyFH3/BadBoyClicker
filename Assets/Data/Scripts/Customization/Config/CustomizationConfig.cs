@@ -58,6 +58,8 @@ namespace Customization
             [SerializeField] private Sprite _sprite;
             [Min(0)]
             [SerializeField] private long _price;
+            [Tooltip("If true, this item cannot be bought directly in the shop and can only be unlocked via Give (e.g. a collection reward).")]
+            [SerializeField] private bool _rewardOnly;
 
             public string Id => _id;
             public string TitleLocalizationKey => _titleLocalizationKey;
@@ -66,6 +68,7 @@ namespace Customization
             public string Description => _description;
             public Sprite Sprite => _sprite;
             public long Price => Math.Max(0, _price);
+            public bool RewardOnly => _rewardOnly;
         }
     }
 }

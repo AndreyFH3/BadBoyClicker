@@ -36,8 +36,6 @@ namespace Chests
             [SerializeField] private ChestRewardKind _rewardKind;
             [SerializeField] private QuestReward _reward;
             [SerializeField] private string _cardCollectionId;
-            [Range(1, 5)]
-            [SerializeField] private int _cardStars = 1;
             [SerializeField] private bool _allowDuplicateCards = true;
             [SerializeField] private long _minAmount;
             [SerializeField] private long _maxAmount;
@@ -47,7 +45,6 @@ namespace Chests
             public ChestRewardKind RewardKind => _rewardKind;
             public QuestReward Reward => _reward;
             public string CardCollectionId => _cardCollectionId;
-            public int CardStars => Math.Max(1, _cardStars);
             public bool AllowDuplicateCards => _allowDuplicateCards;
             public long MinAmount => _minAmount;
             public long MaxAmount => _maxAmount;

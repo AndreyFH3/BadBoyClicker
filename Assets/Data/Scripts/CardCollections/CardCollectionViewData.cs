@@ -14,6 +14,7 @@ namespace CardCollections
         public int TotalStars;
         public bool IsCompleted;
         public bool IsRewardClaimed;
+        public bool RewardAvailable;
         public IReadOnlyList<CardViewData> Cards;
         public IReadOnlyList<RewardDisplay> Rewards;
     }

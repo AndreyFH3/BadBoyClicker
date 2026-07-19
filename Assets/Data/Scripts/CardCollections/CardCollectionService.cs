@@ -179,6 +179,12 @@ namespace CardCollections
             return true;
         }
 
+        public bool IsRewardClaimed(string collectionId)
+        {
+            var collection = GetCollection(collectionId);
+            return collection != null && _save.IsRewardClaimed(collection.Id);
+        }
+
         public void ResetAllProgress()
         {
             if (!IsUnlocked)
@@ -296,6 +302,9 @@ namespace CardCollections
                 }
             }
 
+            bool isCompleted = IsCollectionCompleted(collection);
+            bool isRewardClaimed = _save.IsRewardClaimed(collection.Id);
+
             return new CardCollectionViewData
             {
                 Id = collection.Id,
@@ -306,8 +315,9 @@ namespace CardCollections
                 TotalCards = cards.Count,
                 CollectedStars = collectedStars,
                 TotalStars = totalStars,
-                IsCompleted = IsCollectionCompleted(collection),
-                IsRewardClaimed = _save.IsRewardClaimed(collection.Id),
+                IsCompleted = isCompleted,
+                IsRewardClaimed = isRewardClaimed,
+                RewardAvailable = isCompleted && !isRewardClaimed,
                 Rewards = BuildRewardDisplays(collection.Rewards)
             };
         }

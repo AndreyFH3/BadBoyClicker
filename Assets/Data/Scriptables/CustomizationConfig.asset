@@ -35,6 +35,7 @@ MonoBehaviour:
     _description: Some Description
     _sprite: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
     _price: 0
+    _rewardOnly: 0
   - _id: cat_02
     _titleLocalizationKey: cat_02_title_key
     _title: cat_02
@@ -42,4 +43,29 @@ MonoBehaviour:
     _description: Some Description
     _sprite: {fileID: 2779402041821275866, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
     _price: 100
+    _rewardOnly: 0
+  - _id: cat_mythic
+    _titleLocalizationKey: cat_mythic_title_key
+    _title: Mythic Cat
+    _descriptionLocalizationKey: cat_mythic_description_key
+    _description: Awarded for completing the Mythical Cats card collection.
+    _sprite: {fileID: 6575078318536239041, guid: 303c4d6ef2e5eaa4e96dafe2e4f82524, type: 3}
+    _price: 0
+    _rewardOnly: 1
+  - _id: cat_emperor
+    _titleLocalizationKey: cat_emperor_title_key
+    _title: Emperor
+    _descriptionLocalizationKey: cat_emperor_description_key
+    _description: Awarded for completing the Legends card collection.
+    _sprite: {fileID: -7613686468126095305, guid: f5c366c4dbababe4bbcd1ed6b5b3281e, type: 3}
+    _price: 0
+    _rewardOnly: 1
+  - _id: cat_legend
+    _titleLocalizationKey: cat_legend_title_key
+    _title: Legend
+    _descriptionLocalizationKey: cat_legend_description_key
+    _description: Awarded for completing the Legends card collection.
+    _sprite: {fileID: -1129968827519779059, guid: f5c366c4dbababe4bbcd1ed6b5b3281e, type: 3}
+    _price: 0
+    _rewardOnly: 1
   _priceIcon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}

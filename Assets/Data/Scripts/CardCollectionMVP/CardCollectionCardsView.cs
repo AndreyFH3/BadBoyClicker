@@ -230,7 +230,7 @@ namespace CardCollectionMVP
         {
             if (_collectButton != null)
             {
-                _collectButton.interactable = collection.IsCompleted && !collection.IsRewardClaimed;
+                _collectButton.interactable = collection.RewardAvailable;
             }
 
             SetRewardClaimedObjects(collection.IsRewardClaimed);

@@ -20,6 +20,8 @@ namespace Shop
         [SerializeField] private Transform _paidDecorRoot;
         [Tooltip("Optional. When assigned, offers that reward soft currency go here instead of the shared paid root.")]
         [SerializeField] private Transform _paidSoftRoot;
+        [Tooltip("Optional. When assigned, offers that reward a chest go here instead of the shared paid root.")]
+        [SerializeField] private Transform _paidChestRoot;
         [SerializeField] private CanvasGroup _clicksCanvasGroup;
         [SerializeField] private CanvasGroup _autoBuysCanvasGroup;
         [SerializeField] private CanvasGroup _paidBuysCanvasGroup;
@@ -182,6 +184,8 @@ namespace Shop
                     return _paidDecorRoot;
                 case ShopRewardGroup.Soft:
                     return _paidSoftRoot;
+                case ShopRewardGroup.Chest:
+                    return _paidChestRoot;
                 default:
                     return null;
             }

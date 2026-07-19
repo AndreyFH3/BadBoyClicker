@@ -1,4 +1,5 @@
 using System;
+using CardCollections;
 using Core;
 using Core.Time;
 using PlayerFeatures;
@@ -14,6 +15,7 @@ namespace OfflineIncome
         private IShopRuntimeSave _shopSave;
         private IOfflineIncomeRuntimeSave _save;
         private IPlayerFeatureUnlockService _featureUnlockService;
+        private ICardCollectionBonusService _collectionBonusService;
         private bool _pendingRewardCalculated;
 
         public long PendingReward { get; private set; }
@@ -26,13 +28,15 @@ namespace OfflineIncome
             ITimeService timeService,
             IShopRuntimeSave shopSave,
             IOfflineIncomeRuntimeSave save,
-            IPlayerFeatureUnlockService featureUnlockService)
+            IPlayerFeatureUnlockService featureUnlockService,
+            ICardCollectionBonusService collectionBonusService)
         {
             _config = config;
             _timeService = timeService;
             _shopSave = shopSave;
             _save = save;
             _featureUnlockService = featureUnlockService;
+            _collectionBonusService = collectionBonusService;
         }
 
         public void Initialize()
@@ -124,7 +128,15 @@ namespace OfflineIncome
                 return;
             }
 
-            PendingReward = elapsedSeconds * _shopSave.AutoIncomePerSecond;
+            long baseReward = elapsedSeconds * _shopSave.AutoIncomePerSecond;
+            // Offline income is capped at a percentage of what the player would have
+            // earned online (see design: base 50%, watching an ad or spending hard
+            // currency doubles it back up via AddReward's multiplier in the presenter).
+            float baseIncomePercent = Math.Max(0f, _config.OfflineIncome.BaseIncomePercent) / 100f;
+            float offlineMultiplier = baseIncomePercent * (_collectionBonusService?.OfflineIncomeMultiplier ?? 1f);
+            PendingReward = baseReward <= 0
+                ? 0
+                : Math.Max(1, (long)Math.Ceiling(baseReward * (double)Math.Max(0f, offlineMultiplier)));
             PendingElapsedSeconds = elapsedSeconds;
             _save.SetLastOnlineTicks(nowTicks);
         }

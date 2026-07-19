@@ -86,11 +86,14 @@ namespace Core
             [SerializeField] private int _adMultiplier = 2;
             [SerializeField] private int _paidMultiplier = 2;
             [SerializeField] private int _minSecondsToShow = 60;
+            [Range(0f, 100f)]
+            [SerializeField] private float _baseIncomePercent = 50f;
 
             public int HardClaimCost => _hardClaimCost;
             public int AdMultiplier => _adMultiplier;
             public int PaidMultiplier => _paidMultiplier;
             public int MinSecondsToShow => _minSecondsToShow;
+            public float BaseIncomePercent => _baseIncomePercent;
         }
 
         [System.Serializable]
@@ -139,6 +142,10 @@ namespace Core
             [SerializeField] private string _priceText;
             [SerializeField] private string _rewardTextLocalizationKey;
             [SerializeField] private string _rewardText;
+            [Tooltip("When > 0, the offer's soft-currency reward is not the fixed amount below: " +
+                     "it's computed as the player's current income-per-second times this many minutes " +
+                     "(i.e. \"claim N minutes of production instantly\"), recalculated at display/purchase time.")]
+            [SerializeField] private int _timeBasedRewardMinutes;
             [SerializeField] private List<QuestReward> _rewards = new();
 
             public string Id => _id;
@@ -152,6 +159,7 @@ namespace Core
             public string PriceText => _priceText;
             public string RewardTextLocalizationKey => _rewardTextLocalizationKey;
             public string RewardText => _rewardText;
+            public int TimeBasedRewardMinutes => _timeBasedRewardMinutes;
             public IReadOnlyList<QuestReward> Rewards => _rewards;
         }
 

@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: b555ca8c3f21e32409c9bc0b59eb2f87
+guid: f5c366c4dbababe4bbcd1ed6b5b3281e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4439254127691508170
-    second: LOW_ICONS_0
+      213: 8351261422920828326
+    second: legends-Photoroom_0
   - first:
-      213: -3720268985596655753
-    second: LOW_ICONS_1
+      213: 4359266360083968385
+    second: legends-Photoroom_1
   - first:
-      213: 5106682746517456488
-    second: LOW_ICONS_2
+      213: -2369490805454388442
+    second: legends-Photoroom_2
+  - first:
+      213: -3016546014847986287
+    second: legends-Photoroom_3
+  - first:
+      213: -7613686468126095305
+    second: legends-Photoroom_4
+  - first:
+      213: -1129968827519779059
+    second: legends-Photoroom_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -78,7 +87,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 512
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -132,13 +141,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LOW_ICONS_0
+      name: legends-Photoroom_0
       rect:
         serializedVersion: 2
-        x: 24
-        y: 34
-        width: 381
-        height: 331
+        x: 61
+        y: 541
+        width: 452
+        height: 428
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,20 +156,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 636d24b14e99462c0800000000000000
-      internalID: -4439254127691508170
+      spriteID: 6a58e9b6404a5e370800000000000000
+      internalID: 8351261422920828326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LOW_ICONS_1
+      name: legends-Photoroom_1
       rect:
         serializedVersion: 2
-        x: 425
-        y: 28
-        width: 272
-        height: 352
+        x: 533
+        y: 540
+        width: 456
+        height: 429
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,20 +178,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 777cb948113fe5cc0800000000000000
-      internalID: -3720268985596655753
+      spriteID: 1817d1a78a93f7c30800000000000000
+      internalID: 4359266360083968385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: LOW_ICONS_2
+      name: legends-Photoroom_2
       rect:
         serializedVersion: 2
-        x: 746
-        y: 55
-        width: 295
-        height: 277
+        x: 1013
+        y: 541
+        width: 462
+        height: 429
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,8 +200,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8660acec6e49ed640800000000000000
-      internalID: 5106682746517456488
+      spriteID: 6234652aaa0ed1fd0800000000000000
+      internalID: -2369490805454388442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legends-Photoroom_3
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 86
+        width: 451
+        height: 422
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1959d50c1631326d0800000000000000
+      internalID: -3016546014847986287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legends-Photoroom_4
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 87
+        width: 456
+        height: 421
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 738452c0f70c65690800000000000000
+      internalID: -7613686468126095305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: legends-Photoroom_5
+      rect:
+        serializedVersion: 2
+        x: 1012
+        y: 87
+        width: 461
+        height: 421
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0f3b64965b8150f0800000000000000
+      internalID: -1129968827519779059
       vertices: []
       indices: 
       edges: []
@@ -201,7 +276,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fa0955e220538f6419d565a496579a20
+    spriteID: aa903796f9c75914cbd4ea6888c7adfb
     internalID: 0
     vertices: []
     indices: 
@@ -211,9 +286,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      LOW_ICONS_0: -4439254127691508170
-      LOW_ICONS_1: -3720268985596655753
-      LOW_ICONS_2: 5106682746517456488
+      legends-Photoroom_0: 8351261422920828326
+      legends-Photoroom_1: 4359266360083968385
+      legends-Photoroom_2: -2369490805454388442
+      legends-Photoroom_3: -3016546014847986287
+      legends-Photoroom_4: -7613686468126095305
+      legends-Photoroom_5: -1129968827519779059
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

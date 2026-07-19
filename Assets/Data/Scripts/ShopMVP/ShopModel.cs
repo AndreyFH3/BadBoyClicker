@@ -7,6 +7,7 @@ using Zenject;
 using PlayerProgression;
 using GameLocalization;
 using AdBonusOffers;
+using CardCollections;
 using Purchases;
 using QuestSystem;
 using Rewards;
@@ -23,6 +24,7 @@ namespace Shop
         private IPlayerProgressionService _playerProgression;
         private ILocalizationService _localization;
         private IAdBonusEffectService _bonusEffectService;
+        private ICardCollectionBonusService _collectionBonusService;
         private IPurchaseSystem _purchaseSystem;
         private IQuestRewardService _rewardService;
         private readonly Dictionary<string, ShopItem> _items = new();
@@ -41,6 +43,7 @@ namespace Shop
             IPlayerProgressionService playerProgression,
             ILocalizationService localization,
             IAdBonusEffectService bonusEffectService,
+            ICardCollectionBonusService collectionBonusService,
             IPurchaseSystem purchaseSystem,
             IQuestRewardService rewardService)
         {
@@ -50,6 +53,7 @@ namespace Shop
             _playerProgression = playerProgression;
             _localization = localization;
             _bonusEffectService = bonusEffectService;
+            _collectionBonusService = collectionBonusService;
             _purchaseSystem = purchaseSystem;
             _rewardService = rewardService;
 
@@ -62,6 +66,7 @@ namespace Shop
             _wallet.OnChanged += OnWalletChanged;
             _playerProgression.Changed += OnProgressionChanged;
             _bonusEffectService.Changed += OnBonusEffectsChanged;
+            _collectionBonusService.Changed += OnCollectionBonusChanged;
             _purchaseSystem.PurchaseSucceeded += OnPurchaseSucceeded;
             _purchaseSystem.PurchaseFailed += OnPurchaseFailed;
         }
@@ -71,6 +76,7 @@ namespace Shop
             _wallet.OnChanged -= OnWalletChanged;
             _playerProgression.Changed -= OnProgressionChanged;
             _bonusEffectService.Changed -= OnBonusEffectsChanged;
+            _collectionBonusService.Changed -= OnCollectionBonusChanged;
             _purchaseSystem.PurchaseSucceeded -= OnPurchaseSucceeded;
             _purchaseSystem.PurchaseFailed -= OnPurchaseFailed;
         }
@@ -101,7 +107,7 @@ namespace Shop
             var data = item.PaidData;
             string name = _localization.Localize(data.NameLocalizationKey);
             string price = GetPaidPriceText(data);
-            string reward = _localization.Localize(data.RewardTextLocalizationKey);
+            string reward = ResolvePaidRewardText(data);
 
             return new ShopPurchaseConfirmationData
             {
@@ -219,11 +225,11 @@ namespace Shop
                 Level = string.Empty,
                 PriceIcon = GetPriceIcon(item),
                 Price = GetPaidPriceText(data),
-                Bonus = _localization.Localize(data.RewardTextLocalizationKey),
+                Bonus = ResolvePaidRewardText(data),
                 CanBuy = CanBuy(item, 0),
                 RewardGroup = DetermineRewardGroup(data.Rewards),
                 IsRealMoney = data.PurchaseKind == GameConfig.PaidShopPurchaseKind.RealMoney,
-                Rewards = BuildRewardDisplays(data.Rewards)
+                Rewards = BuildRewardDisplays(data)
             };
         }
 
@@ -234,8 +240,19 @@ namespace Shop
                 return ShopRewardGroup.Soft;
             }
 
-            // Group by the first currency reward the offer grants; non-currency
-            // rewards (backgrounds, boosts, chests) don't define a slot on their own.
+            // Chests get their own dedicated slot regardless of any other rewards
+            // the offer might also grant, so they never fall back into whichever
+            // currency slot happens to be resolved last.
+            foreach (var reward in rewards)
+            {
+                if (reward != null && reward.RewardType == QuestRewardType.Chest)
+                {
+                    return ShopRewardGroup.Chest;
+                }
+            }
+
+            // Otherwise group by the first currency reward the offer grants;
+            // non-currency rewards (backgrounds, boosts) don't define a slot on their own.
             foreach (var reward in rewards)
             {
                 if (reward == null || reward.RewardType != QuestRewardType.Currency)
@@ -262,8 +279,9 @@ namespace Shop
             }
         }
 
-        private List<RewardDisplay> BuildRewardDisplays(IReadOnlyList<QuestReward> rewards)
+        private List<RewardDisplay> BuildRewardDisplays(GameConfig.PaidShopData data)
         {
+            var rewards = data?.Rewards;
             if (rewards == null || rewards.Count == 0)
             {
                 return null;
@@ -277,14 +295,73 @@ namespace Shop
                     continue;
                 }
 
+                bool isTimeBased = IsTimeBasedSoftReward(data, reward);
+                long amount = isTimeBased ? ComputeTimeBasedSoftAmount(data) : reward.Amount;
+
                 displays.Add(new RewardDisplay
                 {
                     Icon = reward.Icon,
-                    Amount = reward.Amount > 0 ? reward.Amount.ConvertFromLongToString() : string.Empty
+                    // Time-based rewards show their computed amount even when it's
+                    // zero (no income yet), so the player sees why the offer is locked.
+                    Amount = isTimeBased || amount > 0 ? amount.ConvertFromLongToString() : string.Empty
                 });
             }
 
             return displays;
+        }
+
+        // A paid offer opts into the "N minutes of production" reward by setting
+        // TimeBasedRewardMinutes > 0 on a soft-currency reward entry; the configured
+        // Amount on that entry is then ignored in favor of the live computation.
+        private bool IsTimeBasedSoftReward(GameConfig.PaidShopData data, QuestReward reward)
+        {
+            return data != null && data.TimeBasedRewardMinutes > 0 &&
+                   reward != null &&
+                   reward.RewardType == QuestRewardType.Currency &&
+                   reward.CurrencyType == QuestRewardCurrencyType.Soft;
+        }
+
+        private long ComputeTimeBasedSoftAmount(GameConfig.PaidShopData data)
+        {
+            return Math.Max(0, AutoIncomePerSecond) * Math.Max(0, data.TimeBasedRewardMinutes) * 60L;
+        }
+
+        private string ResolvePaidRewardText(GameConfig.PaidShopData data)
+        {
+            var timeBasedReward = FindTimeBasedSoftReward(data);
+            if (timeBasedReward == null)
+            {
+                return _localization.Localize(data.RewardTextLocalizationKey);
+            }
+
+            long amount = ComputeTimeBasedSoftAmount(data);
+            if (amount <= 0)
+            {
+                return _localization.Localize("shop.paid.time_reward.locked");
+            }
+
+            return _localization.Format(
+                "shop.item.bonus",
+                amount.ConvertFromLongToString(),
+                _localization.Localize("currency.soft"));
+        }
+
+        private QuestReward FindTimeBasedSoftReward(GameConfig.PaidShopData data)
+        {
+            if (data?.Rewards == null)
+            {
+                return null;
+            }
+
+            foreach (var reward in data.Rewards)
+            {
+                if (IsTimeBasedSoftReward(data, reward))
+                {
+                    return reward;
+                }
+            }
+
+            return null;
         }
 
         // Bonus shown on the card is the effective per-purchase gain, i.e. the
@@ -302,8 +379,8 @@ namespace Shop
             }
 
             float multiplier = item.Type == ShopItemType.AutoBuy
-                ? _playerProgression?.PassiveIncomeMultiplier ?? 1f
-                : _playerProgression?.ClickIncomeMultiplier ?? 1f;
+                ? (_playerProgression?.PassiveIncomeMultiplier ?? 1f) * (_collectionBonusService?.PassiveIncomeMultiplier ?? 1f)
+                : (_playerProgression?.ClickIncomeMultiplier ?? 1f) * (_collectionBonusService?.ClickIncomeMultiplier ?? 1f);
 
             return Math.Max(1, (long)Math.Round(baseBonus * (double)Math.Max(0f, multiplier)));
         }
@@ -317,7 +394,7 @@ namespace Shop
 
         private long CalculatePrice(long basePrice, int level)
         {
-            float priceMultiplier = _bonusEffectService?.ShopPriceMultiplier ?? 1f;
+            float priceMultiplier = (_bonusEffectService?.ShopPriceMultiplier ?? 1f) * (_collectionBonusService?.ShopPriceMultiplier ?? 1f);
             return Math.Max(1, (long)Mathf.Ceil(basePrice * Mathf.Pow(PriceGrowth, level) * Mathf.Max(0f, priceMultiplier)));
         }
 
@@ -349,6 +426,12 @@ namespace Shop
         private bool CanBuyPaid(GameConfig.PaidShopData data)
         {
             if (data == null || data.Rewards == null || data.Rewards.Count == 0)
+            {
+                return false;
+            }
+
+            var timeBasedReward = FindTimeBasedSoftReward(data);
+            if (timeBasedReward != null && ComputeTimeBasedSoftAmount(data) <= 0)
             {
                 return false;
             }
@@ -429,10 +512,17 @@ namespace Shop
 
         private void GivePaidRewards(ShopItem item)
         {
+            ApplyTimeBasedRewardAmount(item.PaidData);
             _rewardService.GiveRewards(item.PaidData.Rewards);
             _playerProgression.AddExperience(PlayerExperienceSource.ShopPurchase);
             ItemBought?.Invoke(item.PaidData.Id);
             StateChanged?.Invoke();
+        }
+
+        private void ApplyTimeBasedRewardAmount(GameConfig.PaidShopData data)
+        {
+            var reward = FindTimeBasedSoftReward(data);
+            reward?.SetAmount(ComputeTimeBasedSoftAmount(data));
         }
 
         private string GetPaidPriceText(GameConfig.PaidShopData data)
@@ -513,6 +603,12 @@ namespace Shop
 
         private void OnBonusEffectsChanged()
         {
+            StateChanged?.Invoke();
+        }
+
+        private void OnCollectionBonusChanged()
+        {
+            _save.Recalculate(_config);
             StateChanged?.Invoke();
         }
 

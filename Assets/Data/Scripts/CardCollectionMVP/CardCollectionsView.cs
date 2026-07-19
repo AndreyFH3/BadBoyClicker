@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CardCollections;
 using DG.Tweening;
 using UnityEngine;
@@ -122,6 +123,8 @@ namespace CardCollectionMVP
 
                 GetOrCreateItem(collection.Id).SetData(collection);
             }
+
+            ApplySortOrder();
         }
 
         public void UpdateCollection(CardCollectionViewData collection)
@@ -132,6 +135,42 @@ namespace CardCollectionMVP
             }
 
             GetOrCreateItem(collection.Id).SetData(collection);
+            ApplySortOrder();
+        }
+
+        // Ready-to-collect first, then by collected card count (descending), fully claimed ones last.
+        private void ApplySortOrder()
+        {
+            List<CardCollectionItemView> ordered = _items.Values
+                .Where(item => item != null)
+                .OrderBy(item => GetSortGroup(item.Data))
+                .ThenByDescending(item => item.Data?.CollectedCards ?? 0)
+                .ToList();
+
+            for (int i = 0; i < ordered.Count; i++)
+            {
+                ordered[i].transform.SetSiblingIndex(i);
+            }
+        }
+
+        private static int GetSortGroup(CardCollectionViewData data)
+        {
+            if (data == null)
+            {
+                return 1;
+            }
+
+            if (data.RewardAvailable)
+            {
+                return 0;
+            }
+
+            if (data.IsRewardClaimed)
+            {
+                return 2;
+            }
+
+            return 1;
         }
 
         private GameObject Root => _root != null ? _root : gameObject;

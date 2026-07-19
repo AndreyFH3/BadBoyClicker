@@ -204,7 +204,7 @@ namespace Chests
             if (candidates.Count == 0)
             {
                 Debug.LogWarning(
-                    $"No card candidates for chest reward. Collection: {entry.CardCollectionId}, stars: {entry.CardStars}");
+                    $"No card candidates for chest reward. Collection: {entry.CardCollectionId}");
                 return false;
             }
 
@@ -230,7 +230,6 @@ namespace Chests
                 foreach (var card in collection.Cards)
                 {
                     if (card == null ||
-                        card.Stars != entry.CardStars ||
                         requireMissingCard && _cardCollectionService.HasCard(card.Id))
                     {
                         continue;

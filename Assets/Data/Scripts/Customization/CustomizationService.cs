@@ -58,13 +58,13 @@ namespace Customization
         public bool CanBuy(CustomizationItemType type, string id)
         {
             CustomizationConfig.CustomizationItemData item = GetItem(type, id);
-            return item != null && !IsPurchased(type, id) && _wallet.CanSpendSoft(item.Price);
+            return item != null && !item.RewardOnly && !IsPurchased(type, id) && _wallet.CanSpendSoft(item.Price);
         }
 
         public bool Buy(CustomizationItemType type, string id)
         {
             CustomizationConfig.CustomizationItemData item = GetItem(type, id);
-            if (item == null || IsPurchased(type, id))
+            if (item == null || item.RewardOnly || IsPurchased(type, id))
             {
                 return false;
             }

@@ -55,6 +55,8 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<ShopRuntimeSave>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<OfflineIncomeRuntimeSave>().AsSingle().NonLazy();
             Container.BindInterfacesTo<OfflineIncomeCustomRewardService>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<CardCollectionCustomRewardService>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<QuestCustomRewardDispatcher>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyLoginRuntimeSave>().AsSingle().NonLazy();
             Container.Bind<DailyQuestRuntimeSave>().AsSingle().NonLazy();
             Container.Bind<PlayerProgressionRuntimeSave>().AsSingle().NonLazy();
@@ -79,6 +81,7 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<DailyLoginService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyQuestService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CardCollectionService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<CardCollectionBonusService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CustomizationService>().AsSingle().NonLazy();
             Container.Bind<IDailyLoginStartupGate>().To<DailyLoginStartupGate>().AsSingle().NonLazy();
             Container.Bind<IRewardedAdsService>().To<YGRewardedAdsService>().AsSingle().NonLazy();

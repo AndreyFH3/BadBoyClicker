@@ -536,7 +536,8 @@ MonoBehaviour:
   - _key: daily_quest.type.balance.description
     _values:
     - _language: ru
-      _text: "\u041D\u0430\u043A\u043E\u043F\u0438\u0442\u0435 {0} \u043C\u043E\u043D\u0435\u0442 \u043D\u0430 \u0440\u0443\u043A\u0430\u0445"
+      _text: "\u041D\u0430\u043A\u043E\u043F\u0438\u0442\u0435 {0} \u043C\u043E\u043D\u0435\u0442
+        \u043D\u0430 \u0440\u0443\u043A\u0430\u0445"
     - _language: en
       _text: Hold {0} coins at once
   - _key: daily_quest.type.total_earned.title
@@ -548,7 +549,8 @@ MonoBehaviour:
   - _key: daily_quest.type.total_earned.description
     _values:
     - _language: ru
-      _text: "\u0417\u0430\u0440\u0430\u0431\u043E\u0442\u0430\u0439\u0442\u0435 {0} \u043C\u043E\u043D\u0435\u0442 \u0437\u0430 \u0434\u0435\u043D\u044C"
+      _text: "\u0417\u0430\u0440\u0430\u0431\u043E\u0442\u0430\u0439\u0442\u0435
+        {0} \u043C\u043E\u043D\u0435\u0442 \u0437\u0430 \u0434\u0435\u043D\u044C"
     - _language: en
       _text: Earn {0} coins today
   - _key: daily_quest.type.shop_buy.title
@@ -560,7 +562,8 @@ MonoBehaviour:
   - _key: daily_quest.type.shop_buy.description
     _values:
     - _language: ru
-      _text: "\u041A\u0443\u043F\u0438\u0442\u0435 \u0438\u043B\u0438 \u0443\u043B\u0443\u0447\u0448\u0438\u0442\u0435 {0} \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u043E\u0432 \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435"
+      _text: "\u041A\u0443\u043F\u0438\u0442\u0435 \u0438\u043B\u0438 \u0443\u043B\u0443\u0447\u0448\u0438\u0442\u0435
+        {0} \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u043E\u0432 \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435"
     - _language: en
       _text: Buy or upgrade {0} shop items
   - _key: daily_quest.type.shop_spent.title
@@ -572,7 +575,8 @@ MonoBehaviour:
   - _key: daily_quest.type.shop_spent.description
     _values:
     - _language: ru
-      _text: "\u041F\u043E\u0442\u0440\u0430\u0442\u044C\u0442\u0435 {0} \u043C\u043E\u043D\u0435\u0442 \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435"
+      _text: "\u041F\u043E\u0442\u0440\u0430\u0442\u044C\u0442\u0435 {0} \u043C\u043E\u043D\u0435\u0442
+        \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435"
     - _language: en
       _text: Spend {0} coins in the shop
   - _key: daily_quest.type.player_level.title
@@ -584,7 +588,8 @@ MonoBehaviour:
   - _key: daily_quest.type.player_level.description
     _values:
     - _language: ru
-      _text: "\u041F\u043E\u0432\u044B\u0441\u044C\u0442\u0435 \u0443\u0440\u043E\u0432\u0435\u043D\u044C \u0438\u0433\u0440\u043E\u043A\u0430 \u043D\u0430 {0}"
+      _text: "\u041F\u043E\u0432\u044B\u0441\u044C\u0442\u0435 \u0443\u0440\u043E\u0432\u0435\u043D\u044C
+        \u0438\u0433\u0440\u043E\u043A\u0430 \u043D\u0430 {0}"
     - _language: en
       _text: Increase your player level by {0}
   - _key: daily_quest.type.watch_ad.title
@@ -596,7 +601,8 @@ MonoBehaviour:
   - _key: daily_quest.type.watch_ad.description
     _values:
     - _language: ru
-      _text: "\u041F\u043E\u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 {0} \u0440\u0435\u043A\u043B\u0430\u043C\u0443 \u0437\u0430 \u0432\u043E\u0437\u043D\u0430\u0433\u0440\u0430\u0436\u0434\u0435\u043D\u0438\u0435"
+      _text: "\u041F\u043E\u0441\u043C\u043E\u0442\u0440\u0438\u0442\u0435 {0} \u0440\u0435\u043A\u043B\u0430\u043C\u0443
+        \u0437\u0430 \u0432\u043E\u0437\u043D\u0430\u0433\u0440\u0430\u0436\u0434\u0435\u043D\u0438\u0435"
     - _language: en
       _text: Watch {0} ad(s) for a reward
   - _key: daily_quest.type.play_time.title
@@ -608,7 +614,8 @@ MonoBehaviour:
   - _key: daily_quest.type.play_time.description
     _values:
     - _language: ru
-      _text: "\u041F\u0440\u043E\u0432\u0435\u0434\u0438\u0442\u0435 \u0432 \u0438\u0433\u0440\u0435 {0} \u0441\u0435\u043A\u0443\u043D\u0434 \u0437\u0430 \u0441\u0435\u0441\u0441\u0438\u044E"
+      _text: "\u041F\u0440\u043E\u0432\u0435\u0434\u0438\u0442\u0435 \u0432 \u0438\u0433\u0440\u0435
+        {0} \u0441\u0435\u043A\u0443\u043D\u0434 \u0437\u0430 \u0441\u0435\u0441\u0441\u0438\u044E"
     - _language: en
       _text: Play for {0} seconds in one session
   - _key: daily_quest.points_suffix
@@ -638,9 +645,13 @@ MonoBehaviour:
   - _key: card_collection.1.description
     _values:
     - _language: ru
-      _text: "\u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438 \u0443\u044E\u0442\u0430 \u041C\u0430\u043A\u0441\u0430: \u043F\u043E\u0434\u0443\u0448\u043A\u0430, \u043A\u043B\u0443\u0431\u043E\u043A, \u043C\u0438\u0441\u043A\u0430, \u043B\u0435\u0436\u0430\u043D\u043A\u0430, \u043A\u043E\u0433\u0442\u0435\u0442\u043E\u0447\u043A\u0430, \u043E\u043A\u043D\u043E."
+      _text: "\u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438
+        \u0443\u044E\u0442\u0430 \u041C\u0430\u043A\u0441\u0430: \u043F\u043E\u0434\u0443\u0448\u043A\u0430,
+        \u043A\u043B\u0443\u0431\u043E\u043A, \u043C\u0438\u0441\u043A\u0430, \u043B\u0435\u0436\u0430\u043D\u043A\u0430,
+        \u043A\u043E\u0433\u0442\u0435\u0442\u043E\u0447\u043A\u0430, \u043E\u043A\u043D\u043E."
     - _language: en
-      _text: Collect Max's cozy home cards - pillow, yarn ball, bowl, bed, scratching post, window.
+      _text: Collect Max's cozy home cards - pillow, yarn ball, bowl, bed, scratching
+        post, window.
   - _key: card_collection.card.1_1.title
     _values:
     - _language: ru
@@ -650,7 +661,8 @@ MonoBehaviour:
   - _key: card_collection.card.1_1.description
     _values:
     - _language: ru
-      _text: "\u041B\u044E\u0431\u0438\u043C\u0430\u044F \u043C\u044F\u0433\u043A\u0430\u044F \u043F\u043E\u0434\u0443\u0448\u043A\u0430 \u043A\u043E\u0442\u0430."
+      _text: "\u041B\u044E\u0431\u0438\u043C\u0430\u044F \u043C\u044F\u0433\u043A\u0430\u044F
+        \u043F\u043E\u0434\u0443\u0448\u043A\u0430 \u043A\u043E\u0442\u0430."
     - _language: en
       _text: The cat's favorite soft pillow.
   - _key: card_collection.card.1_2.title
@@ -662,7 +674,8 @@ MonoBehaviour:
   - _key: card_collection.card.1_2.description
     _values:
     - _language: ru
-      _text: "\u041A\u043B\u0443\u0431\u043E\u043A \u043D\u0438\u0442\u043E\u043A \u0434\u043B\u044F \u0432\u0435\u0441\u0451\u043B\u044B\u0445 \u0438\u0433\u0440."
+      _text: "\u041A\u043B\u0443\u0431\u043E\u043A \u043D\u0438\u0442\u043E\u043A
+        \u0434\u043B\u044F \u0432\u0435\u0441\u0451\u043B\u044B\u0445 \u0438\u0433\u0440."
     - _language: en
       _text: A ball of yarn for playtime.
   - _key: card_collection.card.1_3.title
@@ -674,7 +687,8 @@ MonoBehaviour:
   - _key: card_collection.card.1_3.description
     _values:
     - _language: ru
-      _text: "\u041C\u0438\u0441\u043A\u0430 \u0434\u043B\u044F \u0435\u0434\u044B \u0438 \u0432\u043E\u0434\u044B."
+      _text: "\u041C\u0438\u0441\u043A\u0430 \u0434\u043B\u044F \u0435\u0434\u044B
+        \u0438 \u0432\u043E\u0434\u044B."
     - _language: en
       _text: A bowl for food and water.
   - _key: card_collection.card.1_4.title
@@ -686,7 +700,8 @@ MonoBehaviour:
   - _key: card_collection.card.1_4.description
     _values:
     - _language: ru
-      _text: "\u0423\u044E\u0442\u043D\u0430\u044F \u043B\u0435\u0436\u0430\u043D\u043A\u0430 \u0434\u043B\u044F \u0441\u043D\u0430."
+      _text: "\u0423\u044E\u0442\u043D\u0430\u044F \u043B\u0435\u0436\u0430\u043D\u043A\u0430
+        \u0434\u043B\u044F \u0441\u043D\u0430."
     - _language: en
       _text: A cozy bed for napping.
   - _key: card_collection.card.1_5.title
@@ -698,7 +713,8 @@ MonoBehaviour:
   - _key: card_collection.card.1_5.description
     _values:
     - _language: ru
-      _text: "\u041A\u043E\u0433\u0442\u0435\u0442\u043E\u0447\u043A\u0430 \u0434\u043B\u044F \u043E\u0441\u0442\u0440\u044B\u0445 \u043A\u043E\u0433\u043E\u0442\u043A\u043E\u0432."
+      _text: "\u041A\u043E\u0433\u0442\u0435\u0442\u043E\u0447\u043A\u0430 \u0434\u043B\u044F
+        \u043E\u0441\u0442\u0440\u044B\u0445 \u043A\u043E\u0433\u043E\u0442\u043A\u043E\u0432."
     - _language: en
       _text: A post for sharpening claws.
   - _key: card_collection.card.1_6.title
@@ -710,7 +726,9 @@ MonoBehaviour:
   - _key: card_collection.card.1_6.description
     _values:
     - _language: ru
-      _text: "\u041B\u044E\u0431\u0438\u043C\u043E\u0435 \u043E\u043A\u043D\u043E \u0434\u043B\u044F \u043D\u0430\u0431\u043B\u044E\u0434\u0435\u043D\u0438\u044F \u0437\u0430 \u0443\u043B\u0438\u0446\u0435\u0439."
+      _text: "\u041B\u044E\u0431\u0438\u043C\u043E\u0435 \u043E\u043A\u043D\u043E
+        \u0434\u043B\u044F \u043D\u0430\u0431\u043B\u044E\u0434\u0435\u043D\u0438\u044F
+        \u0437\u0430 \u0443\u043B\u0438\u0446\u0435\u0439."
     - _language: en
       _text: A favorite window for watching the street.
   - _key: card_collection.2.title
@@ -722,7 +740,10 @@ MonoBehaviour:
   - _key: card_collection.2.description
     _values:
     - _language: ru
-      _text: "\u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438 \u0443\u043B\u0438\u0447\u043D\u044B\u0445 \u043F\u0440\u043E\u0433\u0443\u043B\u043E\u043A: \u0437\u0430\u0431\u043E\u0440, \u0434\u0435\u0440\u0435\u0432\u043E, \u043B\u0443\u0436\u0430, \u043F\u0442\u0438\u0446\u0430, \u043C\u044B\u0448\u044C, \u043A\u0440\u044B\u0448\u0430."
+      _text: "\u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438
+        \u0443\u043B\u0438\u0447\u043D\u044B\u0445 \u043F\u0440\u043E\u0433\u0443\u043B\u043E\u043A:
+        \u0437\u0430\u0431\u043E\u0440, \u0434\u0435\u0440\u0435\u0432\u043E, \u043B\u0443\u0436\u0430,
+        \u043F\u0442\u0438\u0446\u0430, \u043C\u044B\u0448\u044C, \u043A\u0440\u044B\u0448\u0430."
     - _language: en
       _text: Collect the outdoor cards - fence, tree, puddle, bird, mouse, roof.
   - _key: card_collection.card.2_1.title
@@ -734,7 +755,8 @@ MonoBehaviour:
   - _key: card_collection.card.2_1.description
     _values:
     - _language: ru
-      _text: "\u0417\u0430\u0431\u043E\u0440 \u0434\u043B\u044F \u0443\u0442\u0440\u0435\u043D\u043D\u0438\u0445 \u043F\u0440\u043E\u0433\u0443\u043B\u043E\u043A."
+      _text: "\u0417\u0430\u0431\u043E\u0440 \u0434\u043B\u044F \u0443\u0442\u0440\u0435\u043D\u043D\u0438\u0445
+        \u043F\u0440\u043E\u0433\u0443\u043B\u043E\u043A."
     - _language: en
       _text: A fence for morning walks.
   - _key: card_collection.card.2_2.title
@@ -746,7 +768,8 @@ MonoBehaviour:
   - _key: card_collection.card.2_2.description
     _values:
     - _language: ru
-      _text: "\u0414\u0435\u0440\u0435\u0432\u043E \u0434\u043B\u044F \u043A\u043E\u0433\u0442\u0435\u0439 \u0438 \u043B\u0430\u0437\u0430\u043D\u044C\u044F."
+      _text: "\u0414\u0435\u0440\u0435\u0432\u043E \u0434\u043B\u044F \u043A\u043E\u0433\u0442\u0435\u0439
+        \u0438 \u043B\u0430\u0437\u0430\u043D\u044C\u044F."
     - _language: en
       _text: A tree for claws and climbing.
   - _key: card_collection.card.2_3.title
@@ -770,7 +793,8 @@ MonoBehaviour:
   - _key: card_collection.card.2_4.description
     _values:
     - _language: ru
-      _text: "\u041F\u0442\u0438\u0446\u0430, \u0437\u0430 \u043A\u043E\u0442\u043E\u0440\u043E\u0439 \u0438\u043D\u0442\u0435\u0440\u0435\u0441\u043D\u043E \u043D\u0430\u0431\u043B\u044E\u0434\u0430\u0442\u044C."
+      _text: "\u041F\u0442\u0438\u0446\u0430, \u0437\u0430 \u043A\u043E\u0442\u043E\u0440\u043E\u0439
+        \u0438\u043D\u0442\u0435\u0440\u0435\u0441\u043D\u043E \u043D\u0430\u0431\u043B\u044E\u0434\u0430\u0442\u044C."
     - _language: en
       _text: A bird that's fun to watch.
   - _key: card_collection.card.2_5.title
@@ -782,7 +806,8 @@ MonoBehaviour:
   - _key: card_collection.card.2_5.description
     _values:
     - _language: ru
-      _text: "\u041C\u044B\u0448\u044C, \u0430\u0437\u0430\u0440\u0442\u043D\u0430\u044F \u043E\u0445\u043E\u0442\u0430."
+      _text: "\u041C\u044B\u0448\u044C, \u0430\u0437\u0430\u0440\u0442\u043D\u0430\u044F
+        \u043E\u0445\u043E\u0442\u0430."
     - _language: en
       _text: A mouse for an exciting hunt.
   - _key: card_collection.card.2_6.title
@@ -794,7 +819,8 @@ MonoBehaviour:
   - _key: card_collection.card.2_6.description
     _values:
     - _language: ru
-      _text: "\u041A\u0440\u044B\u0448\u0430 \u0441 \u0432\u0438\u0434\u043E\u043C \u043D\u0430 \u0432\u0435\u0441\u044C \u0434\u0432\u043E\u0440."
+      _text: "\u041A\u0440\u044B\u0448\u0430 \u0441 \u0432\u0438\u0434\u043E\u043C
+        \u043D\u0430 \u0432\u0435\u0441\u044C \u0434\u0432\u043E\u0440."
     - _language: en
       _text: A roof with a view of the whole yard.
   - _key: card_collection.3.title
@@ -806,9 +832,13 @@ MonoBehaviour:
   - _key: card_collection.3.description
     _values:
     - _language: ru
-      _text: "\u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438: \u0437\u0435\u043B\u044C\u0435, \u0430\u043C\u0443\u043B\u0435\u0442, \u0445\u0440\u0443\u0441\u0442\u0430\u043B\u044C\u043D\u044B\u0439 \u0448\u0430\u0440, \u043C\u0435\u0442\u043B\u0430, \u0441\u0432\u0435\u0447\u0430, \u043A\u043D\u0438\u0433\u0430 \u0437\u0430\u043A\u043B\u0438\u043D\u0430\u043D\u0438\u0439."
+      _text: "\u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438:
+        \u0437\u0435\u043B\u044C\u0435, \u0430\u043C\u0443\u043B\u0435\u0442, \u0445\u0440\u0443\u0441\u0442\u0430\u043B\u044C\u043D\u044B\u0439
+        \u0448\u0430\u0440, \u043C\u0435\u0442\u043B\u0430, \u0441\u0432\u0435\u0447\u0430,
+        \u043A\u043D\u0438\u0433\u0430 \u0437\u0430\u043A\u043B\u0438\u043D\u0430\u043D\u0438\u0439."
     - _language: en
-      _text: Collect the magic cards - potion, amulet, crystal ball, broom, candle, spellbook.
+      _text: Collect the magic cards - potion, amulet, crystal ball, broom, candle,
+        spellbook.
   - _key: card_collection.card.3_1.title
     _values:
     - _language: ru
@@ -818,7 +848,8 @@ MonoBehaviour:
   - _key: card_collection.card.3_1.description
     _values:
     - _language: ru
-      _text: "\u0412\u043E\u043B\u0448\u0435\u0431\u043D\u043E\u0435 \u0437\u0435\u043B\u044C\u0435 \u0432 \u043C\u0430\u043B\u0435\u043D\u044C\u043A\u043E\u043C \u0444\u043B\u0430\u043A\u043E\u043D\u0435."
+      _text: "\u0412\u043E\u043B\u0448\u0435\u0431\u043D\u043E\u0435 \u0437\u0435\u043B\u044C\u0435
+        \u0432 \u043C\u0430\u043B\u0435\u043D\u044C\u043A\u043E\u043C \u0444\u043B\u0430\u043A\u043E\u043D\u0435."
     - _language: en
       _text: A magic potion in a small vial.
   - _key: card_collection.card.3_2.title
@@ -830,19 +861,22 @@ MonoBehaviour:
   - _key: card_collection.card.3_2.description
     _values:
     - _language: ru
-      _text: "\u0410\u043C\u0443\u043B\u0435\u0442 \u0443\u0434\u0430\u0447\u0438 \u043D\u0430 \u0448\u0435\u0435 \u043A\u043E\u0442\u0430."
+      _text: "\u0410\u043C\u0443\u043B\u0435\u0442 \u0443\u0434\u0430\u0447\u0438
+        \u043D\u0430 \u0448\u0435\u0435 \u043A\u043E\u0442\u0430."
     - _language: en
       _text: A lucky amulet around the cat's neck.
   - _key: card_collection.card.3_3.title
     _values:
     - _language: ru
-      _text: "\u0425\u0440\u0443\u0441\u0442\u0430\u043B\u044C\u043D\u044B\u0439 \u0448\u0430\u0440"
+      _text: "\u0425\u0440\u0443\u0441\u0442\u0430\u043B\u044C\u043D\u044B\u0439
+        \u0448\u0430\u0440"
     - _language: en
       _text: Crystal Ball
   - _key: card_collection.card.3_3.description
     _values:
     - _language: ru
-      _text: "\u0428\u0430\u0440 \u0434\u043B\u044F \u043F\u0440\u0435\u0434\u0441\u043A\u0430\u0437\u0430\u043D\u0438\u0439 \u0431\u0443\u0434\u0443\u0449\u0435\u0433\u043E."
+      _text: "\u0428\u0430\u0440 \u0434\u043B\u044F \u043F\u0440\u0435\u0434\u0441\u043A\u0430\u0437\u0430\u043D\u0438\u0439
+        \u0431\u0443\u0434\u0443\u0449\u0435\u0433\u043E."
     - _language: en
       _text: A ball for foretelling the future.
   - _key: card_collection.card.3_4.title
@@ -854,7 +888,8 @@ MonoBehaviour:
   - _key: card_collection.card.3_4.description
     _values:
     - _language: ru
-      _text: "\u041C\u0435\u0442\u043B\u0430 \u0434\u043B\u044F \u043D\u043E\u0447\u043D\u044B\u0445 \u043F\u043E\u043B\u0451\u0442\u043E\u0432."
+      _text: "\u041C\u0435\u0442\u043B\u0430 \u0434\u043B\u044F \u043D\u043E\u0447\u043D\u044B\u0445
+        \u043F\u043E\u043B\u0451\u0442\u043E\u0432."
     - _language: en
       _text: A broom for night flights.
   - _key: card_collection.card.3_5.title
@@ -866,7 +901,8 @@ MonoBehaviour:
   - _key: card_collection.card.3_5.description
     _values:
     - _language: ru
-      _text: "\u0421\u0432\u0435\u0447\u0430 \u0434\u043B\u044F \u0442\u0430\u0439\u043D\u044B\u0445 \u0440\u0438\u0442\u0443\u0430\u043B\u043E\u0432."
+      _text: "\u0421\u0432\u0435\u0447\u0430 \u0434\u043B\u044F \u0442\u0430\u0439\u043D\u044B\u0445
+        \u0440\u0438\u0442\u0443\u0430\u043B\u043E\u0432."
     - _language: en
       _text: A candle for secret rituals.
   - _key: card_collection.card.3_6.title
@@ -878,7 +914,8 @@ MonoBehaviour:
   - _key: card_collection.card.3_6.description
     _values:
     - _language: ru
-      _text: "\u0414\u0440\u0435\u0432\u043D\u044F\u044F \u043A\u043D\u0438\u0433\u0430 \u043A\u043E\u0448\u0430\u0447\u044C\u0438\u0445 \u0437\u0430\u043A\u043B\u0438\u043D\u0430\u043D\u0438\u0439."
+      _text: "\u0414\u0440\u0435\u0432\u043D\u044F\u044F \u043A\u043D\u0438\u0433\u0430
+        \u043A\u043E\u0448\u0430\u0447\u044C\u0438\u0445 \u0437\u0430\u043A\u043B\u0438\u043D\u0430\u043D\u0438\u0439."
     - _language: en
       _text: An ancient book of feline spells.
   - _key: card_collection.4.title
@@ -890,9 +927,13 @@ MonoBehaviour:
   - _key: card_collection.4.description
     _values:
     - _language: ru
-      _text: "\u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438: \u0444\u0435\u043D\u0438\u043A\u0441-\u043A\u043E\u0442, \u0434\u0440\u0430\u043A\u043E\u043D-\u043A\u043E\u0442, \u0435\u0434\u0438\u043D\u043E\u0440\u043E\u0433-\u043A\u043E\u0442, \u0441\u0444\u0438\u043D\u043A\u0441-\u043A\u043E\u0442, \u0442\u0438\u0433\u0440-\u043A\u043E\u0442, \u043F\u0440\u0438\u0437\u0440\u0430\u043A-\u043A\u043E\u0442."
+      _text: "\u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438:
+        \u0444\u0435\u043D\u0438\u043A\u0441-\u043A\u043E\u0442, \u0434\u0440\u0430\u043A\u043E\u043D-\u043A\u043E\u0442,
+        \u0435\u0434\u0438\u043D\u043E\u0440\u043E\u0433-\u043A\u043E\u0442, \u0441\u0444\u0438\u043D\u043A\u0441-\u043A\u043E\u0442,
+        \u0442\u0438\u0433\u0440-\u043A\u043E\u0442, \u043F\u0440\u0438\u0437\u0440\u0430\u043A-\u043A\u043E\u0442."
     - _language: en
-      _text: Collect the mythical cards - phoenix cat, dragon cat, unicorn cat, sphinx cat, tiger cat, ghost cat.
+      _text: Collect the mythical cards - phoenix cat, dragon cat, unicorn cat, sphinx
+        cat, tiger cat, ghost cat.
   - _key: card_collection.card.4_1.title
     _values:
     - _language: ru
@@ -902,7 +943,8 @@ MonoBehaviour:
   - _key: card_collection.card.4_1.description
     _values:
     - _language: ru
-      _text: "\u041A\u043E\u0442, \u0432\u043E\u0437\u0440\u043E\u0436\u0434\u0430\u044E\u0449\u0438\u0439\u0441\u044F \u0438\u0437 \u043F\u0435\u043F\u043B\u0430."
+      _text: "\u041A\u043E\u0442, \u0432\u043E\u0437\u0440\u043E\u0436\u0434\u0430\u044E\u0449\u0438\u0439\u0441\u044F
+        \u0438\u0437 \u043F\u0435\u043F\u043B\u0430."
     - _language: en
       _text: A cat reborn from its ashes.
   - _key: card_collection.card.4_2.title
@@ -914,7 +956,8 @@ MonoBehaviour:
   - _key: card_collection.card.4_2.description
     _values:
     - _language: ru
-      _text: "\u041A\u043E\u0442 \u0441 \u0447\u0435\u0448\u0443\u0451\u0439 \u0434\u0440\u0435\u0432\u043D\u0435\u0433\u043E \u0434\u0440\u0430\u043A\u043E\u043D\u0430."
+      _text: "\u041A\u043E\u0442 \u0441 \u0447\u0435\u0448\u0443\u0451\u0439 \u0434\u0440\u0435\u0432\u043D\u0435\u0433\u043E
+        \u0434\u0440\u0430\u043A\u043E\u043D\u0430."
     - _language: en
       _text: A cat with the scales of an ancient dragon.
   - _key: card_collection.card.4_3.title
@@ -926,7 +969,8 @@ MonoBehaviour:
   - _key: card_collection.card.4_3.description
     _values:
     - _language: ru
-      _text: "\u041A\u043E\u0442 \u0441 \u0432\u043E\u043B\u0448\u0435\u0431\u043D\u044B\u043C \u0440\u043E\u0433\u043E\u043C."
+      _text: "\u041A\u043E\u0442 \u0441 \u0432\u043E\u043B\u0448\u0435\u0431\u043D\u044B\u043C
+        \u0440\u043E\u0433\u043E\u043C."
     - _language: en
       _text: A cat with a magical horn.
   - _key: card_collection.card.4_4.title
@@ -938,7 +982,8 @@ MonoBehaviour:
   - _key: card_collection.card.4_4.description
     _values:
     - _language: ru
-      _text: "\u041A\u043E\u0442, \u0445\u0440\u0430\u043D\u044F\u0449\u0438\u0439 \u0434\u0440\u0435\u0432\u043D\u0438\u0435 \u0442\u0430\u0439\u043D\u044B."
+      _text: "\u041A\u043E\u0442, \u0445\u0440\u0430\u043D\u044F\u0449\u0438\u0439
+        \u0434\u0440\u0435\u0432\u043D\u0438\u0435 \u0442\u0430\u0439\u043D\u044B."
     - _language: en
       _text: A cat guarding ancient secrets.
   - _key: card_collection.card.4_5.title
@@ -950,7 +995,8 @@ MonoBehaviour:
   - _key: card_collection.card.4_5.description
     _values:
     - _language: ru
-      _text: "\u041A\u043E\u0442 \u0441 \u043F\u043E\u043B\u043E\u0441\u043A\u0430\u043C\u0438 \u0441\u0432\u0438\u0440\u0435\u043F\u043E\u0433\u043E \u0442\u0438\u0433\u0440\u0430."
+      _text: "\u041A\u043E\u0442 \u0441 \u043F\u043E\u043B\u043E\u0441\u043A\u0430\u043C\u0438
+        \u0441\u0432\u0438\u0440\u0435\u043F\u043E\u0433\u043E \u0442\u0438\u0433\u0440\u0430."
     - _language: en
       _text: A cat with the stripes of a fierce tiger.
   - _key: card_collection.card.4_6.title
@@ -962,7 +1008,8 @@ MonoBehaviour:
   - _key: card_collection.card.4_6.description
     _values:
     - _language: ru
-      _text: "\u041A\u043E\u0442, \u043F\u0440\u043E\u0445\u043E\u0434\u044F\u0449\u0438\u0439 \u0441\u043A\u0432\u043E\u0437\u044C \u0441\u0442\u0435\u043D\u044B."
+      _text: "\u041A\u043E\u0442, \u043F\u0440\u043E\u0445\u043E\u0434\u044F\u0449\u0438\u0439
+        \u0441\u043A\u0432\u043E\u0437\u044C \u0441\u0442\u0435\u043D\u044B."
     - _language: en
       _text: A cat that walks through walls.
   - _key: card_collection.0.title
@@ -974,7 +1021,10 @@ MonoBehaviour:
   - _key: card_collection.0.description
     _values:
     - _language: ru
-      _text: "\u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438 \u0438\u0437 \u043F\u043E\u0432\u0441\u0435\u0434\u043D\u0435\u0432\u043D\u043E\u0439 \u0436\u0438\u0437\u043D\u0438 \u041C\u0430\u043A\u0441\u0430 \u2014 \u0433\u043B\u0430\u0432\u043D\u043E\u0433\u043E \u043A\u043E\u0442\u0430 \u0438\u0433\u0440\u044B."
+      _text: "\u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438
+        \u0438\u0437 \u043F\u043E\u0432\u0441\u0435\u0434\u043D\u0435\u0432\u043D\u043E\u0439
+        \u0436\u0438\u0437\u043D\u0438 \u041C\u0430\u043A\u0441\u0430 \u2014 \u0433\u043B\u0430\u0432\u043D\u043E\u0433\u043E
+        \u043A\u043E\u0442\u0430 \u0438\u0433\u0440\u044B."
     - _language: en
       _text: Collect cards from the everyday life of Max, the game's main cat.
   - _key: card_collection.card.0_1.title
@@ -986,7 +1036,8 @@ MonoBehaviour:
   - _key: card_collection.card.0_1.description
     _values:
     - _language: ru
-      _text: "\u041C\u0430\u043A\u0441 \u0442\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u043E \u043E\u0442\u043A\u0440\u044B\u043B \u0433\u043B\u0430\u0437\u0430."
+      _text: "\u041C\u0430\u043A\u0441 \u0442\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u043E
+        \u043E\u0442\u043A\u0440\u044B\u043B \u0433\u043B\u0430\u0437\u0430."
     - _language: en
       _text: Max just opened his eyes.
   - _key: card_collection.card.0_2.title
@@ -998,7 +1049,8 @@ MonoBehaviour:
   - _key: card_collection.card.0_2.description
     _values:
     - _language: ru
-      _text: "\u041B\u044E\u0431\u0438\u043C\u044B\u0439 \u0443\u0442\u0440\u0435\u043D\u043D\u0438\u0439 \u043F\u0440\u0438\u0451\u043C \u043F\u0438\u0449\u0438."
+      _text: "\u041B\u044E\u0431\u0438\u043C\u044B\u0439 \u0443\u0442\u0440\u0435\u043D\u043D\u0438\u0439
+        \u043F\u0440\u0438\u0451\u043C \u043F\u0438\u0449\u0438."
     - _language: en
       _text: His favorite morning meal.
   - _key: card_collection.card.0_3.title
@@ -1010,7 +1062,8 @@ MonoBehaviour:
   - _key: card_collection.card.0_3.description
     _values:
     - _language: ru
-      _text: "\u041C\u0430\u043A\u0441 \u0433\u043E\u043D\u044F\u0435\u0442\u0441\u044F \u0437\u0430 \u043B\u044E\u0431\u0438\u043C\u043E\u0439 \u0438\u0433\u0440\u0443\u0448\u043A\u043E\u0439."
+      _text: "\u041C\u0430\u043A\u0441 \u0433\u043E\u043D\u044F\u0435\u0442\u0441\u044F
+        \u0437\u0430 \u043B\u044E\u0431\u0438\u043C\u043E\u0439 \u0438\u0433\u0440\u0443\u0448\u043A\u043E\u0439."
     - _language: en
       _text: Max is chasing his favorite toy.
   - _key: card_collection.card.0_4.title
@@ -1022,7 +1075,8 @@ MonoBehaviour:
   - _key: card_collection.card.0_4.description
     _values:
     - _language: ru
-      _text: "\u041C\u0430\u043A\u0441 \u0434\u0440\u0435\u043C\u043B\u0435\u0442 \u0432 \u0442\u0451\u043F\u043B\u043E\u043C \u043C\u0435\u0441\u0442\u0435."
+      _text: "\u041C\u0430\u043A\u0441 \u0434\u0440\u0435\u043C\u043B\u0435\u0442
+        \u0432 \u0442\u0451\u043F\u043B\u043E\u043C \u043C\u0435\u0441\u0442\u0435."
     - _language: en
       _text: Max is napping in a warm spot.
   - _key: card_collection.card.0_5.title
@@ -1034,7 +1088,8 @@ MonoBehaviour:
   - _key: card_collection.card.0_5.description
     _values:
     - _language: ru
-      _text: "\u041C\u0430\u043A\u0441 \u0438\u0441\u0441\u043B\u0435\u0434\u0443\u0435\u0442 \u043E\u043A\u0440\u0435\u0441\u0442\u043D\u043E\u0441\u0442\u0438."
+      _text: "\u041C\u0430\u043A\u0441 \u0438\u0441\u0441\u043B\u0435\u0434\u0443\u0435\u0442
+        \u043E\u043A\u0440\u0435\u0441\u0442\u043D\u043E\u0441\u0442\u0438."
     - _language: en
       _text: Max is exploring the neighborhood.
   - _key: card_collection.card.0_6.title
@@ -1046,7 +1101,8 @@ MonoBehaviour:
   - _key: card_collection.card.0_6.description
     _values:
     - _language: ru
-      _text: "\u0414\u043E\u0432\u043E\u043B\u044C\u043D\u044B\u0439 \u041C\u0430\u043A\u0441 \u0433\u0440\u043E\u043C\u043A\u043E \u043C\u0443\u0440\u043B\u044B\u0447\u0435\u0442."
+      _text: "\u0414\u043E\u0432\u043E\u043B\u044C\u043D\u044B\u0439 \u041C\u0430\u043A\u0441
+        \u0433\u0440\u043E\u043C\u043A\u043E \u043C\u0443\u0440\u043B\u044B\u0447\u0435\u0442."
     - _language: en
       _text: A happy Max purring loudly.
   - _key: card_collection.5.title
@@ -1058,9 +1114,13 @@ MonoBehaviour:
   - _key: card_collection.5.description
     _values:
     - _language: ru
-      _text: "\u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438: \u043A\u043E\u0442-\u043A\u043E\u0440\u043E\u043B\u044C, \u043A\u043E\u0442-\u043D\u0438\u043D\u0434\u0437\u044F, \u043A\u043E\u0442-\u043F\u0438\u0440\u0430\u0442, \u043A\u043E\u0442-\u0432\u043E\u043B\u0448\u0435\u0431\u043D\u0438\u043A, \u043A\u043E\u0442-\u0440\u044B\u0446\u0430\u0440\u044C, \u043A\u043E\u0442-\u0438\u043C\u043F\u0435\u0440\u0430\u0442\u043E\u0440."
+      _text: "\u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0438:
+        \u043A\u043E\u0442-\u043A\u043E\u0440\u043E\u043B\u044C, \u043A\u043E\u0442-\u043D\u0438\u043D\u0434\u0437\u044F,
+        \u043A\u043E\u0442-\u043F\u0438\u0440\u0430\u0442, \u043A\u043E\u0442-\u0432\u043E\u043B\u0448\u0435\u0431\u043D\u0438\u043A,
+        \u043A\u043E\u0442-\u0440\u044B\u0446\u0430\u0440\u044C, \u043A\u043E\u0442-\u0438\u043C\u043F\u0435\u0440\u0430\u0442\u043E\u0440."
     - _language: en
-      _text: Collect the legendary cards - king cat, ninja cat, pirate cat, wizard cat, knight cat, emperor cat.
+      _text: Collect the legendary cards - king cat, ninja cat, pirate cat, wizard
+        cat, knight cat, emperor cat.
   - _key: card_collection.card.5_1.title
     _values:
     - _language: ru
@@ -1070,7 +1130,8 @@ MonoBehaviour:
   - _key: card_collection.card.5_1.description
     _values:
     - _language: ru
-      _text: "\u041F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0433\u043E \u043A\u043E\u0440\u043E\u043B\u0435\u0432\u0441\u0442\u0432\u0430."
+      _text: "\u041F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0433\u043E
+        \u043A\u043E\u0440\u043E\u043B\u0435\u0432\u0441\u0442\u0432\u0430."
     - _language: en
       _text: The ruler of the feline kingdom.
   - _key: card_collection.card.5_2.title
@@ -1082,7 +1143,8 @@ MonoBehaviour:
   - _key: card_collection.card.5_2.description
     _values:
     - _language: ru
-      _text: "\u041C\u0430\u0441\u0442\u0435\u0440 \u0431\u0435\u0441\u0448\u0443\u043C\u043D\u044B\u0445 \u043F\u0440\u044B\u0436\u043A\u043E\u0432."
+      _text: "\u041C\u0430\u0441\u0442\u0435\u0440 \u0431\u0435\u0441\u0448\u0443\u043C\u043D\u044B\u0445
+        \u043F\u0440\u044B\u0436\u043A\u043E\u0432."
     - _language: en
       _text: A master of silent leaps.
   - _key: card_collection.card.5_3.title
@@ -1106,7 +1168,8 @@ MonoBehaviour:
   - _key: card_collection.card.5_4.description
     _values:
     - _language: ru
-      _text: "\u041F\u043E\u0432\u0435\u043B\u0438\u0442\u0435\u043B\u044C \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439 \u043C\u0430\u0433\u0438\u0438."
+      _text: "\u041F\u043E\u0432\u0435\u043B\u0438\u0442\u0435\u043B\u044C \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
+        \u043C\u0430\u0433\u0438\u0438."
     - _language: en
       _text: The master of feline magic.
   - _key: card_collection.card.5_5.title
@@ -1118,7 +1181,8 @@ MonoBehaviour:
   - _key: card_collection.card.5_5.description
     _values:
     - _language: ru
-      _text: "\u041E\u0442\u0432\u0430\u0436\u043D\u044B\u0439 \u0437\u0430\u0449\u0438\u0442\u043D\u0438\u043A \u0434\u043E\u043C\u0430."
+      _text: "\u041E\u0442\u0432\u0430\u0436\u043D\u044B\u0439 \u0437\u0430\u0449\u0438\u0442\u043D\u0438\u043A
+        \u0434\u043E\u043C\u0430."
     - _language: en
       _text: A brave defender of the home.
   - _key: card_collection.card.5_6.title
@@ -1130,51 +1194,99 @@ MonoBehaviour:
   - _key: card_collection.card.5_6.description
     _values:
     - _language: ru
-      _text: "\u0412\u0435\u0440\u0445\u043E\u0432\u043D\u044B\u0439 \u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C \u0432\u0441\u0435\u0445 \u043A\u043E\u0442\u043E\u0432."
+      _text: "\u0412\u0435\u0440\u0445\u043E\u0432\u043D\u044B\u0439 \u043F\u0440\u0430\u0432\u0438\u0442\u0435\u043B\u044C
+        \u0432\u0441\u0435\u0445 \u043A\u043E\u0442\u043E\u0432."
     - _language: en
       _text: The supreme ruler of all cats.
   - _key: card_collection.reward.1.text
     _values:
     - _language: ru
-      _text: "+10% \u043A \u043F\u0430\u0441\u0441\u0438\u0432\u043D\u043E\u043C\u0443 \u0434\u043E\u0445\u043E\u0434\u0443 \u043D\u0430\u0432\u0441\u0435\u0433\u0434\u0430"
+      _text: "+10% \u043A \u043F\u0430\u0441\u0441\u0438\u0432\u043D\u043E\u043C\u0443
+        \u0434\u043E\u0445\u043E\u0434\u0443 \u043D\u0430\u0432\u0441\u0435\u0433\u0434\u0430"
     - _language: en
-      _text: "+10% passive income forever"
+      _text: +10% passive income forever
   - _key: card_collection.reward.2.text
     _values:
     - _language: ru
-      _text: "+10% \u043A \u0441\u0438\u043B\u0435 \u043A\u043B\u0438\u043A\u0430 \u043D\u0430\u0432\u0441\u0435\u0433\u0434\u0430"
+      _text: "+10% \u043A \u0441\u0438\u043B\u0435 \u043A\u043B\u0438\u043A\u0430
+        \u043D\u0430\u0432\u0441\u0435\u0433\u0434\u0430"
     - _language: en
-      _text: "+10% click power forever"
+      _text: +10% click power forever
   - _key: card_collection.reward.3.text
     _values:
     - _language: ru
-      _text: "-10% \u043A \u0446\u0435\u043D\u0430\u043C \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435 \u043D\u0430\u0432\u0441\u0435\u0433\u0434\u0430"
+      _text: "-10% \u043A \u0446\u0435\u043D\u0430\u043C \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435
+        \u043D\u0430\u0432\u0441\u0435\u0433\u0434\u0430"
     - _language: en
-      _text: "-10% shop prices forever"
+      _text: -10% shop prices forever
   - _key: card_collection.reward.4.text
     _values:
     - _language: ru
-      _text: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0435\u0442 \u044D\u043A\u0441\u043A\u043B\u044E\u0437\u0438\u0432\u043D\u044B\u0439 \u0441\u043A\u0438\u043D \u043A\u043E\u0442\u0430"
+      _text: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0435\u0442 \u044D\u043A\u0441\u043A\u043B\u044E\u0437\u0438\u0432\u043D\u044B\u0439
+        \u0441\u043A\u0438\u043D \u043A\u043E\u0442\u0430"
     - _language: en
       _text: Unlocks an exclusive cat skin
   - _key: card_collection.reward.0.text
     _values:
     - _language: ru
-      _text: "+25% \u043A \u043E\u0444\u043B\u0430\u0439\u043D-\u0434\u043E\u0445\u043E\u0434\u0443 \u043D\u0430\u0432\u0441\u0435\u0433\u0434\u0430"
+      _text: "+25% \u043A \u043E\u0444\u043B\u0430\u0439\u043D-\u0434\u043E\u0445\u043E\u0434\u0443
+        \u043D\u0430\u0432\u0441\u0435\u0433\u0434\u0430"
     - _language: en
-      _text: "+25% offline income forever"
+      _text: +25% offline income forever
   - _key: card_collection.reward.5.skin.text
     _values:
     - _language: ru
-      _text: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0435\u0442 \u043B\u0435\u0433\u0435\u043D\u0434\u0430\u0440\u043D\u044B\u0439 \u0441\u043A\u0438\u043D \u043A\u043E\u0442\u0430"
+      _text: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0435\u0442 \u043B\u0435\u0433\u0435\u043D\u0434\u0430\u0440\u043D\u044B\u0439
+        \u0441\u043A\u0438\u043D \u043A\u043E\u0442\u0430"
     - _language: en
       _text: Unlocks a legendary cat skin
   - _key: card_collection.reward.5.title.text
     _values:
     - _language: ru
-      _text: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0435\u0442 \u0442\u0438\u0442\u0443\u043B \u0432 \u043F\u0440\u043E\u0444\u0438\u043B\u0435"
+      _text: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0435\u0442 \u0441\u043A\u0438\u043D
+        \xAB\u0418\u043C\u043F\u0435\u0440\u0430\u0442\u043E\u0440\xBB"
     - _language: en
-      _text: Unlocks a profile title
+      _text: Unlocks the Emperor cat skin
+  - _key: cat_mythic_title_key
+    _values:
+    - _language: ru
+      _text: "\u041C\u0438\u0444\u0438\u0447\u0435\u0441\u043A\u0438\u0439 \u043A\u043E\u0442"
+    - _language: en
+      _text: Mythic Cat
+  - _key: cat_mythic_description_key
+    _values:
+    - _language: ru
+      _text: "\u041D\u0430\u0433\u0440\u0430\u0434\u0430 \u0437\u0430 \u0441\u0431\u043E\u0440
+        \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438 \xAB\u041C\u0438\u0444\u0438\u0447\u0435\u0441\u043A\u0438\u0435
+        \u043A\u043E\u0442\u044B\xBB"
+    - _language: en
+      _text: Awarded for completing the Mythical Cats collection
+  - _key: cat_emperor_title_key
+    _values:
+    - _language: ru
+      _text: "\u0418\u043C\u043F\u0435\u0440\u0430\u0442\u043E\u0440"
+    - _language: en
+      _text: Emperor
+  - _key: cat_emperor_description_key
+    _values:
+    - _language: ru
+      _text: "\u041D\u0430\u0433\u0440\u0430\u0434\u0430 \u0437\u0430 \u0441\u0431\u043E\u0440
+        \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438 \xAB\u041B\u0435\u0433\u0435\u043D\u0434\u044B\xBB"
+    - _language: en
+      _text: Awarded for completing the Legends collection
+  - _key: cat_legend_title_key
+    _values:
+    - _language: ru
+      _text: "\u041B\u0435\u0433\u0435\u043D\u0434\u0430"
+    - _language: en
+      _text: Legend
+  - _key: cat_legend_description_key
+    _values:
+    - _language: ru
+      _text: "\u041D\u0430\u0433\u0440\u0430\u0434\u0430 \u0437\u0430 \u0441\u0431\u043E\u0440
+        \u043A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u0438 \xAB\u041B\u0435\u0433\u0435\u043D\u0434\u044B\xBB"
+    - _language: en
+      _text: Awarded for completing the Legends collection
   - _key: player_features.locked_level
     _values:
     - _language: ru
@@ -1325,8 +1437,7 @@ MonoBehaviour:
   - _key: beauty_text
     _values:
     - _language: ru
-      _text: "\u041C\u0435\u0448\u043E\u0447\u043A\u0438 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
-        \u043C\u044F\u0442\u043E\u0439"
+      _text: \u041C\u044F\u0442\u043E\u043C\u0435\u0448
     - _language: en
       _text: Catnip bags
   - _key: coins_text
@@ -1483,64 +1594,60 @@ MonoBehaviour:
       _text: "+200000 \u0437\u043E\u043B\u043E\u0442\u0430"
     - _language: en
       _text: +200000 coins
+  - _key: shop.paid.time_reward.locked
+    _values:
+    - _language: ru
+      _text: "\u041D\u0443\u0436\u0435\u043D \u0434\u043E\u0445\u043E\u0434 \u0432
+        \u0441\u0435\u043A\u0443\u043D\u0434\u0443, \u0447\u0442\u043E\u0431\u044B
+        \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C \u044D\u0442\u0443 \u043D\u0430\u0433\u0440\u0430\u0434\u0443"
+    - _language: en
+      _text: Requires income per second to claim this reward
   - _key: shop.paid.decor_currency_pack_1.name
     _values:
     - _language: ru
-      _text: "\u041C\u0430\u043B\u0435\u043D\u044C\u043A\u0438\u0439 \u043D\u0430\u0431\u043E\u0440
-        \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
-        \u043C\u044F\u0442\u043E\u0439"
+      _text: \u041C\u0430\u043B\u044B\u0439 \u043D\u0430\u0431\u043E\u0440 \u041C\u044F\u0442\u043E\u043C\u0435\u0448\u0435\u0439
     - _language: en
       _text: Small Catnip Pack
   - _key: shop.paid.decor_currency_pack_2.name
     _values:
     - _language: ru
-      _text: "\u0421\u0440\u0435\u0434\u043D\u0438\u0439 \u043D\u0430\u0431\u043E\u0440
-        \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
-        \u043C\u044F\u0442\u043E\u0439"
+      _text: \u0421\u0440\u0435\u0434\u043D\u0438\u0439 \u043D\u0430\u0431\u043E\u0440 \u041C\u044F\u0442\u043E\u043C\u0435\u0448\u0435\u0439
     - _language: en
       _text: Medium Catnip Pack
   - _key: shop.paid.decor_currency_pack_3.name
     _values:
     - _language: ru
-      _text: "\u0411\u043E\u043B\u044C\u0448\u043E\u0439 \u043D\u0430\u0431\u043E\u0440
-        \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
-        \u043C\u044F\u0442\u043E\u0439"
+      _text: \u0411\u043E\u043B\u044C\u0448\u043E\u0439 \u043D\u0430\u0431\u043E\u0440 \u041C\u044F\u0442\u043E\u043C\u0435\u0448\u0435\u0439
     - _language: en
       _text: Large Catnip Pack
   - _key: shop.paid.decor_currency_pack_4.name
     _values:
     - _language: ru
-      _text: "\u041E\u0433\u0440\u043E\u043C\u043D\u044B\u0439 \u043D\u0430\u0431\u043E\u0440
-        \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
-        \u043C\u044F\u0442\u043E\u0439"
+      _text: \u041E\u0433\u0440\u043E\u043C\u043D\u044B\u0439 \u043D\u0430\u0431\u043E\u0440 \u041C\u044F\u0442\u043E\u043C\u0435\u0448\u0435\u0439
     - _language: en
       _text: Mega Catnip Pack
   - _key: shop.paid.decor_currency_pack_1.reward
     _values:
     - _language: ru
-      _text: "+25 \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
-        \u043C\u044F\u0442\u043E\u0439"
+      _text: +25 \u041C\u044F\u0442\u043E\u043C\u0435\u0448\u0435\u0439
     - _language: en
       _text: +25 catnip bags
   - _key: shop.paid.decor_currency_pack_2.reward
     _values:
     - _language: ru
-      _text: "+75 \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
-        \u043C\u044F\u0442\u043E\u0439"
+      _text: +75 \u041C\u044F\u0442\u043E\u043C\u0435\u0448\u0435\u0439
     - _language: en
       _text: +75 catnip bags
   - _key: shop.paid.decor_currency_pack_3.reward
     _values:
     - _language: ru
-      _text: "+200 \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
-        \u043C\u044F\u0442\u043E\u0439"
+      _text: +200 \u041C\u044F\u0442\u043E\u043C\u0435\u0448\u0435\u0439
     - _language: en
       _text: +200 catnip bags
   - _key: shop.paid.decor_currency_pack_4.reward
     _values:
     - _language: ru
-      _text: "+500 \u043C\u0435\u0448\u043E\u0447\u043A\u043E\u0432 \u0441 \u043A\u043E\u0448\u0430\u0447\u044C\u0435\u0439
-        \u043C\u044F\u0442\u043E\u0439"
+      _text: +500 \u041C\u044F\u0442\u043E\u043C\u0435\u0448\u0435\u0439
     - _language: en
       _text: +500 catnip bags
   - _key: reward
@@ -1669,3 +1776,40 @@ MonoBehaviour:
     - _language: ru
       _text: "\u0412\u043D\u0443\u0442\u0440\u0438 \u0442\u0435\u0431\u044F \u0436\u0434\u0451\u0442
         \u0447\u0442\u043E-\u0442\u043E \u0438\u043D\u0442\u0435\u0440\u0435\u0441\u043D\u043E\u0435!"
+  - _key: chest.chest_1.title
+    _values:
+    - _language: en
+      _text: Common Chest
+    - _language: ru
+      _text: "\u041E\u0431\u044B\u0447\u043D\u044B\u0439 \u0441\u0443\u043D\u0434\u0443\u043A"
+  - _key: chest.chest_2.title
+    _values:
+    - _language: en
+      _text: Rare Chest
+    - _language: ru
+      _text: "\u0420\u0435\u0434\u043A\u0438\u0439 \u0441\u0443\u043D\u0434\u0443\u043A"
+  - _key: chest.chest_3.title
+    _values:
+    - _language: en
+      _text: Card Chest
+    - _language: ru
+      _text: "\u041A\u0430\u0440\u0442\u043E\u0447\u043D\u044B\u0439 \u0441\u0443\u043D\u0434\u0443\u043A"
+  - _key: chest.chest_4.title
+    _values:
+    - _language: en
+      _text: Collection Chest
+    - _language: ru
+      _text: "\u041A\u043E\u043B\u043B\u0435\u043A\u0446\u0438\u043E\u043D\u043D\u044B\u0439
+        \u0441\u0443\u043D\u0434\u0443\u043A"
+  - _key: chest.chest_5.title
+    _values:
+    - _language: en
+      _text: Boost Chest
+    - _language: ru
+      _text: "\u0411\u0443\u0441\u0442-\u0441\u0443\u043D\u0434\u0443\u043A"
+  - _key: chest_text
+    _values:
+    - _language: en
+      _text: Chests
+    - _language: ru
+      _text: "\u0421\u0443\u043D\u0434\u0443\u043A\u0438"

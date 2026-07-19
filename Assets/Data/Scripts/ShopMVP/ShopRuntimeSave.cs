@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CardCollections;
 using Core;
 using PlayerProgression;
 using Zenject;
@@ -10,15 +11,17 @@ namespace Shop
     {
         private readonly Dictionary<string, int> _levels = new();
         private IPlayerProgressionService _playerProgression;
+        private ICardCollectionBonusService _collectionBonusService;
 
         public long ClickValue { get; private set; } = 1;
         public long AutoIncomePerSecond { get; private set; }
         public event Action Changed;
 
         [Inject]
-        public void Construct(IPlayerProgressionService playerProgression)
+        public void Construct(IPlayerProgressionService playerProgression, ICardCollectionBonusService collectionBonusService)
         {
             _playerProgression = playerProgression;
+            _collectionBonusService = collectionBonusService;
         }
 
         public int GetLevel(ShopItemType type, string id)
@@ -53,8 +56,10 @@ namespace Shop
                 return;
             }
 
-            ClickValue = ApplyMultiplier(1 + CalculateBonus(config.Clicks, ShopItemType.Click), _playerProgression?.ClickIncomeMultiplier ?? 1f);
-            AutoIncomePerSecond = ApplyMultiplier(CalculateBonus(config.AutoBuys, ShopItemType.AutoBuy), _playerProgression?.PassiveIncomeMultiplier ?? 1f);
+            float clickMultiplier = (_playerProgression?.ClickIncomeMultiplier ?? 1f) * (_collectionBonusService?.ClickIncomeMultiplier ?? 1f);
+            float passiveMultiplier = (_playerProgression?.PassiveIncomeMultiplier ?? 1f) * (_collectionBonusService?.PassiveIncomeMultiplier ?? 1f);
+            ClickValue = ApplyMultiplier(1 + CalculateBonus(config.Clicks, ShopItemType.Click), clickMultiplier);
+            AutoIncomePerSecond = ApplyMultiplier(CalculateBonus(config.AutoBuys, ShopItemType.AutoBuy), passiveMultiplier);
         }
 
         private long ApplyMultiplier(long value, float multiplier)

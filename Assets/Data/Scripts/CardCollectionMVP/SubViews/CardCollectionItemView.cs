@@ -36,6 +36,8 @@ namespace CardCollectionMVP
         public event Action<string> Selected;
         public event Action<string> CollectRequested;
 
+        public CardCollectionViewData Data => _data;
+
         [Inject]
         private void Construct(ICardCollectionRewardWindow rewardWindow)
         {
@@ -112,7 +114,12 @@ namespace CardCollectionMVP
 
             if (_collectButton != null)
             {
-                _collectButton.gameObject.SetActive(data.IsCompleted && !data.IsRewardClaimed);
+                _collectButton.gameObject.SetActive(data.RewardAvailable && data.TotalCards >= 6);
+            }
+
+            if (_rewardButton != null)
+            {
+                _rewardButton.gameObject.SetActive(!data.IsCompleted);
             }
 
             SetRewardClaimedObjects(data.IsRewardClaimed);

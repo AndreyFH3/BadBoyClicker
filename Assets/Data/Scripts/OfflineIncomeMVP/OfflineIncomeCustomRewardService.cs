@@ -1,9 +1,8 @@
 using QuestSystem;
-using UnityEngine;
 
 namespace OfflineIncome
 {
-    public class OfflineIncomeCustomRewardService : IQuestCustomRewardService
+    public class OfflineIncomeCustomRewardService : ICustomRewardHandler
     {
         private const string DoubleNextOfflineIncomeRewardId = "double_next_offline_income";
 
@@ -14,15 +13,15 @@ namespace OfflineIncome
             _save = save;
         }
 
-        public void GiveCustomReward(string rewardId)
+        public bool TryGiveCustomReward(string rewardId)
         {
-            if (rewardId == DoubleNextOfflineIncomeRewardId)
+            if (rewardId != DoubleNextOfflineIncomeRewardId)
             {
-                _save.SetPendingDoubleNextReward(true);
-                return;
+                return false;
             }
 
-            Debug.LogWarning($"Unsupported custom reward id: {rewardId}");
+            _save.SetPendingDoubleNextReward(true);
+            return true;
         }
     }
 }

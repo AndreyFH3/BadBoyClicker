@@ -501,10 +501,15 @@ namespace AdBonusOffers
             }
 
             var reward = offer.Rewards[0];
-            return reward != null &&
-                   reward.RewardType == QuestRewardType.Currency &&
-                   reward.CurrencyType == QuestRewardCurrencyType.Soft &&
-                   reward.Amount > 0;
+            if (reward == null ||
+                reward.RewardType != QuestRewardType.Currency ||
+                reward.CurrencyType != QuestRewardCurrencyType.Soft ||
+                reward.Amount <= 0)
+            {
+                return false;
+            }
+
+            return _wallet.CanSpendHard(offer.HardPrice);
         }
     }
 }
