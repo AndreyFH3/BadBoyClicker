@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using Core;
 using Core.Ads;
+using Core.Time;
 using GameLocalization;
+using PlayerFeatures;
 using QuestSystem;
 using Utils;
 using UnityEngine;
@@ -21,6 +23,9 @@ namespace AdBonusOffers
         private IAdBonusEffectService _effectService;
         private ILocalizationService _localization;
         private Wallet _wallet;
+        private IPlayerFeatureUnlockService _featureUnlockService;
+        private ITimeService _timeService;
+        private AdBonusOfferRuntimeSave _save;
         private AdBonusOfferConfig.AdBonusOfferData _currentOffer;
         private AdBonusOfferConfig.AdBonusOfferData _pendingRewardOffer;
         private float _nextOfferTimer;
@@ -37,6 +42,7 @@ namespace AdBonusOffers
         public AdBonusOfferViewData CurrentOffer => CreateViewData(_currentOffer);
         public float CurrentOfferRemainingSeconds => HasActiveOffer ? Mathf.Max(0f, _visibleTimer) : 0f;
         private bool HasAnyActiveEffect => _effectService.ActiveEffects.Count > 0;
+        private bool IsFeatureUnlocked => _featureUnlockService.IsUnlocked(PlayerFeatureType.RewardAdBoosts);
 
         [Inject]
         public void Construct(
@@ -45,7 +51,10 @@ namespace AdBonusOffers
             IQuestRewardService rewardService,
             IAdBonusEffectService effectService,
             ILocalizationService localization,
-            Wallet wallet)
+            Wallet wallet,
+            IPlayerFeatureUnlockService featureUnlockService,
+            ITimeService timeService,
+            AdBonusOfferRuntimeSave save)
         {
             _config = config;
             _adsService = adsService;
@@ -53,6 +62,9 @@ namespace AdBonusOffers
             _effectService = effectService;
             _localization = localization;
             _wallet = wallet;
+            _featureUnlockService = featureUnlockService;
+            _timeService = timeService;
+            _save = save;
         }
 
         public void Initialize()
@@ -104,6 +116,11 @@ namespace AdBonusOffers
                 return false;
             }
 
+            if (!IsFeatureUnlocked || RemainingClaimsToday() <= 0)
+            {
+                return false;
+            }
+
             _currentOffer = SelectOffer();
             if (_currentOffer == null)
             {
@@ -138,7 +155,7 @@ namespace AdBonusOffers
 
         public void ClaimCurrentOffer()
         {
-            if (!HasActiveOffer || _isClaimInProgress)
+            if (!HasActiveOffer || _isClaimInProgress || RemainingClaimsToday() <= 0)
             {
                 return;
             }
@@ -168,7 +185,7 @@ namespace AdBonusOffers
 
         public void ClaimCurrentOfferForHard()
         {
-            if (!HasActiveOffer || _isClaimInProgress || !CanClaimForHard(_currentOffer))
+            if (!HasActiveOffer || _isClaimInProgress || !CanClaimForHard(_currentOffer) || RemainingClaimsToday() <= 0)
             {
                 return;
             }
@@ -184,6 +201,8 @@ namespace AdBonusOffers
 
         private void CompleteClaim(AdBonusOfferConfig.AdBonusOfferData offer, AdBonusOfferViewData viewData)
         {
+            EnsureToday();
+            _save.AddClaim();
             _pendingRewardOffer = offer;
             StartCooldown(offer);
             _isClaimInProgress = false;
@@ -271,6 +290,27 @@ namespace AdBonusOffers
         private void ResetNextOfferTimer()
         {
             _nextOfferTimer = _config.OfferIntervalSeconds;
+        }
+
+        private void EnsureToday()
+        {
+            string todayKey = GetTodayKey();
+            if (_save.DayKey != todayKey)
+            {
+                _save.ResetForDay(todayKey);
+            }
+        }
+
+        private string GetTodayKey()
+        {
+            long ticks = _timeService?.CurrentUtcTicks ?? DateTime.UtcNow.Ticks;
+            return new DateTime(ticks, DateTimeKind.Utc).ToString("yyyyMMdd");
+        }
+
+        private int RemainingClaimsToday()
+        {
+            EnsureToday();
+            return Math.Max(0, _config.DailyClaimLimit - _save.ClaimsToday);
         }
 
         private AdBonusOfferConfig.AdBonusOfferData SelectOffer()

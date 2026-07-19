@@ -11,12 +11,15 @@ namespace AdBonusOffers
         [SerializeField] private float _initialDelaySeconds = 15f;
         [SerializeField] private float _offerIntervalSeconds = 90f;
         [SerializeField] private float _visibleDurationSeconds = 20f;
+        [Min(0)]
+        [SerializeField] private int _dailyClaimLimit = 5;
         [SerializeField] private List<AdBonusOfferData> _offers = new();
         [SerializeField] private List<AdBonusEffectData> _boosts = new();
 
         public float InitialDelaySeconds => Mathf.Max(0f, _initialDelaySeconds);
         public float OfferIntervalSeconds => Mathf.Max(1f, _offerIntervalSeconds);
         public float VisibleDurationSeconds => Mathf.Max(1f, _visibleDurationSeconds);
+        public int DailyClaimLimit => Mathf.Max(0, _dailyClaimLimit);
         public IReadOnlyList<AdBonusOfferData> Offers => _offers;
         public IReadOnlyList<AdBonusEffectData> Boosts => _boosts;
 

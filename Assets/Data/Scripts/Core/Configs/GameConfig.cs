@@ -33,6 +33,8 @@ namespace Core
             [SerializeField] private float _purchaseExperiencePercent = 0.5f;
             [SerializeField] private long _baseExperienceToComplete = 1000;
             [SerializeField] private float _experienceGrowth = 1.4f;
+            [Tooltip("Clicks required to complete the level 0 tutorial before normal experience-based leveling begins.")]
+            [SerializeField] private int _tutorialClickTarget = 100;
             [SerializeField] private List<ExperienceRewardData> _experienceRewards = new();
             [SerializeField] private List<PlayerLevelData> _levels = new();
 
@@ -41,6 +43,7 @@ namespace Core
             public float PurchaseExperiencePercent => _purchaseExperiencePercent;
             public long BaseExperienceToComplete => _baseExperienceToComplete;
             public float ExperienceGrowth => _experienceGrowth;
+            public int TutorialClickTarget => Mathf.Max(1, _tutorialClickTarget);
             public IReadOnlyList<ExperienceRewardData> ExperienceRewards => _experienceRewards;
             public IReadOnlyList<PlayerLevelData> Levels => _levels;
         }

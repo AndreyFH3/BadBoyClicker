@@ -20,6 +20,7 @@ MonoBehaviour:
     _description: 
     _icon: {fileID: -8075148566640098004, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 0
+    _difficulty: 0
     _resetPolicy: 0
     _targetValue: 1000
     _targetId: 
@@ -44,6 +45,7 @@ MonoBehaviour:
     _description: 
     _icon: {fileID: 9007702836895937785, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 4
+    _difficulty: 1
     _resetPolicy: 0
     _targetValue: 25000
     _targetId: 
@@ -68,8 +70,9 @@ MonoBehaviour:
     _description: 
     _icon: {fileID: 464836272655179873, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 1
+    _difficulty: 1
     _resetPolicy: 0
-    _targetValue: 5000
+    _targetValue: 500000
     _targetId: 
     _points: 2
     _rewards:
@@ -92,6 +95,7 @@ MonoBehaviour:
     _description: 
     _icon: {fileID: -7263886858265052011, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 2
+    _difficulty: 0
     _resetPolicy: 0
     _targetValue: 50
     _targetId: 
@@ -116,8 +120,9 @@ MonoBehaviour:
     _description: 
     _icon: {fileID: 2311272757980207322, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 6
+    _difficulty: 1
     _resetPolicy: 0
-    _targetValue: 15000
+    _targetValue: 250000
     _targetId: 
     _points: 2
     _rewards:
@@ -140,6 +145,7 @@ MonoBehaviour:
     _description: 
     _icon: {fileID: -6367816656384399069, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 3
+    _difficulty: 1
     _resetPolicy: 1
     _targetValue: 2
     _targetId: 
@@ -164,6 +170,7 @@ MonoBehaviour:
     _description: 
     _icon: {fileID: -5531199727539077336, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 8
+    _difficulty: 0
     _resetPolicy: 0
     _targetValue: 1
     _targetId: 
@@ -188,6 +195,7 @@ MonoBehaviour:
     _description: 
     _icon: {fileID: -7321143754752364359, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
     _objectiveType: 9
+    _difficulty: 0
     _resetPolicy: 2
     _targetValue: 300
     _targetId: 

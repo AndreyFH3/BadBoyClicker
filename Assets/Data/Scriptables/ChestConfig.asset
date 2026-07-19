@@ -23,21 +23,21 @@ MonoBehaviour:
       _reward:
         _rewardType: 0
         _currencyType: 0
-        _amount: 224
-        _rewardId: 
+        _amount: 0
+        _rewardId:
         _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-        _displayTextLocalizationKey: 
-        _displayText: 
+        _displayTextLocalizationKey:
+        _displayText:
         _requiresActivation: 0
-        _activationTitleLocalizationKey: 
-        _activationTitle: 
-        _activationDescriptionLocalizationKey: 
-        _activationDescription: 
-      _cardCollectionId: 
+        _activationTitleLocalizationKey:
+        _activationTitle:
+        _activationDescriptionLocalizationKey:
+        _activationDescription:
+      _cardCollectionId:
       _allowDuplicateCards: 1
-      _minAmount: 100
-      _maxAmount: 300
-      _scaleWithIncomeMultiplier: 1
+      _minAmount: 0
+      _maxAmount: 0
+      _scaleWithIncomeMultiplier: 0
     - _rarityWeight: 20
       _rewardKind: 0
       _reward:
@@ -63,7 +63,7 @@ MonoBehaviour:
       _reward:
         _rewardType: 0
         _currencyType: 0
-        _amount: 753
+        _amount: 0
         _rewardId: 
         _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
         _displayTextLocalizationKey: 
@@ -75,9 +75,9 @@ MonoBehaviour:
         _activationDescription: 
       _cardCollectionId: 
       _allowDuplicateCards: 1
-      _minAmount: 300
-      _maxAmount: 800
-      _scaleWithIncomeMultiplier: 1
+      _minAmount: 0
+      _maxAmount: 0
+      _scaleWithIncomeMultiplier: 0
     - _rarityWeight: 10
       _rewardKind: 0
       _reward:
@@ -108,7 +108,7 @@ MonoBehaviour:
       _reward:
         _rewardType: 0
         _currencyType: 0
-        _amount: 1288
+        _amount: 0
         _rewardId: 
         _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
         _displayTextLocalizationKey: 
@@ -120,9 +120,9 @@ MonoBehaviour:
         _activationDescription: 
       _cardCollectionId: 
       _allowDuplicateCards: 1
-      _minAmount: 500
-      _maxAmount: 1500
-      _scaleWithIncomeMultiplier: 1
+      _minAmount: 0
+      _maxAmount: 0
+      _scaleWithIncomeMultiplier: 0
     - _rarityWeight: 20
       _rewardKind: 0
       _reward:
@@ -225,9 +225,9 @@ MonoBehaviour:
         _activationDescription: 
       _cardCollectionId: 
       _allowDuplicateCards: 0
-      _minAmount: 1000
-      _maxAmount: 3000
-      _scaleWithIncomeMultiplier: 1
+      _minAmount: 0
+      _maxAmount: 0
+      _scaleWithIncomeMultiplier: 0
     - _rarityWeight: 25
       _rewardKind: 0
       _reward:

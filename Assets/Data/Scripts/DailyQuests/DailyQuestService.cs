@@ -118,6 +118,7 @@ namespace DailyQuests
 
             EnsureToday();
 
+            bool isAdvancedUnlocked = IsAdvancedQuestsUnlocked();
             var questDatas = _config?.Quests;
             var quests = new List<DailyQuestViewData>(questDatas?.Count ?? 0);
             if (questDatas != null)
@@ -125,6 +126,11 @@ namespace DailyQuests
                 foreach (var data in questDatas)
                 {
                     if (data == null || string.IsNullOrEmpty(data.Id))
+                    {
+                        continue;
+                    }
+
+                    if (data.Difficulty == QuestDifficulty.Advanced && !isAdvancedUnlocked)
                     {
                         continue;
                     }
@@ -151,7 +157,7 @@ namespace DailyQuests
                 }
             }
 
-            var milestoneDatas = _config?.Milestones;
+            var milestoneDatas = isAdvancedUnlocked ? _config?.Milestones : null;
             var milestones = new List<DailyQuestMilestoneViewData>(milestoneDatas?.Count ?? 0);
             if (milestoneDatas != null)
             {
@@ -173,11 +179,12 @@ namespace DailyQuests
                 }
             }
 
+            int maxMilestonePoints = isAdvancedUnlocked ? GetMaxMilestonePoints() : 0;
             return new DailyQuestBoardViewData
             {
                 Points = _save.Points,
-                MaxPoints = GetMaxMilestonePoints(),
-                PointsProgress = GetMaxMilestonePoints() <= 0 ? 0f : Math.Min(1f, (float)_save.Points / GetMaxMilestonePoints()),
+                MaxPoints = maxMilestonePoints,
+                PointsProgress = maxMilestonePoints <= 0 ? 0f : Math.Min(1f, (float)_save.Points / maxMilestonePoints),
                 Quests = quests,
                 Milestones = milestones
             };
@@ -198,7 +205,7 @@ namespace DailyQuests
             }
 
             DailyQuestConfig.DailyQuestData data = FindQuest(questId);
-            if (data == null)
+            if (data == null || (data.Difficulty == QuestDifficulty.Advanced && !IsAdvancedQuestsUnlocked()))
             {
                 return false;
             }
@@ -228,7 +235,7 @@ namespace DailyQuests
 
             EnsureToday();
 
-            if (_save.Points < requiredPoints || _save.IsMilestoneClaimed(requiredPoints))
+            if (!IsAdvancedQuestsUnlocked() || _save.Points < requiredPoints || _save.IsMilestoneClaimed(requiredPoints))
             {
                 return false;
             }
@@ -276,6 +283,11 @@ namespace DailyQuests
         private bool IsFeatureUnlocked()
         {
             return _isUnlocked || (_featureUnlockService != null && _featureUnlockService.IsUnlocked(PlayerFeatureType.DailyQuest));
+        }
+
+        private bool IsAdvancedQuestsUnlocked()
+        {
+            return _featureUnlockService != null && _featureUnlockService.IsUnlocked(PlayerFeatureType.AdvancedQuests);
         }
 
         private void StartUnlockedFlow()
@@ -704,6 +716,11 @@ namespace DailyQuests
         private bool CanProgress(DailyQuestConfig.DailyQuestData data, QuestObjectiveType objectiveType, string targetId)
         {
             if (data == null || string.IsNullOrEmpty(data.Id) || data.ObjectiveType != objectiveType)
+            {
+                return false;
+            }
+
+            if (data.Difficulty == QuestDifficulty.Advanced && !IsAdvancedQuestsUnlocked())
             {
                 return false;
             }

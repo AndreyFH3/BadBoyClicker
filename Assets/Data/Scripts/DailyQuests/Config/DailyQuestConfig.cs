@@ -24,6 +24,7 @@ namespace DailyQuests
             [SerializeField] private string _description;
             [SerializeField] private Sprite _icon;
             [SerializeField] private QuestObjectiveType _objectiveType;
+            [SerializeField] private QuestDifficulty _difficulty = QuestDifficulty.Simple;
             [SerializeField] private DailyQuestResetPolicy _resetPolicy = DailyQuestResetPolicy.Daily;
             [Min(1)]
             [SerializeField] private long _targetValue = 1;
@@ -39,6 +40,7 @@ namespace DailyQuests
             public string Description => _description;
             public Sprite Icon => _icon;
             public QuestObjectiveType ObjectiveType => _objectiveType;
+            public QuestDifficulty Difficulty => _difficulty;
             public DailyQuestResetPolicy ResetPolicy => _resetPolicy;
             public long TargetValue => _targetValue;
             public string TargetId => _targetId;

@@ -22,11 +22,13 @@ namespace PlayerProgression
         private IQuestRewardService _rewardService;
         private IAdBonusEffectService _bonusEffectService;
 
-        public int CurrentLevel => _save.CompletedLevels + 1;
-        public long CurrentExperience => _save.CurrentExperience;
-        public long ExperienceToNextLevel => GetLevelExperienceRequirement(_save.CompletedLevels);
+        public int CurrentLevel => _save.IsTutorialCompleted ? _save.CompletedLevels + 1 : 0;
+        public long CurrentExperience => _save.IsTutorialCompleted ? _save.CurrentExperience : _save.TutorialClicks;
+        public long ExperienceToNextLevel => _save.IsTutorialCompleted
+            ? GetLevelExperienceRequirement(_save.CompletedLevels)
+            : (_config?.PlayerProgression?.TutorialClickTarget ?? 100);
         public float CurrentProgress => ExperienceToNextLevel <= 0 ? 0f : Math.Min(1f, (float)CurrentExperience / ExperienceToNextLevel);
-        public bool CanCompleteLevel => ExperienceToNextLevel > 0 && CurrentExperience >= ExperienceToNextLevel;
+        public bool CanCompleteLevel => _save.IsTutorialCompleted && ExperienceToNextLevel > 0 && CurrentExperience >= ExperienceToNextLevel;
         public IReadOnlyList<LevelRewardEntry> NextLevelRewards => CreateRewardEntries(_save.CompletedLevels);
         public string NextLevelLossText => _localization.Format("You_want_new_level", CurrentLevel + 1);
         public float ClickIncomeMultiplier => 1f + GetBonusPercent(PlayerProgressBonusType.ClickIncomePercent) / 100f;
@@ -64,6 +66,12 @@ namespace PlayerProgression
 
         public void AddExperience(PlayerExperienceSource source, long contextAmount = 0)
         {
+            if (!_save.IsTutorialCompleted)
+            {
+                AddTutorialClick(source);
+                return;
+            }
+
             if (CanCompleteLevel)
             {
                 return;
@@ -90,6 +98,25 @@ namespace PlayerProgression
             }
 
             _save.SetState(completedLevels, experience);
+        }
+
+        private void AddTutorialClick(PlayerExperienceSource source)
+        {
+            if (source != PlayerExperienceSource.Click)
+            {
+                return;
+            }
+
+            int target = _config?.PlayerProgression?.TutorialClickTarget ?? 100;
+            int clicks = Math.Min(target, _save.TutorialClicks + 1);
+            _save.SetTutorialClicks(clicks);
+            ExperienceAdded?.Invoke(1);
+
+            if (clicks >= target)
+            {
+                _save.CompleteTutorial();
+                LevelCompleted?.Invoke(CurrentLevel);
+            }
         }
 
         public bool CompleteLevel()

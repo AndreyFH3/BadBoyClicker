@@ -28,17 +28,21 @@ namespace PlayerFeatures
             {
                 _button = GetComponent<Button>();
             }
+
+            // Subscribed here (not OnEnable/OnDisable): when this button has no dedicated
+            // locked/unlocked art, UpdateState() deactivates this very GameObject while
+            // locked. OnDisable would then unsubscribe and the button could never hear
+            // about a later unlock, staying hidden forever.
+            if (_featureUnlockService != null)
+            {
+                _featureUnlockService.FeatureUnlocked += OnFeatureUnlocked;
+            }
         }
 
         private void OnEnable()
         {
             Localization.LanguageChanged += UpdateState;
-
-            if (_featureUnlockService != null)
-            {
-                _featureUnlockService.FeatureUnlocked += OnFeatureUnlocked;
-                UpdateState();
-            }
+            UpdateState();
         }
 
         private void Start()
@@ -49,7 +53,10 @@ namespace PlayerFeatures
         private void OnDisable()
         {
             Localization.LanguageChanged -= UpdateState;
+        }
 
+        private void OnDestroy()
+        {
             if (_featureUnlockService != null)
             {
                 _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;
@@ -85,6 +92,13 @@ namespace PlayerFeatures
             {
                 _lockedText.gameObject.SetActive(!isUnlocked);
                 _lockedText.text = Localization.Format("player_progression.level", requiredLevel);
+            }
+
+            // Buttons without dedicated locked/unlocked art (e.g. plain nav buttons) fall
+            // back to hiding the whole button while locked, matching "hidden" gates.
+            if (_unlockedObject == null && _lockedObject == null)
+            {
+                gameObject.SetActive(isUnlocked);
             }
         }
 

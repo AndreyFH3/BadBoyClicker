@@ -518,9 +518,9 @@ MonoBehaviour:
   - _key: daily_quest.type.click.title
     _values:
     - _language: ru
-      _text: "\u041A\u043B\u0438\u043A\u0438"
+      _text: "\u0420\u0430\u0437\u043C\u0438\u043D\u043A\u0430 \u043B\u0430\u043F"
     - _language: en
-      _text: Clicks
+      _text: Warm-up Paws
   - _key: daily_quest.type.click.description
     _values:
     - _language: ru
@@ -530,9 +530,9 @@ MonoBehaviour:
   - _key: daily_quest.type.balance.title
     _values:
     - _language: ru
-      _text: "\u0411\u0430\u043B\u0430\u043D\u0441"
+      _text: "\u041A\u043E\u043F\u0438\u043B\u043A\u0430"
     - _language: en
-      _text: Balance
+      _text: Piggy Bank
   - _key: daily_quest.type.balance.description
     _values:
     - _language: ru
@@ -543,9 +543,9 @@ MonoBehaviour:
   - _key: daily_quest.type.total_earned.title
     _values:
     - _language: ru
-      _text: "\u0417\u0430\u0440\u0430\u0431\u043E\u0442\u043E\u043A"
+      _text: "\u0414\u043E\u0431\u044B\u0442\u0447\u0438\u043A"
     - _language: en
-      _text: Earnings
+      _text: Big Earner
   - _key: daily_quest.type.total_earned.description
     _values:
     - _language: ru
@@ -556,9 +556,9 @@ MonoBehaviour:
   - _key: daily_quest.type.shop_buy.title
     _values:
     - _language: ru
-      _text: "\u041F\u043E\u043A\u0443\u043F\u043A\u0438 \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435"
+      _text: "\u0428\u043E\u043F\u043E\u0433\u043E\u043B\u0438\u043A"
     - _language: en
-      _text: Shop purchases
+      _text: Shopaholic
   - _key: daily_quest.type.shop_buy.description
     _values:
     - _language: ru
@@ -569,9 +569,9 @@ MonoBehaviour:
   - _key: daily_quest.type.shop_spent.title
     _values:
     - _language: ru
-      _text: "\u0422\u0440\u0430\u0442\u044B \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435"
+      _text: "\u0422\u0440\u0430\u043D\u0436\u0438\u0440\u0430"
     - _language: en
-      _text: Shop spending
+      _text: Big Spender
   - _key: daily_quest.type.shop_spent.description
     _values:
     - _language: ru
@@ -582,9 +582,9 @@ MonoBehaviour:
   - _key: daily_quest.type.player_level.title
     _values:
     - _language: ru
-      _text: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C \u0438\u0433\u0440\u043E\u043A\u0430"
+      _text: "\u041F\u043E\u043A\u043E\u0440\u0438\u0442\u0435\u043B\u044C \u0443\u0440\u043E\u0432\u043D\u0435\u0439"
     - _language: en
-      _text: Player level
+      _text: Level Climber
   - _key: daily_quest.type.player_level.description
     _values:
     - _language: ru
@@ -595,9 +595,9 @@ MonoBehaviour:
   - _key: daily_quest.type.watch_ad.title
     _values:
     - _language: ru
-      _text: "\u0420\u0435\u043A\u043B\u0430\u043C\u0430"
+      _text: "\u0420\u0435\u043A\u043B\u0430\u043C\u043D\u0430\u044F \u043F\u0430\u0443\u0437\u0430"
     - _language: en
-      _text: Ads
+      _text: Ad Break
   - _key: daily_quest.type.watch_ad.description
     _values:
     - _language: ru
@@ -608,9 +608,9 @@ MonoBehaviour:
   - _key: daily_quest.type.play_time.title
     _values:
     - _language: ru
-      _text: "\u0412\u0440\u0435\u043C\u044F \u0432 \u0438\u0433\u0440\u0435"
+      _text: "\u0412\u0430\u043B\u044C\u044F\u0436\u043D\u044B\u0439 \u043A\u043E\u0442"
     - _language: en
-      _text: Play time
+      _text: Leisurely Cat
   - _key: daily_quest.type.play_time.description
     _values:
     - _language: ru

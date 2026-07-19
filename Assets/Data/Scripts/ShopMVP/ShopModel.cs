@@ -4,6 +4,7 @@ using UnityEngine;
 using Core;
 using Utils;
 using Zenject;
+using PlayerFeatures;
 using PlayerProgression;
 using GameLocalization;
 using AdBonusOffers;
@@ -27,6 +28,7 @@ namespace Shop
         private ICardCollectionBonusService _collectionBonusService;
         private IPurchaseSystem _purchaseSystem;
         private IQuestRewardService _rewardService;
+        private IPlayerFeatureUnlockService _featureUnlockService;
         private readonly Dictionary<string, ShopItem> _items = new();
         private readonly Dictionary<string, ShopItem> _paidItemsByPaymentId = new();
 
@@ -45,7 +47,8 @@ namespace Shop
             IAdBonusEffectService bonusEffectService,
             ICardCollectionBonusService collectionBonusService,
             IPurchaseSystem purchaseSystem,
-            IQuestRewardService rewardService)
+            IQuestRewardService rewardService,
+            IPlayerFeatureUnlockService featureUnlockService)
         {
             _config = config;
             _wallet = wallet;
@@ -56,6 +59,7 @@ namespace Shop
             _collectionBonusService = collectionBonusService;
             _purchaseSystem = purchaseSystem;
             _rewardService = rewardService;
+            _featureUnlockService = featureUnlockService;
 
             BuildItems();
             _save.Recalculate(_config);
@@ -86,20 +90,25 @@ namespace Shop
             List<ShopElementData> datas = new();
             foreach (var item in _items.Values)
             {
+                if (!IsAvailable(item))
+                {
+                    continue;
+                }
+
                 datas.Add(CreateElementData(item));
             }
-            
+
             return datas;
         }
 
         public ShopElementData GetShopPositionData(string id)
         {
-            return _items.TryGetValue(id, out var item) ? CreateElementData(item) : null;
+            return _items.TryGetValue(id, out var item) && IsAvailable(item) ? CreateElementData(item) : null;
         }
 
         public ShopPurchaseConfirmationData GetPurchaseConfirmationData(string id)
         {
-            if (!_items.TryGetValue(id, out var item) || item.Type != ShopItemType.PaidBuy || item.PaidData == null)
+            if (!_items.TryGetValue(id, out var item) || item.Type != ShopItemType.PaidBuy || item.PaidData == null || !IsAvailable(item))
             {
                 return null;
             }
@@ -128,6 +137,12 @@ namespace Shop
                 return;
             }
 
+            if (!IsAvailable(item))
+            {
+                Debug.LogWarning($"Shop item '{id}' is locked and cannot be purchased.");
+                return;
+            }
+
             if (item.Type == ShopItemType.PaidBuy)
             {
                 BuyPaid(item);
@@ -145,6 +160,48 @@ namespace Shop
             _save.Recalculate(_config);
             ItemBought?.Invoke(item.ClickData.Id);
             StateChanged?.Invoke();
+        }
+
+        // Some paid offers grant content owned by another gated system (e.g. a chest
+        // reward requires the Chests feature to actually open, a background reward
+        // requires Customization to be given). Selling those offers before that
+        // system unlocks would let the player pay for a reward they can never
+        // receive, so the offer itself stays hidden and unbuyable until then.
+        private bool IsAvailable(ShopItem item)
+        {
+            if (item.Type != ShopItemType.PaidBuy || _featureUnlockService == null)
+            {
+                return true;
+            }
+
+            PlayerFeatureType? requiredFeature = GetRequiredFeature(item.PaidData);
+            return requiredFeature == null || _featureUnlockService.IsUnlocked(requiredFeature.Value);
+        }
+
+        private static PlayerFeatureType? GetRequiredFeature(GameConfig.PaidShopData data)
+        {
+            if (data?.Rewards == null)
+            {
+                return null;
+            }
+
+            foreach (var reward in data.Rewards)
+            {
+                if (reward == null)
+                {
+                    continue;
+                }
+
+                switch (reward.RewardType)
+                {
+                    case QuestRewardType.Chest:
+                        return PlayerFeatureType.Chests;
+                    case QuestRewardType.PlayerBackground:
+                        return PlayerFeatureType.Customization;
+                }
+            }
+
+            return null;
         }
 
         private void BuildItems()

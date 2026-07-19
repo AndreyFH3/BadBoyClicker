@@ -22,6 +22,8 @@ namespace Shop
         [SerializeField] private Transform _paidSoftRoot;
         [Tooltip("Optional. When assigned, offers that reward a chest go here instead of the shared paid root.")]
         [SerializeField] private Transform _paidChestRoot;
+        [Tooltip("Optional. Section header shown above the chest offers; hidden automatically while no chest offers are available (e.g. Chests feature still locked).")]
+        [SerializeField] private GameObject _paidChestHeader;
         [SerializeField] private CanvasGroup _clicksCanvasGroup;
         [SerializeField] private CanvasGroup _autoBuysCanvasGroup;
         [SerializeField] private CanvasGroup _paidBuysCanvasGroup;
@@ -67,6 +69,36 @@ namespace Shop
             foreach (var data in datas)
             {
                 SetElementData(data);
+            }
+
+            UpdateChestSectionVisibility(datas);
+        }
+
+        private void UpdateChestSectionVisibility(List<ShopElementData> datas)
+        {
+            if (_paidChestHeader == null && _paidChestRoot == null)
+            {
+                return;
+            }
+
+            bool hasChestOffers = false;
+            foreach (var data in datas)
+            {
+                if (data != null && data.Type == ShopItemType.PaidBuy && data.RewardGroup == ShopRewardGroup.Chest)
+                {
+                    hasChestOffers = true;
+                    break;
+                }
+            }
+
+            if (_paidChestHeader != null)
+            {
+                _paidChestHeader.SetActive(hasChestOffers);
+            }
+
+            if (_paidChestRoot != null)
+            {
+                _paidChestRoot.gameObject.SetActive(hasChestOffers);
             }
         }
 

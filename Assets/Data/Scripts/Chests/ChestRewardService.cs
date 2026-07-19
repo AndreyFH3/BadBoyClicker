@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using CardCollections;
 using Core;
 using DailyLogin;
+using PlayerFeatures;
 using PlayerProgression;
 using QuestSystem;
+using Shop;
 using UnityEngine;
 using Zenject;
 
@@ -12,10 +14,18 @@ namespace Chests
 {
     public class ChestRewardService : IChestService, IInitializable
     {
+        // Soft-currency chest rewards ignore the per-entry min/max in config and
+        // instead scale with the player's current passive income: at least a flat
+        // floor, at most what the player would earn passively over 5 minutes.
+        private const long SoftRewardMinAmount = 1000;
+        private const int SoftRewardMaxIncomeMinutes = 5;
+
         private readonly ChestConfig _config;
         private readonly Wallet _wallet;
         private readonly ICardCollectionService _cardCollectionService;
         private readonly IPlayerProgressionService _playerProgression;
+        private readonly IPlayerFeatureUnlockService _featureUnlockService;
+        private readonly IShopRuntimeSave _shopSave;
         private readonly Dictionary<string, ChestConfig.ChestData> _chestsById = new();
 
         [InjectOptional] private IBoostRewardService _boostRewardService;
@@ -28,12 +38,16 @@ namespace Chests
             ChestConfig config,
             Wallet wallet,
             ICardCollectionService cardCollectionService,
-            IPlayerProgressionService playerProgression)
+            IPlayerProgressionService playerProgression,
+            IPlayerFeatureUnlockService featureUnlockService,
+            IShopRuntimeSave shopSave)
         {
             _config = config;
             _wallet = wallet;
             _cardCollectionService = cardCollectionService;
             _playerProgression = playerProgression;
+            _featureUnlockService = featureUnlockService;
+            _shopSave = shopSave;
         }
 
         public void Initialize()
@@ -56,6 +70,12 @@ namespace Chests
         public bool TryOpenChest(string chestId, out ChestOpenResult result)
         {
             result = null;
+
+            if (!_featureUnlockService.IsUnlocked(PlayerFeatureType.Chests))
+            {
+                Debug.Log($"Chests are locked. Chest reward was not granted: {chestId}");
+                return false;
+            }
 
             var chest = GetChest(chestId);
             if (chest == null)
@@ -244,7 +264,18 @@ namespace Chests
 
         private void ApplyAmountOverride(ChestConfig.ChestRewardEntry entry, QuestReward reward)
         {
-            if (reward.RewardType != QuestRewardType.Currency || !entry.HasAmountRange)
+            if (reward.RewardType != QuestRewardType.Currency)
+            {
+                return;
+            }
+
+            if (reward.CurrencyType == QuestRewardCurrencyType.Soft)
+            {
+                reward.SetAmount(RollSoftRewardAmount());
+                return;
+            }
+
+            if (!entry.HasAmountRange)
             {
                 return;
             }
@@ -257,6 +288,27 @@ namespace Chests
             }
 
             reward.SetAmount(amount);
+        }
+
+        private long RollSoftRewardAmount()
+        {
+            long maxByIncome = Math.Max(0, _shopSave?.AutoIncomePerSecond ?? 0) * 60L * SoftRewardMaxIncomeMinutes;
+            long max = Math.Max(SoftRewardMinAmount, maxByIncome);
+            return RollRandomLong(SoftRewardMinAmount, max);
+        }
+
+        // Random.Range(int,int) can't safely cover this range at high incomes
+        // (late-game soft currency routinely exceeds int.MaxValue), so roll in
+        // double space instead.
+        private static long RollRandomLong(long min, long max)
+        {
+            if (max <= min)
+            {
+                return min;
+            }
+
+            double t = UnityEngine.Random.value;
+            return min + (long)(t * (max - min + 1));
         }
 
         private void GiveReward(QuestReward reward)

@@ -9,6 +9,7 @@ using PlayerProgression;
 using QuestSystem;
 using CardCollections;
 using Customization;
+using AdBonusOffers;
 
 namespace Core
 {
@@ -28,6 +29,7 @@ namespace Core
         private CardCollectionRuntimeSave _cardCollectionSave;
         private ICustomizationService _customizationService;
         private CustomizationRuntimeSave _customizationSave;
+        private AdBonusOfferRuntimeSave _adBonusOfferSave;
         private GameConfig _config;
         private bool _isApplyingSaveData;
 
@@ -47,6 +49,7 @@ namespace Core
             CardCollectionRuntimeSave cardCollectionSave,
             ICustomizationService customizationService,
             CustomizationRuntimeSave customizationSave,
+            AdBonusOfferRuntimeSave adBonusOfferSave,
             GameConfig config)
         {
             _wallet = wallet;
@@ -63,6 +66,7 @@ namespace Core
             _cardCollectionSave = cardCollectionSave;
             _customizationService = customizationService;
             _customizationSave = customizationSave;
+            _adBonusOfferSave = adBonusOfferSave;
             _config = config;
         }
 
@@ -78,6 +82,7 @@ namespace Core
             _questSave.Changed += Save;
             _cardCollectionSave.Changed += Save;
             _customizationSave.Changed += Save;
+            _adBonusOfferSave.Changed += Save;
 
             if (YG2.isSDKEnabled)
             {
@@ -97,6 +102,7 @@ namespace Core
             _questSave.Changed -= Save;
             _cardCollectionSave.Changed -= Save;
             _customizationSave.Changed -= Save;
+            _adBonusOfferSave.Changed -= Save;
         }
 
         public void Load()
@@ -119,6 +125,7 @@ namespace Core
                 _questService.Set(data.Quests);
                 _cardCollectionService.Set(data.CardCollections);
                 _customizationService.Set(data.Customization);
+                _adBonusOfferSave.Set(data.AdBonusOffers);
                 _shopSave.Recalculate(_config);
                 // Snapshot the offline reward now that both the shop (AutoIncomePerSecond)
                 // and the last-online timestamp are applied. Runs once per session.
@@ -147,7 +154,8 @@ namespace Core
                 PlayerProgression = _playerProgression.Get(),
                 Quests = _questService.Get(),
                 CardCollections = _cardCollectionService.Get(),
-                Customization = _customizationService.Get()
+                Customization = _customizationService.Get(),
+                AdBonusOffers = _adBonusOfferSave.Get()
             };
 
             YG2.SaveProgress();

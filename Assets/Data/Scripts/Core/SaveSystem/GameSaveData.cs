@@ -7,6 +7,7 @@ using PlayerProgression;
 using QuestSystem;
 using CardCollections;
 using Customization;
+using AdBonusOffers;
 
 namespace Core
 {
@@ -22,5 +23,6 @@ namespace Core
         public QuestSaveData Quests;
         public CardCollectionSaveData CardCollections;
         public CustomizationSaveData Customization;
+        public AdBonusOfferSaveData AdBonusOffers;
     }
 }

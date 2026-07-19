@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Core;
+using PlayerFeatures;
 using UnityEngine;
 using Zenject;
 
@@ -11,10 +12,14 @@ namespace Customization
         private CustomizationConfig _config;
         private CustomizationRuntimeSave _save;
         private Wallet _wallet;
+        private IPlayerFeatureUnlockService _featureUnlockService;
 
         public event Action Changed;
         public event Action<CustomizationItemType, string> ActiveItemChanged;
         public event Action<CustomizationItemType, string, long> ItemBought;
+
+        public bool IsUnlocked => _featureUnlockService == null ||
+                                   _featureUnlockService.IsUnlocked(PlayerFeatureType.Customization);
 
         public string ActiveBackgroundId => _save.ActiveBackgroundId;
         public string ActiveCatId => _save.ActiveCatId;
@@ -22,11 +27,16 @@ namespace Customization
         public Sprite ActiveCatSprite => GetActiveSprite(CustomizationItemType.Cat);
 
         [Inject]
-        public void Construct(CustomizationConfig config, CustomizationRuntimeSave save, Wallet wallet)
+        public void Construct(
+            CustomizationConfig config,
+            CustomizationRuntimeSave save,
+            Wallet wallet,
+            IPlayerFeatureUnlockService featureUnlockService)
         {
             _config = config;
             _save = save;
             _wallet = wallet;
+            _featureUnlockService = featureUnlockService;
         }
 
         public void Initialize()
@@ -57,12 +67,22 @@ namespace Customization
 
         public bool CanBuy(CustomizationItemType type, string id)
         {
+            if (!IsUnlocked)
+            {
+                return false;
+            }
+
             CustomizationConfig.CustomizationItemData item = GetItem(type, id);
             return item != null && !item.RewardOnly && !IsPurchased(type, id) && _wallet.CanSpendSoft(item.Price);
         }
 
         public bool Buy(CustomizationItemType type, string id)
         {
+            if (!IsUnlocked)
+            {
+                return false;
+            }
+
             CustomizationConfig.CustomizationItemData item = GetItem(type, id);
             if (item == null || item.RewardOnly || IsPurchased(type, id))
             {
@@ -83,7 +103,7 @@ namespace Customization
 
         public bool Select(CustomizationItemType type, string id)
         {
-            if (GetItem(type, id) == null || !IsPurchased(type, id))
+            if (!IsUnlocked || GetItem(type, id) == null || !IsPurchased(type, id))
             {
                 return false;
             }
@@ -102,6 +122,11 @@ namespace Customization
 
         public void Give(CustomizationItemType type, string id)
         {
+            if (!IsUnlocked)
+            {
+                return;
+            }
+
             if (GetItem(type, id) == null)
             {
                 Debug.LogWarning($"Customization item with id '{id}' was not found in {type}.");
