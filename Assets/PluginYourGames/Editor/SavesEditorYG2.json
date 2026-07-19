@@ -1,45 +1,16 @@
 {
-    "idSave": 7289,
+    "idSave": 15387,
     "GameSaveData": {
         "Wallet": {
-            "Soft": 130276,
-            "Middle": 15,
-            "Hard": 5290
+            "Soft": 26,
+            "Middle": 60,
+            "Hard": 4010
         },
         "Shop": {
-            "Levels": [
-                {
-                    "Key": "Click:cat_energy",
-                    "Level": 6
-                },
-                {
-                    "Key": "Click:sharp_claws",
-                    "Level": 2
-                },
-                {
-                    "Key": "Click:soft_paw",
-                    "Level": 1
-                },
-                {
-                    "Key": "Click:quick_dash",
-                    "Level": 2
-                },
-                {
-                    "Key": "AutoBuy:food_bowl",
-                    "Level": 2
-                },
-                {
-                    "Key": "AutoBuy:scratching_post",
-                    "Level": 1
-                },
-                {
-                    "Key": "AutoBuy:toy_mouse",
-                    "Level": 3
-                }
-            ]
+            "Levels": []
         },
         "OfflineIncome": {
-            "LastOnlineTicks": 639200475175742435,
+            "LastOnlineTicks": 639200507464391407,
             "PendingDoubleNextReward": false
         },
         "DailyLogin": {
@@ -48,15 +19,96 @@
             "CompletedCycles": 0
         },
         "DailyQuests": {
-            "DayKey": "",
+            "DayKey": "20260719",
             "Points": 0,
-            "AvgIncomePerSecond": 0.0,
-            "Quests": [],
+            "AvgIncomePerSecond": 1698.6822509765625,
+            "Quests": [
+                {
+                    "Id": "player_level_test",
+                    "CurrentValue": 0,
+                    "IsCompleted": false,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 6,
+                    "HasBaseline": true,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
+                },
+                {
+                    "Id": "balance_test",
+                    "CurrentValue": 0,
+                    "IsCompleted": false,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 25000,
+                    "HasEffectiveTarget": true
+                },
+                {
+                    "Id": "total_earned_test",
+                    "CurrentValue": 0,
+                    "IsCompleted": false,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 15000,
+                    "HasEffectiveTarget": true
+                },
+                {
+                    "Id": "shop_spent_test",
+                    "CurrentValue": 0,
+                    "IsCompleted": false,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 15000,
+                    "HasEffectiveTarget": true
+                },
+                {
+                    "Id": "play_time_test",
+                    "CurrentValue": 76,
+                    "IsCompleted": false,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
+                },
+                {
+                    "Id": "click_test",
+                    "CurrentValue": 956,
+                    "IsCompleted": false,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
+                },
+                {
+                    "Id": "shop_buy_test",
+                    "CurrentValue": 50,
+                    "IsCompleted": true,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
+                },
+                {
+                    "Id": "watch_ad_test",
+                    "CurrentValue": 1,
+                    "IsCompleted": true,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
+                }
+            ],
             "Milestones": []
         },
         "PlayerProgression": {
-            "CompletedLevels": 3,
-            "CurrentExperience": 934,
+            "CompletedLevels": 7,
+            "CurrentExperience": 120,
             "TutorialClicks": 100,
             "IsTutorialCompleted": true
         },
@@ -79,7 +131,7 @@
         },
         "AdBonusOffers": {
             "DayKey": "20260719",
-            "ClaimsToday": 0
+            "ClaimsToday": 4
         }
     }
 }

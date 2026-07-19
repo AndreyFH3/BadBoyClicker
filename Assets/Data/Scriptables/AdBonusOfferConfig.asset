@@ -112,33 +112,27 @@ MonoBehaviour:
         _icon: {fileID: 0}
         _displayTextLocalizationKey: 
         _displayText: 
-  - _id: exp_x2
-    _placementId: exp_x2
-    _confirmationTitleLocalizationKey: ad_bonus.exp_x2.title
-    _confirmationTitle: x2 experience
-    _confirmationDescriptionLocalizationKey: ad_bonus.exp_x2.confirm_description
-    _confirmationDescription: Watch an ad to double experience gain for 30 seconds
-    _resultDescriptionLocalizationKey: ad_bonus.exp_x2.result_description
+  - _id: exp_percent
+    _placementId: exp_percent
+    _confirmationTitleLocalizationKey: ad_bonus.exp_percent.title
+    _confirmationTitle: +10% experience
+    _confirmationDescriptionLocalizationKey: ad_bonus.exp_percent.confirm_description
+    _confirmationDescription: Watch an ad to instantly gain 10% of the experience needed for your next level
+    _resultDescriptionLocalizationKey: ad_bonus.exp_percent.result_description
     _resultDescription:
     _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
     _weight: 1
     _cooldownSeconds: 20
     _hardPrice: 0
-    _rewards: []
-    _effects:
-    - _id: exp_x2
-      _effectType: 5
-      _durationSeconds: 30
-      _multiplier: 2
-      _discountPercent: 0
-      _reward:
-        _rewardType: 0
-        _currencyType: 0
-        _amount: 0
-        _rewardId:
-        _icon: {fileID: 0}
-        _displayTextLocalizationKey:
-        _displayText:
+    _rewards:
+    - _rewardType: 4
+      _currencyType: 0
+      _amount: 10
+      _rewardId: exp_percent_10
+      _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _displayTextLocalizationKey: ad_bonus.exp_percent.title
+      _displayText: +10% experience
+    _effects: []
   _boosts:
   - _id: click_x2_5min
     _effectType: 1

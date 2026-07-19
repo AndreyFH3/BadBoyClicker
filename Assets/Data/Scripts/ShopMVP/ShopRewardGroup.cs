@@ -10,6 +10,7 @@ namespace Shop
         Soft = 0,
         Decor = 1,
         Hard = 2,
-        Chest = 3
+        Chest = 3,
+        Experience = 4
     }
 }

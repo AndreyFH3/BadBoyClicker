@@ -6,6 +6,7 @@ namespace PlayerProgression
         PassiveIncomeTick = 1,
         ShopPurchase = 2,
         AdWatched = 3,
-        QuestCompleted = 4
+        QuestCompleted = 4,
+        PercentBonus = 5
     }
 }

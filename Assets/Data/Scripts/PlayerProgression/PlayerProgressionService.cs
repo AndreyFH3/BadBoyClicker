@@ -169,6 +169,7 @@ namespace PlayerProgression
             {
                 PlayerExperienceSource.ShopPurchase => GetPurchaseExperience(contextAmount),
                 PlayerExperienceSource.QuestCompleted => Math.Max(0, contextAmount),
+                PlayerExperienceSource.PercentBonus => Math.Max(0, contextAmount),
                 _ => GetExperienceReward(source)
             };
         }

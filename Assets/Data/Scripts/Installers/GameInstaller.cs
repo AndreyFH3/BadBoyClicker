@@ -56,6 +56,7 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<OfflineIncomeRuntimeSave>().AsSingle().NonLazy();
             Container.BindInterfacesTo<OfflineIncomeCustomRewardService>().AsSingle().NonLazy();
             Container.BindInterfacesTo<CardCollectionCustomRewardService>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<PlayerProgressionExperienceRewardService>().AsSingle().NonLazy();
             Container.BindInterfacesTo<QuestCustomRewardDispatcher>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyLoginRuntimeSave>().AsSingle().NonLazy();
             Container.Bind<DailyQuestRuntimeSave>().AsSingle().NonLazy();

@@ -256,6 +256,72 @@ MonoBehaviour:
         \u0430\u043A\u0442\u0438\u0432\u0438\u0440\u043E\u0432\u0430\u043D\u0430!"
     - _language: en
       _text: The shop discount is now active!
+  - _key: shop.paid.exp_10_purchase.name
+    _values:
+    - _language: ru
+      _text: "Опыт +10%"
+    - _language: en
+      _text: Experience +10%
+  - _key: shop.paid.exp_10_purchase.reward
+    _values:
+    - _language: ru
+      _text: "+10% опыта"
+    - _language: en
+      _text: +10% experience
+  - _key: shop.paid.exp_25_purchase.name
+    _values:
+    - _language: ru
+      _text: "Опыт +25%"
+    - _language: en
+      _text: Experience +25%
+  - _key: shop.paid.exp_25_purchase.reward
+    _values:
+    - _language: ru
+      _text: "+25% опыта"
+    - _language: en
+      _text: +25% experience
+  - _key: shop.paid.exp_50_purchase.name
+    _values:
+    - _language: ru
+      _text: "Опыт +50%"
+    - _language: en
+      _text: Experience +50%
+  - _key: shop.paid.exp_50_purchase.reward
+    _values:
+    - _language: ru
+      _text: "+50% опыта"
+    - _language: en
+      _text: +50% experience
+  - _key: shop.paid.exp_100_purchase.name
+    _values:
+    - _language: ru
+      _text: "Опыт +100%"
+    - _language: en
+      _text: Experience +100%
+  - _key: shop.paid.exp_100_purchase.reward
+    _values:
+    - _language: ru
+      _text: "+100% опыта"
+    - _language: en
+      _text: +100% experience
+  - _key: ad_bonus.exp_percent.title
+    _values:
+    - _language: ru
+      _text: "+10% опыта"
+    - _language: en
+      _text: +10% experience
+  - _key: ad_bonus.exp_percent.confirm_description
+    _values:
+    - _language: ru
+      _text: "Посмотри рекламу и мгновенно получи 10% опыта, нужного для следующего уровня"
+    - _language: en
+      _text: Watch an ad to instantly gain 10% of the experience needed for your next level
+  - _key: ad_bonus.exp_percent.result_description
+    _values:
+    - _language: ru
+      _text: "Опыт начислен!"
+    - _language: en
+      _text: Experience granted!
   - _key: shop.item.level
     _values:
     - _language: ru

@@ -297,14 +297,20 @@ namespace Shop
                 return ShopRewardGroup.Soft;
             }
 
-            // Chests get their own dedicated slot regardless of any other rewards
-            // the offer might also grant, so they never fall back into whichever
-            // currency slot happens to be resolved last.
+            // Chests and experience-percent offers get their own dedicated slots
+            // regardless of any other rewards the offer might also grant, so they
+            // never fall back into whichever currency slot happens to be resolved last.
             foreach (var reward in rewards)
             {
                 if (reward != null && reward.RewardType == QuestRewardType.Chest)
                 {
                     return ShopRewardGroup.Chest;
+                }
+
+                if (reward != null && reward.RewardType == QuestRewardType.Custom &&
+                    PlayerProgressionExperienceRewardService.IsExperienceRewardId(reward.RewardId))
+                {
+                    return ShopRewardGroup.Experience;
                 }
             }
 

@@ -24,6 +24,10 @@ namespace Shop
         [SerializeField] private Transform _paidChestRoot;
         [Tooltip("Optional. Section header shown above the chest offers; hidden automatically while no chest offers are available (e.g. Chests feature still locked).")]
         [SerializeField] private GameObject _paidChestHeader;
+        [Tooltip("Optional. When assigned, offers that reward experience go here instead of the shared paid root.")]
+        [SerializeField] private Transform _paidExperienceRoot;
+        [Tooltip("Optional. Section header shown above the experience offers; hidden automatically while no experience offers are available.")]
+        [SerializeField] private GameObject _paidExperienceHeader;
         [SerializeField] private CanvasGroup _clicksCanvasGroup;
         [SerializeField] private CanvasGroup _autoBuysCanvasGroup;
         [SerializeField] private CanvasGroup _paidBuysCanvasGroup;
@@ -71,34 +75,38 @@ namespace Shop
                 SetElementData(data);
             }
 
-            UpdateChestSectionVisibility(datas);
+            UpdateGroupSectionVisibility(datas, ShopRewardGroup.Chest, _paidChestHeader, _paidChestRoot);
+            UpdateGroupSectionVisibility(datas, ShopRewardGroup.Experience, _paidExperienceHeader, _paidExperienceRoot);
         }
 
-        private void UpdateChestSectionVisibility(List<ShopElementData> datas)
+        // Some paid-offer groups (chests, experience) only ever hold a handful of
+        // offers and can end up empty (e.g. every offer in the group is currently
+        // feature-locked), so their header/root are hidden rather than left dangling.
+        private void UpdateGroupSectionVisibility(List<ShopElementData> datas, ShopRewardGroup group, GameObject header, Transform root)
         {
-            if (_paidChestHeader == null && _paidChestRoot == null)
+            if (header == null && root == null)
             {
                 return;
             }
 
-            bool hasChestOffers = false;
+            bool hasOffers = false;
             foreach (var data in datas)
             {
-                if (data != null && data.Type == ShopItemType.PaidBuy && data.RewardGroup == ShopRewardGroup.Chest)
+                if (data != null && data.Type == ShopItemType.PaidBuy && data.RewardGroup == group)
                 {
-                    hasChestOffers = true;
+                    hasOffers = true;
                     break;
                 }
             }
 
-            if (_paidChestHeader != null)
+            if (header != null)
             {
-                _paidChestHeader.SetActive(hasChestOffers);
+                header.SetActive(hasOffers);
             }
 
-            if (_paidChestRoot != null)
+            if (root != null)
             {
-                _paidChestRoot.gameObject.SetActive(hasChestOffers);
+                root.gameObject.SetActive(hasOffers);
             }
         }
 
@@ -218,6 +226,8 @@ namespace Shop
                     return _paidSoftRoot;
                 case ShopRewardGroup.Chest:
                     return _paidChestRoot;
+                case ShopRewardGroup.Experience:
+                    return _paidExperienceRoot;
                 default:
                     return null;
             }
