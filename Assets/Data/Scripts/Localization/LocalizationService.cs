@@ -75,7 +75,7 @@ namespace GameLocalization
 
             if (!_values.ContainsKey(key))
             {
-                Debug.LogError($"key <color=red>{key}</color> is not in Dictionary!");
+                Debug.LogWarning($"key <color=red>{key}</color> is not in Dictionary!");
             }
 
             return key;

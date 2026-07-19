@@ -81,7 +81,7 @@ namespace AdBonusOffers
 
         private void OnActiveEffectsChanged()
         {
-            if (HasActiveOffer && !_isClaimInProgress && HasAnyActiveEffect)
+            if (HasActiveOffer && !_isClaimInProgress && HasEffects(_currentOffer) && HasAnyActiveEffect)
             {
                 HideCurrentOffer();
             }
@@ -111,7 +111,7 @@ namespace AdBonusOffers
 
         public bool TryShowNextOffer()
         {
-            if (HasActiveOffer || _isClaimInProgress || HasAnyActiveEffect)
+            if (HasActiveOffer || _isClaimInProgress)
             {
                 return false;
             }
@@ -160,7 +160,7 @@ namespace AdBonusOffers
                 return;
             }
 
-            if (HasAnyActiveEffect)
+            if (HasEffects(_currentOffer) && HasAnyActiveEffect)
             {
                 HideCurrentOffer();
                 return;
@@ -355,10 +355,17 @@ namespace AdBonusOffers
 
         private bool IsOfferAvailable(AdBonusOfferConfig.AdBonusOfferData offer)
         {
-            return offer != null &&
-                   !string.IsNullOrEmpty(offer.Id) &&
-                   !_cooldowns.ContainsKey(offer.Id) &&
-                   (HasRewards(offer) || HasEffects(offer));
+            if (offer == null ||
+                string.IsNullOrEmpty(offer.Id) ||
+                _cooldowns.ContainsKey(offer.Id) ||
+                (!HasRewards(offer) && !HasEffects(offer)))
+            {
+                return false;
+            }
+
+            // Buff-granting offers would overlap with a currently running timed effect
+            // (from another offer, a chest, etc), so only those are held back while one is active.
+            return !HasEffects(offer) || !HasAnyActiveEffect;
         }
 
         private bool HasRewards(AdBonusOfferConfig.AdBonusOfferData offer)

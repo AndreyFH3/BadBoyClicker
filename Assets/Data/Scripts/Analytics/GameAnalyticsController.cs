@@ -31,9 +31,7 @@ namespace Analytics
         private readonly IChestService _chestService;
         private readonly AdBonusOfferService _adBonusOfferService;
         private readonly ICustomizationService _customizationService;
-
-        private long _sessionClicks;
-        private int _nextClickMilestoneIndex;
+        private readonly IAnalyticsRuntimeSave _runtimeSave;
 
         public GameAnalyticsController(
             GameStartRouter gameStartRouter,
@@ -46,7 +44,8 @@ namespace Analytics
             ICardCollectionService cardCollectionService,
             IChestService chestService,
             AdBonusOfferService adBonusOfferService,
-            ICustomizationService customizationService)
+            ICustomizationService customizationService,
+            IAnalyticsRuntimeSave runtimeSave)
         {
             _gameStartRouter = gameStartRouter;
             _shopModel = shopModel;
@@ -59,6 +58,7 @@ namespace Analytics
             _chestService = chestService;
             _adBonusOfferService = adBonusOfferService;
             _customizationService = customizationService;
+            _runtimeSave = runtimeSave;
         }
 
         public void Initialize()
@@ -204,20 +204,18 @@ namespace Analytics
 
         private void OnClickValue(long value)
         {
-            _sessionClicks++;
-            if (_nextClickMilestoneIndex >= ClickMilestones.Length)
+            long totalClicks = _runtimeSave.TotalClicks + 1;
+            int nextMilestoneIndex = _runtimeSave.NextClickMilestoneIndex;
+
+            if (nextMilestoneIndex >= ClickMilestones.Length || totalClicks < ClickMilestones[nextMilestoneIndex])
             {
+                _runtimeSave.SetClickProgress(totalClicks, nextMilestoneIndex);
                 return;
             }
 
-            long nextMilestone = ClickMilestones[_nextClickMilestoneIndex];
-            if (_sessionClicks < nextMilestone)
-            {
-                return;
-            }
-
-            ClickMilestoneReached(nextMilestone);
-            _nextClickMilestoneIndex++;
+            long reachedMilestone = ClickMilestones[nextMilestoneIndex];
+            _runtimeSave.SetClickProgress(totalClicks, nextMilestoneIndex + 1);
+            ClickMilestoneReached(reachedMilestone);
         }
 
         private void OnFeatureUnlocked(PlayerFeatureType feature)

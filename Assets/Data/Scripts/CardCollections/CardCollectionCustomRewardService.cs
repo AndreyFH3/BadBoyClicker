@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Customization;
 using QuestSystem;
 
@@ -13,13 +12,6 @@ namespace CardCollections
     public class CardCollectionCustomRewardService : ICustomRewardHandler
     {
         private const string BonusRewardPrefix = "card_collection_bonus_";
-
-        private static readonly Dictionary<string, string> SkinRewardIdToCatId = new()
-        {
-            { "card_collection_unlock_skin_mythic", "cat_mythic" },
-            { "card_collection_unlock_skin_legendary", "cat_legend" },
-            { "card_collection_unlock_skin_emperor", "cat_emperor" },
-        };
 
         private readonly ICustomizationService _customizationService;
 
@@ -35,7 +27,7 @@ namespace CardCollections
                 return false;
             }
 
-            if (SkinRewardIdToCatId.TryGetValue(rewardId, out string catId))
+            if (CardCollectionRewardIds.SkinRewardIdToCatId.TryGetValue(rewardId, out string catId))
             {
                 _customizationService.Give(CustomizationItemType.Cat, catId);
                 return true;

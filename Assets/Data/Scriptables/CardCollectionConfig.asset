@@ -72,7 +72,7 @@ MonoBehaviour:
       _currencyType: 0
       _amount: 10
       _rewardId: card_collection_bonus_passive_income_10
-      _icon: {fileID: 0}
+      _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _displayTextLocalizationKey: card_collection.reward.1.text
       _displayText: 
       _requiresActivation: 0
@@ -139,7 +139,7 @@ MonoBehaviour:
       _currencyType: 0
       _amount: 10
       _rewardId: card_collection_bonus_click_power_10
-      _icon: {fileID: 0}
+      _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _displayTextLocalizationKey: card_collection.reward.2.text
       _displayText: 
       _requiresActivation: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
       _currencyType: 0
       _amount: 10
       _rewardId: card_collection_bonus_shop_discount_10
-      _icon: {fileID: 0}
+      _icon: {fileID: -1780218667044286081, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _displayTextLocalizationKey: card_collection.reward.3.text
       _displayText: 
       _requiresActivation: 0
@@ -273,7 +273,7 @@ MonoBehaviour:
       _currencyType: 0
       _amount: 0
       _rewardId: card_collection_unlock_skin_mythic
-      _icon: {fileID: 0}
+      _icon: {fileID: 5201493233513209010, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _displayTextLocalizationKey: card_collection.reward.4.text
       _displayText: 
       _requiresActivation: 0
@@ -340,7 +340,7 @@ MonoBehaviour:
       _currencyType: 0
       _amount: 25
       _rewardId: card_collection_bonus_offline_income_25
-      _icon: {fileID: 0}
+      _icon: {fileID: -7321143754752364359, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
       _displayTextLocalizationKey: card_collection.reward.0.text
       _displayText: 
       _requiresActivation: 0
@@ -407,7 +407,7 @@ MonoBehaviour:
       _currencyType: 0
       _amount: 0
       _rewardId: card_collection_unlock_skin_legendary
-      _icon: {fileID: 0}
+      _icon: {fileID: 5201493233513209010, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _displayTextLocalizationKey: card_collection.reward.5.skin.text
       _displayText: 
       _requiresActivation: 0
@@ -419,7 +419,7 @@ MonoBehaviour:
       _currencyType: 0
       _amount: 0
       _rewardId: card_collection_unlock_skin_emperor
-      _icon: {fileID: 0}
+      _icon: {fileID: 5201493233513209010, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _displayTextLocalizationKey: card_collection.reward.5.title.text
       _displayText: 
       _requiresActivation: 0

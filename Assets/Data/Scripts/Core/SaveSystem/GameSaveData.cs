@@ -1,4 +1,5 @@
 using System;
+using Analytics;
 using Shop;
 using OfflineIncome;
 using DailyLogin;
@@ -24,5 +25,6 @@ namespace Core
         public CardCollectionSaveData CardCollections;
         public CustomizationSaveData Customization;
         public AdBonusOfferSaveData AdBonusOffers;
+        public AnalyticsSaveData Analytics;
     }
 }

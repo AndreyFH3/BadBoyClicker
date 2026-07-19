@@ -18,7 +18,6 @@ namespace CardCollectionMVP
         [SerializeField] private Image _progressFill;
         [SerializeField] private Button _selectButton;
         [SerializeField] private Button _collectButton;
-        [SerializeField] private Button _rewardButton;
 
         [Header("Toggled when the reward is claimed")]
         [SerializeField] private List<GameObject> _rewardClaimedEnableObjects = new();
@@ -56,10 +55,6 @@ namespace CardCollectionMVP
                 _collectButton.onClick.AddListener(RequestCollect);
             }
 
-            if (_rewardButton != null)
-            {
-                _rewardButton.onClick.AddListener(ShowReward);
-            }
 
             if (_cardReference != null)
             {
@@ -77,11 +72,6 @@ namespace CardCollectionMVP
             if (_collectButton != null)
             {
                 _collectButton.onClick.RemoveListener(RequestCollect);
-            }
-
-            if (_rewardButton != null)
-            {
-                _rewardButton.onClick.RemoveListener(ShowReward);
             }
         }
 
@@ -115,11 +105,6 @@ namespace CardCollectionMVP
             if (_collectButton != null)
             {
                 _collectButton.gameObject.SetActive(data.RewardAvailable && data.TotalCards >= 6);
-            }
-
-            if (_rewardButton != null)
-            {
-                _rewardButton.gameObject.SetActive(!data.IsCompleted);
             }
 
             SetRewardClaimedObjects(data.IsRewardClaimed);
@@ -193,11 +178,6 @@ namespace CardCollectionMVP
         private void RequestCollect()
         {
             CollectRequested?.Invoke(_id);
-        }
-
-        private void ShowReward()
-        {
-            _rewardWindow?.Show(_data?.Rewards);
         }
     }
 }

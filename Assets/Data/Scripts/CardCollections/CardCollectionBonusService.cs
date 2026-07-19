@@ -11,11 +11,6 @@ namespace CardCollections
     // sync automatically whenever collection save data changes.
     public class CardCollectionBonusService : ICardCollectionBonusService, IInitializable, IDisposable
     {
-        private const string PassiveIncomeBonusPrefix = "card_collection_bonus_passive_income_";
-        private const string ClickIncomeBonusPrefix = "card_collection_bonus_click_power_";
-        private const string ShopDiscountBonusPrefix = "card_collection_bonus_shop_discount_";
-        private const string OfflineIncomeBonusPrefix = "card_collection_bonus_offline_income_";
-
         private readonly ICardCollectionService _collectionService;
         private float _passiveIncomePercent;
         private float _clickIncomePercent;
@@ -80,19 +75,19 @@ namespace CardCollections
                         continue;
                     }
 
-                    if (reward.RewardId.StartsWith(PassiveIncomeBonusPrefix, StringComparison.Ordinal))
+                    if (reward.RewardId.StartsWith(CardCollectionRewardIds.PassiveIncomeBonusPrefix, StringComparison.Ordinal))
                     {
                         passivePercent += reward.Amount;
                     }
-                    else if (reward.RewardId.StartsWith(ClickIncomeBonusPrefix, StringComparison.Ordinal))
+                    else if (reward.RewardId.StartsWith(CardCollectionRewardIds.ClickIncomeBonusPrefix, StringComparison.Ordinal))
                     {
                         clickPercent += reward.Amount;
                     }
-                    else if (reward.RewardId.StartsWith(ShopDiscountBonusPrefix, StringComparison.Ordinal))
+                    else if (reward.RewardId.StartsWith(CardCollectionRewardIds.ShopDiscountBonusPrefix, StringComparison.Ordinal))
                     {
                         shopDiscountPercent += reward.Amount;
                     }
-                    else if (reward.RewardId.StartsWith(OfflineIncomeBonusPrefix, StringComparison.Ordinal))
+                    else if (reward.RewardId.StartsWith(CardCollectionRewardIds.OfflineIncomeBonusPrefix, StringComparison.Ordinal))
                     {
                         offlinePercent += reward.Amount;
                     }

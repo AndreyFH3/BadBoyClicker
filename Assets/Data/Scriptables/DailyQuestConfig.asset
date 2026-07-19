@@ -233,62 +233,22 @@ MonoBehaviour:
     - _rewardType: 3
       _currencyType: 0
       _amount: 0
-      _rewardId: Chest_1
+      _rewardId: Chest_2
       _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
       _displayTextLocalizationKey: 
-      _displayText: Common chest
+      _displayText: 
       _requiresActivation: 0
       _activationTitleLocalizationKey: 
       _activationTitle: 
       _activationDescriptionLocalizationKey: 
       _activationDescription: 
-    - _rewardType: 0
-      _currencyType: 2
-      _amount: 5
-      _rewardId: 
-      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey: 
-      _displayText: 5 Hard
-      _requiresActivation: 0
-      _activationTitleLocalizationKey: 
-      _activationTitle: 
-      _activationDescriptionLocalizationKey: 
-      _activationDescription: 
-  - _requiredPoints: 9
-    _rewards:
-    - _rewardType: 0
-      _currencyType: 1
-      _amount: 20
-      _rewardId: 
-      _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey: 
-      _displayText: 20 Decor
-      _requiresActivation: 0
-      _activationTitleLocalizationKey: 
-      _activationTitle: 
-      _activationDescriptionLocalizationKey: 
-      _activationDescription: 
-    - _rewardType: 2
-      _currencyType: 0
-      _amount: 0
-      _rewardId: shop_discount_33_10min
-      _icon: {fileID: 6106692926879089763, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-      _displayTextLocalizationKey: daily_quest.milestone.shop_discount_33_10min.title
-      _displayText: 33% shop discount (10 min)
-      _requiresActivation: 1
-      _activationTitleLocalizationKey: daily_quest.milestone.shop_discount_33_10min.title
-      _activationTitle: "\u0421\u043A\u0438\u0434\u043A\u0430 \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435"
-      _activationDescriptionLocalizationKey: daily_quest.milestone.shop_discount_33_10min.description
-      _activationDescription: "\u0421\u043A\u0438\u0434\u043A\u0430 33% \u043D\u0430
-        \u043F\u043E\u043A\u0443\u043F\u043A\u0438 \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435
-        \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 10 \u043C\u0438\u043D\u0443\u0442"
   - _requiredPoints: 12
     _rewards:
     - _rewardType: 2
       _currencyType: 0
       _amount: 0
       _rewardId: click_x2_5min
-      _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+      _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _displayTextLocalizationKey: daily_quest.milestone.click_x2_5min.title
       _displayText: x2 click income (5 min)
       _requiresActivation: 1

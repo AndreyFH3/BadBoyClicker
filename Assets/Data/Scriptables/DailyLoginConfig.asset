@@ -20,8 +20,8 @@ MonoBehaviour:
       _amountMax: 0
       _rewardId: soft
       _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
     _isMilestone: 0
     _cycleRewards:
     - _rewardType: 0
@@ -30,42 +30,43 @@ MonoBehaviour:
       _amountMax: 0
       _rewardId: soft
       _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
     - _rewardType: 0
       _currencyType: 0
       _amount: 300
       _amountMax: 0
       _rewardId: soft
       _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
     - _rewardType: 0
       _currencyType: 0
       _amount: 400
       _amountMax: 0
       _rewardId: soft
       _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
     - _rewardType: 0
       _currencyType: 0
       _amount: 500
       _amountMax: 0
       _rewardId: soft
       _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
   - _reward:
       _rewardType: 2
       _currencyType: 0
       _amount: 1
       _amountMax: 0
       _rewardId: Chest_1
-      _icon: {fileID: -4439254127691508170, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      _displayTextLocalizationKey:
+      _icon: {fileID: 7204593959208558865, guid: 70f431c04906996459960caf8a378d22, type: 3}
+      _displayTextLocalizationKey: 
       _displayText: Common chest
     _isMilestone: 0
+    _cycleRewards: []
   - _reward:
       _rewardType: 0
       _currencyType: 2
@@ -73,8 +74,8 @@ MonoBehaviour:
       _amountMax: 0
       _rewardId: hard
       _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
     _isMilestone: 0
     _cycleRewards:
     - _rewardType: 0
@@ -83,24 +84,24 @@ MonoBehaviour:
       _amountMax: 0
       _rewardId: hard
       _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
     - _rewardType: 0
       _currencyType: 2
       _amount: 7
       _amountMax: 0
       _rewardId: hard
       _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
     - _rewardType: 0
       _currencyType: 2
       _amount: 10
       _amountMax: 0
       _rewardId: hard
       _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
   - _reward:
       _rewardType: 0
       _currencyType: 1
@@ -108,8 +109,8 @@ MonoBehaviour:
       _amountMax: 0
       _rewardId: decor
       _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
     _isMilestone: 0
     _cycleRewards:
     - _rewardType: 0
@@ -118,51 +119,54 @@ MonoBehaviour:
       _amountMax: 0
       _rewardId: decor
       _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
     - _rewardType: 0
       _currencyType: 1
       _amount: 40
       _amountMax: 0
       _rewardId: decor
       _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
     - _rewardType: 0
       _currencyType: 1
       _amount: 50
       _amountMax: 0
       _rewardId: decor
       _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
   - _reward:
       _rewardType: 1
       _currencyType: 0
       _amount: 0
       _amountMax: 0
       _rewardId: click_x2_15min
-      _icon: {fileID: 0}
-      _displayTextLocalizationKey:
+      _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
+      _displayTextLocalizationKey: 
       _displayText: x2 click income (15 min)
     _isMilestone: 0
+    _cycleRewards: []
   - _reward:
       _rewardType: 2
       _currencyType: 0
       _amount: 1
       _amountMax: 0
       _rewardId: Chest_2
-      _icon: {fileID: -4439254127691508170, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      _displayTextLocalizationKey:
+      _icon: {fileID: 1305596846199975976, guid: 70f431c04906996459960caf8a378d22, type: 3}
+      _displayTextLocalizationKey: 
       _displayText: Rare chest
     _isMilestone: 0
+    _cycleRewards: []
   - _reward:
       _rewardType: 2
       _currencyType: 0
       _amount: 1
       _amountMax: 0
       _rewardId: Chest_2
-      _icon: {fileID: -4439254127691508170, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-      _displayTextLocalizationKey:
+      _icon: {fileID: 1305596846199975976, guid: 70f431c04906996459960caf8a378d22, type: 3}
+      _displayTextLocalizationKey: 
       _displayText: Rare chest
-    _isMilestone: 1
+    _isMilestone: 0
+    _cycleRewards: []

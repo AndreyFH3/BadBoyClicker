@@ -65,6 +65,7 @@ namespace Installer
             Container.Bind<CardCollectionRuntimeSave>().AsSingle().NonLazy();
             Container.Bind<CustomizationRuntimeSave>().AsSingle().NonLazy();
             Container.Bind<AdBonusOfferRuntimeSave>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<AnalyticsRuntimeSave>().AsSingle().NonLazy();
             Container.Bind<ILocalizationService>().To<LocalizationService>().AsSingle().NonLazy();
             Container.Bind<IAudioService>().To<AudioService>().AsSingle().NonLazy();
             Localization.SetService(Container.Resolve<ILocalizationService>());

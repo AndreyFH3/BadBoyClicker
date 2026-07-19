@@ -15,28 +15,8 @@ MonoBehaviour:
   _initialDelaySeconds: 10
   _offerIntervalSeconds: 5
   _visibleDurationSeconds: 5
+  _dailyClaimLimit: 5
   _offers:
-  - _id: soft_money
-    _placementId: soft_money
-    _confirmationTitleLocalizationKey: 
-    _confirmationTitle: 1000 coins
-    _confirmationDescriptionLocalizationKey: ad_bonus.soft_money.confirm_description
-    _confirmationDescription: Watch an ad and receive 1000 coins
-    _resultDescriptionLocalizationKey: ad_bonus.soft_money.result_description
-    _resultDescription: 
-    _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-    _weight: 1
-    _cooldownSeconds: 20
-    _hardPrice: 5
-    _rewards:
-    - _rewardType: 0
-      _currencyType: 0
-      _amount: 1000
-      _rewardId: 
-      _icon: {fileID: -7250565942822309144, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey: 
-      _displayText: 1000 coins
-    _effects: []
   - _id: chest
     _placementId: chest
     _confirmationTitleLocalizationKey: ad_bonus.chest.title
@@ -45,7 +25,7 @@ MonoBehaviour:
     _confirmationDescription: Watch an ad and receive a chest
     _resultDescriptionLocalizationKey: ad_bonus.chest.result_description
     _resultDescription: 
-    _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _icon: {fileID: 7204593959208558865, guid: 70f431c04906996459960caf8a378d22, type: 3}
     _weight: 1
     _cooldownSeconds: 20
     _hardPrice: 0
@@ -57,6 +37,11 @@ MonoBehaviour:
       _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
       _displayTextLocalizationKey: ad_bonus.chest.title
       _displayText: Chest
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
     _effects: []
   - _id: click_x2
     _placementId: click_x2
@@ -66,7 +51,7 @@ MonoBehaviour:
     _confirmationDescription: Watch an ad to double click income for 60 seconds
     _resultDescriptionLocalizationKey: ad_bonus.click_x2.result_description
     _resultDescription: 
-    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
     _weight: 1
     _cooldownSeconds: 20
     _hardPrice: 0
@@ -85,6 +70,11 @@ MonoBehaviour:
         _icon: {fileID: 0}
         _displayTextLocalizationKey: 
         _displayText: 
+        _requiresActivation: 0
+        _activationTitleLocalizationKey: 
+        _activationTitle: 
+        _activationDescriptionLocalizationKey: 
+        _activationDescription: 
   - _id: shop_discount
     _placementId: shop_discount
     _confirmationTitleLocalizationKey: ad_bonus.shop_discount.title
@@ -93,7 +83,7 @@ MonoBehaviour:
     _confirmationDescription: Watch an ad to activate the discount for 60 seconds
     _resultDescriptionLocalizationKey: ad_bonus.shop_discount.result_description
     _resultDescription: 
-    _icon: {fileID: 6106692926879089763, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
+    _icon: {fileID: -1780218667044286081, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
     _weight: 1
     _cooldownSeconds: 20
     _hardPrice: 0
@@ -112,15 +102,21 @@ MonoBehaviour:
         _icon: {fileID: 0}
         _displayTextLocalizationKey: 
         _displayText: 
+        _requiresActivation: 0
+        _activationTitleLocalizationKey: 
+        _activationTitle: 
+        _activationDescriptionLocalizationKey: 
+        _activationDescription: 
   - _id: exp_percent
     _placementId: exp_percent
     _confirmationTitleLocalizationKey: ad_bonus.exp_percent.title
     _confirmationTitle: +10% experience
     _confirmationDescriptionLocalizationKey: ad_bonus.exp_percent.confirm_description
-    _confirmationDescription: Watch an ad to instantly gain 10% of the experience needed for your next level
+    _confirmationDescription: Watch an ad to instantly gain 10% of the experience
+      needed for your next level
     _resultDescriptionLocalizationKey: ad_bonus.exp_percent.result_description
-    _resultDescription:
-    _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+    _resultDescription: 
+    _icon: {fileID: 21300000, guid: fe1e21a621666644a83c4aa8706c7346, type: 3}
     _weight: 1
     _cooldownSeconds: 20
     _hardPrice: 0
@@ -132,6 +128,11 @@ MonoBehaviour:
       _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
       _displayTextLocalizationKey: ad_bonus.exp_percent.title
       _displayText: +10% experience
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
     _effects: []
   _boosts:
   - _id: click_x2_5min
@@ -143,15 +144,15 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 0
-      _rewardId:
+      _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
       _requiresActivation: 0
-      _activationTitleLocalizationKey:
-      _activationTitle:
-      _activationDescriptionLocalizationKey:
-      _activationDescription:
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: shop_discount_33_10min
     _effectType: 3
     _durationSeconds: 600
@@ -161,15 +162,15 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 0
-      _rewardId:
+      _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
       _requiresActivation: 0
-      _activationTitleLocalizationKey:
-      _activationTitle:
-      _activationDescriptionLocalizationKey:
-      _activationDescription:
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: click_x2_10min
     _effectType: 1
     _durationSeconds: 600
@@ -179,15 +180,15 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 0
-      _rewardId:
+      _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
       _requiresActivation: 0
-      _activationTitleLocalizationKey:
-      _activationTitle:
-      _activationDescriptionLocalizationKey:
-      _activationDescription:
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: shop_discount_30_15min
     _effectType: 3
     _durationSeconds: 900
@@ -197,15 +198,15 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 0
-      _rewardId:
+      _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
       _requiresActivation: 0
-      _activationTitleLocalizationKey:
-      _activationTitle:
-      _activationDescriptionLocalizationKey:
-      _activationDescription:
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: click_x3_10min
     _effectType: 1
     _durationSeconds: 600
@@ -215,15 +216,15 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 0
-      _rewardId:
+      _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
       _requiresActivation: 0
-      _activationTitleLocalizationKey:
-      _activationTitle:
-      _activationDescriptionLocalizationKey:
-      _activationDescription:
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: click_x2_15min
     _effectType: 1
     _durationSeconds: 900
@@ -233,15 +234,15 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 0
-      _rewardId:
+      _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
       _requiresActivation: 0
-      _activationTitleLocalizationKey:
-      _activationTitle:
-      _activationDescriptionLocalizationKey:
-      _activationDescription:
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: passive_x2_20min
     _effectType: 2
     _durationSeconds: 1200
@@ -251,15 +252,15 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 0
-      _rewardId:
+      _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
       _requiresActivation: 0
-      _activationTitleLocalizationKey:
-      _activationTitle:
-      _activationDescriptionLocalizationKey:
-      _activationDescription:
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: shop_discount_30_20min
     _effectType: 3
     _durationSeconds: 1200
@@ -269,15 +270,15 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 0
-      _rewardId:
+      _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
       _requiresActivation: 0
-      _activationTitleLocalizationKey:
-      _activationTitle:
-      _activationDescriptionLocalizationKey:
-      _activationDescription:
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: gold_fever_60s
     _effectType: 4
     _durationSeconds: 60
@@ -287,15 +288,15 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 0
-      _rewardId:
+      _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
       _requiresActivation: 0
-      _activationTitleLocalizationKey:
-      _activationTitle:
-      _activationDescriptionLocalizationKey:
-      _activationDescription:
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: exp_x2_5min
     _effectType: 5
     _durationSeconds: 300
@@ -305,12 +306,12 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 0
-      _rewardId:
+      _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
       _requiresActivation: 0
-      _activationTitleLocalizationKey:
-      _activationTitle:
-      _activationDescriptionLocalizationKey:
-      _activationDescription:
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 

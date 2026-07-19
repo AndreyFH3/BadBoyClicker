@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Customization;
 using PlayerFeatures;
 using QuestSystem;
 using Rewards;
@@ -16,6 +17,7 @@ namespace CardCollections
         private IPlayerFeatureUnlockService _featureUnlockService;
         private IQuestRewardService _rewardService;
         private ILocalizationService _localization;
+        private ICustomizationService _customizationService;
         private readonly Dictionary<string, CardCollectionConfig.CardData> _cardsById = new();
         private readonly Dictionary<string, CardCollectionConfig.CardCollectionData> _collectionsById = new();
         private readonly Dictionary<string, CardCollectionConfig.CardCollectionData> _collectionsByCardId = new();
@@ -37,13 +39,15 @@ namespace CardCollections
             CardCollectionRuntimeSave save,
             IPlayerFeatureUnlockService featureUnlockService,
             IQuestRewardService rewardService,
-            ILocalizationService localization)
+            ILocalizationService localization,
+            ICustomizationService customizationService)
         {
             _config = config;
             _save = save;
             _featureUnlockService = featureUnlockService;
             _rewardService = rewardService;
             _localization = localization;
+            _customizationService = customizationService;
         }
 
         public void Initialize()
@@ -322,7 +326,7 @@ namespace CardCollections
             };
         }
 
-        private static List<RewardDisplay> BuildRewardDisplays(IReadOnlyList<QuestReward> rewards)
+        private List<RewardDisplay> BuildRewardDisplays(IReadOnlyList<QuestReward> rewards)
         {
             if (rewards == null || rewards.Count == 0)
             {
@@ -340,11 +344,36 @@ namespace CardCollections
                 displays.Add(new RewardDisplay
                 {
                     Icon = reward.Icon,
-                    Amount = reward.Amount > 0 ? reward.Amount.ConvertFromLongToString() : string.Empty
+                    Amount = FormatRewardAmount(reward)
                 });
             }
 
             return displays;
+        }
+
+        // card_collection_* Custom rewards carry no meaningful currency amount:
+        // percent bonuses (e.g. card_collection_bonus_shop_discount_10) should read
+        // as "10%", and skin unlocks should read as the unlocked cat's own name
+        // rather than a raw 0 amount.
+        private string FormatRewardAmount(QuestReward reward)
+        {
+            if (reward.RewardType == QuestRewardType.Custom && !string.IsNullOrEmpty(reward.RewardId))
+            {
+                if (CardCollectionRewardIds.SkinRewardIdToCatId.TryGetValue(reward.RewardId, out string catId))
+                {
+                    var item = _customizationService?.GetItem(CustomizationItemType.Cat, catId);
+                    if (item != null)
+                    {
+                        return _localization.Localize(item.TitleLocalizationKey);
+                    }
+                }
+                else if (CardCollectionRewardIds.IsPercentBonus(reward.RewardId))
+                {
+                    return $"{reward.Amount.ConvertFromLongToString()}%";
+                }
+            }
+
+            return reward.Amount > 0 ? reward.Amount.ConvertFromLongToString() : string.Empty;
         }
 
         private CardViewData CreateCardViewData(string collectionId, CardCollectionConfig.CardData card)
