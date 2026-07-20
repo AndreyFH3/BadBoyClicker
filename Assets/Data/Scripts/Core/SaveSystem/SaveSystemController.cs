@@ -14,8 +14,17 @@ using AdBonusOffers;
 
 namespace Core
 {
-    public class SaveYGController : ISaveSystem, IInitializable, IDisposable
+    public class SaveYGController : ISaveSystem, IInitializable, ITickable, IDisposable
     {
+        // Wallet/progression/quest changes fire far more often than once a second
+        // (every click, every auto-income tick, ...). Writing the full save blob
+        // to disk/cloud on each one caused a noticeable hitch, so changes just
+        // mark the save dirty and the actual write is coalesced to this cadence.
+        private const float SaveInterval = 1f;
+
+        private bool _isDirty;
+        private float _elapsedSinceSave;
+
         private Wallet _wallet;
         private IShopRuntimeSave _shopSave;
         private IOfflineIncomeRuntimeSave _offlineIncomeSave;
@@ -77,17 +86,17 @@ namespace Core
         public void Initialize()
         {
             YG2.onGetSDKData += Load;
-            _wallet.OnChanged += Save;
-            _shopSave.Changed += Save;
-            _offlineIncomeSave.Changed += Save;
-            _dailyLoginSave.Changed += Save;
-            _dailyQuestSave.Changed += Save;
-            _playerProgression.Changed += Save;
-            _questSave.Changed += Save;
-            _cardCollectionSave.Changed += Save;
-            _customizationSave.Changed += Save;
-            _adBonusOfferSave.Changed += Save;
-            _analyticsSave.Changed += Save;
+            _wallet.OnChanged += MarkDirty;
+            _shopSave.Changed += MarkDirty;
+            _offlineIncomeSave.Changed += MarkDirty;
+            _dailyLoginSave.Changed += MarkDirty;
+            _dailyQuestSave.Changed += MarkDirty;
+            _playerProgression.Changed += MarkDirty;
+            _questSave.Changed += MarkDirty;
+            _cardCollectionSave.Changed += MarkDirty;
+            _customizationSave.Changed += MarkDirty;
+            _adBonusOfferSave.Changed += MarkDirty;
+            _analyticsSave.Changed += MarkDirty;
 
             if (YG2.isSDKEnabled)
             {
@@ -98,17 +107,49 @@ namespace Core
         public void Dispose()
         {
             YG2.onGetSDKData -= Load;
-            _wallet.OnChanged -= Save;
-            _shopSave.Changed -= Save;
-            _offlineIncomeSave.Changed -= Save;
-            _dailyLoginSave.Changed -= Save;
-            _dailyQuestSave.Changed -= Save;
-            _playerProgression.Changed -= Save;
-            _questSave.Changed -= Save;
-            _cardCollectionSave.Changed -= Save;
-            _customizationSave.Changed -= Save;
-            _adBonusOfferSave.Changed -= Save;
-            _analyticsSave.Changed -= Save;
+            _wallet.OnChanged -= MarkDirty;
+            _shopSave.Changed -= MarkDirty;
+            _offlineIncomeSave.Changed -= MarkDirty;
+            _dailyLoginSave.Changed -= MarkDirty;
+            _dailyQuestSave.Changed -= MarkDirty;
+            _playerProgression.Changed -= MarkDirty;
+            _questSave.Changed -= MarkDirty;
+            _cardCollectionSave.Changed -= MarkDirty;
+            _customizationSave.Changed -= MarkDirty;
+            _adBonusOfferSave.Changed -= MarkDirty;
+            _analyticsSave.Changed -= MarkDirty;
+
+            // Flush any pending change so the last (<1s) of progress isn't lost on shutdown.
+            if (_isDirty)
+            {
+                Save();
+            }
+        }
+
+        public void Tick()
+        {
+            if (!_isDirty)
+            {
+                return;
+            }
+
+            _elapsedSinceSave += UnityEngine.Time.unscaledDeltaTime;
+            if (_elapsedSinceSave >= SaveInterval)
+            {
+                Save();
+            }
+        }
+
+        private void MarkDirty()
+        {
+            // Applying loaded data re-fires these same Changed events; skip marking
+            // dirty then so we don't immediately re-save the data we just loaded.
+            if (_isApplyingSaveData)
+            {
+                return;
+            }
+
+            _isDirty = true;
         }
 
         public void Load()
@@ -167,6 +208,9 @@ namespace Core
             };
 
             YG2.SaveProgress();
+
+            _isDirty = false;
+            _elapsedSinceSave = 0f;
         }
     }
 }

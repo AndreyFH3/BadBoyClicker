@@ -249,7 +249,7 @@ namespace DailyQuests
 
         public void Set(DailyQuestSaveData data)
         {
-            _save.Set(data);
+            _save.Set(WithSessionProgressStripped(data));
             if (IsFeatureUnlocked())
             {
                 EnsureToday();
@@ -263,7 +263,38 @@ namespace DailyQuests
                 EnsureToday();
             }
 
-            return _save.Get();
+            return WithSessionProgressStripped(_save.Get());
+        }
+
+        // PerSession quests (e.g. play time) only track live progress via an in-memory
+        // counter that restarts at 0 every launch. Persisting the raw CurrentValue let a
+        // stale number from a previous session survive the reload and block the UI from
+        // showing any progress until this session's counter caught back up to it - so only
+        // completion state is kept, not the elapsed-time value itself.
+        private DailyQuestSaveData WithSessionProgressStripped(DailyQuestSaveData data)
+        {
+            if (data?.Quests == null || data.Quests.Length == 0)
+            {
+                return data;
+            }
+
+            for (int i = 0; i < data.Quests.Length; i++)
+            {
+                var quest = data.Quests[i];
+                if (!quest.IsCompleted && IsPerSessionResetQuest(quest.Id))
+                {
+                    quest.CurrentValue = 0;
+                    data.Quests[i] = quest;
+                }
+            }
+
+            return data;
+        }
+
+        private bool IsPerSessionResetQuest(string questId)
+        {
+            var data = FindQuest(questId);
+            return data != null && data.ResetPolicy == DailyQuestResetPolicy.PerSession;
         }
 
         private void OnSaveChanged()

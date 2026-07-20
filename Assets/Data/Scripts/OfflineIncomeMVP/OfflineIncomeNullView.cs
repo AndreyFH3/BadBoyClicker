@@ -14,7 +14,17 @@ namespace OfflineIncome
             ClaimRequested?.Invoke();
         }
 
-        public void Hide()
+        public void ShowClaimedReward(long finalReward, Action onHidden = null)
+        {
+            onHidden?.Invoke();
+        }
+
+        public void Hide(Action onHidden = null)
+        {
+            onHidden?.Invoke();
+        }
+
+        public void DestroyView()
         {
         }
     }

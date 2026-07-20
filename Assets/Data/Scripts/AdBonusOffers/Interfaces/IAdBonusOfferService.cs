@@ -18,6 +18,5 @@ namespace AdBonusOffers
         void SetCurrentOfferTimerPaused(bool isPaused);
         void ClaimCurrentOffer();
         void ClaimCurrentOfferForHard();
-        void CompleteRewardPresentation();
     }
 }

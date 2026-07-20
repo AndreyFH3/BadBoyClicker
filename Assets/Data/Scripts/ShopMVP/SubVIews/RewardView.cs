@@ -13,6 +13,8 @@ namespace Rewards
     {
         [SerializeField] private Image _icon;
         [SerializeField] private TextMeshProUGUI _amount;
+        [Tooltip("Backdrop shown behind the amount text; hidden when the reward has no amount (e.g. a chest).")]
+        [SerializeField] private GameObject _amountBackdrop;
 
         public void Set(RewardDisplay reward)
         {
@@ -22,10 +24,17 @@ namespace Rewards
                 _icon.enabled = reward.Icon != null;
             }
 
+            bool hasAmount = !string.IsNullOrEmpty(reward.Amount);
+
             if (_amount != null)
             {
                 _amount.text = reward.Amount;
-                _amount.gameObject.SetActive(!string.IsNullOrEmpty(reward.Amount));
+                _amount.gameObject.SetActive(hasAmount);
+            }
+
+            if (_amountBackdrop != null)
+            {
+                _amountBackdrop.SetActive(hasAmount);
             }
         }
     }

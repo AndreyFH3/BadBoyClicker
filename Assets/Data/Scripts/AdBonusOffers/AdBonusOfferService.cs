@@ -27,7 +27,6 @@ namespace AdBonusOffers
         private ITimeService _timeService;
         private AdBonusOfferRuntimeSave _save;
         private AdBonusOfferConfig.AdBonusOfferData _currentOffer;
-        private AdBonusOfferConfig.AdBonusOfferData _pendingRewardOffer;
         private float _nextOfferTimer;
         private float _visibleTimer;
         private bool _isClaimInProgress;
@@ -203,7 +202,6 @@ namespace AdBonusOffers
         {
             EnsureToday();
             _save.AddClaim();
-            _pendingRewardOffer = offer;
             StartCooldown(offer);
             _isClaimInProgress = false;
             _currentOffer = null;
@@ -211,21 +209,11 @@ namespace AdBonusOffers
             _isCurrentOfferTimerPaused = false;
             ResetNextOfferTimer();
             OfferHidden?.Invoke();
-            RewardGranted?.Invoke(viewData);
-        }
-
-        public void CompleteRewardPresentation()
-        {
-            if (_pendingRewardOffer == null)
-            {
-                return;
-            }
-
-            var offer = _pendingRewardOffer;
-            _pendingRewardOffer = null;
 
             _rewardService.GiveRewards(offer.Rewards);
             GiveEffects(offer.Effects);
+
+            RewardGranted?.Invoke(viewData);
         }
 
         private void FailClaim(AdBonusOfferViewData viewData)

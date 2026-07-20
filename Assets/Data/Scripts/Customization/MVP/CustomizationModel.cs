@@ -32,6 +32,42 @@ namespace Customization
             _service.Changed -= OnServiceChanged;
         }
 
+        // Cheap check for sign/badge UI: whether anything of the given type (or,
+        // with no type, either type) is buyable or owned-but-unequipped. Unlike
+        // GetAllData() it never localizes text or allocates per-item view data.
+        public bool HasAnyActionable(CustomizationItemType? type = null)
+        {
+            if (!type.HasValue)
+            {
+                return HasAnyActionable(CustomizationItemType.Background) || HasAnyActionable(CustomizationItemType.Cat);
+            }
+
+            IReadOnlyList<CustomizationConfig.CustomizationItemData> items = _service.GetItems(type.Value);
+            for (int i = 0; i < items.Count; i++)
+            {
+                CustomizationConfig.CustomizationItemData item = items[i];
+                if (item == null || string.IsNullOrEmpty(item.Id))
+                {
+                    continue;
+                }
+
+                bool isPurchased = _service.IsPurchased(type.Value, item.Id);
+                if (isPurchased)
+                {
+                    if (!IsSelected(type.Value, item.Id))
+                    {
+                        return true;
+                    }
+                }
+                else if (_service.CanBuy(type.Value, item.Id))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public List<CustomizationElementViewData> GetAllData()
         {
             var result = new List<CustomizationElementViewData>();
@@ -79,7 +115,8 @@ namespace Customization
                     Price = item.Price.ConvertFromLongToString(),
                     IsPurchased = isPurchased,
                     IsSelected = IsSelected(type, item.Id),
-                    CanBuy = !isPurchased && _service.CanBuy(type, item.Id)
+                    CanBuy = !isPurchased && _service.CanBuy(type, item.Id),
+                    IsRewardOnly = item.RewardOnly
                 });
             }
         }

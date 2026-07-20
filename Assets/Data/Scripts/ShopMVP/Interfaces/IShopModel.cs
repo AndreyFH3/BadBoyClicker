@@ -7,6 +7,7 @@ namespace Shop
         long AutoIncomePerSecond { get; }
         event Action StateChanged;
         event Action<string> ItemBought;
+        bool HasAnyBuyable(ShopItemType? type = null);
         List<ShopElementData> GetAllData();
         ShopElementData GetShopPositionData(string id);
         ShopPurchaseConfirmationData GetPurchaseConfirmationData(string id);

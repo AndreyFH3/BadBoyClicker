@@ -108,7 +108,6 @@ namespace Core
 
         private void Add(ref long currentValue, long amount, System.Action currencyChanged, System.Action<long> added)
         {
-            Debug.Log("Changed!!!!");
             ValidateAmount(amount);
             if (amount == 0)
             {
@@ -143,7 +142,6 @@ namespace Core
         {
             currencyChanged?.Invoke();
             OnChanged?.Invoke();
-            Debug.Log("Changed Action!!!!");
         }
 
         private void ValidateAmount(long amount)

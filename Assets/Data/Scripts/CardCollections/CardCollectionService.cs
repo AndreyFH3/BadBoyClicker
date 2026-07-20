@@ -353,8 +353,8 @@ namespace CardCollections
 
         // card_collection_* Custom rewards carry no meaningful currency amount:
         // percent bonuses (e.g. card_collection_bonus_shop_discount_10) should read
-        // as "10%", and skin unlocks should read as the unlocked cat's own name
-        // rather than a raw 0 amount.
+        // as "+10%"/"-10%", and skin unlocks should read as the unlocked cat's own
+        // name rather than a raw 0 amount.
         private string FormatRewardAmount(QuestReward reward)
         {
             if (reward.RewardType == QuestRewardType.Custom && !string.IsNullOrEmpty(reward.RewardId))
@@ -369,7 +369,12 @@ namespace CardCollections
                 }
                 else if (CardCollectionRewardIds.IsPercentBonus(reward.RewardId))
                 {
-                    return $"{reward.Amount.ConvertFromLongToString()}%";
+                    // Shop discount reads as a price reduction ("-10%"); the income/click
+                    // bonuses read as a gain ("+10%").
+                    string sign = reward.RewardId.StartsWith(CardCollectionRewardIds.ShopDiscountBonusPrefix, StringComparison.Ordinal)
+                        ? "-"
+                        : "+";
+                    return $"{sign}{reward.Amount.ConvertFromLongToString()}%";
                 }
             }
 

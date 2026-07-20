@@ -14,5 +14,6 @@ namespace Customization
         public bool IsPurchased;
         public bool IsSelected;
         public bool CanBuy;
+        public bool IsRewardOnly;
     }
 }

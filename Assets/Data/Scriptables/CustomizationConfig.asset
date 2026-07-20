@@ -13,43 +13,197 @@ MonoBehaviour:
   m_Name: CustomizationConfig
   m_EditorClassIdentifier: Assembly-CSharp::Customization.CustomizationConfig
   _backgrounds:
-  - _id: back_01
-    _titleLocalizationKey: back_01_title_key
-    _title: Default
-    _descriptionLocalizationKey: back_01_description_key
+  - _id: box
+    _titleLocalizationKey: box_title_key
+    _title: 
+    _descriptionLocalizationKey: 
     _description: Some Description
-    _sprite: {fileID: 21300000, guid: 8a2a7953cc7acfe4c9b37686b952a562, type: 3}
+    _sprite: {fileID: 21300000, guid: 7892748f5901f7d449e3210d518d701d, type: 3}
     _price: 0
-  - _id: back_02
-    _titleLocalizationKey: back_02_title_key
-    _title: Default_2
-    _descriptionLocalizationKey: back_02_description_key
+    _rewardOnly: 0
+  - _id: forest
+    _titleLocalizationKey: forest_title_key
+    _title: 
+    _descriptionLocalizationKey: 
     _description: Some Description
     _sprite: {fileID: 21300000, guid: 9ac0c218afc2c5048931f8f3feb15662, type: 3}
     _price: 100
+    _rewardOnly: 0
+  - _id: street
+    _titleLocalizationKey: street_title_key
+    _title: 
+    _descriptionLocalizationKey: 
+    _description: Some Description
+    _sprite: {fileID: 21300000, guid: 7464f4de3a39e314b9fb5048888b6cf4, type: 3}
+    _price: 100
+    _rewardOnly: 0
+  - _id: beach
+    _titleLocalizationKey: beach_title_key
+    _title: 
+    _descriptionLocalizationKey: 
+    _description: Some Description
+    _sprite: {fileID: 21300000, guid: c770f1a037182cc44a7ff93f02461b09, type: 3}
+    _price: 100
+    _rewardOnly: 0
+  - _id: glade
+    _titleLocalizationKey: glade_title_key
+    _title: 
+    _descriptionLocalizationKey: 
+    _description: Some Description
+    _sprite: {fileID: 21300000, guid: 8a2a7953cc7acfe4c9b37686b952a562, type: 3}
+    _price: 100
+    _rewardOnly: 0
+  - _id: garden
+    _titleLocalizationKey: garden_title_key
+    _title: 
+    _descriptionLocalizationKey: 
+    _description: Some Description
+    _sprite: {fileID: 21300000, guid: fe61e40e426e2194c8c218abf7ac0eac, type: 3}
+    _price: 100
+    _rewardOnly: 0
+  - _id: kitchen
+    _titleLocalizationKey: kitchen_title_key
+    _title: 
+    _descriptionLocalizationKey: back_02description_key
+    _description: Some Description
+    _sprite: {fileID: 21300000, guid: 343d08c98a019764b85f3b48dd6a32b6, type: 3}
+    _price: 100
+    _rewardOnly: 0
+  - _id: library
+    _titleLocalizationKey: library_title_key
+    _title: 
+    _descriptionLocalizationKey: 
+    _description: Some Description
+    _sprite: {fileID: 21300000, guid: 4c58243149912584a91da8a4095e6e9e, type: 3}
+    _price: 100
+    _rewardOnly: 0
+  - _id: living_room
+    _titleLocalizationKey: living_room_title_key
+    _title: 
+    _descriptionLocalizationKey: 
+    _description: Some Description
+    _sprite: {fileID: 21300000, guid: 16d3bd81b80bb8f498685a00c2edbdf5, type: 3}
+    _price: 100
+    _rewardOnly: 0
+  - _id: night_city
+    _titleLocalizationKey: night_city_title_key
+    _title: 
+    _descriptionLocalizationKey: 
+    _description: Some Description
+    _sprite: {fileID: 21300000, guid: 3b0c816b21d2a6c42babc84b37e8b6c7, type: 3}
+    _price: 100
+    _rewardOnly: 0
+  - _id: cosmos
+    _titleLocalizationKey: cosmos_title_key
+    _title: 
+    _descriptionLocalizationKey: 
+    _description: Some Description
+    _sprite: {fileID: 21300000, guid: a4448bc56f5ba2e4c94b3397ef615cfd, type: 3}
+    _price: 100
+    _rewardOnly: 0
+  - _id: king_hall
+    _titleLocalizationKey: king_hall_title_key
+    _title: 
+    _descriptionLocalizationKey: 
+    _description: Some Description
+    _sprite: {fileID: 21300000, guid: 7da66983296eee8459505af84e8ca575, type: 3}
+    _price: 100
+    _rewardOnly: 0
   _cats:
-  - _id: cat_01
-    _titleLocalizationKey: cat_01_title_key
+  - _id: grey_cat
+    _titleLocalizationKey: grey_cat_title_key
     _title: cat_01
     _descriptionLocalizationKey: cat_01_description_key
     _description: Some Description
-    _sprite: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+    _sprite: {fileID: 21300000, guid: d5f29dbf453d1d64b9e0dcb4337f3d05, type: 3}
     _price: 0
     _rewardOnly: 0
-  - _id: cat_02
-    _titleLocalizationKey: cat_02_title_key
+  - _id: black
+    _titleLocalizationKey: black_title_key
     _title: cat_02
     _descriptionLocalizationKey: cat_02_description_key
     _description: Some Description
-    _sprite: {fileID: 2779402041821275866, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
+    _sprite: {fileID: 21300000, guid: 1da01e6d4b0b97e4faf1f68f00cfb697, type: 3}
     _price: 100
     _rewardOnly: 0
-  - _id: cat_mythic
-    _titleLocalizationKey: cat_mythic_title_key
-    _title: Mythic Cat
-    _descriptionLocalizationKey: cat_mythic_description_key
-    _description: Awarded for completing the Mythical Cats card collection.
-    _sprite: {fileID: 6575078318536239041, guid: 303c4d6ef2e5eaa4e96dafe2e4f82524, type: 3}
+  - _id: casper_the_cat
+    _titleLocalizationKey: casper_the_cat_title_key
+    _title: Legend
+    _descriptionLocalizationKey: cat_legend_description_key
+    _description: Awarded for completing the Legends card collection.
+    _sprite: {fileID: 21300000, guid: 0448c7be5068ac5468c5b3171279f3ed, type: 3}
+    _price: 15
+    _rewardOnly: 0
+  - _id: cat_in_hat
+    _titleLocalizationKey: cat_in_hat_title_key
+    _title: Legend
+    _descriptionLocalizationKey: cat_legend_description_key
+    _description: Awarded for completing the Legends card collection.
+    _sprite: {fileID: 21300000, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+    _price: 15
+    _rewardOnly: 0
+  - _id: dragon_the_cat
+    _titleLocalizationKey: dragon_the_cat_title_key
+    _title: Legend
+    _descriptionLocalizationKey: cat_legend_description_key
+    _description: Awarded for completing the Legends card collection.
+    _sprite: {fileID: 21300000, guid: cc37d07c0b937c641974a851e6f59a24, type: 3}
+    _price: 15
+    _rewardOnly: 0
+  - _id: king_cat
+    _titleLocalizationKey: king_cat_title_key
+    _title: Legend
+    _descriptionLocalizationKey: cat_legend_description_key
+    _description: Awarded for completing the Legends card collection.
+    _sprite: {fileID: 21300000, guid: ba6c8d9e84be89648a3af467c0f33db9, type: 3}
+    _price: 15
+    _rewardOnly: 0
+  - _id: orange_cat
+    _titleLocalizationKey: orange_cat_title_key
+    _title: Legend
+    _descriptionLocalizationKey: cat_legend_description_key
+    _description: Awarded for completing the Legends card collection.
+    _sprite: {fileID: 21300000, guid: 012a7aa97563d9144b962036ac016ad2, type: 3}
+    _price: 15
+    _rewardOnly: 0
+  - _id: panter_cat
+    _titleLocalizationKey: panter_cat_title_key
+    _title: Legend
+    _descriptionLocalizationKey: cat_legend_description_key
+    _description: Awarded for completing the Legends card collection.
+    _sprite: {fileID: 21300000, guid: 012a7aa97563d9144b962036ac016ad2, type: 3}
+    _price: 15
+    _rewardOnly: 0
+  - _id: siams_cat
+    _titleLocalizationKey: siams_cat_title_key
+    _title: Legend
+    _descriptionLocalizationKey: cat_legend_description_key
+    _description: Awarded for completing the Legends card collection.
+    _sprite: {fileID: 21300000, guid: 012a7aa97563d9144b962036ac016ad2, type: 3}
+    _price: 15
+    _rewardOnly: 0
+  - _id: tiger
+    _titleLocalizationKey: tiger_title_key
+    _title: Legend
+    _descriptionLocalizationKey: cat_legend_description_key
+    _description: Awarded for completing the Legends card collection.
+    _sprite: {fileID: 21300000, guid: 76991c30c05ccbd428d0b4ac3e6e3048, type: 3}
+    _price: 15
+    _rewardOnly: 0
+  - _id: white_cat
+    _titleLocalizationKey: white_cat_title_key
+    _title: Legend
+    _descriptionLocalizationKey: cat_legend_description_key
+    _description: Awarded for completing the Legends card collection.
+    _sprite: {fileID: 21300000, guid: 57c8b60583d1f774e8cfed8477b733da, type: 3}
+    _price: 15
+    _rewardOnly: 0
+  - _id: cat_legend
+    _titleLocalizationKey: cat_legend_title_key
+    _title: Legend
+    _descriptionLocalizationKey: cat_legend_description_key
+    _description: Awarded for completing the Legends card collection.
+    _sprite: {fileID: 21300000, guid: 79235124f3c01f24486d25f37d3e0862, type: 3}
     _price: 0
     _rewardOnly: 1
   - _id: cat_emperor
@@ -57,15 +211,15 @@ MonoBehaviour:
     _title: Emperor
     _descriptionLocalizationKey: cat_emperor_description_key
     _description: Awarded for completing the Legends card collection.
-    _sprite: {fileID: -7613686468126095305, guid: f5c366c4dbababe4bbcd1ed6b5b3281e, type: 3}
+    _sprite: {fileID: 21300000, guid: 43cfb262e5271ba41a88dfef22835960, type: 3}
     _price: 0
     _rewardOnly: 1
-  - _id: cat_legend
-    _titleLocalizationKey: cat_legend_title_key
-    _title: Legend
-    _descriptionLocalizationKey: cat_legend_description_key
-    _description: Awarded for completing the Legends card collection.
-    _sprite: {fileID: -1129968827519779059, guid: f5c366c4dbababe4bbcd1ed6b5b3281e, type: 3}
+  - _id: cat_mythic
+    _titleLocalizationKey: cat_mythic_title_key
+    _title: Mythic Cat
+    _descriptionLocalizationKey: cat_mythic_description_key
+    _description: Awarded for completing the Mythical Cats card collection.
+    _sprite: {fileID: 21300000, guid: 17182267fce6b4b4cb2139795359c139, type: 3}
     _price: 0
     _rewardOnly: 1
   _priceIcon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}

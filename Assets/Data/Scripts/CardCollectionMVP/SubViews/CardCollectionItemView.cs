@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CardCollections;
+using GameLocalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,6 @@ namespace CardCollectionMVP
 {
     public class CardCollectionItemView : MonoBehaviour
     {
-        private const string CardsProgressFormat = "{0} из {1} карточек";
 
         [SerializeField] private TextMeshProUGUI _title;
         [SerializeField] private TextMeshProUGUI _cardsProgressText;
@@ -92,7 +92,7 @@ namespace CardCollectionMVP
 
             if (_cardsProgressText != null)
             {
-                _cardsProgressText.text = string.Format(CardsProgressFormat, data.CollectedCards, data.TotalCards);
+                _cardsProgressText.text = Localization.Format("CardsProgressFormat", data.CollectedCards, data.TotalCards);
             }
 
             if (_progressFill != null)

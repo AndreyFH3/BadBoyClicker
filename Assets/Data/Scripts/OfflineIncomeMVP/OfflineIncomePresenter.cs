@@ -70,6 +70,7 @@ namespace OfflineIncome
             if (!_featureUnlockService.IsUnlocked(PlayerFeatureType.OfflineIncome))
             {
                 Complete();
+                DestroyView();
                 return;
             }
 
@@ -81,6 +82,7 @@ namespace OfflineIncome
             }
 
             Complete();
+            DestroyView();
         }
 
         public void Dispose()
@@ -94,6 +96,8 @@ namespace OfflineIncome
         private void Claim()
         {
             AddReward(1);
+            Complete();
+            _view.Hide(DestroyView);
         }
 
         private void ClaimForHard()
@@ -104,14 +108,21 @@ namespace OfflineIncome
                 return;
             }
 
-            AddReward(_config.OfflineIncome.PaidMultiplier);
+            long reward = AddReward(_config.OfflineIncome.PaidMultiplier);
+            Complete();
+            _view.ShowClaimedReward(reward, DestroyView);
         }
 
         private void ClaimWithAd()
         {
             _adsService.Show(
                 RewardedPlacementId,
-                () => AddReward(_config.OfflineIncome.AdMultiplier),
+                () =>
+                {
+                    long reward = AddReward(_config.OfflineIncome.AdMultiplier);
+                    Complete();
+                    _view.ShowClaimedReward(reward, DestroyView);
+                },
                 OnRewardedAdFailed);
         }
 
@@ -121,7 +132,7 @@ namespace OfflineIncome
             _adErrorView.Show();
         }
 
-        private void AddReward(int multiplier)
+        private long AddReward(int multiplier)
         {
             long reward = _model.ConsumeReward(multiplier);
             if (reward > 0)
@@ -129,7 +140,7 @@ namespace OfflineIncome
                 _wallet.AddSoft(reward);
             }
 
-            Complete();
+            return reward;
         }
 
         private void Complete()
@@ -141,11 +152,20 @@ namespace OfflineIncome
 
             _isCompleted = true;
             _rewardOfferUiGate.Unblock(this);
-            _view.Hide();
             Dispose();
 
             _container.Unbind<OfflineIncomePresenter>();
             _container.Unbind<OfflineIncomeModel>();
+        }
+
+        // The popup is a one-time (or zero-time) piece of UI: either it is claimed once and
+        // never needed again this session, or the reward wasn't available at all. Destroying
+        // it after the close animation finishes (rather than leaving it inactive) frees its
+        // whole UI subtree for the rest of the session.
+        private void DestroyView()
+        {
+            _view.DestroyView();
+            _container.Unbind<IOfflineIncomeView>();
         }
     }
 }

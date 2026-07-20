@@ -166,7 +166,6 @@ namespace AdBonusOffers
         {
             _isResultOpen = false;
             _view.HideRewardResult();
-            _service.CompleteRewardPresentation();
         }
 
         private void OnLanguageChanged()

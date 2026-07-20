@@ -14,6 +14,12 @@ namespace Customization
         private Wallet _wallet;
         private IPlayerFeatureUnlockService _featureUnlockService;
 
+        // Buy() cascades into a wallet spend and an item select, each of which also
+        // wants to raise Changed on its own (they're the only ones who can for
+        // changes coming from outside a purchase). This coalesces those into the
+        // single explicit raise at the end of Buy(), instead of firing 3x for one purchase.
+        private int _suppressChangedDepth;
+
         public event Action Changed;
         public event Action<CustomizationItemType, string> ActiveItemChanged;
         public event Action<CustomizationItemType, string, long> ItemBought;
@@ -89,14 +95,28 @@ namespace Customization
                 return false;
             }
 
-            if (!_wallet.SpendSoft(item.Price))
+            bool spent;
+            _suppressChangedDepth++;
+            try
+            {
+                spent = _wallet.SpendSoft(item.Price);
+                if (spent)
+                {
+                    _save.AddPurchased(type, id);
+                    ItemBought?.Invoke(type, id, item.Price);
+                    Select(type, id);
+                }
+            }
+            finally
+            {
+                _suppressChangedDepth--;
+            }
+
+            if (!spent)
             {
                 return false;
             }
 
-            _save.AddPurchased(type, id);
-            ItemBought?.Invoke(type, id, item.Price);
-            Select(type, id);
             Changed?.Invoke();
             return true;
         }
@@ -114,7 +134,7 @@ namespace Customization
             if (previousId != id)
             {
                 ActiveItemChanged?.Invoke(type, id);
-                Changed?.Invoke();
+                RaiseChanged();
             }
 
             return true;
@@ -192,7 +212,15 @@ namespace Customization
 
         private void OnWalletChanged()
         {
-            Changed?.Invoke();
+            RaiseChanged();
+        }
+
+        private void RaiseChanged()
+        {
+            if (_suppressChangedDepth <= 0)
+            {
+                Changed?.Invoke();
+            }
         }
     }
 }

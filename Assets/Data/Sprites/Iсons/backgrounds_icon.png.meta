@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 24dbb9f0a547f744f84f4a9869d03204
+guid: 49d9b613224c3f24d93a311ae75840da
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7028026260565875171
-    second: cat_01_0
-  - first:
-      213: 3265888614943431570
-    second: cat_01_1
-  - first:
-      213: 2507892199236850859
-    second: cat_01_2
+      213: -7990481243704862390
+    second: backgrounds_icon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -78,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -132,67 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cat_01_0
+      name: backgrounds_icon_0
       rect:
         serializedVersion: 2
-        x: 80
-        y: 445
-        width: 842
-        height: 814
+        x: 11
+        y: 0
+        width: 1515
+        height: 1024
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d16aad22a5f677e90800000000000000
-      internalID: -7028026260565875171
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cat_01_1
-      rect:
-        serializedVersion: 2
-        x: 756
-        y: 1007
-        width: 162
-        height: 82
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 29b12b15464c25d20800000000000000
-      internalID: 3265888614943431570
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cat_01_2
-      rect:
-        serializedVersion: 2
-        x: 81
-        y: 856
-        width: 170
-        height: 93
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ba45c76faa2ddc220800000000000000
-      internalID: 2507892199236850859
+      spriteID: a49dc8ce4ab1c1190800000000000000
+      internalID: -7990481243704862390
       vertices: []
       indices: 
       edges: []
@@ -201,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9763ee9c611f364489598753b7aa7ad1
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -211,9 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cat_01_0: -7028026260565875171
-      cat_01_1: 3265888614943431570
-      cat_01_2: 2507892199236850859
+      backgrounds_icon_0: -7990481243704862390
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

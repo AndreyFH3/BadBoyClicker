@@ -32,6 +32,14 @@ namespace Shop
         private readonly Dictionary<string, ShopItem> _items = new();
         private readonly Dictionary<string, ShopItem> _paidItemsByPaymentId = new();
 
+        // Buying an item cascades through Wallet/PlayerProgression/CollectionBonus
+        // events that each also want to raise StateChanged (they're the only ones
+        // who can for changes coming from outside a purchase, e.g. auto-income).
+        // Without this guard, a single Buy() rebuilt the whole shop catalog 2-3x
+        // in one frame. While > 0, those handlers skip the redundant raise and the
+        // purchase call raises StateChanged exactly once when it's actually done.
+        private int _suppressStateChangedDepth;
+
         public long AutoIncomePerSecond => _save?.AutoIncomePerSecond ?? 0;
 
         public event Action StateChanged;
@@ -83,6 +91,36 @@ namespace Shop
             _collectionBonusService.Changed -= OnCollectionBonusChanged;
             _purchaseSystem.PurchaseSucceeded -= OnPurchaseSucceeded;
             _purchaseSystem.PurchaseFailed -= OnPurchaseFailed;
+        }
+
+        // Cheap check for sign/badge UI: whether anything of the given type (or,
+        // with no type, anything at all) is currently buyable. Unlike GetAllData()
+        // it never localizes text or allocates per-item view data.
+        public bool HasAnyBuyable(ShopItemType? type = null)
+        {
+            foreach (var item in _items.Values)
+            {
+                if (type.HasValue && item.Type != type.Value)
+                {
+                    continue;
+                }
+
+                if (!IsAvailable(item))
+                {
+                    continue;
+                }
+
+                long price = item.Type == ShopItemType.PaidBuy
+                    ? 0
+                    : CalculatePrice(item.ClickData.BasePrice, _save.GetLevel(item.Type, item.ClickData.Id));
+
+                if (CanBuy(item, price))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public List<ShopElementData> GetAllData()
@@ -150,14 +188,29 @@ namespace Shop
             }
 
             long price = CalculatePrice(item.ClickData.BasePrice, _save.GetLevel(item.Type, item.ClickData.Id));
-            if (!_wallet.SpendSoft(price))
+
+            bool spent;
+            _suppressStateChangedDepth++;
+            try
+            {
+                spent = _wallet.SpendSoft(price);
+                if (spent)
+                {
+                    _save.AddLevel(item.Type, item.ClickData.Id);
+                    _playerProgression.AddExperience(PlayerExperienceSource.ShopPurchase, price);
+                    _save.Recalculate(_config);
+                }
+            }
+            finally
+            {
+                _suppressStateChangedDepth--;
+            }
+
+            if (!spent)
             {
                 return;
             }
 
-            _save.AddLevel(item.Type, item.ClickData.Id);
-            _playerProgression.AddExperience(PlayerExperienceSource.ShopPurchase, price);
-            _save.Recalculate(_config);
             ItemBought?.Invoke(item.ClickData.Id);
             StateChanged?.Invoke();
         }
@@ -548,12 +601,28 @@ namespace Shop
                 return;
             }
 
-            if (!SpendCurrency(item.PaidData.PriceCurrencyType, item.PaidData.PriceAmount))
+            bool spent;
+            _suppressStateChangedDepth++;
+            try
+            {
+                spent = SpendCurrency(item.PaidData.PriceCurrencyType, item.PaidData.PriceAmount);
+                if (spent)
+                {
+                    ApplyPaidRewards(item);
+                }
+            }
+            finally
+            {
+                _suppressStateChangedDepth--;
+            }
+
+            if (!spent)
             {
                 return;
             }
 
-            GivePaidRewards(item);
+            ItemBought?.Invoke(item.PaidData.Id);
+            StateChanged?.Invoke();
         }
 
         private void OnPurchaseSucceeded(string paymentId)
@@ -564,7 +633,18 @@ namespace Shop
                 return;
             }
 
-            GivePaidRewards(item);
+            _suppressStateChangedDepth++;
+            try
+            {
+                ApplyPaidRewards(item);
+            }
+            finally
+            {
+                _suppressStateChangedDepth--;
+            }
+
+            ItemBought?.Invoke(item.PaidData.Id);
+            StateChanged?.Invoke();
         }
 
         private void OnPurchaseFailed(string paymentId)
@@ -573,13 +653,11 @@ namespace Shop
             StateChanged?.Invoke();
         }
 
-        private void GivePaidRewards(ShopItem item)
+        private void ApplyPaidRewards(ShopItem item)
         {
             ApplyTimeBasedRewardAmount(item.PaidData);
             _rewardService.GiveRewards(item.PaidData.Rewards);
             _playerProgression.AddExperience(PlayerExperienceSource.ShopPurchase);
-            ItemBought?.Invoke(item.PaidData.Id);
-            StateChanged?.Invoke();
         }
 
         private void ApplyTimeBasedRewardAmount(GameConfig.PaidShopData data)
@@ -655,24 +733,36 @@ namespace Shop
 
         private void OnWalletChanged()
         {
-            StateChanged?.Invoke();
+            RaiseStateChanged();
         }
 
         private void OnProgressionChanged()
         {
             _save.Recalculate(_config);
-            StateChanged?.Invoke();
+            RaiseStateChanged();
         }
 
         private void OnBonusEffectsChanged()
         {
-            StateChanged?.Invoke();
+            RaiseStateChanged();
         }
 
         private void OnCollectionBonusChanged()
         {
             _save.Recalculate(_config);
-            StateChanged?.Invoke();
+            RaiseStateChanged();
+        }
+
+        // These handlers also fire while a purchase is in progress, since buying
+        // spends the wallet / adds experience itself. Buy()/BuyPaid() already
+        // raise StateChanged once when the purchase completes, so this skips the
+        // redundant raise from inside that same call.
+        private void RaiseStateChanged()
+        {
+            if (_suppressStateChangedDepth <= 0)
+            {
+                StateChanged?.Invoke();
+            }
         }
 
         private class ShopItem

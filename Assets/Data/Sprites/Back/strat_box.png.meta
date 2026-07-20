@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6c79f20a5f537c34ea4b1850b03cff0a
+guid: 7892748f5901f7d449e3210d518d701d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5217298625821537229
-    second: CardSlot_0
+      213: -8975601225841738808
+    second: strat_box_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CardSlot_0
+      name: strat_box_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 420
-        height: 600
+        width: 1024
+        height: 1536
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 33c06c0da8e6897b0800000000000000
-      internalID: -5217298625821537229
+      spriteID: 8cb74286d32407380800000000000000
+      internalID: -8975601225841738808
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CardSlot_0: -5217298625821537229
+      strat_box_0: -8975601225841738808
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

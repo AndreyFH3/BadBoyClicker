@@ -197,7 +197,7 @@ MonoBehaviour:
     _objectiveType: 9
     _difficulty: 0
     _resetPolicy: 2
-    _targetValue: 300
+    _targetValue: 10
     _targetId: 
     _points: 1
     _rewards:
@@ -217,12 +217,12 @@ MonoBehaviour:
   - _requiredPoints: 3
     _rewards:
     - _rewardType: 0
-      _currencyType: 1
-      _amount: 10
+      _currencyType: 2
+      _amount: 3
       _rewardId: 
-      _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
       _displayTextLocalizationKey: 
-      _displayText: 10 Decor
+      _displayText: "3 \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u0430"
       _requiresActivation: 0
       _activationTitleLocalizationKey: 
       _activationTitle: 
@@ -234,7 +234,7 @@ MonoBehaviour:
       _currencyType: 0
       _amount: 0
       _rewardId: Chest_2
-      _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+      _icon: {fileID: 1305596846199975976, guid: 70f431c04906996459960caf8a378d22, type: 3}
       _displayTextLocalizationKey: 
       _displayText: 
       _requiresActivation: 0
@@ -242,6 +242,23 @@ MonoBehaviour:
       _activationTitle: 
       _activationDescriptionLocalizationKey: 
       _activationDescription: 
+  - _requiredPoints: 9
+    _rewards:
+    - _rewardType: 2
+      _currencyType: 0
+      _amount: 0
+      _rewardId: shop_discount_30_3min
+      _icon: {fileID: -1780218667044286081, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
+      _displayTextLocalizationKey: daily_quest.milestone.shop_discount_30_3min.title
+      _displayText: "-30% \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435
+        (3 \u043C\u0438\u043D)"
+      _requiresActivation: 1
+      _activationTitleLocalizationKey: daily_quest.milestone.shop_discount_30_3min.title
+      _activationTitle: "\u0421\u043A\u0438\u0434\u043A\u0430"
+      _activationDescriptionLocalizationKey: daily_quest.milestone.shop_discount_30_3min.description
+      _activationDescription: "\u0421\u043D\u0438\u0436\u0430\u0435\u0442 \u0446\u0435\u043D\u044B
+        \u0432 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0435 \u043D\u0430 30%
+        \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 3 \u043C\u0438\u043D\u0443\u0442"
   - _requiredPoints: 12
     _rewards:
     - _rewardType: 2
@@ -260,29 +277,15 @@ MonoBehaviour:
         \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 5 \u043C\u0438\u043D\u0443\u0442"
   - _requiredPoints: 14
     _rewards:
-    - _rewardType: 3
-      _currencyType: 0
-      _amount: 0
-      _rewardId: Chest_2
-      _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 20
+      _rewardId: 
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
       _displayTextLocalizationKey: 
-      _displayText: Rare chest
+      _displayText: "20 \u043A\u0440\u0438\u0441\u0442\u0430\u043B\u043B\u043E\u0432"
       _requiresActivation: 0
       _activationTitleLocalizationKey: 
       _activationTitle: 
       _activationDescriptionLocalizationKey: 
       _activationDescription: 
-    - _rewardType: 4
-      _currencyType: 0
-      _amount: 0
-      _rewardId: double_next_offline_income
-      _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-      _displayTextLocalizationKey: daily_quest.milestone.double_offline_income.title
-      _displayText: Double next offline income
-      _requiresActivation: 1
-      _activationTitleLocalizationKey: daily_quest.milestone.double_offline_income.title
-      _activationTitle: "\u0414\u0432\u043E\u0439\u043D\u043E\u0439 \u043E\u0444\u0444\u043B\u0430\u0439\u043D-\u0434\u043E\u0445\u043E\u0434"
-      _activationDescriptionLocalizationKey: daily_quest.milestone.double_offline_income.description
-      _activationDescription: "\u0421\u043B\u0435\u0434\u0443\u044E\u0449\u0438\u0439
-        \u043E\u0444\u043B\u0430\u0439\u043D-\u0434\u043E\u0445\u043E\u0434 \u0431\u0443\u0434\u0435\u0442
-        \u0443\u0434\u0432\u043E\u0435\u043D"

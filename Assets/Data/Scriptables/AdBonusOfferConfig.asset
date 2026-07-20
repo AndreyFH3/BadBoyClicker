@@ -306,12 +306,30 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 0
-      _rewardId: 
+      _rewardId:
       _icon: {fileID: 0}
-      _displayTextLocalizationKey: 
-      _displayText: 
+      _displayTextLocalizationKey:
+      _displayText:
       _requiresActivation: 0
-      _activationTitleLocalizationKey: 
-      _activationTitle: 
-      _activationDescriptionLocalizationKey: 
-      _activationDescription: 
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
+  - _id: shop_discount_30_3min
+    _effectType: 3
+    _durationSeconds: 180
+    _multiplier: 1
+    _discountPercent: 30
+    _reward:
+      _rewardType: 0
+      _currencyType: 0
+      _amount: 0
+      _rewardId:
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey:
+      _displayText:
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
