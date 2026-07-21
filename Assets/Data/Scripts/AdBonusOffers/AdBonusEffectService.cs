@@ -17,11 +17,11 @@ namespace AdBonusOffers
 
         public event System.Action Changed;
 
-        public float ClickIncomeMultiplier => GetMaxMultiplier(AdBonusEffectType.ClickIncomeMultiplier);
-        public float PassiveIncomeMultiplier => GetMaxMultiplier(AdBonusEffectType.PassiveIncomeMultiplier);
-        public float AllIncomeMultiplier => GetMaxMultiplier(AdBonusEffectType.AllIncomeMultiplier);
-        public float ExperienceMultiplier => GetMaxMultiplier(AdBonusEffectType.ExperienceMultiplier);
-        public float ShopPriceMultiplier => 1f - GetMaxDiscountPercent() / 100f;
+        public float ClickIncomeMultiplier => GetCombinedMultiplier(AdBonusEffectType.ClickIncomeMultiplier);
+        public float PassiveIncomeMultiplier => GetCombinedMultiplier(AdBonusEffectType.PassiveIncomeMultiplier);
+        public float AllIncomeMultiplier => GetCombinedMultiplier(AdBonusEffectType.AllIncomeMultiplier);
+        public float ExperienceMultiplier => GetCombinedMultiplier(AdBonusEffectType.ExperienceMultiplier);
+        public float ShopPriceMultiplier => 1f - GetCombinedDiscountPercent() / 100f;
         public IReadOnlyList<AdBonusActiveEffectViewData> ActiveEffects => _activeEffectViewData;
 
         [Inject]
@@ -165,22 +165,24 @@ namespace AdBonusOffers
             return null;
         }
 
-        private float GetMaxMultiplier(AdBonusEffectType type)
+        private float GetCombinedMultiplier(AdBonusEffectType type)
         {
-            float result = 1f;
+            float result = 0f;
+            bool hasEffect = false;
 
             foreach (var effect in _activeEffects)
             {
                 if (effect.Type == type && !effect.IsExpired)
                 {
-                    result = Mathf.Max(result, effect.Multiplier);
+                    result += effect.Multiplier;
+                    hasEffect = true;
                 }
             }
 
-            return result;
+            return hasEffect ? result : 1f;
         }
 
-        private float GetMaxDiscountPercent()
+        private float GetCombinedDiscountPercent()
         {
             float result = 0f;
 
@@ -188,11 +190,11 @@ namespace AdBonusOffers
             {
                 if (effect.Type == AdBonusEffectType.ShopDiscountPercent && !effect.IsExpired)
                 {
-                    result = Mathf.Max(result, effect.DiscountPercent);
+                    result += effect.DiscountPercent;
                 }
             }
 
-            return result;
+            return Mathf.Clamp(result, 0f, 100f);
         }
 
         private class ActiveEffect

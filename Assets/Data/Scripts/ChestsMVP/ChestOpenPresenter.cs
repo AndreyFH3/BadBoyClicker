@@ -18,6 +18,7 @@ namespace ChestsMVP
         private readonly IChestOpenView _view;
         private readonly ILocalizationService _localization;
         private readonly IRewardOfferUiGate _rewardOfferUiGate;
+        private ChestOpenResult _pendingResult;
 
         public ChestOpenPresenter(
             IChestService chestService,
@@ -33,14 +34,16 @@ namespace ChestsMVP
 
         public void Initialize()
         {
-            _chestService.ChestOpened += OnChestOpened;
+            _chestService.ChestOpeningPrepared += OnChestOpened;
             _view.CloseRequested += OnCloseRequested;
+            _view.RewardRevealed += OnRewardRevealed;
         }
 
         public void Dispose()
         {
-            _chestService.ChestOpened -= OnChestOpened;
+            _chestService.ChestOpeningPrepared -= OnChestOpened;
             _view.CloseRequested -= OnCloseRequested;
+            _view.RewardRevealed -= OnRewardRevealed;
         }
 
         private void OnChestOpened(ChestOpenResult result)
@@ -51,6 +54,7 @@ namespace ChestsMVP
             }
 
             _rewardOfferUiGate.Block(this);
+            _pendingResult = result;
             _view.Show(new ChestOpenViewData
             {
                 ChestTitle = _localization.Localize(result.Chest.TitleLocalizationKey),
@@ -61,9 +65,21 @@ namespace ChestsMVP
             });
         }
 
+        private void OnRewardRevealed()
+        {
+            if (_pendingResult == null)
+            {
+                return;
+            }
+
+            ChestOpenResult result = _pendingResult;
+            _pendingResult = null;
+            _chestService.TryClaimChestReward(result);
+        }
+
         private string CreateCardRewardText(CardCollectionConfig.CardData card)
         {
-            return _localization.Localize(card.TitleLocalizationKey);
+            return $"{_localization.Localize(card.TitleLocalizationKey)} x1";
         }
 
         private string CreateRewardText(QuestReward reward)
@@ -73,15 +89,20 @@ namespace ChestsMVP
                 return string.Empty;
             }
 
-            if (!string.IsNullOrEmpty(reward.DisplayTextLocalizationKey) || !string.IsNullOrEmpty(reward.DisplayText))
+            if (!string.IsNullOrEmpty(reward.DisplayTextLocalizationKey))
             {
                 return _localization.Localize(reward.DisplayTextLocalizationKey);
+            }
+
+            if (!string.IsNullOrEmpty(reward.DisplayText))
+            {
+                return reward.DisplayText;
             }
 
             switch (reward.RewardType)
             {
                 case QuestRewardType.Currency:
-                    return reward.Amount.ConvertFromLongToString();
+                    return $"+{reward.Amount.ConvertFromLongToString()} {_localization.Localize(GetCurrencyNameKey(reward.CurrencyType))}";
                 case QuestRewardType.PlayerBackground:
                 case QuestRewardType.Boost:
                 case QuestRewardType.Chest:
@@ -92,8 +113,26 @@ namespace ChestsMVP
             }
         }
 
+        private static string GetCurrencyNameKey(QuestRewardCurrencyType currencyType)
+        {
+            switch (currencyType)
+            {
+                case QuestRewardCurrencyType.Soft:
+                    return "currency.soft";
+                case QuestRewardCurrencyType.Decor:
+                    return "currency.decor";
+                case QuestRewardCurrencyType.Hard:
+                    return "currency.hard";
+                case QuestRewardCurrencyType.Yan:
+                    return "currency.yan";
+                default:
+                    return "currency.soft";
+            }
+        }
+
         private void OnCloseRequested()
         {
+            _pendingResult = null;
             _rewardOfferUiGate.Unblock(this);
             _view.Hide();
         }

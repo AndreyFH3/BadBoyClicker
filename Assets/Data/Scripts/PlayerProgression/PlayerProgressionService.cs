@@ -238,7 +238,8 @@ namespace PlayerProgression
                 {
                     if (bonus != null && bonus.Type == type)
                     {
-                        result += Math.Max(0f, bonus.Percent);
+                        result += Math.Max(0f, bonus.Percent) *
+                                  (_config?.PlayerProgression?.LevelBonusScale ?? 1f);
                     }
                 }
             }
@@ -281,7 +282,9 @@ namespace PlayerProgression
 
                     entries.Add(new LevelRewardEntry(
                         bonus.Icon,
-                        _localization.Format("player_progression.reward.percent", bonus.Percent),
+                        _localization.Format(
+                            "player_progression.reward.percent",
+                            bonus.Percent * (_config?.PlayerProgression?.LevelBonusScale ?? 1f)),
                         GetBonusDescription(bonus.Type)));
                 }
             }

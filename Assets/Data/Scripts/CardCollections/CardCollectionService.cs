@@ -223,7 +223,10 @@ namespace CardCollections
 
         private bool CanMutateCard(string cardId)
         {
-            return IsUnlocked && !string.IsNullOrEmpty(cardId) && _cardsById.ContainsKey(cardId);
+            // Card rewards may arrive from an old save or an external grant before
+            // the collection UI unlocks. Persist them now and reveal them later,
+            // instead of silently discarding a valid reward.
+            return !string.IsNullOrEmpty(cardId) && _cardsById.ContainsKey(cardId);
         }
 
         private void RebuildIndex()

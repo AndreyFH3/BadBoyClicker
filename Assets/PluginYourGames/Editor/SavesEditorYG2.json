@@ -1,79 +1,34 @@
 {
-    "idSave": 632,
+    "idSave": 1698,
     "GameSaveData": {
         "Wallet": {
-            "Soft": 8157407,
-            "Middle": 1510,
-            "Hard": 116
+            "Soft": 3014,
+            "Middle": 219,
+            "Hard": 946
         },
         "Shop": {
-            "Levels": [
-                {
-                    "Key": "Click:cat_energy",
-                    "Level": 14
-                },
-                {
-                    "Key": "Click:sharp_claws",
-                    "Level": 14
-                },
-                {
-                    "Key": "Click:soft_paw",
-                    "Level": 15
-                },
-                {
-                    "Key": "Click:quick_dash",
-                    "Level": 7
-                },
-                {
-                    "Key": "Click:hunting_instinct",
-                    "Level": 5
-                },
-                {
-                    "Key": "Click:tail_agility",
-                    "Level": 2
-                },
-                {
-                    "Key": "AutoBuy:scratching_post",
-                    "Level": 11
-                },
-                {
-                    "Key": "AutoBuy:cat_house",
-                    "Level": 6
-                },
-                {
-                    "Key": "AutoBuy:auto_feeder",
-                    "Level": 2
-                },
-                {
-                    "Key": "AutoBuy:cat_helper",
-                    "Level": 1
-                },
-                {
-                    "Key": "AutoBuy:robo_toy",
-                    "Level": 2
-                }
-            ]
+            "Levels": []
         },
         "OfflineIncome": {
-            "LastOnlineTicks": 639201625789319376,
+            "LastOnlineTicks": 639202333633820050,
             "PendingDoubleNextReward": false
         },
         "DailyLogin": {
             "CurrentDayIndex": 1,
-            "LastClaimUtcTicks": 639201518119067707,
+            "LastClaimUtcTicks": 639202235933851180,
             "CompletedCycles": 0
         },
         "DailyQuests": {
-            "DayKey": "20260720",
-            "Points": 14,
-            "AvgIncomePerSecond": 3064908.0,
+            "DayKey": "20260721",
+            "Points": 9,
+            "AvgIncomePerSecond": 749436.75,
             "Quests": [
                 {
                     "Id": "player_level_test",
                     "CurrentValue": 2,
                     "IsCompleted": true,
-                    "IsPointsAdded": true,
-                    "BaselineValue": 6,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 5,
                     "HasBaseline": true,
                     "EffectiveTargetValue": 0,
                     "HasEffectiveTarget": false
@@ -110,7 +65,27 @@
                 },
                 {
                     "Id": "play_time_test",
-                    "CurrentValue": 10,
+                    "CurrentValue": 0,
+                    "IsCompleted": false,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
+                },
+                {
+                    "Id": "click_test",
+                    "CurrentValue": 1000,
+                    "IsCompleted": true,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
+                },
+                {
+                    "Id": "watch_ad_test",
+                    "CurrentValue": 1,
                     "IsCompleted": true,
                     "IsPointsAdded": true,
                     "BaselineValue": 0,
@@ -127,26 +102,6 @@
                     "HasBaseline": false,
                     "EffectiveTargetValue": 0,
                     "HasEffectiveTarget": false
-                },
-                {
-                    "Id": "click_test",
-                    "CurrentValue": 1000,
-                    "IsCompleted": true,
-                    "IsPointsAdded": true,
-                    "BaselineValue": 0,
-                    "HasBaseline": false,
-                    "EffectiveTargetValue": 0,
-                    "HasEffectiveTarget": false
-                },
-                {
-                    "Id": "watch_ad_test",
-                    "CurrentValue": 1,
-                    "IsCompleted": true,
-                    "IsPointsAdded": true,
-                    "BaselineValue": 0,
-                    "HasBaseline": false,
-                    "EffectiveTargetValue": 0,
-                    "HasEffectiveTarget": false
                 }
             ],
             "Milestones": [
@@ -155,79 +110,83 @@
                     "IsClaimed": true
                 },
                 {
-                    "RequiredPoints": 9,
-                    "IsClaimed": true
-                },
-                {
-                    "RequiredPoints": 12,
-                    "IsClaimed": true
-                },
-                {
                     "RequiredPoints": 3,
                     "IsClaimed": true
                 },
                 {
-                    "RequiredPoints": 14,
+                    "RequiredPoints": 9,
                     "IsClaimed": true
                 }
             ]
         },
         "PlayerProgression": {
-            "CompletedLevels": 10,
-            "CurrentExperience": 28926,
-            "TutorialClicks": 100,
+            "CompletedLevels": 7,
+            "CurrentExperience": 137,
+            "TutorialClicks": 50,
             "IsTutorialCompleted": true
         },
         "Quests": {
             "Quests": []
         },
         "CardCollections": {
-            "Cards": [],
+            "Cards": [
+                {
+                    "Id": "0_5",
+                    "Amount": 1
+                },
+                {
+                    "Id": "5_5",
+                    "Amount": 1
+                },
+                {
+                    "Id": "2_5",
+                    "Amount": 1
+                },
+                {
+                    "Id": "2_6",
+                    "Amount": 1
+                },
+                {
+                    "Id": "0_4",
+                    "Amount": 1
+                },
+                {
+                    "Id": "0_2",
+                    "Amount": 1
+                },
+                {
+                    "Id": "3_5",
+                    "Amount": 1
+                },
+                {
+                    "Id": "3_1",
+                    "Amount": 1
+                },
+                {
+                    "Id": "5_1",
+                    "Amount": 1
+                }
+            ],
             "Collections": []
         },
         "Customization": {
-            "ActiveBackgroundId": "king_hall",
-            "ActiveCatId": "white_cat",
+            "ActiveBackgroundId": "box",
+            "ActiveCatId": "grey_cat",
             "PurchasedBackgroundIds": [
-                "back_01",
-                "back_02",
                 "box",
-                "forest",
-                "beach",
-                "street",
-                "glade",
-                "garden",
-                "library",
-                "kitchen",
-                "living_room",
-                "night_city",
-                "cosmos",
-                "king_hall"
+                "forest"
             ],
             "PurchasedCatIds": [
-                "cat_01",
-                "cat_02",
-                "grey_cat",
-                "black",
-                "casper_the_cat",
-                "cat_in_hat",
-                "king_cat",
-                "dragon_the_cat",
-                "orange_cat",
-                "panter_cat",
-                "siams_cat",
-                "tiger",
-                "white_cat",
-                "cat_legend"
+                "grey_cat"
             ]
         },
         "AdBonusOffers": {
-            "DayKey": "20260720",
-            "ClaimsToday": 5
+            "DayKey": "20260721",
+            "ClaimsToday": 2
         },
         "Analytics": {
-            "TotalClicks": 2630,
-            "NextClickMilestoneIndex": 7
+            "TotalClicks": 6597,
+            "NextClickMilestoneIndex": 8
         }
     }
 }

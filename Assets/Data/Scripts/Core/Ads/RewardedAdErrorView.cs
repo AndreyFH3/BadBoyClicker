@@ -1,3 +1,4 @@
+using UIAnimations;
 using GameLocalization;
 using TMPro;
 using UnityEngine;
@@ -12,15 +13,18 @@ namespace Core.Ads
         [SerializeField] private TextMeshProUGUI _messageText;
         [SerializeField] private Button _closeButton;
 
+        private CanvasGroupFade _fade;
+
         private void Awake()
         {
             BuildRuntimeUiIfNeeded();
+            _fade = GetOrAddFade(_root);
             if (_closeButton != null)
             {
                 _closeButton.onClick.AddListener(Hide);
             }
 
-            Hide();
+            _fade.HideImmediately();
         }
 
         private void OnDestroy()
@@ -40,7 +44,7 @@ namespace Core.Ads
             if (_root != null)
             {
                 _root.transform.SetAsLastSibling();
-                _root.SetActive(true);
+                _fade.Show();
             }
         }
 
@@ -48,7 +52,7 @@ namespace Core.Ads
         {
             if (_root != null)
             {
-                _root.SetActive(false);
+                _fade.Hide();
             }
         }
 
@@ -130,6 +134,18 @@ namespace Core.Ads
             {
                 text.text = value;
             }
+        }
+
+        private static CanvasGroupFade GetOrAddFade(GameObject target)
+        {
+            if (target == null)
+            {
+                return null;
+            }
+
+            return target.TryGetComponent(out CanvasGroupFade fade)
+                ? fade
+                : target.AddComponent<CanvasGroupFade>();
         }
     }
 }

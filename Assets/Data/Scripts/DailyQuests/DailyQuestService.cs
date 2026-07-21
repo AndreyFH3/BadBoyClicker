@@ -435,7 +435,7 @@ namespace DailyQuests
 
                 state.Id = data.Id;
                 state.HasEffectiveTarget = true;
-                state.EffectiveTargetValue = GetScaledTarget(data.ObjectiveType, GetAvgIncomePerSecond());
+                state.EffectiveTargetValue = GetScaledTarget(data, GetAvgIncomePerSecond());
                 _save.SetQuestState(state);
             }
         }
@@ -480,32 +480,17 @@ namespace DailyQuests
         // Target = how much of this currency the player's recent average income
         // would produce over targetTime, floored at minTarget so early/low-income
         // players still get a meaningful goal.
-        private static long GetScaledTarget(QuestObjectiveType type, float avgIncomePerSecond)
+        private static long GetScaledTarget(DailyQuestConfig.DailyQuestData data, float avgIncomePerSecond)
         {
-            float targetTimeSeconds;
-            long minTarget;
-            switch (type)
+            long minTarget = Math.Max(1, data?.TargetValue ?? 1);
+            double targetByIncome = Math.Max(0f, avgIncomePerSecond) *
+                                    Math.Max(0f, data?.IncomeMinutes ?? 0f) * 60d;
+            if (targetByIncome >= long.MaxValue)
             {
-                case QuestObjectiveType.TotalEarned:
-                    targetTimeSeconds = 300f;
-                    minTarget = 5000L;
-                    break;
-                case QuestObjectiveType.ShopSpent:
-                    targetTimeSeconds = 300f;
-                    minTarget = 15000L;
-                    break;
-                case QuestObjectiveType.Balance:
-                    targetTimeSeconds = 180f;
-                    minTarget = 25000L;
-                    break;
-                default:
-                    targetTimeSeconds = 300f;
-                    minTarget = 1L;
-                    break;
+                return long.MaxValue;
             }
 
-            long targetByIncome = (long)(avgIncomePerSecond * targetTimeSeconds);
-            return Math.Max(targetByIncome, minTarget);
+            return Math.Max((long)Math.Ceiling(targetByIncome), minTarget);
         }
 
         private List<string> GetUntilCompletedQuestIds()

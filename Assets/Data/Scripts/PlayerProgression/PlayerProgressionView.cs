@@ -30,6 +30,9 @@ namespace PlayerProgression
         [SerializeField] private TextMeshProUGUI _levelUpTransitionText;
         [SerializeField] private Transform _levelUpResultRewardsContainer;
         [SerializeField] private Button _levelUpResultCloseButton;
+        [Header("Window animation")]
+        [Min(0f)]
+        [SerializeField] private float _windowFadeDuration = 0.2f;
 
         private readonly List<LevelRewardEntryView> _offerEntries = new();
         private readonly List<LevelRewardEntryView> _resultEntries = new();
@@ -37,7 +40,11 @@ namespace PlayerProgression
         private Tween _fillTween;
         private Sequence _addedExperienceSequence;
         private Tween _newLevelButtonTween;
+        private Tween _offerFadeTween;
+        private Tween _resultFadeTween;
         private Sequence _resultCelebrationSequence;
+        private CanvasGroup _levelUpOfferCanvasGroup;
+        private CanvasGroup _levelUpResultCanvasGroup;
         private System.Action _confirmLevelUpAction;
 
         private const float NewLevelButtonAnimationDuration = 0.2f;
@@ -46,6 +53,9 @@ namespace PlayerProgression
 
         private void Awake()
         {
+            _levelUpOfferCanvasGroup = GetOrAddCanvasGroup(_levelUpOfferRoot);
+            _levelUpResultCanvasGroup = GetOrAddCanvasGroup(_levelUpResultRoot);
+
             if (_newLevelButton != null)
             {
                 _newLevelButton.onClick.AddListener(RequestNewLevel);
@@ -70,8 +80,8 @@ namespace PlayerProgression
                 SetButtonText(_levelUpResultCloseButton, "common.ok");
             }
 
-            HideLevelUpOffer();
-            HideLevelUpResult();
+            HideWindowImmediately(_levelUpOfferRoot, _levelUpOfferCanvasGroup);
+            HideWindowImmediately(_levelUpResultRoot, _levelUpResultCanvasGroup);
         }
 
         private void OnDestroy()
@@ -79,6 +89,8 @@ namespace PlayerProgression
             _fillTween?.Kill();
             _addedExperienceSequence?.Kill();
             _newLevelButtonTween?.Kill();
+            _offerFadeTween?.Kill();
+            _resultFadeTween?.Kill();
             _resultCelebrationSequence?.Kill();
 
             if (_newLevelButton != null)
@@ -195,7 +207,7 @@ namespace PlayerProgression
 
             if (_levelUpOfferRoot != null)
             {
-                _levelUpOfferRoot.SetActive(true);
+                ShowWindow(_levelUpOfferRoot, _levelUpOfferCanvasGroup, ref _offerFadeTween);
             }
             else
             {
@@ -221,7 +233,7 @@ namespace PlayerProgression
 
             if (_levelUpResultRoot != null)
             {
-                _levelUpResultRoot.SetActive(true);
+                ShowWindow(_levelUpResultRoot, _levelUpResultCanvasGroup, ref _resultFadeTween);
                 PlayResultCelebration();
             }
         }
@@ -233,25 +245,124 @@ namespace PlayerProgression
 
         private void ConfirmLevelUp()
         {
-            HideLevelUpOffer();
-            _confirmLevelUpAction?.Invoke();
+            System.Action confirmAction = _confirmLevelUpAction;
             _confirmLevelUpAction = null;
+            HideLevelUpOffer(confirmAction);
         }
 
         private void HideLevelUpOffer()
         {
-            if (_levelUpOfferRoot != null)
-            {
-                _levelUpOfferRoot.SetActive(false);
-            }
+            _confirmLevelUpAction = null;
+            HideLevelUpOffer(null);
+        }
+
+        private void HideLevelUpOffer(System.Action onComplete)
+        {
+            HideWindow(_levelUpOfferRoot, _levelUpOfferCanvasGroup, ref _offerFadeTween, onComplete);
         }
 
         private void HideLevelUpResult()
         {
-            if (_levelUpResultRoot != null)
+            _resultCelebrationSequence?.Kill();
+            HideWindow(_levelUpResultRoot, _levelUpResultCanvasGroup, ref _resultFadeTween, null);
+        }
+
+        private void ShowWindow(GameObject root, CanvasGroup canvasGroup, ref Tween tween)
+        {
+            if (root == null)
             {
-                _levelUpResultRoot.SetActive(false);
+                return;
             }
+
+            tween?.Kill();
+            root.SetActive(true);
+
+            if (canvasGroup == null || _windowFadeDuration <= 0f)
+            {
+                SetCanvasGroupState(canvasGroup, 1f, true);
+                return;
+            }
+
+            SetCanvasGroupState(canvasGroup, 0f, false);
+            tween = canvasGroup
+                .DOFade(1f, _windowFadeDuration)
+                .SetEase(Ease.OutQuad)
+                .SetUpdate(true)
+                .OnComplete(() => SetCanvasGroupState(canvasGroup, 1f, true));
+        }
+
+        private void HideWindow(
+            GameObject root,
+            CanvasGroup canvasGroup,
+            ref Tween tween,
+            System.Action onComplete)
+        {
+            tween?.Kill();
+
+            if (root == null || !root.activeSelf)
+            {
+                HideWindowImmediately(root, canvasGroup);
+                onComplete?.Invoke();
+                return;
+            }
+
+            SetCanvasGroupInteractable(canvasGroup, false);
+            if (canvasGroup == null || _windowFadeDuration <= 0f)
+            {
+                HideWindowImmediately(root, canvasGroup);
+                onComplete?.Invoke();
+                return;
+            }
+
+            tween = canvasGroup
+                .DOFade(0f, _windowFadeDuration)
+                .SetEase(Ease.InQuad)
+                .SetUpdate(true)
+                .OnComplete(() =>
+                {
+                    HideWindowImmediately(root, canvasGroup);
+                    onComplete?.Invoke();
+                });
+        }
+
+        private static CanvasGroup GetOrAddCanvasGroup(GameObject root)
+        {
+            if (root == null)
+            {
+                return null;
+            }
+
+            return root.TryGetComponent(out CanvasGroup canvasGroup)
+                ? canvasGroup
+                : root.AddComponent<CanvasGroup>();
+        }
+
+        private static void HideWindowImmediately(GameObject root, CanvasGroup canvasGroup)
+        {
+            SetCanvasGroupState(canvasGroup, 0f, false);
+            root?.SetActive(false);
+        }
+
+        private static void SetCanvasGroupState(CanvasGroup canvasGroup, float alpha, bool interactable)
+        {
+            if (canvasGroup == null)
+            {
+                return;
+            }
+
+            canvasGroup.alpha = alpha;
+            SetCanvasGroupInteractable(canvasGroup, interactable);
+        }
+
+        private static void SetCanvasGroupInteractable(CanvasGroup canvasGroup, bool interactable)
+        {
+            if (canvasGroup == null)
+            {
+                return;
+            }
+
+            canvasGroup.interactable = interactable;
+            canvasGroup.blocksRaycasts = interactable;
         }
 
         private void PopulateRewards(Transform container, List<LevelRewardEntryView> spawned, IReadOnlyList<LevelRewardEntry> rewards)

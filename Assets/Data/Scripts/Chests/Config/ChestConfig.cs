@@ -9,8 +9,20 @@ namespace Chests
     public class ChestConfig : ScriptableObject
     {
         [SerializeField] private List<ChestData> _chests = new();
+        [Min(1)]
+        [SerializeField] private long _softRewardMinAmount = 250;
+        [Min(0f)]
+        [SerializeField] private float _softRewardMinIncomeMinutes = 1f;
+        [Min(0f)]
+        [SerializeField] private float _softRewardMaxIncomeMinutes = 3f;
+        [Min(0f)]
+        [SerializeField] private float _softRewardAssumedClicksPerSecond = 2f;
 
         public IReadOnlyList<ChestData> Chests => _chests;
+        public long SoftRewardMinAmount => Math.Max(1, _softRewardMinAmount);
+        public float SoftRewardMinIncomeMinutes => Mathf.Max(0f, _softRewardMinIncomeMinutes);
+        public float SoftRewardMaxIncomeMinutes => Mathf.Max(SoftRewardMinIncomeMinutes, _softRewardMaxIncomeMinutes);
+        public float SoftRewardAssumedClicksPerSecond => Mathf.Max(0f, _softRewardAssumedClicksPerSecond);
 
         [Serializable]
         public class ChestData

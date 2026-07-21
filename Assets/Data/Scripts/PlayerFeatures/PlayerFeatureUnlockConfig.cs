@@ -10,13 +10,12 @@ namespace PlayerFeatures
         {
             new PlayerFeatureUnlockData(PlayerFeatureType.Shop, 1),
             new PlayerFeatureUnlockData(PlayerFeatureType.OfflineIncome, 1),
+            new PlayerFeatureUnlockData(PlayerFeatureType.Customization, 2),
             new PlayerFeatureUnlockData(PlayerFeatureType.DailyLoginReward, 3),
-            new PlayerFeatureUnlockData(PlayerFeatureType.RewardAdBoosts, 5),
-            new PlayerFeatureUnlockData(PlayerFeatureType.DailyQuest, 6),
-            new PlayerFeatureUnlockData(PlayerFeatureType.AdvancedQuests, 7),
-            new PlayerFeatureUnlockData(PlayerFeatureType.Chests, 8),
-            new PlayerFeatureUnlockData(PlayerFeatureType.CardCollection, 8),
-            new PlayerFeatureUnlockData(PlayerFeatureType.Customization, 16)
+            new PlayerFeatureUnlockData(PlayerFeatureType.RewardAdBoosts, 3),
+            new PlayerFeatureUnlockData(PlayerFeatureType.Chests, 3),
+            new PlayerFeatureUnlockData(PlayerFeatureType.DailyQuest, 5),
+            new PlayerFeatureUnlockData(PlayerFeatureType.CardCollection, 3),
         };
 
         public IReadOnlyList<PlayerFeatureUnlockData> Features => _features;

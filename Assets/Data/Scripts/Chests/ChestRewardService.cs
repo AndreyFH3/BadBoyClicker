@@ -14,12 +14,8 @@ namespace Chests
 {
     public class ChestRewardService : IChestService, IInitializable
     {
-        // Soft-currency chest rewards ignore the per-entry min/max in config and
-        // instead scale with the player's current passive income: at least a flat
-        // floor, at most what the player would earn passively over 5 minutes.
-        private const long SoftRewardMinAmount = 1000;
-        private const int SoftRewardMaxIncomeMinutes = 5;
-
+        // Soft-currency chest rewards ignore the per-entry min/max and use the
+        // configurable mixed-income time window from ChestConfig instead.
         private readonly ChestConfig _config;
         private readonly Wallet _wallet;
         private readonly ICardCollectionService _cardCollectionService;
@@ -32,6 +28,7 @@ namespace Chests
         [InjectOptional] private IQuestBackgroundRewardService _backgroundRewardService;
         [InjectOptional] private IQuestCustomRewardService _customRewardService;
 
+        public event System.Action<ChestOpenResult> ChestOpeningPrepared;
         public event System.Action<ChestOpenResult> ChestOpened;
 
         public ChestRewardService(
@@ -105,10 +102,9 @@ namespace Chests
 
                     reward = entry.Reward;
                     ApplyAmountOverride(entry, reward);
-                    GiveReward(reward);
                     break;
                 case ChestConfig.ChestRewardKind.RandomCard:
-                    if (!TryGiveRandomCard(entry, out card))
+                    if (!TrySelectRandomCard(entry, out card))
                     {
                         Debug.LogWarning($"Chest random card reward could not be granted: {chestId}");
                         return false;
@@ -127,6 +123,28 @@ namespace Chests
                 Card = card
             };
 
+            ChestOpeningPrepared?.Invoke(result);
+            return true;
+        }
+
+        public bool TryClaimChestReward(ChestOpenResult result)
+        {
+            if (result == null || result.IsClaimed)
+            {
+                return false;
+            }
+
+            bool granted = result.Card != null
+                ? _cardCollectionService != null && _cardCollectionService.TryAddCard(result.Card.Id)
+                : GiveReward(result.Reward);
+
+            if (!granted)
+            {
+                Debug.LogWarning($"Chest reward could not be granted: {result.Chest?.Id}");
+                return false;
+            }
+
+            result.IsClaimed = true;
             ChestOpened?.Invoke(result);
             return true;
         }
@@ -195,15 +213,17 @@ namespace Chests
             switch (entry.RewardKind)
             {
                 case ChestConfig.ChestRewardKind.ConfiguredReward:
-                    return entry.Reward != null;
+                    return entry.Reward != null &&
+                           RewardFeatureGate.IsAvailable(entry.Reward, _featureUnlockService);
                 case ChestConfig.ChestRewardKind.RandomCard:
-                    return true;
+                    return _featureUnlockService == null ||
+                           _featureUnlockService.IsUnlocked(PlayerFeatureType.CardCollection);
                 default:
                     return false;
             }
         }
 
-        private bool TryGiveRandomCard(
+        private bool TrySelectRandomCard(
             ChestConfig.ChestRewardEntry entry,
             out CardCollectionConfig.CardData selectedCard)
         {
@@ -229,7 +249,7 @@ namespace Chests
             }
 
             selectedCard = candidates[UnityEngine.Random.Range(0, candidates.Count)];
-            return _cardCollectionService.TryAddCard(selectedCard.Id);
+            return true;
         }
 
         private List<CardCollectionConfig.CardData> GetCardCandidates(
@@ -292,9 +312,20 @@ namespace Chests
 
         private long RollSoftRewardAmount()
         {
-            long maxByIncome = Math.Max(0, _shopSave?.AutoIncomePerSecond ?? 0) * 60L * SoftRewardMaxIncomeMinutes;
-            long max = Math.Max(SoftRewardMinAmount, maxByIncome);
-            return RollRandomLong(SoftRewardMinAmount, max);
+            double incomePerSecond = Math.Max(0, _shopSave?.AutoIncomePerSecond ?? 0) +
+                                     Math.Max(0, _shopSave?.ClickValue ?? 0) *
+                                     (_config?.SoftRewardAssumedClicksPerSecond ?? 0f);
+            long configuredMin = _config?.SoftRewardMinAmount ?? 250;
+            long min = ToLongSaturated(Math.Max(configuredMin,
+                incomePerSecond * 60d * (_config?.SoftRewardMinIncomeMinutes ?? 1f)));
+            long max = ToLongSaturated(Math.Max(min,
+                incomePerSecond * 60d * (_config?.SoftRewardMaxIncomeMinutes ?? 3f)));
+            return RollRandomLong(min, max);
+        }
+
+        private static long ToLongSaturated(double value)
+        {
+            return value >= long.MaxValue ? long.MaxValue : Math.Max(0, (long)Math.Ceiling(value));
         }
 
         // Random.Range(int,int) can't safely cover this range at high incomes
@@ -311,87 +342,85 @@ namespace Chests
             return min + (long)(t * (max - min + 1));
         }
 
-        private void GiveReward(QuestReward reward)
+        private bool GiveReward(QuestReward reward)
         {
             switch (reward.RewardType)
             {
                 case QuestRewardType.Currency:
-                    GiveCurrency(reward.CurrencyType, reward.Amount);
-                    break;
+                    return GiveCurrency(reward.CurrencyType, reward.Amount);
                 case QuestRewardType.PlayerBackground:
-                    GiveBackground(reward.RewardId);
-                    break;
+                    return GiveBackground(reward.RewardId);
                 case QuestRewardType.Boost:
-                    GiveBoost(reward.RewardId);
-                    break;
+                    return GiveBoost(reward.RewardId);
                 case QuestRewardType.Chest:
-                    GiveChest(reward.RewardId);
-                    break;
+                    return TryOpenChest(reward.RewardId, out _);
                 case QuestRewardType.Custom:
-                    GiveCustom(reward.RewardId);
-                    break;
+                    return GiveCustom(reward.RewardId);
                 default:
                     Debug.LogWarning($"Unsupported chest reward type: {reward.RewardType}");
-                    break;
+                    return false;
             }
         }
 
-        private void GiveCurrency(QuestRewardCurrencyType currencyType, long amount)
+        private bool GiveCurrency(QuestRewardCurrencyType currencyType, long amount)
         {
             if (amount <= 0)
             {
                 Debug.LogWarning($"Chest currency reward amount should be positive: {amount}");
-                return;
+                return false;
             }
 
             switch (currencyType)
             {
                 case QuestRewardCurrencyType.Soft:
                     _wallet.AddSoft(amount);
-                    break;
+                    return true;
                 case QuestRewardCurrencyType.Decor:
                     _wallet.AddMiddle(amount);
-                    break;
+                    return true;
                 case QuestRewardCurrencyType.Hard:
                     _wallet.AddHard(amount);
-                    break;
+                    return true;
                 default:
                     Debug.LogWarning($"Unsupported chest currency type: {currencyType}");
-                    break;
+                    return false;
             }
         }
 
-        private void GiveBackground(string backgroundId)
+        private bool GiveBackground(string backgroundId)
         {
             if (_backgroundRewardService == null)
             {
                 Debug.LogWarning($"Background reward service is not bound. Chest reward was not granted: {backgroundId}");
-                return;
+                return false;
             }
 
             _backgroundRewardService.GiveBackground(backgroundId);
+            return true;
         }
 
-        private void GiveBoost(string boostId)
+        private bool GiveBoost(string boostId)
         {
             if (_boostRewardService == null)
             {
                 Debug.LogWarning($"Boost reward service is not bound. Chest reward was not granted: {boostId}");
-                return;
+                return false;
             }
 
             _boostRewardService.GiveBoost(boostId);
+            return true;
         }
 
-        private void GiveCustom(string rewardId)
+        private bool GiveCustom(string rewardId)
         {
             if (_customRewardService == null)
             {
                 Debug.LogWarning($"Custom reward service is not bound. Chest reward was not granted: {rewardId}");
-                return;
+                return false;
             }
 
             _customRewardService.GiveCustomReward(rewardId);
+            return true;
         }
     }
 }

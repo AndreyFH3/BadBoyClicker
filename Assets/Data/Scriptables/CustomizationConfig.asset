@@ -27,7 +27,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: 
     _description: Some Description
     _sprite: {fileID: 21300000, guid: 9ac0c218afc2c5048931f8f3feb15662, type: 3}
-    _price: 100
+    _price: 25
     _rewardOnly: 0
   - _id: street
     _titleLocalizationKey: street_title_key
@@ -35,7 +35,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: 
     _description: Some Description
     _sprite: {fileID: 21300000, guid: 7464f4de3a39e314b9fb5048888b6cf4, type: 3}
-    _price: 100
+    _price: 40
     _rewardOnly: 0
   - _id: beach
     _titleLocalizationKey: beach_title_key
@@ -43,7 +43,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: 
     _description: Some Description
     _sprite: {fileID: 21300000, guid: c770f1a037182cc44a7ff93f02461b09, type: 3}
-    _price: 100
+    _price: 60
     _rewardOnly: 0
   - _id: glade
     _titleLocalizationKey: glade_title_key
@@ -51,7 +51,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: 
     _description: Some Description
     _sprite: {fileID: 21300000, guid: 8a2a7953cc7acfe4c9b37686b952a562, type: 3}
-    _price: 100
+    _price: 85
     _rewardOnly: 0
   - _id: garden
     _titleLocalizationKey: garden_title_key
@@ -59,7 +59,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: 
     _description: Some Description
     _sprite: {fileID: 21300000, guid: fe61e40e426e2194c8c218abf7ac0eac, type: 3}
-    _price: 100
+    _price: 120
     _rewardOnly: 0
   - _id: kitchen
     _titleLocalizationKey: kitchen_title_key
@@ -67,7 +67,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: back_02description_key
     _description: Some Description
     _sprite: {fileID: 21300000, guid: 343d08c98a019764b85f3b48dd6a32b6, type: 3}
-    _price: 100
+    _price: 170
     _rewardOnly: 0
   - _id: library
     _titleLocalizationKey: library_title_key
@@ -75,7 +75,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: 
     _description: Some Description
     _sprite: {fileID: 21300000, guid: 4c58243149912584a91da8a4095e6e9e, type: 3}
-    _price: 100
+    _price: 240
     _rewardOnly: 0
   - _id: living_room
     _titleLocalizationKey: living_room_title_key
@@ -83,7 +83,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: 
     _description: Some Description
     _sprite: {fileID: 21300000, guid: 16d3bd81b80bb8f498685a00c2edbdf5, type: 3}
-    _price: 100
+    _price: 340
     _rewardOnly: 0
   - _id: night_city
     _titleLocalizationKey: night_city_title_key
@@ -91,7 +91,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: 
     _description: Some Description
     _sprite: {fileID: 21300000, guid: 3b0c816b21d2a6c42babc84b37e8b6c7, type: 3}
-    _price: 100
+    _price: 480
     _rewardOnly: 0
   - _id: cosmos
     _titleLocalizationKey: cosmos_title_key
@@ -99,7 +99,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: 
     _description: Some Description
     _sprite: {fileID: 21300000, guid: a4448bc56f5ba2e4c94b3397ef615cfd, type: 3}
-    _price: 100
+    _price: 680
     _rewardOnly: 0
   - _id: king_hall
     _titleLocalizationKey: king_hall_title_key
@@ -107,7 +107,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: 
     _description: Some Description
     _sprite: {fileID: 21300000, guid: 7da66983296eee8459505af84e8ca575, type: 3}
-    _price: 100
+    _price: 950
     _rewardOnly: 0
   _cats:
   - _id: grey_cat
@@ -124,7 +124,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: cat_02_description_key
     _description: Some Description
     _sprite: {fileID: 21300000, guid: 1da01e6d4b0b97e4faf1f68f00cfb697, type: 3}
-    _price: 100
+    _price: 60
     _rewardOnly: 0
   - _id: casper_the_cat
     _titleLocalizationKey: casper_the_cat_title_key
@@ -140,7 +140,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: cat_legend_description_key
     _description: Awarded for completing the Legends card collection.
     _sprite: {fileID: 21300000, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
-    _price: 15
+    _price: 20
     _rewardOnly: 0
   - _id: dragon_the_cat
     _titleLocalizationKey: dragon_the_cat_title_key
@@ -148,7 +148,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: cat_legend_description_key
     _description: Awarded for completing the Legends card collection.
     _sprite: {fileID: 21300000, guid: cc37d07c0b937c641974a851e6f59a24, type: 3}
-    _price: 15
+    _price: 25
     _rewardOnly: 0
   - _id: king_cat
     _titleLocalizationKey: king_cat_title_key
@@ -156,7 +156,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: cat_legend_description_key
     _description: Awarded for completing the Legends card collection.
     _sprite: {fileID: 21300000, guid: ba6c8d9e84be89648a3af467c0f33db9, type: 3}
-    _price: 15
+    _price: 30
     _rewardOnly: 0
   - _id: orange_cat
     _titleLocalizationKey: orange_cat_title_key
@@ -164,7 +164,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: cat_legend_description_key
     _description: Awarded for completing the Legends card collection.
     _sprite: {fileID: 21300000, guid: 012a7aa97563d9144b962036ac016ad2, type: 3}
-    _price: 15
+    _price: 40
     _rewardOnly: 0
   - _id: panter_cat
     _titleLocalizationKey: panter_cat_title_key
@@ -172,7 +172,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: cat_legend_description_key
     _description: Awarded for completing the Legends card collection.
     _sprite: {fileID: 21300000, guid: 012a7aa97563d9144b962036ac016ad2, type: 3}
-    _price: 15
+    _price: 50
     _rewardOnly: 0
   - _id: siams_cat
     _titleLocalizationKey: siams_cat_title_key
@@ -180,7 +180,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: cat_legend_description_key
     _description: Awarded for completing the Legends card collection.
     _sprite: {fileID: 21300000, guid: 012a7aa97563d9144b962036ac016ad2, type: 3}
-    _price: 15
+    _price: 65
     _rewardOnly: 0
   - _id: tiger
     _titleLocalizationKey: tiger_title_key
@@ -188,7 +188,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: cat_legend_description_key
     _description: Awarded for completing the Legends card collection.
     _sprite: {fileID: 21300000, guid: 76991c30c05ccbd428d0b4ac3e6e3048, type: 3}
-    _price: 15
+    _price: 85
     _rewardOnly: 0
   - _id: white_cat
     _titleLocalizationKey: white_cat_title_key
@@ -196,7 +196,7 @@ MonoBehaviour:
     _descriptionLocalizationKey: cat_legend_description_key
     _description: Awarded for completing the Legends card collection.
     _sprite: {fileID: 21300000, guid: 57c8b60583d1f774e8cfed8477b733da, type: 3}
-    _price: 15
+    _price: 110
     _rewardOnly: 0
   - _id: cat_legend
     _titleLocalizationKey: cat_legend_title_key

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using DailyLogin;
 using PlayerProgression;
+using QuestSystem;
 using Zenject;
 
 namespace PlayerFeatures
@@ -96,6 +98,123 @@ namespace PlayerFeatures
                     FeatureUnlocked?.Invoke(data.Feature);
                 }
             }
+        }
+    }
+
+    public static class RewardFeatureGate
+    {
+        public static bool AreAvailable(
+            IReadOnlyList<QuestReward> rewards,
+            IPlayerFeatureUnlockService featureUnlockService)
+        {
+            if (rewards == null)
+            {
+                return true;
+            }
+
+            foreach (QuestReward reward in rewards)
+            {
+                if (!IsAvailable(reward, featureUnlockService))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool IsAvailable(
+            QuestReward reward,
+            IPlayerFeatureUnlockService featureUnlockService)
+        {
+            if (reward == null)
+            {
+                return false;
+            }
+
+            if (featureUnlockService == null)
+            {
+                return true;
+            }
+
+            switch (reward.RewardType)
+            {
+                case QuestRewardType.PlayerBackground:
+                    return featureUnlockService.IsUnlocked(PlayerFeatureType.Customization);
+                case QuestRewardType.Boost:
+                    return featureUnlockService.IsUnlocked(PlayerFeatureType.RewardAdBoosts);
+                case QuestRewardType.Chest:
+                    if (!featureUnlockService.IsUnlocked(PlayerFeatureType.Chests))
+                    {
+                        return false;
+                    }
+
+                    if (IsCardChest(reward.RewardId))
+                    {
+                        return featureUnlockService.IsUnlocked(PlayerFeatureType.CardCollection);
+                    }
+
+                    if (reward.RewardId == "Chest_5")
+                    {
+                        return featureUnlockService.IsUnlocked(PlayerFeatureType.RewardAdBoosts);
+                    }
+
+                    return true;
+                case QuestRewardType.Custom:
+                    return !IsCustomizationReward(reward.RewardId) ||
+                           featureUnlockService.IsUnlocked(PlayerFeatureType.Customization);
+                default:
+                    return true;
+            }
+        }
+
+        public static bool IsAvailable(
+            RewardConfig reward,
+            IPlayerFeatureUnlockService featureUnlockService)
+        {
+            if (reward == null)
+            {
+                return false;
+            }
+
+            if (featureUnlockService == null)
+            {
+                return true;
+            }
+
+            switch (reward.RewardType)
+            {
+                case RewardType.Boost:
+                    return featureUnlockService.IsUnlocked(PlayerFeatureType.RewardAdBoosts);
+                case RewardType.Chest:
+                    if (!featureUnlockService.IsUnlocked(PlayerFeatureType.Chests))
+                    {
+                        return false;
+                    }
+
+                    if (IsCardChest(reward.RewardId))
+                    {
+                        return featureUnlockService.IsUnlocked(PlayerFeatureType.CardCollection);
+                    }
+
+                    return reward.RewardId != "Chest_5" ||
+                           featureUnlockService.IsUnlocked(PlayerFeatureType.RewardAdBoosts);
+                case RewardType.Cosmetic:
+                    return featureUnlockService.IsUnlocked(PlayerFeatureType.Customization);
+                default:
+                    return true;
+            }
+        }
+
+        public static bool IsCardChest(string chestId)
+        {
+            return chestId == "Chest_3" || chestId == "Chest_4";
+        }
+
+        private static bool IsCustomizationReward(string rewardId)
+        {
+            return !string.IsNullOrEmpty(rewardId) &&
+                   rewardId.StartsWith("card_collection_unlock_skin_", System.StringComparison.Ordinal);
         }
     }
 }

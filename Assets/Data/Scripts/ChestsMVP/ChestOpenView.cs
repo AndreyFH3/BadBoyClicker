@@ -44,6 +44,7 @@ namespace ChestsMVP
         private bool _isOpening;
 
         public event Action CloseRequested;
+        public event Action RewardRevealed;
 
         private void Awake()
         {
@@ -186,6 +187,7 @@ namespace ChestsMVP
             // Enabling the object (rather than just flipping alpha) is what triggers its
             // own OnEnable reveal tween.
             SetActive(_rewardRoot, true);
+            RewardRevealed?.Invoke();
         }
 
         private static Awaitable PlayTweenAsync(SimpleTweenAnimation animation)

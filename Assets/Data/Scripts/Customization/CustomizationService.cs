@@ -47,13 +47,13 @@ namespace Customization
 
         public void Initialize()
         {
-            _wallet.OnSoftChanged += OnWalletChanged;
+            _wallet.OnMiddleChanged += OnWalletChanged;
             EnsureDefaults();
         }
 
         public void Dispose()
         {
-            _wallet.OnSoftChanged -= OnWalletChanged;
+            _wallet.OnMiddleChanged -= OnWalletChanged;
         }
 
         public IReadOnlyList<CustomizationConfig.CustomizationItemData> GetItems(CustomizationItemType type)
@@ -79,7 +79,7 @@ namespace Customization
             }
 
             CustomizationConfig.CustomizationItemData item = GetItem(type, id);
-            return item != null && !item.RewardOnly && !IsPurchased(type, id) && _wallet.CanSpendSoft(item.Price);
+            return item != null && !item.RewardOnly && !IsPurchased(type, id) && _wallet.CanSpendMiddle(item.Price);
         }
 
         public bool Buy(CustomizationItemType type, string id)
@@ -99,7 +99,7 @@ namespace Customization
             _suppressChangedDepth++;
             try
             {
-                spent = _wallet.SpendSoft(item.Price);
+                spent = _wallet.SpendMiddle(item.Price);
                 if (spent)
                 {
                     _save.AddPurchased(type, id);
@@ -142,11 +142,6 @@ namespace Customization
 
         public void Give(CustomizationItemType type, string id)
         {
-            if (!IsUnlocked)
-            {
-                return;
-            }
-
             if (GetItem(type, id) == null)
             {
                 Debug.LogWarning($"Customization item with id '{id}' was not found in {type}.");

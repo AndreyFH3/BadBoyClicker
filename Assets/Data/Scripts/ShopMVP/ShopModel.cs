@@ -17,8 +17,6 @@ namespace Shop
 {
     public class ShopModel : IShopModel, IInitializable, IDisposable
     {
-        private const float PriceGrowth = 1.18f;
-
         private GameConfig _config;
         private Wallet _wallet;
         private IShopRuntimeSave _save;
@@ -222,39 +220,14 @@ namespace Shop
         // receive, so the offer itself stays hidden and unbuyable until then.
         private bool IsAvailable(ShopItem item)
         {
-            if (item.Type != ShopItemType.PaidBuy || _featureUnlockService == null)
+            if (item.Type != ShopItemType.PaidBuy)
             {
-                return true;
+                return item.ClickData == null ||
+                       _playerProgression == null ||
+                       _playerProgression.CurrentLevel >= item.ClickData.RequiredPlayerLevel;
             }
 
-            PlayerFeatureType? requiredFeature = GetRequiredFeature(item.PaidData);
-            return requiredFeature == null || _featureUnlockService.IsUnlocked(requiredFeature.Value);
-        }
-
-        private static PlayerFeatureType? GetRequiredFeature(GameConfig.PaidShopData data)
-        {
-            if (data?.Rewards == null)
-            {
-                return null;
-            }
-
-            foreach (var reward in data.Rewards)
-            {
-                if (reward == null)
-                {
-                    continue;
-                }
-
-                switch (reward.RewardType)
-                {
-                    case QuestRewardType.Chest:
-                        return PlayerFeatureType.Chests;
-                    case QuestRewardType.PlayerBackground:
-                        return PlayerFeatureType.Customization;
-                }
-            }
-
-            return null;
+            return RewardFeatureGate.AreAvailable(item.PaidData?.Rewards, _featureUnlockService);
         }
 
         private void BuildItems()
@@ -439,7 +412,11 @@ namespace Shop
 
         private long ComputeTimeBasedSoftAmount(GameConfig.PaidShopData data)
         {
-            return Math.Max(0, AutoIncomePerSecond) * Math.Max(0, data.TimeBasedRewardMinutes) * 60L;
+            double incomePerSecond = Math.Max(0, AutoIncomePerSecond) +
+                                     Math.Max(0, _save?.ClickValue ?? 0) *
+                                     (_config?.RewardIncomeClicksPerSecond ?? 0f);
+            double amount = incomePerSecond * Math.Max(0, data.TimeBasedRewardMinutes) * 60d;
+            return amount >= long.MaxValue ? long.MaxValue : Math.Max(0, (long)Math.Ceiling(amount));
         }
 
         private string ResolvePaidRewardText(GameConfig.PaidShopData data)
@@ -511,7 +488,16 @@ namespace Shop
         private long CalculatePrice(long basePrice, int level)
         {
             float priceMultiplier = (_bonusEffectService?.ShopPriceMultiplier ?? 1f) * (_collectionBonusService?.ShopPriceMultiplier ?? 1f);
-            return Math.Max(1, (long)Mathf.Ceil(basePrice * Mathf.Pow(PriceGrowth, level) * Mathf.Max(0f, priceMultiplier)));
+            double price = Math.Max(0L, basePrice) *
+                           Math.Pow(_config?.ShopPriceGrowth ?? 1.16f, Math.Max(0, level)) *
+                           Math.Max(0f, priceMultiplier);
+
+            if (price >= long.MaxValue)
+            {
+                return long.MaxValue;
+            }
+
+            return Math.Max(1, (long)Math.Ceiling(price));
         }
 
         private Sprite GetPriceIcon(ShopItem item)

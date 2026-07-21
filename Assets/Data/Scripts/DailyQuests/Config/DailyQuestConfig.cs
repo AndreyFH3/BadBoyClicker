@@ -28,6 +28,9 @@ namespace DailyQuests
             [SerializeField] private DailyQuestResetPolicy _resetPolicy = DailyQuestResetPolicy.Daily;
             [Min(1)]
             [SerializeField] private long _targetValue = 1;
+            [Min(0f)]
+            [Tooltip("For income-scaled objectives, target recent income multiplied by this many minutes, with Target Value as the floor.")]
+            [SerializeField] private float _incomeMinutes;
             [SerializeField] private string _targetId;
             [Min(1)]
             [SerializeField] private int _points = 10;
@@ -43,6 +46,7 @@ namespace DailyQuests
             public QuestDifficulty Difficulty => _difficulty;
             public DailyQuestResetPolicy ResetPolicy => _resetPolicy;
             public long TargetValue => _targetValue;
+            public float IncomeMinutes => Mathf.Max(0f, _incomeMinutes);
             public string TargetId => _targetId;
             public int Points => _points;
             public IReadOnlyList<QuestReward> Rewards => _rewards;

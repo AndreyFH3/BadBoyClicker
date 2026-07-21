@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UIAnimations;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -39,13 +40,18 @@ namespace AdBonusOffers
         public event Action ClosedRequested;
         public event Action ResultClosedRequested;
 
+        private CanvasGroupFade _confirmationFade;
+        private CanvasGroupFade _resultFade;
+
         private void Awake()
         {
             BuildRuntimeUiIfNeeded();
+            _confirmationFade = GetOrAddFade(_confirmationRoot);
+            _resultFade = GetOrAddFade(_resultRoot);
             AddListeners();
             HideCard();
-            HideConfirmation();
-            HideRewardResult();
+            _confirmationFade?.HideImmediately();
+            _resultFade?.HideImmediately();
         }
 
         private void OnDestroy()
@@ -94,12 +100,12 @@ namespace AdBonusOffers
                     : string.Empty;
             }
 
-            SetActive(_confirmationRoot, true);
+            _confirmationFade?.Show();
         }
 
         public void HideConfirmation()
         {
-            SetActive(_confirmationRoot, false);
+            _confirmationFade?.Hide();
         }
 
         public void ShowRewardResult(AdBonusOfferViewData data)
@@ -108,12 +114,12 @@ namespace AdBonusOffers
             SetTexts(_resultValueText, data.RewardValueText);
             SetTexts(_resultDescriptionText, data.ResultDescription);
             SetImage(_resultIcon, data.Icon);
-            SetActive(_resultRoot, true);
+            _resultFade?.Show();
         }
 
         public void HideRewardResult()
         {
-            SetActive(_resultRoot, false);
+            _resultFade?.Hide();
         }
 
         private void AddListeners()
@@ -327,6 +333,18 @@ namespace AdBonusOffers
             {
                 target.SetActive(value);
             }
+        }
+
+        private static CanvasGroupFade GetOrAddFade(GameObject target)
+        {
+            if (target == null)
+            {
+                return null;
+            }
+
+            return target.TryGetComponent(out CanvasGroupFade fade)
+                ? fade
+                : target.AddComponent<CanvasGroupFade>();
         }
 
         private string FormatTime(float seconds)

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using GameAudio;
 using GameLocalization;
 using TMPro;
@@ -18,6 +19,7 @@ namespace GameSettings
         [SerializeField] private bool _hideOnAwake = true;
         [SerializeField] private Button _openButton;
         [SerializeField] private Button _closeButton;
+        [Min(0f)] [SerializeField] private float _fadeDuration = 0.2f;
 
         [Header("Sound")]
         [SerializeField] private Button _soundToggleButton;
@@ -33,6 +35,8 @@ namespace GameSettings
 
         private bool _audioEnabled = true;
         private IAudioService _audioService;
+        private CanvasGroup _canvasGroup;
+        private Tween _fadeTween;
 
         [Inject]
         private void Construct(IAudioService audioService)
@@ -47,6 +51,8 @@ namespace GameSettings
                 _windowRoot = gameObject;
             }
 
+            _canvasGroup = GetOrAddCanvasGroup(_windowRoot);
+
             _audioEnabled = PlayerPrefs.GetInt(AudioEnabledKey, 1) == 1;
             ApplyAudio();
             BindButtons();
@@ -54,7 +60,11 @@ namespace GameSettings
 
             if (_hideOnAwake)
             {
-                Hide();
+                HideImmediately();
+            }
+            else
+            {
+                SetVisibleState(1f, true);
             }
         }
 
@@ -73,18 +83,61 @@ namespace GameSettings
 
         private void OnDestroy()
         {
+            KillFadeTween();
             UnbindButtons();
         }
 
         public void Show()
         {
+            KillFadeTween();
+
+            bool wasActive = _windowRoot.activeSelf;
             _windowRoot.SetActive(true);
             RefreshTexts();
+
+            if (_canvasGroup == null || _fadeDuration <= 0f)
+            {
+                SetVisibleState(1f, true);
+                return;
+            }
+
+            if (!wasActive)
+            {
+                _canvasGroup.alpha = 0f;
+            }
+
+            SetInteraction(false);
+            _fadeTween = _canvasGroup
+                .DOFade(1f, _fadeDuration)
+                .SetEase(Ease.OutQuad)
+                .SetUpdate(true)
+                .OnComplete(() =>
+                {
+                    _fadeTween = null;
+                    SetVisibleState(1f, true);
+                });
         }
 
         public void Hide()
         {
-            _windowRoot.SetActive(false);
+            KillFadeTween();
+            SetInteraction(false);
+
+            if (!_windowRoot.activeSelf || _canvasGroup == null || _fadeDuration <= 0f)
+            {
+                HideImmediately();
+                return;
+            }
+
+            _fadeTween = _canvasGroup
+                .DOFade(0f, _fadeDuration)
+                .SetEase(Ease.InQuad)
+                .SetUpdate(true)
+                .OnComplete(() =>
+                {
+                    _fadeTween = null;
+                    HideImmediately();
+                });
         }
 
         public void ToggleAudio()
@@ -174,6 +227,56 @@ namespace GameSettings
             }
 
             AudioListener.volume = _audioEnabled ? 1f : 0f;
+        }
+
+        private void HideImmediately()
+        {
+            KillFadeTween();
+            SetVisibleState(0f, false);
+            _windowRoot.SetActive(false);
+        }
+
+        private void SetVisibleState(float alpha, bool interactable)
+        {
+            if (_canvasGroup == null)
+            {
+                return;
+            }
+
+            _canvasGroup.alpha = alpha;
+            SetInteraction(interactable);
+        }
+
+        private void SetInteraction(bool enabled)
+        {
+            if (_canvasGroup == null)
+            {
+                return;
+            }
+
+            _canvasGroup.interactable = enabled;
+            _canvasGroup.blocksRaycasts = enabled;
+        }
+
+        private void KillFadeTween()
+        {
+            if (_fadeTween == null)
+            {
+                return;
+            }
+
+            _fadeTween.Kill();
+            _fadeTween = null;
+        }
+
+        private static CanvasGroup GetOrAddCanvasGroup(GameObject target)
+        {
+            if (target.TryGetComponent(out CanvasGroup canvasGroup))
+            {
+                return canvasGroup;
+            }
+
+            return target.AddComponent<CanvasGroup>();
         }
 
         private void RefreshTexts()

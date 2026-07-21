@@ -8,5 +8,6 @@ namespace Chests
         public ChestConfig.ChestData Chest { get; set; }
         public QuestReward Reward { get; set; }
         public CardCollectionConfig.CardData Card { get; set; }
+        public bool IsClaimed { get; set; }
     }
 }

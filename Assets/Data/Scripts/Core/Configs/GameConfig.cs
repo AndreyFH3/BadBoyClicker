@@ -11,6 +11,11 @@ namespace Core
         [SerializeField] private List<ShopDataClick> _clicks;
         [SerializeField] private List<ShopDataClick> _autoBuys;
         [SerializeField] private List<PaidShopData> _paidBuys;
+        [Min(1f)]
+        [SerializeField] private float _shopPriceGrowth = 1.16f;
+        [Min(0f)]
+        [Tooltip("Assumed active clicks per second when converting current income into time-based rewards.")]
+        [SerializeField] private float _rewardIncomeClicksPerSecond = 2f;
         [SerializeField] private Sprite _softPriceIcon;
         [SerializeField] private Sprite _paidPriceIcon;
         [SerializeField] private OfflineIncomeData _offlineIncome = new();
@@ -20,6 +25,8 @@ namespace Core
         public IReadOnlyList<ShopDataClick> Clicks => _clicks;
         public IReadOnlyList<ShopDataClick> AutoBuys => _autoBuys;
         public IReadOnlyList<PaidShopData> PaidBuys => _paidBuys;
+        public float ShopPriceGrowth => Mathf.Max(1f, _shopPriceGrowth);
+        public float RewardIncomeClicksPerSecond => Mathf.Max(0f, _rewardIncomeClicksPerSecond);
         public Sprite SoftPriceIcon => _softPriceIcon;
         public Sprite PaidPriceIcon => _paidPriceIcon;
         public OfflineIncomeData OfflineIncome => _offlineIncome;
@@ -33,6 +40,8 @@ namespace Core
             [SerializeField] private float _purchaseExperiencePercent = 0.5f;
             [SerializeField] private long _baseExperienceToComplete = 1000;
             [SerializeField] private float _experienceGrowth = 1.4f;
+            [Min(0f)]
+            [SerializeField] private float _levelBonusScale = 1f;
             [Tooltip("Clicks required to complete the level 0 tutorial before normal experience-based leveling begins.")]
             [SerializeField] private int _tutorialClickTarget = 100;
             [SerializeField] private List<ExperienceRewardData> _experienceRewards = new();
@@ -43,6 +52,7 @@ namespace Core
             public float PurchaseExperiencePercent => _purchaseExperiencePercent;
             public long BaseExperienceToComplete => _baseExperienceToComplete;
             public float ExperienceGrowth => _experienceGrowth;
+            public float LevelBonusScale => Mathf.Max(0f, _levelBonusScale);
             public int TutorialClickTarget => Mathf.Max(1, _tutorialClickTarget);
             public IReadOnlyList<ExperienceRewardData> ExperienceRewards => _experienceRewards;
             public IReadOnlyList<PlayerLevelData> Levels => _levels;
@@ -89,6 +99,8 @@ namespace Core
             [SerializeField] private int _adMultiplier = 2;
             [SerializeField] private int _paidMultiplier = 2;
             [SerializeField] private int _minSecondsToShow = 60;
+            [Min(0)]
+            [SerializeField] private int _maxSecondsToReward = 28800;
             [Range(0f, 100f)]
             [SerializeField] private float _baseIncomePercent = 50f;
 
@@ -96,6 +108,7 @@ namespace Core
             public int AdMultiplier => _adMultiplier;
             public int PaidMultiplier => _paidMultiplier;
             public int MinSecondsToShow => _minSecondsToShow;
+            public int MaxSecondsToReward => Mathf.Max(0, _maxSecondsToReward);
             public float BaseIncomePercent => _baseIncomePercent;
         }
 
@@ -122,6 +135,8 @@ namespace Core
             [SerializeField] private Sprite _icon;
             [SerializeField] private long _basePrice;
             [SerializeField] private long _baseBonus;
+            [Min(0)]
+            [SerializeField] private int _requiredPlayerLevel = 1;
 
             public string Id => _id;
             public string NameLocalizationKey => _nameLocalizationKey;
@@ -129,6 +144,7 @@ namespace Core
             public Sprite Icon => _icon;
             public long BasePrice => _basePrice;
             public long BaseBonus => _baseBonus;
+            public int RequiredPlayerLevel => Mathf.Max(0, _requiredPlayerLevel);
         }
 
         [System.Serializable]

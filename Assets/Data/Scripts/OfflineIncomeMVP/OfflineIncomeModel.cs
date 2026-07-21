@@ -128,16 +128,19 @@ namespace OfflineIncome
                 return;
             }
 
-            long baseReward = elapsedSeconds * _shopSave.AutoIncomePerSecond;
+            long maxSeconds = Math.Max(0, _config.OfflineIncome.MaxSecondsToReward);
+            long rewardedSeconds = maxSeconds > 0 ? Math.Min(elapsedSeconds, maxSeconds) : elapsedSeconds;
+            double baseReward = rewardedSeconds * (double)_shopSave.AutoIncomePerSecond;
             // Offline income is capped at a percentage of what the player would have
             // earned online (see design: base 50%, watching an ad or spending hard
             // currency doubles it back up via AddReward's multiplier in the presenter).
             float baseIncomePercent = Math.Max(0f, _config.OfflineIncome.BaseIncomePercent) / 100f;
             float offlineMultiplier = baseIncomePercent * (_collectionBonusService?.OfflineIncomeMultiplier ?? 1f);
-            PendingReward = baseReward <= 0
+            double reward = baseReward * Math.Max(0f, offlineMultiplier);
+            PendingReward = reward <= 0
                 ? 0
-                : Math.Max(1, (long)Math.Ceiling(baseReward * (double)Math.Max(0f, offlineMultiplier)));
-            PendingElapsedSeconds = elapsedSeconds;
+                : reward >= long.MaxValue ? long.MaxValue : Math.Max(1, (long)Math.Ceiling(reward));
+            PendingElapsedSeconds = rewardedSeconds;
             _save.SetLastOnlineTicks(nowTicks);
         }
     }

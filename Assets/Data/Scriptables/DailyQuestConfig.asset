@@ -48,6 +48,7 @@ MonoBehaviour:
     _difficulty: 1
     _resetPolicy: 0
     _targetValue: 25000
+    _incomeMinutes: 3
     _targetId: 
     _points: 3
     _rewards:
@@ -72,7 +73,8 @@ MonoBehaviour:
     _objectiveType: 1
     _difficulty: 1
     _resetPolicy: 0
-    _targetValue: 500000
+    _targetValue: 5000
+    _incomeMinutes: 5
     _targetId: 
     _points: 2
     _rewards:
@@ -122,7 +124,8 @@ MonoBehaviour:
     _objectiveType: 6
     _difficulty: 1
     _resetPolicy: 0
-    _targetValue: 250000
+    _targetValue: 15000
+    _incomeMinutes: 5
     _targetId: 
     _points: 2
     _rewards:
@@ -197,7 +200,7 @@ MonoBehaviour:
     _objectiveType: 9
     _difficulty: 0
     _resetPolicy: 2
-    _targetValue: 10
+    _targetValue: 600
     _targetId: 
     _points: 1
     _rewards:
@@ -275,7 +278,7 @@ MonoBehaviour:
       _activationDescription: "\u0423\u0434\u0432\u0430\u0438\u0432\u0430\u0435\u0442
         \u0434\u043E\u0445\u043E\u0434 \u043E\u0442 \u043A\u043B\u0438\u043A\u043E\u0432
         \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0435 5 \u043C\u0438\u043D\u0443\u0442"
-  - _requiredPoints: 14
+  - _requiredPoints: 13
     _rewards:
     - _rewardType: 0
       _currencyType: 2

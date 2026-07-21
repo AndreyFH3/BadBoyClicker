@@ -40,7 +40,6 @@ namespace AdBonusOffers
         public bool HasActiveOffer => _currentOffer != null;
         public AdBonusOfferViewData CurrentOffer => CreateViewData(_currentOffer);
         public float CurrentOfferRemainingSeconds => HasActiveOffer ? Mathf.Max(0f, _visibleTimer) : 0f;
-        private bool HasAnyActiveEffect => _effectService.ActiveEffects.Count > 0;
         private bool IsFeatureUnlocked => _featureUnlockService.IsUnlocked(PlayerFeatureType.RewardAdBoosts);
 
         [Inject]
@@ -69,21 +68,11 @@ namespace AdBonusOffers
         public void Initialize()
         {
             _nextOfferTimer = _config.InitialDelaySeconds;
-            _effectService.Changed += OnActiveEffectsChanged;
             Debug.Log($"Ad bonus offers initialized. Offers: {_config.Offers?.Count ?? 0}, first offer in: {_nextOfferTimer:0.#}s.");
         }
 
         public void Dispose()
         {
-            _effectService.Changed -= OnActiveEffectsChanged;
-        }
-
-        private void OnActiveEffectsChanged()
-        {
-            if (HasActiveOffer && !_isClaimInProgress && HasEffects(_currentOffer) && HasAnyActiveEffect)
-            {
-                HideCurrentOffer();
-            }
         }
 
         public void Tick()
@@ -156,12 +145,6 @@ namespace AdBonusOffers
         {
             if (!HasActiveOffer || _isClaimInProgress || RemainingClaimsToday() <= 0)
             {
-                return;
-            }
-
-            if (HasEffects(_currentOffer) && HasAnyActiveEffect)
-            {
-                HideCurrentOffer();
                 return;
             }
 
@@ -271,7 +254,10 @@ namespace AdBonusOffers
             _nextOfferTimer -= Time.deltaTime;
             if (_nextOfferTimer <= 0f)
             {
-                TryShowNextOffer();
+                if (!TryShowNextOffer())
+                {
+                    ResetNextOfferTimer();
+                }
             }
         }
 
@@ -346,14 +332,33 @@ namespace AdBonusOffers
             if (offer == null ||
                 string.IsNullOrEmpty(offer.Id) ||
                 _cooldowns.ContainsKey(offer.Id) ||
-                (!HasRewards(offer) && !HasEffects(offer)))
+                (!HasRewards(offer) && !HasEffects(offer)) ||
+                !RewardFeatureGate.AreAvailable(offer.Rewards, _featureUnlockService) ||
+                !AreEffectsAvailable(offer))
             {
                 return false;
             }
 
-            // Buff-granting offers would overlap with a currently running timed effect
-            // (from another offer, a chest, etc), so only those are held back while one is active.
-            return !HasEffects(offer) || !HasAnyActiveEffect;
+            return true;
+        }
+
+        private bool AreEffectsAvailable(AdBonusOfferConfig.AdBonusOfferData offer)
+        {
+            if (offer?.Effects == null)
+            {
+                return true;
+            }
+
+            foreach (AdBonusOfferConfig.AdBonusEffectData effect in offer.Effects)
+            {
+                if (effect != null && effect.EffectType == AdBonusEffectType.QuestReward &&
+                    !RewardFeatureGate.IsAvailable(effect.Reward, _featureUnlockService))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private bool HasRewards(AdBonusOfferConfig.AdBonusOfferData offer)

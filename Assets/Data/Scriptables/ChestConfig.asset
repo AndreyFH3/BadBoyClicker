@@ -24,16 +24,16 @@ MonoBehaviour:
         _rewardType: 0
         _currencyType: 0
         _amount: 0
-        _rewardId:
+        _rewardId: 
         _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
-        _displayTextLocalizationKey:
-        _displayText:
+        _displayTextLocalizationKey: 
+        _displayText: 
         _requiresActivation: 0
-        _activationTitleLocalizationKey:
-        _activationTitle:
-        _activationDescriptionLocalizationKey:
-        _activationDescription:
-      _cardCollectionId:
+        _activationTitleLocalizationKey: 
+        _activationTitle: 
+        _activationDescriptionLocalizationKey: 
+        _activationDescription: 
+      _cardCollectionId: 
       _allowDuplicateCards: 1
       _minAmount: 0
       _maxAmount: 0
@@ -140,8 +140,8 @@ MonoBehaviour:
         _activationDescription: 
       _cardCollectionId: 
       _allowDuplicateCards: 1
-      _minAmount: 30
-      _maxAmount: 50
+      _minAmount: 3
+      _maxAmount: 5
       _scaleWithIncomeMultiplier: 0
     - _rarityWeight: 15
       _rewardKind: 0
@@ -170,9 +170,9 @@ MonoBehaviour:
         _currencyType: 0
         _amount: 0
         _rewardId: click_x2_10min
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-        _displayTextLocalizationKey: 
-        _displayText: x2 clicks (10 min)
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
+        _displayTextLocalizationKey: chest.reward.click_x2_10min
+        _displayText: 
         _requiresActivation: 0
         _activationTitleLocalizationKey: 
         _activationTitle: 
@@ -190,9 +190,9 @@ MonoBehaviour:
         _currencyType: 0
         _amount: 0
         _rewardId: shop_discount_30_15min
-        _icon: {fileID: 6106692926879089763, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-        _displayTextLocalizationKey: 
-        _displayText: -30% shop (15 min)
+        _icon: {fileID: 4437441250163220866, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
+        _displayTextLocalizationKey: chest.reward.shop_discount_30_15min
+        _displayText: 
         _requiresActivation: 0
         _activationTitleLocalizationKey: 
         _activationTitle: 
@@ -208,14 +208,14 @@ MonoBehaviour:
     _title: Card Chest
     _icon: {fileID: -7057432041066431953, guid: 70f431c04906996459960caf8a378d22, type: 3}
     _rewards:
-    - _rarityWeight: 35
-      _rewardKind: 0
+    - _rarityWeight: 100
+      _rewardKind: 1
       _reward:
         _rewardType: 0
         _currencyType: 0
         _amount: 0
         _rewardId: 
-        _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+        _icon: {fileID: 21300000, guid: 8af9b8f33b50ecc43bb6ae6d9524c56c, type: 3}
         _displayTextLocalizationKey: 
         _displayText: 
         _requiresActivation: 0
@@ -228,12 +228,37 @@ MonoBehaviour:
       _minAmount: 0
       _maxAmount: 0
       _scaleWithIncomeMultiplier: 0
+  - _id: Chest_4
+    _titleLocalizationKey: chest.chest_4.title
+    _title: Treasure Chest
+    _icon: {fileID: 8956127547417997447, guid: 70f431c04906996459960caf8a378d22, type: 3}
+    _rewards:
     - _rarityWeight: 25
       _rewardKind: 0
       _reward:
         _rewardType: 0
+        _currencyType: 0
+        _amount: 21146013
+        _rewardId: 
+        _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+        _displayTextLocalizationKey: 
+        _displayText: 
+        _requiresActivation: 0
+        _activationTitleLocalizationKey: 
+        _activationTitle: 
+        _activationDescriptionLocalizationKey: 
+        _activationDescription: 
+      _cardCollectionId: 
+      _allowDuplicateCards: 1
+      _minAmount: 0
+      _maxAmount: 0
+      _scaleWithIncomeMultiplier: 0
+    - _rarityWeight: 20
+      _rewardKind: 0
+      _reward:
+        _rewardType: 0
         _currencyType: 1
-        _amount: 0
+        _amount: 120
         _rewardId: 
         _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
         _displayTextLocalizationKey: 
@@ -244,11 +269,11 @@ MonoBehaviour:
         _activationDescriptionLocalizationKey: 
         _activationDescription: 
       _cardCollectionId: 
-      _allowDuplicateCards: 0
-      _minAmount: 40
-      _maxAmount: 60
+      _allowDuplicateCards: 1
+      _minAmount: 5
+      _maxAmount: 10
       _scaleWithIncomeMultiplier: 0
-    - _rarityWeight: 15
+    - _rarityWeight: 10
       _rewardKind: 0
       _reward:
         _rewardType: 0
@@ -264,18 +289,58 @@ MonoBehaviour:
         _activationDescriptionLocalizationKey: 
         _activationDescription: 
       _cardCollectionId: 
-      _allowDuplicateCards: 0
-      _minAmount: 5
-      _maxAmount: 8
+      _allowDuplicateCards: 1
+      _minAmount: 3
+      _maxAmount: 7
       _scaleWithIncomeMultiplier: 0
-    - _rarityWeight: 25
+    - _rarityWeight: 15
+      _rewardKind: 0
+      _reward:
+        _rewardType: 4
+        _currencyType: 0
+        _amount: 25
+        _rewardId: exp_percent_25
+        _icon: {fileID: 21300000, guid: fe1e21a621666644a83c4aa8706c7346, type: 3}
+        _displayTextLocalizationKey: chest.reward.exp_percent_25
+        _displayText: 
+        _requiresActivation: 0
+        _activationTitleLocalizationKey: 
+        _activationTitle: 
+        _activationDescriptionLocalizationKey: 
+        _activationDescription: 
+      _cardCollectionId: 
+      _allowDuplicateCards: 1
+      _minAmount: 0
+      _maxAmount: 0
+      _scaleWithIncomeMultiplier: 0
+    - _rarityWeight: 15
+      _rewardKind: 0
+      _reward:
+        _rewardType: 2
+        _currencyType: 0
+        _amount: 0
+        _rewardId: click_x3_10min
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
+        _displayTextLocalizationKey: chest.reward.click_x3_10min
+        _displayText: 
+        _requiresActivation: 0
+        _activationTitleLocalizationKey: 
+        _activationTitle: 
+        _activationDescriptionLocalizationKey: 
+        _activationDescription: 
+      _cardCollectionId: 
+      _allowDuplicateCards: 1
+      _minAmount: 0
+      _maxAmount: 0
+      _scaleWithIncomeMultiplier: 0
+    - _rarityWeight: 15
       _rewardKind: 1
       _reward:
         _rewardType: 0
         _currencyType: 0
         _amount: 0
         _rewardId: 
-        _icon: {fileID: 0}
+        _icon: {fileID: 21300000, guid: 8af9b8f33b50ecc43bb6ae6d9524c56c, type: 3}
         _displayTextLocalizationKey: 
         _displayText: 
         _requiresActivation: 0
@@ -283,132 +348,7 @@ MonoBehaviour:
         _activationTitle: 
         _activationDescriptionLocalizationKey: 
         _activationDescription: 
-      _cardCollectionId: 0
-      _allowDuplicateCards: 0
-      _minAmount: 0
-      _maxAmount: 0
-      _scaleWithIncomeMultiplier: 0
-  - _id: Chest_4
-    _titleLocalizationKey: chest.chest_4.title
-    _title: Collection Chest
-    _icon: {fileID: 8956127547417997447, guid: 70f431c04906996459960caf8a378d22, type: 3}
-    _rewards:
-    - _rarityWeight: 20
-      _rewardKind: 1
-      _reward:
-        _rewardType: 4
-        _currencyType: 3
-        _amount: 0
-        _rewardId: 
-        _icon: {fileID: 0}
-        _displayTextLocalizationKey: 
-        _displayText: 
-        _requiresActivation: 0
-        _activationTitleLocalizationKey: 
-        _activationTitle: 
-        _activationDescriptionLocalizationKey: 
-        _activationDescription: 
-      _cardCollectionId: 0
-      _allowDuplicateCards: 0
-      _minAmount: 0
-      _maxAmount: 0
-      _scaleWithIncomeMultiplier: 0
-    - _rarityWeight: 20
-      _rewardKind: 1
-      _reward:
-        _rewardType: 4
-        _currencyType: 3
-        _amount: 0
-        _rewardId: 
-        _icon: {fileID: 0}
-        _displayTextLocalizationKey: 
-        _displayText: 
-        _requiresActivation: 0
-        _activationTitleLocalizationKey: 
-        _activationTitle: 
-        _activationDescriptionLocalizationKey: 
-        _activationDescription: 
-      _cardCollectionId: 1
-      _allowDuplicateCards: 0
-      _minAmount: 0
-      _maxAmount: 0
-      _scaleWithIncomeMultiplier: 0
-    - _rarityWeight: 20
-      _rewardKind: 1
-      _reward:
-        _rewardType: 4
-        _currencyType: 3
-        _amount: 0
-        _rewardId: 
-        _icon: {fileID: 0}
-        _displayTextLocalizationKey: 
-        _displayText: 
-        _requiresActivation: 0
-        _activationTitleLocalizationKey: 
-        _activationTitle: 
-        _activationDescriptionLocalizationKey: 
-        _activationDescription: 
-      _cardCollectionId: 2
-      _allowDuplicateCards: 0
-      _minAmount: 0
-      _maxAmount: 0
-      _scaleWithIncomeMultiplier: 0
-    - _rarityWeight: 20
-      _rewardKind: 1
-      _reward:
-        _rewardType: 4
-        _currencyType: 3
-        _amount: 0
-        _rewardId: 
-        _icon: {fileID: 0}
-        _displayTextLocalizationKey: 
-        _displayText: 
-        _requiresActivation: 0
-        _activationTitleLocalizationKey: 
-        _activationTitle: 
-        _activationDescriptionLocalizationKey: 
-        _activationDescription: 
-      _cardCollectionId: 3
-      _allowDuplicateCards: 0
-      _minAmount: 0
-      _maxAmount: 0
-      _scaleWithIncomeMultiplier: 0
-    - _rarityWeight: 20
-      _rewardKind: 1
-      _reward:
-        _rewardType: 4
-        _currencyType: 3
-        _amount: 0
-        _rewardId: 
-        _icon: {fileID: 0}
-        _displayTextLocalizationKey: 
-        _displayText: 
-        _requiresActivation: 0
-        _activationTitleLocalizationKey: 
-        _activationTitle: 
-        _activationDescriptionLocalizationKey: 
-        _activationDescription: 
-      _cardCollectionId: 4
-      _allowDuplicateCards: 0
-      _minAmount: 0
-      _maxAmount: 0
-      _scaleWithIncomeMultiplier: 0
-    - _rarityWeight: 20
-      _rewardKind: 1
-      _reward:
-        _rewardType: 4
-        _currencyType: 3
-        _amount: 0
-        _rewardId: 
-        _icon: {fileID: 0}
-        _displayTextLocalizationKey: 
-        _displayText: 
-        _requiresActivation: 0
-        _activationTitleLocalizationKey: 
-        _activationTitle: 
-        _activationDescriptionLocalizationKey: 
-        _activationDescription: 
-      _cardCollectionId: 5
+      _cardCollectionId: 
       _allowDuplicateCards: 0
       _minAmount: 0
       _maxAmount: 0
@@ -425,9 +365,9 @@ MonoBehaviour:
         _currencyType: 0
         _amount: 0
         _rewardId: click_x2_15min
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-        _displayTextLocalizationKey: 
-        _displayText: x2 clicks (15 min)
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
+        _displayTextLocalizationKey: chest.reward.click_x2_15min
+        _displayText: 
         _requiresActivation: 0
         _activationTitleLocalizationKey: 
         _activationTitle: 
@@ -445,9 +385,9 @@ MonoBehaviour:
         _currencyType: 0
         _amount: 0
         _rewardId: click_x3_10min
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-        _displayTextLocalizationKey: 
-        _displayText: x3 clicks (10 min)
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
+        _displayTextLocalizationKey: chest.reward.click_x3_10min
+        _displayText: 
         _requiresActivation: 0
         _activationTitleLocalizationKey: 
         _activationTitle: 
@@ -465,16 +405,16 @@ MonoBehaviour:
         _currencyType: 0
         _amount: 0
         _rewardId: passive_x2_20min
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-        _displayTextLocalizationKey: 
-        _displayText: x2 passive (20 min)
+        _icon: {fileID: 5201493233513209010, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
+        _displayTextLocalizationKey: chest.reward.passive_x2_20min
+        _displayText: 
         _requiresActivation: 0
         _activationTitleLocalizationKey: 
         _activationTitle: 
         _activationDescriptionLocalizationKey: 
         _activationDescription: 
       _cardCollectionId: 
-      _allowDuplicateCards: 1
+      _allowDuplicateCards: 0
       _minAmount: 0
       _maxAmount: 0
       _scaleWithIncomeMultiplier: 0
@@ -485,9 +425,9 @@ MonoBehaviour:
         _currencyType: 0
         _amount: 0
         _rewardId: shop_discount_30_20min
-        _icon: {fileID: 6106692926879089763, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-        _displayTextLocalizationKey: 
-        _displayText: -30% shop (20 min)
+        _icon: {fileID: 4437441250163220866, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
+        _displayTextLocalizationKey: chest.reward.shop_discount_30_20min
+        _displayText: 
         _requiresActivation: 0
         _activationTitleLocalizationKey: 
         _activationTitle: 
@@ -505,9 +445,9 @@ MonoBehaviour:
         _currencyType: 0
         _amount: 0
         _rewardId: gold_fever_60s
-        _icon: {fileID: 6106692926879089763, guid: 9c150f5639f7409439f0a55c0594fd3d, type: 3}
-        _displayTextLocalizationKey: 
-        _displayText: Gold Fever x5 (60 sec)
+        _icon: {fileID: -8075148566640098004, guid: d681dd2ee0fda614fa74ce1a64feca94, type: 3}
+        _displayTextLocalizationKey: chest.reward.gold_fever_60s
+        _displayText: 
         _requiresActivation: 0
         _activationTitleLocalizationKey: 
         _activationTitle: 
@@ -525,9 +465,9 @@ MonoBehaviour:
         _currencyType: 0
         _amount: 0
         _rewardId: exp_x2_5min
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
-        _displayTextLocalizationKey: 
-        _displayText: x2 experience (5 min)
+        _icon: {fileID: 21300000, guid: fe1e21a621666644a83c4aa8706c7346, type: 3}
+        _displayTextLocalizationKey: chest.reward.exp_x2_5min
+        _displayText: 
         _requiresActivation: 0
         _activationTitleLocalizationKey: 
         _activationTitle: 
@@ -538,3 +478,7 @@ MonoBehaviour:
       _minAmount: 0
       _maxAmount: 0
       _scaleWithIncomeMultiplier: 0
+  _softRewardMinAmount: 250
+  _softRewardMinIncomeMinutes: 1
+  _softRewardMaxIncomeMinutes: 3
+  _softRewardAssumedClicksPerSecond: 2

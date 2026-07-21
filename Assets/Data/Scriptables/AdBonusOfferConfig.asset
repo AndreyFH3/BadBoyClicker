@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c9fa62d4c29df4abca73c8ae582146, type: 3}
   m_Name: AdBonusOfferConfig
   m_EditorClassIdentifier: Assembly-CSharp::AdBonusOffers.AdBonusOfferConfig
-  _initialDelaySeconds: 10
-  _offerIntervalSeconds: 5
-  _visibleDurationSeconds: 5
+  _initialDelaySeconds: 90
+  _offerIntervalSeconds: 180
+  _visibleDurationSeconds: 25
   _dailyClaimLimit: 5
   _offers:
   - _id: chest
@@ -26,8 +26,8 @@ MonoBehaviour:
     _resultDescriptionLocalizationKey: ad_bonus.chest.result_description
     _resultDescription: 
     _icon: {fileID: 7204593959208558865, guid: 70f431c04906996459960caf8a378d22, type: 3}
-    _weight: 1
-    _cooldownSeconds: 20
+    _weight: 3
+    _cooldownSeconds: 600
     _hardPrice: 0
     _rewards:
     - _rewardType: 3
@@ -48,18 +48,18 @@ MonoBehaviour:
     _confirmationTitleLocalizationKey: ad_bonus.click_x2.title
     _confirmationTitle: x2 click income
     _confirmationDescriptionLocalizationKey: ad_bonus.click_x2.confirm_description
-    _confirmationDescription: Watch an ad to double click income for 60 seconds
+    _confirmationDescription: Watch an ad to double click income for 3 minutes
     _resultDescriptionLocalizationKey: ad_bonus.click_x2.result_description
     _resultDescription: 
     _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
-    _weight: 1
-    _cooldownSeconds: 20
+    _weight: 4
+    _cooldownSeconds: 600
     _hardPrice: 0
     _rewards: []
     _effects:
     - _id: click_x2
       _effectType: 1
-      _durationSeconds: 60
+      _durationSeconds: 180
       _multiplier: 2
       _discountPercent: 0
       _reward:
@@ -80,18 +80,18 @@ MonoBehaviour:
     _confirmationTitleLocalizationKey: ad_bonus.shop_discount.title
     _confirmationTitle: 25% shop discount
     _confirmationDescriptionLocalizationKey: ad_bonus.shop_discount.confirm_description
-    _confirmationDescription: Watch an ad to activate the discount for 60 seconds
+    _confirmationDescription: Watch an ad to activate the discount for 3 minutes
     _resultDescriptionLocalizationKey: ad_bonus.shop_discount.result_description
     _resultDescription: 
     _icon: {fileID: -1780218667044286081, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
-    _weight: 1
-    _cooldownSeconds: 20
+    _weight: 2
+    _cooldownSeconds: 600
     _hardPrice: 0
     _rewards: []
     _effects:
     - _id: shop_discount
       _effectType: 3
-      _durationSeconds: 60
+      _durationSeconds: 180
       _multiplier: 1
       _discountPercent: 25
       _reward:
@@ -118,7 +118,7 @@ MonoBehaviour:
     _resultDescription: 
     _icon: {fileID: 21300000, guid: fe1e21a621666644a83c4aa8706c7346, type: 3}
     _weight: 1
-    _cooldownSeconds: 20
+    _cooldownSeconds: 600
     _hardPrice: 0
     _rewards:
     - _rewardType: 4

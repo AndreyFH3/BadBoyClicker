@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Rewards;
+using UIAnimations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ namespace CardCollectionMVP
         [SerializeField] private Transform _rewardsRoot;
         [SerializeField] private RewardView _rewardReference;
         [SerializeField] private Button _closeButton;
+        [SerializeField] private CanvasGroupFade _fade;
 
         private readonly List<RewardView> _rewardViews = new();
 
@@ -19,6 +21,13 @@ namespace CardCollectionMVP
             if (_windowRoot == null)
             {
                 _windowRoot = gameObject;
+            }
+
+            if (_fade == null)
+            {
+                _fade = _windowRoot.TryGetComponent(out CanvasGroupFade fade)
+                    ? fade
+                    : _windowRoot.AddComponent<CanvasGroupFade>();
             }
 
             if (_rewardReference != null)
@@ -31,7 +40,7 @@ namespace CardCollectionMVP
                 _closeButton.onClick.AddListener(Hide);
             }
 
-            Hide();
+            _fade.HideImmediately();
         }
 
         private void OnDestroy()
@@ -45,12 +54,12 @@ namespace CardCollectionMVP
         public void Show(IReadOnlyList<RewardDisplay> rewards)
         {
             RebuildRewards(rewards);
-            _windowRoot.SetActive(true);
+            _fade.Show();
         }
 
         public void Hide()
         {
-            _windowRoot.SetActive(false);
+            _fade.Hide();
         }
 
         private void RebuildRewards(IReadOnlyList<RewardDisplay> rewards)
