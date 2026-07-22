@@ -21,6 +21,8 @@ namespace Customization
         IReadOnlyList<CustomizationConfig.CustomizationItemData> GetItems(CustomizationItemType type);
         CustomizationConfig.CustomizationItemData GetItem(CustomizationItemType type, string id);
         bool IsPurchased(CustomizationItemType type, string id);
+        bool HasUnseen(CustomizationItemType type);
+        void MarkSeen(CustomizationItemType type);
         bool CanBuy(CustomizationItemType type, string id);
         bool Buy(CustomizationItemType type, string id);
         bool Select(CustomizationItemType type, string id);

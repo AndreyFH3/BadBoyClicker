@@ -12,6 +12,7 @@ using CardCollections;
 using Purchases;
 using QuestSystem;
 using Rewards;
+using Chests;
 
 namespace Shop
 {
@@ -22,11 +23,13 @@ namespace Shop
         private IShopRuntimeSave _save;
         private IPlayerProgressionService _playerProgression;
         private ILocalizationService _localization;
-        private IAdBonusEffectService _bonusEffectService;
+        private IBuffService _buffService;
         private ICardCollectionBonusService _collectionBonusService;
         private IPurchaseSystem _purchaseSystem;
         private IQuestRewardService _rewardService;
         private IPlayerFeatureUnlockService _featureUnlockService;
+        private ICardCollectionService _cardCollectionService;
+        private ChestConfig _chestConfig;
         private readonly Dictionary<string, ShopItem> _items = new();
         private readonly Dictionary<string, ShopItem> _paidItemsByPaymentId = new();
 
@@ -42,6 +45,8 @@ namespace Shop
 
         public event Action StateChanged;
         public event Action<string> ItemBought;
+        public event Action<string> PaidPurchaseSucceeded;
+        public event Action<string> PaidPurchaseFailed;
 
         [Zenject.Inject]
         public void Construct(
@@ -50,22 +55,26 @@ namespace Shop
             IShopRuntimeSave save,
             IPlayerProgressionService playerProgression,
             ILocalizationService localization,
-            IAdBonusEffectService bonusEffectService,
+            IBuffService buffService,
             ICardCollectionBonusService collectionBonusService,
             IPurchaseSystem purchaseSystem,
             IQuestRewardService rewardService,
-            IPlayerFeatureUnlockService featureUnlockService)
+            IPlayerFeatureUnlockService featureUnlockService,
+            ICardCollectionService cardCollectionService,
+            ChestConfig chestConfig)
         {
             _config = config;
             _wallet = wallet;
             _save = save;
             _playerProgression = playerProgression;
             _localization = localization;
-            _bonusEffectService = bonusEffectService;
+            _buffService = buffService;
             _collectionBonusService = collectionBonusService;
             _purchaseSystem = purchaseSystem;
             _rewardService = rewardService;
             _featureUnlockService = featureUnlockService;
+            _cardCollectionService = cardCollectionService;
+            _chestConfig = chestConfig;
 
             BuildItems();
             _save.Recalculate(_config);
@@ -75,20 +84,22 @@ namespace Shop
         {
             _wallet.OnChanged += OnWalletChanged;
             _playerProgression.Changed += OnProgressionChanged;
-            _bonusEffectService.Changed += OnBonusEffectsChanged;
+            _buffService.Changed += OnBonusEffectsChanged;
             _collectionBonusService.Changed += OnCollectionBonusChanged;
             _purchaseSystem.PurchaseSucceeded += OnPurchaseSucceeded;
             _purchaseSystem.PurchaseFailed += OnPurchaseFailed;
+            _cardCollectionService.Changed += OnCardCollectionsChanged;
         }
 
         public void Dispose()
         {
             _wallet.OnChanged -= OnWalletChanged;
             _playerProgression.Changed -= OnProgressionChanged;
-            _bonusEffectService.Changed -= OnBonusEffectsChanged;
+            _buffService.Changed -= OnBonusEffectsChanged;
             _collectionBonusService.Changed -= OnCollectionBonusChanged;
             _purchaseSystem.PurchaseSucceeded -= OnPurchaseSucceeded;
             _purchaseSystem.PurchaseFailed -= OnPurchaseFailed;
+            _cardCollectionService.Changed -= OnCardCollectionsChanged;
         }
 
         // Cheap check for sign/badge UI: whether anything of the given type (or,
@@ -140,6 +151,37 @@ namespace Shop
         public ShopElementData GetShopPositionData(string id)
         {
             return _items.TryGetValue(id, out var item) && IsAvailable(item) ? CreateElementData(item) : null;
+        }
+
+        public ShopElementData GetCardChestPurchaseData()
+        {
+            foreach (var item in _items.Values)
+            {
+                if (item.Type == ShopItemType.PaidBuy && IsCardChestOffer(item.PaidData) && IsAvailable(item))
+                {
+                    return CreateElementData(item);
+                }
+            }
+
+            return null;
+        }
+
+        public string GetCardChestId()
+        {
+            if (_chestConfig?.Chests == null)
+            {
+                return null;
+            }
+
+            foreach (var chest in _chestConfig.Chests)
+            {
+                if (IsCardOnlyChest(chest))
+                {
+                    return chest.Id;
+                }
+            }
+
+            return null;
         }
 
         public ShopPurchaseConfirmationData GetPurchaseConfirmationData(string id)
@@ -227,7 +269,73 @@ namespace Shop
                        _playerProgression.CurrentLevel >= item.ClickData.RequiredPlayerLevel;
             }
 
-            return RewardFeatureGate.AreAvailable(item.PaidData?.Rewards, _featureUnlockService);
+            return RewardFeatureGate.AreAvailable(item.PaidData?.Rewards, _featureUnlockService) &&
+                   !(_cardCollectionService?.AreAllCollectionsCompleted == true && IsCardChestOffer(item.PaidData));
+        }
+
+        private bool IsCardChestOffer(GameConfig.PaidShopData data)
+        {
+            if (data?.Rewards == null)
+            {
+                return false;
+            }
+
+            foreach (var reward in data.Rewards)
+            {
+                if (reward?.RewardType != QuestRewardType.Chest)
+                {
+                    continue;
+                }
+
+                var chest = FindChest(reward.RewardId);
+                if (chest?.Rewards == null || chest.Rewards.Count == 0)
+                {
+                    continue;
+                }
+
+                if (IsCardOnlyChest(chest))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool IsCardOnlyChest(ChestConfig.ChestData chest)
+        {
+            if (chest?.Rewards == null || chest.Rewards.Count == 0)
+            {
+                return false;
+            }
+
+            foreach (var entry in chest.Rewards)
+            {
+                if (entry == null || entry.RewardKind != ChestConfig.ChestRewardKind.RandomCard)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private ChestConfig.ChestData FindChest(string chestId)
+        {
+            if (string.IsNullOrEmpty(chestId) || _chestConfig?.Chests == null)
+            {
+                return null;
+            }
+
+            foreach (var chest in _chestConfig.Chests)
+            {
+                if (chest != null && chest.Id == chestId)
+                {
+                    return chest;
+                }
+            }
+
+            return null;
         }
 
         private void BuildItems()
@@ -487,7 +595,7 @@ namespace Shop
 
         private long CalculatePrice(long basePrice, int level)
         {
-            float priceMultiplier = (_bonusEffectService?.ShopPriceMultiplier ?? 1f) * (_collectionBonusService?.ShopPriceMultiplier ?? 1f);
+            float priceMultiplier = (_buffService?.ShopPriceMultiplier ?? 1f) * (_collectionBonusService?.ShopPriceMultiplier ?? 1f);
             double price = Math.Max(0L, basePrice) *
                            Math.Pow(_config?.ShopPriceGrowth ?? 1.16f, Math.Max(0, level)) *
                            Math.Max(0f, priceMultiplier);
@@ -604,10 +712,12 @@ namespace Shop
 
             if (!spent)
             {
+                PaidPurchaseFailed?.Invoke(item.PaidData.Id);
                 return;
             }
 
             ItemBought?.Invoke(item.PaidData.Id);
+            PaidPurchaseSucceeded?.Invoke(item.PaidData.Id);
             StateChanged?.Invoke();
         }
 
@@ -616,6 +726,7 @@ namespace Shop
             if (!_paidItemsByPaymentId.TryGetValue(paymentId, out var item))
             {
                 Debug.LogWarning($"Paid shop purchase with payment id '{paymentId}' was not found.");
+                PaidPurchaseFailed?.Invoke(paymentId);
                 return;
             }
 
@@ -630,19 +741,24 @@ namespace Shop
             }
 
             ItemBought?.Invoke(item.PaidData.Id);
+            PaidPurchaseSucceeded?.Invoke(item.PaidData.Id);
             StateChanged?.Invoke();
         }
 
         private void OnPurchaseFailed(string paymentId)
         {
             Debug.LogWarning($"Paid shop purchase failed: {paymentId}");
+            string itemId = _paidItemsByPaymentId.TryGetValue(paymentId, out var item)
+                ? item.PaidData.Id
+                : paymentId;
+            PaidPurchaseFailed?.Invoke(itemId);
             StateChanged?.Invoke();
         }
 
         private void ApplyPaidRewards(ShopItem item)
         {
             ApplyTimeBasedRewardAmount(item.PaidData);
-            _rewardService.GiveRewards(item.PaidData.Rewards);
+            _rewardService.GiveRewardsImmediately(item.PaidData.Rewards);
             _playerProgression.AddExperience(PlayerExperienceSource.ShopPurchase);
         }
 
@@ -736,6 +852,11 @@ namespace Shop
         private void OnCollectionBonusChanged()
         {
             _save.Recalculate(_config);
+            RaiseStateChanged();
+        }
+
+        private void OnCardCollectionsChanged()
+        {
             RaiseStateChanged();
         }
 

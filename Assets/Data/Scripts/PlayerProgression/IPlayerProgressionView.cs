@@ -11,5 +11,6 @@ namespace PlayerProgression
         void ShowAddedExperience(long amount);
         void ShowLevelUpOffer(System.Action confirmAction, IReadOnlyList<LevelRewardEntry> rewards, string lossText);
         void ShowLevelUpResult(int previousLevel, int newLevel, IReadOnlyList<LevelRewardEntry> rewards);
+        void RefreshLocalization();
     }
 }

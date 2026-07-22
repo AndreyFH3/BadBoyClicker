@@ -52,6 +52,22 @@ namespace QuestSystem
             GrantNow(reward);
         }
 
+        public void GiveRewardsImmediately(IReadOnlyList<QuestReward> rewards)
+        {
+            if (rewards == null)
+            {
+                return;
+            }
+
+            foreach (var reward in rewards)
+            {
+                if (reward != null)
+                {
+                    GrantNow(reward);
+                }
+            }
+        }
+
         private void GrantNow(QuestReward reward)
         {
             switch (reward.RewardType)

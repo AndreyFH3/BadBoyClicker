@@ -238,6 +238,19 @@ namespace PlayerProgression
             }
         }
 
+        public void RefreshLocalization()
+        {
+            SetButtonText(_newLevelButton, "player_progression.new_level_button");
+            SetButtonText(_levelUpConfirmButton, "player_progression.new_level_button");
+            SetButtonText(_levelUpCancelButton, "common.cancel");
+            SetButtonText(_levelUpResultCloseButton, "common.ok");
+
+            if (_levelUpResultRoot != null && _levelUpResultRoot.activeSelf && _levelUpResultText != null)
+            {
+                _levelUpResultText.text = Localization.Tr("player_progression.level_up_result_title");
+            }
+        }
+
         private void RequestNewLevel()
         {
             NewLevelRequested?.Invoke();
@@ -419,6 +432,11 @@ namespace PlayerProgression
 
         private void SetButtonText(Button button, string key)
         {
+            if (button == null)
+            {
+                return;
+            }
+
             TextMeshProUGUI text = button.GetComponentInChildren<TextMeshProUGUI>();
             if (text != null)
             {

@@ -37,9 +37,14 @@ namespace Core.Ads
 
         public void Show()
         {
+            Show(Localization.Tr("error_title"), Localization.Tr("error_description"));
+        }
+
+        public void Show(string title, string message)
+        {
             BuildRuntimeUiIfNeeded();
-            SetText(_titleText, Localization.Tr("error_title"));
-            SetText(_messageText, Localization.Tr("error_description"));
+            SetText(_titleText, title);
+            SetText(_messageText, message);
 
             if (_root != null)
             {

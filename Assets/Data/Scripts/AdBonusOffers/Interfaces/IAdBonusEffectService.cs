@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AdBonusOffers
 {
-    public interface IAdBonusEffectService
+    public interface IBuffService
     {
         event Action Changed;
 

@@ -91,7 +91,7 @@ namespace Installer
             Container.BindInterfacesTo<PurchaseSystem>().AsSingle().NonLazy();
             Container.Bind<IRewardOfferUiGate>().To<RewardOfferUiGate>().AsSingle().NonLazy();
             Container.Bind<IRewardedAdErrorView>().FromInstance(GetRewardedAdErrorView()).AsSingle().NonLazy();
-            Container.BindInterfacesTo<AdBonusEffectService>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<BuffService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AdBonusOfferService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<Timer>().AsSingle().NonLazy();
 
@@ -157,10 +157,10 @@ namespace Installer
             else
                 Container.Bind<IAdBonusOfferView>().FromInstance(CreateRuntimeAdBonusOfferView()).AsSingle().NonLazy();
 
-            if (_rewardActivationView is IRewardActivationView rewardActivationView)
-                Container.Bind<IRewardActivationView>().FromInstance(rewardActivationView).AsSingle().NonLazy();
-            else
-                Container.Bind<IRewardActivationView>().FromInstance(CreateRuntimeRewardActivationView()).AsSingle().NonLazy();
+            Container.Bind<IRewardActivationView>()
+                .FromInstance(GetRewardActivationView())
+                .AsSingle()
+                .NonLazy();
 
             if (_adBonusActiveEffectsView != null)
                 Container.BindInterfacesAndSelfTo<AdBonusActiveEffectsView>().FromInstance(_adBonusActiveEffectsView).AsSingle().NonLazy();
@@ -199,6 +199,25 @@ namespace Installer
         private RewardActivationView CreateRuntimeRewardActivationView()
         {
             return new GameObject("RewardActivationView").AddComponent<RewardActivationView>();
+        }
+
+        private IRewardActivationView GetRewardActivationView()
+        {
+            if (_rewardActivationView is IRewardActivationView view)
+            {
+                return view;
+            }
+
+            if (_rewardActivationView != null &&
+                _rewardActivationView.TryGetComponent(out RewardActivationView siblingView))
+            {
+                return siblingView;
+            }
+
+            Debug.LogWarning(
+                "RewardActivationView is not assigned in GameInstaller. A runtime fallback view will be created.",
+                this);
+            return CreateRuntimeRewardActivationView();
         }
 
         private AdBonusActiveEffectsView CreateRuntimeAdBonusActiveEffectsView()

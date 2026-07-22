@@ -14,7 +14,7 @@ namespace Core
         private Wallet _wallet;
         private IShopRuntimeSave _shopSave;
         private IPlayerProgressionService _playerProgression;
-        private IAdBonusEffectService _bonusEffectService;
+        private IBuffService _buffService;
         private float _elapsed;
 
         [Inject]
@@ -22,12 +22,12 @@ namespace Core
             Wallet wallet,
             IShopRuntimeSave shopSave,
             IPlayerProgressionService playerProgression,
-            IAdBonusEffectService bonusEffectService)
+            IBuffService buffService)
         {
             _wallet = wallet;
             _shopSave = shopSave;
             _playerProgression = playerProgression;
-            _bonusEffectService = bonusEffectService;
+            _buffService = buffService;
         }
 
         public void Initialize()
@@ -39,7 +39,7 @@ namespace Core
         {
             long income = ApplyMultiplier(
                 _shopSave.AutoIncomePerSecond,
-                (_bonusEffectService?.PassiveIncomeMultiplier ?? 1f) * (_bonusEffectService?.AllIncomeMultiplier ?? 1f));
+                (_buffService?.PassiveIncomeMultiplier ?? 1f) * (_buffService?.AllIncomeMultiplier ?? 1f));
             if (income <= 0)
             {
                 _elapsed = 0f;

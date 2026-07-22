@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,19 +13,28 @@ namespace RewardActivation
         [SerializeField] private TextMeshProUGUI _titleText;
         [SerializeField] private TextMeshProUGUI _descriptionText;
         [SerializeField] private Button _activateButton;
+        [SerializeField] private TextMeshProUGUI _activateButtonText;
+        [SerializeField] private Button _postponeButton;
+        [SerializeField] private TextMeshProUGUI _postponeButtonText;
+        [SerializeField, Min(0f)] private float _fadeDuration = 0.2f;
+
+        private CanvasGroup _canvasGroup;
 
         public event Action ActivateRequested;
+        public event Action PostponeRequested;
 
         private void Awake()
         {
             BuildRuntimeUiIfNeeded();
+            _canvasGroup = GetOrAddCanvasGroup(_root);
             AddListeners();
-            SetActive(_root, false);
+            HideImmediate();
         }
 
         private void OnDestroy()
         {
             RemoveListeners();
+            DOTween.Kill(_canvasGroup);
         }
 
         public void Show(RewardActivationViewData data)
@@ -32,12 +42,18 @@ namespace RewardActivation
             SetImage(_icon, data.Icon);
             SetText(_titleText, data.Title);
             SetText(_descriptionText, data.Description);
+            SetText(_activateButtonText, data.ClaimButtonText);
+            SetText(_postponeButtonText, data.PostponeButtonText);
+            SetActive(_postponeButton != null ? _postponeButton.gameObject : null, data.ShowPostponeButton);
+            SetActive(_activateButton != null ? _activateButton.gameObject : null, true);
+            SetSingleButtonLayout(!data.ShowPostponeButton);
             SetActive(_root, true);
+            FadeTo(1f, true);
         }
 
         public void Hide()
         {
-            SetActive(_root, false);
+            FadeTo(0f, false);
         }
 
         private void AddListeners()
@@ -45,6 +61,11 @@ namespace RewardActivation
             if (_activateButton != null)
             {
                 _activateButton.onClick.AddListener(RequestActivate);
+            }
+
+            if (_postponeButton != null)
+            {
+                _postponeButton.onClick.AddListener(RequestPostpone);
             }
         }
 
@@ -54,11 +75,23 @@ namespace RewardActivation
             {
                 _activateButton.onClick.RemoveListener(RequestActivate);
             }
+
+            if (_postponeButton != null)
+            {
+                _postponeButton.onClick.RemoveListener(RequestPostpone);
+            }
         }
 
         private void RequestActivate()
         {
+            SetActive(_activateButton != null ? _activateButton.gameObject : null, false);
             ActivateRequested?.Invoke();
+        }
+
+        private void RequestPostpone()
+        {
+            SetInteractable(false);
+            PostponeRequested?.Invoke();
         }
 
         private void BuildRuntimeUiIfNeeded()
@@ -86,7 +119,8 @@ namespace RewardActivation
             _icon = CreateImage("Icon", _root.transform, new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -58f), new Vector2(72f, 72f));
             _titleText = CreateText("Title", _root.transform, 24, TextAlignmentOptions.Center, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -116f), new Vector2(-48f, 40f));
             _descriptionText = CreateText("Description", _root.transform, 17, TextAlignmentOptions.Center, new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(0.5f, 1f), new Vector2(0f, -160f), new Vector2(-52f, 100f));
-            _activateButton = CreateButton("ActivateButton", _root.transform, "Activate", new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0f, 36f), new Vector2(240f, 48f));
+            _activateButton = CreateButton("ActivateButton", _root.transform, string.Empty, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(75f, 36f), new Vector2(130f, 48f), out _activateButtonText);
+            _postponeButton = CreateButton("PostponeButton", _root.transform, string.Empty, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(-75f, 36f), new Vector2(130f, 48f), out _postponeButtonText);
         }
 
         private GameObject CreatePanel(string name, Transform parent, Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot, Vector2 anchoredPosition, Vector2 size, Color color)
@@ -135,13 +169,82 @@ namespace RewardActivation
             return text;
         }
 
-        private Button CreateButton(string name, Transform parent, string text, Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot, Vector2 anchoredPosition, Vector2 size)
+        private Button CreateButton(string name, Transform parent, string text, Vector2 anchorMin, Vector2 anchorMax, Vector2 pivot, Vector2 anchoredPosition, Vector2 size, out TextMeshProUGUI label)
         {
             var buttonObject = CreatePanel(name, parent, anchorMin, anchorMax, pivot, anchoredPosition, size, new Color(0.18f, 0.38f, 0.7f, 1f));
             var button = buttonObject.AddComponent<Button>();
-            var label = CreateText("Text", buttonObject.transform, 17, TextAlignmentOptions.Center, Vector2.zero, Vector2.one, new Vector2(0.5f, 0.5f), Vector2.zero, Vector2.zero);
+            label = CreateText("Text", buttonObject.transform, 17, TextAlignmentOptions.Center, Vector2.zero, Vector2.one, new Vector2(0.5f, 0.5f), Vector2.zero, Vector2.zero);
             label.text = text;
             return button;
+        }
+
+        private void HideImmediate()
+        {
+            if (_canvasGroup != null)
+            {
+                _canvasGroup.alpha = 0f;
+            }
+
+            SetInteractable(false);
+            SetActive(_root, false);
+        }
+
+        private void FadeTo(float alpha, bool interactableAfterFade)
+        {
+            if (_canvasGroup == null)
+            {
+                SetActive(_root, alpha > 0f);
+                return;
+            }
+
+            DOTween.Kill(_canvasGroup);
+            SetInteractable(false);
+            _canvasGroup.DOFade(alpha, _fadeDuration)
+                .SetTarget(_canvasGroup)
+                .SetUpdate(true)
+                .OnComplete(() =>
+                {
+                    if (alpha <= 0f)
+                    {
+                        SetActive(_root, false);
+                    }
+                    else
+                    {
+                        SetInteractable(interactableAfterFade);
+                    }
+                });
+        }
+
+        private void SetInteractable(bool value)
+        {
+            if (_canvasGroup == null)
+            {
+                return;
+            }
+
+            _canvasGroup.interactable = value;
+            _canvasGroup.blocksRaycasts = value;
+        }
+
+        private void SetSingleButtonLayout(bool singleButton)
+        {
+            if (_activateButton == null || !(_activateButton.transform is RectTransform rect))
+            {
+                return;
+            }
+
+            rect.anchoredPosition = new Vector2(singleButton ? 0f : 75f, rect.anchoredPosition.y);
+            rect.sizeDelta = new Vector2(singleButton ? 240f : 130f, rect.sizeDelta.y);
+        }
+
+        private static CanvasGroup GetOrAddCanvasGroup(GameObject target)
+        {
+            if (target == null)
+            {
+                return null;
+            }
+
+            return target.TryGetComponent(out CanvasGroup group) ? group : target.AddComponent<CanvasGroup>();
         }
 
         private void SetImage(Image image, Sprite sprite)

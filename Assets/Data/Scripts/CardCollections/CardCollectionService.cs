@@ -25,6 +25,32 @@ namespace CardCollections
         public bool IsUnlocked => _featureUnlockService == null ||
                                   _featureUnlockService.IsUnlocked(PlayerFeatureType.CardCollection);
 
+        public bool AreAllCollectionsCompleted
+        {
+            get
+            {
+                bool hasCollections = false;
+
+                foreach (var collection in Collections)
+                {
+                    if (collection == null || string.IsNullOrEmpty(collection.Id))
+                    {
+                        continue;
+                    }
+
+                    hasCollections = true;
+                    if (!IsCollectionCompleted(collection))
+                    {
+                        return false;
+                    }
+                }
+
+                return hasCollections;
+            }
+        }
+
+        public long LastCardChestAdUtcTicks => _save?.LastCardChestAdUtcTicks ?? 0;
+
         public IReadOnlyList<CardCollectionConfig.CardCollectionData> Collections =>
             _config?.Collections ?? Array.Empty<CardCollectionConfig.CardCollectionData>();
 
@@ -189,6 +215,12 @@ namespace CardCollections
             return collection != null && _save.IsRewardClaimed(collection.Id);
         }
 
+        public void SetLastCardChestAdUtcTicks(long utcTicks)
+        {
+            _save.SetLastCardChestAdUtcTicks(utcTicks);
+            Changed?.Invoke();
+        }
+
         public void ResetAllProgress()
         {
             if (!IsUnlocked)
@@ -347,11 +379,39 @@ namespace CardCollections
                 displays.Add(new RewardDisplay
                 {
                     Icon = reward.Icon,
-                    Amount = FormatRewardAmount(reward)
+                    Amount = FormatRewardAmount(reward),
+                    Description = FormatRewardDescription(reward)
                 });
             }
 
             return displays;
+        }
+
+        private string FormatRewardDescription(QuestReward reward)
+        {
+            if (reward == null)
+            {
+                return string.Empty;
+            }
+
+            if (!string.IsNullOrEmpty(reward.DisplayTextLocalizationKey))
+            {
+                return _localization.Localize(reward.DisplayTextLocalizationKey);
+            }
+
+            if (reward.RewardType == QuestRewardType.Currency)
+            {
+                return reward.CurrencyType switch
+                {
+                    QuestRewardCurrencyType.Soft => _localization.Localize("currency.soft"),
+                    QuestRewardCurrencyType.Decor => _localization.Localize("currency.decor"),
+                    QuestRewardCurrencyType.Hard => _localization.Localize("currency.hard"),
+                    QuestRewardCurrencyType.Yan => _localization.Localize("currency.yan"),
+                    _ => string.Empty
+                };
+            }
+
+            return reward.DisplayText ?? string.Empty;
         }
 
         // card_collection_* Custom rewards carry no meaningful currency amount:

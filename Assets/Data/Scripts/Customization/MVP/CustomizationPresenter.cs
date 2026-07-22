@@ -20,6 +20,7 @@ namespace Customization
         {
             _model.StateChanged += UpdateView;
             _view.ItemClicked += OnItemClicked;
+            _view.TabOpened += OnTabOpened;
             Localization.LanguageChanged += UpdateView;
 
             UpdateView();
@@ -29,6 +30,7 @@ namespace Customization
         {
             _model.StateChanged -= UpdateView;
             _view.ItemClicked -= OnItemClicked;
+            _view.TabOpened -= OnTabOpened;
             Localization.LanguageChanged -= UpdateView;
         }
 
@@ -40,6 +42,11 @@ namespace Customization
         private void OnItemClicked(CustomizationItemType type, string id)
         {
             _model.BuyOrSelect(type, id);
+        }
+
+        private void OnTabOpened(CustomizationItemType type)
+        {
+            _model.MarkSeen(type);
         }
     }
 }

@@ -8,6 +8,7 @@ using UnityEngine;
 using Zenject;
 using GameLocalization;
 using QuestSystem;
+using PlayerFeatures;
 
 namespace PlayerProgression
 {
@@ -20,7 +21,8 @@ namespace PlayerProgression
         private LazyInject<IRewardedAdsService> _rewardedAds;
         private ILocalizationService _localization;
         private IQuestRewardService _rewardService;
-        private IAdBonusEffectService _bonusEffectService;
+        private IBuffService _buffService;
+        private PlayerFeatureUnlockConfig _featureUnlockConfig;
 
         public int CurrentLevel => _save.IsTutorialCompleted ? _save.CompletedLevels + 1 : 0;
         public long CurrentExperience => _save.IsTutorialCompleted ? _save.CurrentExperience : _save.TutorialClicks;
@@ -39,7 +41,7 @@ namespace PlayerProgression
         public event Action<int> LevelCompleted;
 
         [Inject]
-        public void Construct(GameConfig config, Wallet wallet, PlayerProgressionRuntimeSave save, LazyInject<IShopRuntimeSave> shopSave, LazyInject<IRewardedAdsService> rewardedAds, ILocalizationService localization, IQuestRewardService rewardService, IAdBonusEffectService bonusEffectService)
+        public void Construct(GameConfig config, Wallet wallet, PlayerProgressionRuntimeSave save, LazyInject<IShopRuntimeSave> shopSave, LazyInject<IRewardedAdsService> rewardedAds, ILocalizationService localization, IQuestRewardService rewardService, IBuffService buffService, PlayerFeatureUnlockConfig featureUnlockConfig)
         {
             _config = config;
             _wallet = wallet;
@@ -48,7 +50,8 @@ namespace PlayerProgression
             _rewardedAds = rewardedAds;
             _localization = localization;
             _rewardService = rewardService;
-            _bonusEffectService = bonusEffectService;
+            _buffService = buffService;
+            _featureUnlockConfig = featureUnlockConfig;
         }
 
         public void Initialize()
@@ -83,7 +86,7 @@ namespace PlayerProgression
                 return;
             }
 
-            float experienceMultiplier = _bonusEffectService?.ExperienceMultiplier ?? 1f;
+            float experienceMultiplier = _buffService?.ExperienceMultiplier ?? 1f;
             amount = Math.Max(1, (long)Math.Ceiling(amount * Math.Max(0f, experienceMultiplier)));
 
             int completedLevels = _save.CompletedLevels;
@@ -267,7 +270,8 @@ namespace PlayerProgression
             {
                 entries.Add(new LevelRewardEntry(
                     _config?.PlayerProgression?.MiddleRewardIcon,
-                    _localization.Format("player_progression.reward.amount", middleReward)));
+                    _localization.Format("player_progression.reward.amount", middleReward),
+                    _localization.Localize("player_progression.reward.middle_currency.description")));
             }
 
             var bonuses = GetLevelData(completedLevels)?.Bonuses;
@@ -299,11 +303,40 @@ namespace PlayerProgression
                         continue;
                     }
 
-                    entries.Add(new LevelRewardEntry(reward.Icon, reward.DisplayText));
+                    string rewardText = !string.IsNullOrEmpty(reward.DisplayTextLocalizationKey)
+                        ? _localization.Localize(reward.DisplayTextLocalizationKey)
+                        : reward.DisplayText;
+                    entries.Add(new LevelRewardEntry(reward.Icon, rewardText));
                 }
             }
 
+            AddFeatureUnlockEntries(entries, completedLevels + 2);
+
             return entries;
+        }
+
+        private void AddFeatureUnlockEntries(List<LevelRewardEntry> entries, int targetLevel)
+        {
+            var features = _featureUnlockConfig?.Features;
+            if (features == null)
+            {
+                return;
+            }
+
+            foreach (PlayerFeatureUnlockData feature in features)
+            {
+                if (feature == null || !feature.IsShowable || feature.RequiredLevel != targetLevel)
+                {
+                    continue;
+                }
+
+                entries.Add(new LevelRewardEntry(
+                    feature.Icon,
+                    _localization.Localize($"player_features.unlock.{feature.Feature}"),
+                    string.IsNullOrEmpty(feature.DescriptionLocalizationKey)
+                        ? null
+                        : _localization.Localize(feature.DescriptionLocalizationKey)));
+            }
         }
 
         private string GetBonusDescription(PlayerProgressBonusType type)

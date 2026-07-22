@@ -7,6 +7,7 @@ namespace CardCollections
     {
         public CardState[] Cards;
         public CollectionState[] Collections;
+        public long LastCardChestAdUtcTicks;
 
         [Serializable]
         public struct CardState

@@ -71,6 +71,22 @@ namespace Customization
             return _save.IsPurchased(type, id);
         }
 
+        public bool HasUnseen(CustomizationItemType type)
+        {
+            return _save.HasUnseen(type);
+        }
+
+        public void MarkSeen(CustomizationItemType type)
+        {
+            if (!_save.HasUnseen(type))
+            {
+                return;
+            }
+
+            _save.MarkSeen(type);
+            Changed?.Invoke();
+        }
+
         public bool CanBuy(CustomizationItemType type, string id)
         {
             if (!IsUnlocked)
@@ -148,7 +164,12 @@ namespace Customization
                 return;
             }
 
+            bool isNew = !IsPurchased(type, id);
             _save.AddPurchased(type, id);
+            if (isNew)
+            {
+                _save.MarkUnseen(type, id);
+            }
             Changed?.Invoke();
         }
 

@@ -100,6 +100,13 @@ namespace PlayerProgression
             _popupRoot.SetActive(true);
         }
 
+        public void RefreshLocalization()
+        {
+            EnsureCreated();
+            _newLevelButton.GetComponentInChildren<TextMeshProUGUI>().text = Localization.Tr("player_progression.new_level_button");
+            _popupConfirmButton.GetComponentInChildren<TextMeshProUGUI>().text = Localization.Tr("player_progression.new_level_button");
+        }
+
         private static string BuildRewardsText(IReadOnlyList<LevelRewardEntry> rewards)
         {
             if (rewards == null)
@@ -116,6 +123,11 @@ namespace PlayerProgression
                 }
 
                 builder.Append(reward.Text);
+                if (!string.IsNullOrEmpty(reward.Description))
+                {
+                    builder.Append(" — ");
+                    builder.Append(reward.Description);
+                }
             }
 
             return builder.ToString();

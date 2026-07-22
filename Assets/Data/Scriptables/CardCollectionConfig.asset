@@ -68,6 +68,18 @@ MonoBehaviour:
       _stars: 3
       _icon: {fileID: -726316802023506734, guid: a5f4684bf32e5be4eb65aa232180eeeb, type: 3}
     _rewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 10
+      _rewardId: 
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
     - _rewardType: 4
       _currencyType: 0
       _amount: 10
@@ -135,6 +147,18 @@ MonoBehaviour:
       _stars: 3
       _icon: {fileID: -7786771360386828634, guid: f331656657b9eb74cbb2ee1a0721f1ec, type: 3}
     _rewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 10
+      _rewardId: 
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
     - _rewardType: 4
       _currencyType: 0
       _amount: 10
@@ -202,6 +226,18 @@ MonoBehaviour:
       _stars: 4
       _icon: {fileID: -2751061380012151011, guid: e50d2cceb4abcd545bca2a3c0dd8e85d, type: 3}
     _rewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 10
+      _rewardId: 
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
     - _rewardType: 4
       _currencyType: 0
       _amount: 10
@@ -269,6 +305,18 @@ MonoBehaviour:
       _stars: 5
       _icon: {fileID: 6575078318536239041, guid: 303c4d6ef2e5eaa4e96dafe2e4f82524, type: 3}
     _rewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 10
+      _rewardId: 
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
     - _rewardType: 4
       _currencyType: 0
       _amount: 0
@@ -336,6 +384,18 @@ MonoBehaviour:
       _stars: 5
       _icon: {fileID: 7419883896294469389, guid: 091b50babf458d04b82be2a17dcd6d48, type: 3}
     _rewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 10
+      _rewardId: 
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
     - _rewardType: 4
       _currencyType: 0
       _amount: 25
@@ -403,6 +463,18 @@ MonoBehaviour:
       _stars: 5
       _icon: {fileID: -1129968827519779059, guid: f5c366c4dbababe4bbcd1ed6b5b3281e, type: 3}
     _rewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 10
+      _rewardId: 
+      _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+      _displayTextLocalizationKey: 
+      _displayText: 
+      _requiresActivation: 0
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
     - _rewardType: 4
       _currencyType: 0
       _amount: 0

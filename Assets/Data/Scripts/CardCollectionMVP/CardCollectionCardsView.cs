@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CardCollections;
 using DG.Tweening;
+using PlayerProgression;
 using Rewards;
 using TMPro;
 using UnityEngine;
@@ -25,7 +26,7 @@ namespace CardCollectionMVP
 
         [Header("Rewards")]
         [SerializeField] private Transform _rewardsRoot;
-        [SerializeField] private RewardView _rewardReference;
+        [SerializeField] private LevelRewardEntryView _rewardReference;
 
         [Header("Collect")]
         [SerializeField] private Button _collectButton;
@@ -41,7 +42,7 @@ namespace CardCollectionMVP
         [SerializeField] private Ease _hideEase = Ease.InQuad;
 
         private readonly Dictionary<string, CardItemView> _cards = new();
-        private readonly List<RewardView> _rewardViews = new();
+        private readonly List<LevelRewardEntryView> _rewardViews = new();
         private Tween _visibilityTween;
         private bool _isVisible;
 
@@ -323,9 +324,10 @@ namespace CardCollectionMVP
             for (int i = 0; i < count; i++)
             {
                 bool isNew = i >= _rewardViews.Count;
-                RewardView view = isNew ? Instantiate(_rewardReference, _rewardsRoot) : _rewardViews[i];
+                LevelRewardEntryView view = isNew ? Instantiate(_rewardReference, _rewardsRoot) : _rewardViews[i];
 
-                view.Set(rewards[i]);
+                RewardDisplay reward = rewards[i];
+                view.Setup(new LevelRewardEntry(reward.Icon, reward.Amount, reward.Description));
                 view.gameObject.SetActive(true);
 
                 if (isNew)

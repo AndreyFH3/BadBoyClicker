@@ -28,5 +28,9 @@ namespace PlayerProgression
         public void ShowLevelUpResult(int previousLevel, int newLevel, System.Collections.Generic.IReadOnlyList<LevelRewardEntry> rewards)
         {
         }
+
+        public void RefreshLocalization()
+        {
+        }
     }
 }

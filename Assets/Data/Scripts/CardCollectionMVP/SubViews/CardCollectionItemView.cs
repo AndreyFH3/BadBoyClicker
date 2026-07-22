@@ -6,7 +6,6 @@ using GameLocalization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 namespace CardCollectionMVP
 {
@@ -30,18 +29,11 @@ namespace CardCollectionMVP
         private readonly List<CardStateView> _cardViews = new();
         private string _id;
         private CardCollectionViewData _data;
-        private ICardCollectionRewardWindow _rewardWindow;
 
         public event Action<string> Selected;
         public event Action<string> CollectRequested;
 
         public CardCollectionViewData Data => _data;
-
-        [Inject]
-        private void Construct(ICardCollectionRewardWindow rewardWindow)
-        {
-            _rewardWindow = rewardWindow;
-        }
 
         private void Awake()
         {

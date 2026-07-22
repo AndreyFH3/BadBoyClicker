@@ -6,7 +6,7 @@ using Zenject;
 
 namespace AdBonusOffers
 {
-    public class AdBonusEffectService : IAdBonusEffectService, IBoostRewardService, ITickable
+    public class BuffService : IBuffService, IBoostRewardService, ITickable
     {
         private const float MaxTickDeltaSeconds = 1f;
 
@@ -120,9 +120,31 @@ namespace AdBonusOffers
                 return;
             }
 
-            _activeEffects.Add(new ActiveEffect(effect));
+            ActiveEffect activeEffect = FindActiveEffect(effect.EffectType);
+            if (activeEffect == null)
+            {
+                _activeEffects.Add(new ActiveEffect(effect));
+            }
+            else
+            {
+                activeEffect.Combine(effect);
+            }
+
             RebuildViewData();
             Changed?.Invoke();
+        }
+
+        private ActiveEffect FindActiveEffect(AdBonusEffectType type)
+        {
+            foreach (ActiveEffect effect in _activeEffects)
+            {
+                if (effect.Type == type && !effect.IsExpired)
+                {
+                    return effect;
+                }
+            }
+
+            return null;
         }
 
         private void RebuildViewData()
@@ -201,10 +223,11 @@ namespace AdBonusOffers
         {
             public readonly AdBonusEffectType Type;
             public readonly string Id;
-            public readonly float Multiplier;
-            public readonly float DiscountPercent;
-            public readonly float DurationSeconds;
+            public float Multiplier;
+            public float DiscountPercent;
+            public float DurationSeconds;
             public float RemainingSeconds;
+            private int _combinedEffectCount;
 
             public ActiveEffect(AdBonusOfferConfig.AdBonusEffectData data)
             {
@@ -214,6 +237,22 @@ namespace AdBonusOffers
                 DiscountPercent = data.DiscountPercent;
                 DurationSeconds = data.DurationSeconds;
                 RemainingSeconds = data.DurationSeconds;
+                _combinedEffectCount = 1;
+            }
+
+            public void Combine(AdBonusOfferConfig.AdBonusEffectData data)
+            {
+                int combinedCount = _combinedEffectCount + 1;
+                DurationSeconds = GetAverage(DurationSeconds, data.DurationSeconds, combinedCount);
+                RemainingSeconds = GetAverage(RemainingSeconds, data.DurationSeconds, combinedCount);
+                Multiplier += data.Multiplier;
+                DiscountPercent = Mathf.Clamp(DiscountPercent + data.DiscountPercent, 0f, 100f);
+                _combinedEffectCount = combinedCount;
+            }
+
+            private float GetAverage(float currentAverage, float addedValue, int combinedCount)
+            {
+                return (currentAverage * _combinedEffectCount + addedValue) / combinedCount;
             }
 
             public bool IsExpired => RemainingSeconds <= 0f;

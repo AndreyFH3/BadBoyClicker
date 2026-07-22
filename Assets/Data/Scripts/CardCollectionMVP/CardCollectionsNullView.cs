@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CardCollections;
+using Shop;
 
 namespace CardCollectionMVP
 {
@@ -18,6 +19,18 @@ namespace CardCollectionMVP
             remove { }
         }
 
+        public event Action CardChestPurchaseRequested
+        {
+            add { }
+            remove { }
+        }
+
+        public event Action CardChestAdRequested
+        {
+            add { }
+            remove { }
+        }
+
         public void SetVisible(bool isVisible)
         {
         }
@@ -27,6 +40,14 @@ namespace CardCollectionMVP
         }
 
         public void UpdateCollection(CardCollectionViewData collection)
+        {
+        }
+
+        public void SetCardChestPurchaseData(ShopElementData data)
+        {
+        }
+
+        public void SetCardChestAdAvailable(bool isAvailable)
         {
         }
     }

@@ -21,7 +21,7 @@ namespace PlayerProgression
             _service.Changed += UpdateView;
             _service.ExperienceAdded += OnExperienceAdded;
             _view.NewLevelRequested += OnNewLevelRequested;
-            Localization.LanguageChanged += UpdateView;
+            Localization.LanguageChanged += OnLanguageChanged;
             UpdateView();
         }
 
@@ -30,7 +30,7 @@ namespace PlayerProgression
             _service.Changed -= UpdateView;
             _service.ExperienceAdded -= OnExperienceAdded;
             _view.NewLevelRequested -= OnNewLevelRequested;
-            Localization.LanguageChanged -= UpdateView;
+            Localization.LanguageChanged -= OnLanguageChanged;
         }
 
         private void UpdateView()
@@ -46,6 +46,12 @@ namespace PlayerProgression
         private void OnExperienceAdded(long amount)
         {
             _view.ShowAddedExperience(amount);
+        }
+
+        private void OnLanguageChanged()
+        {
+            _view.RefreshLocalization();
+            UpdateView();
         }
 
         private void OnNewLevelRequested()

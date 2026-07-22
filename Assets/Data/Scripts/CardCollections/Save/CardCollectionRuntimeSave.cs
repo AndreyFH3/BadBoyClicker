@@ -8,8 +8,17 @@ namespace CardCollections
     {
         private readonly Dictionary<string, int> _cardAmounts = new();
         private readonly HashSet<string> _rewardClaimedCollections = new();
+        private long _lastCardChestAdUtcTicks;
 
         public event Action Changed;
+
+        public long LastCardChestAdUtcTicks => _lastCardChestAdUtcTicks;
+
+        public void SetLastCardChestAdUtcTicks(long utcTicks)
+        {
+            _lastCardChestAdUtcTicks = Math.Max(0, utcTicks);
+            Changed?.Invoke();
+        }
 
         public int GetCardAmount(string cardId)
         {
@@ -80,6 +89,7 @@ namespace CardCollections
         {
             _cardAmounts.Clear();
             _rewardClaimedCollections.Clear();
+            _lastCardChestAdUtcTicks = 0;
             Changed?.Invoke();
         }
 
@@ -87,6 +97,7 @@ namespace CardCollections
         {
             _cardAmounts.Clear();
             _rewardClaimedCollections.Clear();
+            _lastCardChestAdUtcTicks = Math.Max(0, data?.LastCardChestAdUtcTicks ?? 0);
 
             if (data?.Cards != null)
             {
@@ -144,7 +155,8 @@ namespace CardCollections
             return new CardCollectionSaveData
             {
                 Cards = cards,
-                Collections = collections
+                Collections = collections,
+                LastCardChestAdUtcTicks = _lastCardChestAdUtcTicks
             };
         }
     }

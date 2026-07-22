@@ -630,7 +630,7 @@ MonoBehaviour:
     _purchaseKind: 1
     _paymentId: 
     _priceCurrencyType: 2
-    _priceAmount: 15
+    _priceAmount: 25
     _nameLocalizationKey: chest.chest_3.title
     _name: Card Chest
     _icon: {fileID: -7057432041066431953, guid: 70f431c04906996459960caf8a378d22, type: 3}
@@ -680,7 +680,7 @@ MonoBehaviour:
     _purchaseKind: 1
     _paymentId: 
     _priceCurrencyType: 2
-    _priceAmount: 20
+    _priceAmount: 75
     _nameLocalizationKey: chest.chest_5.title
     _name: Boost Chest
     _icon: {fileID: 1208525442414262951, guid: 70f431c04906996459960caf8a378d22, type: 3}
@@ -816,8 +816,8 @@ MonoBehaviour:
     _middleRewardPerLevel: 5
     _middleRewardIcon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
     _purchaseExperiencePercent: 0.1
-    _baseExperienceToComplete: 2500
-    _experienceGrowth: 1.35
+    _baseExperienceToComplete: 1000
+    _experienceGrowth: 1.4
     _levelBonusScale: 10
     _tutorialClickTarget: 50
     _experienceRewards:
@@ -834,31 +834,31 @@ MonoBehaviour:
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards: []
     - _decorReward: 10
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards: []
     - _decorReward: 10
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards: []
     - _decorReward: 10
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards:
       - _rewardType: 3
         _currencyType: 0
         _amount: 0
         _rewardId: Chest_1
-        _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+        _icon: {fileID: 7204593959208558865, guid: 70f431c04906996459960caf8a378d22, type: 3}
         _displayTextLocalizationKey: chest.chest_1.title
         _displayText: Chest
         _requiresActivation: 0
@@ -870,39 +870,39 @@ MonoBehaviour:
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards: []
     - _decorReward: 10
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards: []
     - _decorReward: 15
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards: []
     - _decorReward: 15
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards: []
     - _decorReward: 15
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards:
       - _rewardType: 3
         _currencyType: 0
         _amount: 0
         _rewardId: Chest_1
-        _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+        _icon: {fileID: 7204593959208558865, guid: 70f431c04906996459960caf8a378d22, type: 3}
         _displayTextLocalizationKey: chest.chest_1.title
-        _displayText: Chest
+        _displayText: chest_text
         _requiresActivation: 0
         _activationTitleLocalizationKey: 
         _activationTitle: 
@@ -912,39 +912,39 @@ MonoBehaviour:
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards: []
     - _decorReward: 20
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards: []
     - _decorReward: 20
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards: []
     - _decorReward: 25
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards: []
     - _decorReward: 25
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards:
       - _rewardType: 3
         _currencyType: 0
         _amount: 0
         _rewardId: Chest_1
-        _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+        _icon: {fileID: 7204593959208558865, guid: 70f431c04906996459960caf8a378d22, type: 3}
         _displayTextLocalizationKey: chest.chest_1.title
-        _displayText: Chest
+        _displayText: chest_text
         _requiresActivation: 0
         _activationTitleLocalizationKey: 
         _activationTitle: 
@@ -954,39 +954,39 @@ MonoBehaviour:
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards: []
     - _decorReward: 30
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards: []
     - _decorReward: 35
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards: []
     - _decorReward: 35
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards: []
     - _decorReward: 40
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards:
       - _rewardType: 3
         _currencyType: 0
         _amount: 0
         _rewardId: Chest_1
-        _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
+        _icon: {fileID: 7204593959208558865, guid: 70f431c04906996459960caf8a378d22, type: 3}
         _displayTextLocalizationKey: chest.chest_1.title
-        _displayText: Chest
+        _displayText: chest_text
         _requiresActivation: 0
         _activationTitleLocalizationKey: 
         _activationTitle: 
@@ -996,39 +996,39 @@ MonoBehaviour:
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards: []
     - _decorReward: 60
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards: []
     - _decorReward: 70
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards: []
     - _decorReward: 85
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards: []
     - _decorReward: 100
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards:
       - _rewardType: 3
         _currencyType: 0
         _amount: 0
-        _rewardId: Chest_1
-        _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
-        _displayTextLocalizationKey: chest.chest_1.title
-        _displayText: Chest
+        _rewardId: Chest_2
+        _icon: {fileID: 1305596846199975976, guid: 70f431c04906996459960caf8a378d22, type: 3}
+        _displayTextLocalizationKey: chest.chest_2.title
+        _displayText: chest_text
         _requiresActivation: 0
         _activationTitleLocalizationKey: 
         _activationTitle: 
@@ -1038,38 +1038,38 @@ MonoBehaviour:
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards: []
     - _decorReward: 140
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards: []
     - _decorReward: 160
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards: []
     - _decorReward: 180
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards: []
     - _decorReward: 190
       _bonuses:
       - _type: 0
         _percent: 2
-        _icon: {fileID: -3720268985596655753, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
       _rewards:
       - _rewardType: 3
         _currencyType: 0
         _amount: 0
-        _rewardId: Chest_1
-        _icon: {fileID: -7028026260565875171, guid: 24dbb9f0a547f744f84f4a9869d03204, type: 3}
-        _displayTextLocalizationKey: chest.chest_1.title
+        _rewardId: Chest_2
+        _icon: {fileID: 1305596846199975976, guid: 70f431c04906996459960caf8a378d22, type: 3}
+        _displayTextLocalizationKey: chest.chest_2.title
         _displayText: Chest
         _requiresActivation: 0
         _activationTitleLocalizationKey: 
@@ -1080,7 +1080,7 @@ MonoBehaviour:
       _bonuses:
       - _type: 1
         _percent: 2
-        _icon: {fileID: 5106682746517456488, guid: b555ca8c3f21e32409c9bc0b59eb2f87, type: 3}
+        _icon: {fileID: -7836293442648079337, guid: 776ad9826aa0baf43940831c12264ac4, type: 3}
       _rewards: []
   _data:
     _scenesId:

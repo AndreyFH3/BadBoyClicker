@@ -51,21 +51,18 @@ namespace Customization
                     continue;
                 }
 
-                bool isPurchased = _service.IsPurchased(type.Value, item.Id);
-                if (isPurchased)
-                {
-                    if (!IsSelected(type.Value, item.Id))
-                    {
-                        return true;
-                    }
-                }
-                else if (_service.CanBuy(type.Value, item.Id))
+                if (_service.CanBuy(type.Value, item.Id))
                 {
                     return true;
                 }
             }
 
-            return false;
+            return _service.HasUnseen(type.Value);
+        }
+
+        public void MarkSeen(CustomizationItemType type)
+        {
+            _service.MarkSeen(type);
         }
 
         public List<CustomizationElementViewData> GetAllData()

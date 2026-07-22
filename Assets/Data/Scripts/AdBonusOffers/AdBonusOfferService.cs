@@ -20,7 +20,7 @@ namespace AdBonusOffers
         private AdBonusOfferConfig _config;
         private IRewardedAdsService _adsService;
         private IQuestRewardService _rewardService;
-        private IAdBonusEffectService _effectService;
+        private IBuffService _buffService;
         private ILocalizationService _localization;
         private Wallet _wallet;
         private IPlayerFeatureUnlockService _featureUnlockService;
@@ -47,7 +47,7 @@ namespace AdBonusOffers
             AdBonusOfferConfig config,
             IRewardedAdsService adsService,
             IQuestRewardService rewardService,
-            IAdBonusEffectService effectService,
+            IBuffService buffService,
             ILocalizationService localization,
             Wallet wallet,
             IPlayerFeatureUnlockService featureUnlockService,
@@ -57,7 +57,7 @@ namespace AdBonusOffers
             _config = config;
             _adsService = adsService;
             _rewardService = rewardService;
-            _effectService = effectService;
+            _buffService = buffService;
             _localization = localization;
             _wallet = wallet;
             _featureUnlockService = featureUnlockService;
@@ -380,7 +380,7 @@ namespace AdBonusOffers
 
             foreach (var effect in effects)
             {
-                _effectService.Apply(effect);
+                _buffService.Apply(effect);
             }
         }
 

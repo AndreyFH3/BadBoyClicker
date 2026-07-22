@@ -23,7 +23,7 @@ MonoBehaviour:
       _reward:
         _rewardType: 0
         _currencyType: 0
-        _amount: 0
+        _amount: 630652
         _rewardId: 
         _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
         _displayTextLocalizationKey: 
@@ -43,7 +43,7 @@ MonoBehaviour:
       _reward:
         _rewardType: 0
         _currencyType: 1
-        _amount: 18
+        _amount: 12
         _rewardId: 
         _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
         _displayTextLocalizationKey: 
@@ -55,15 +55,15 @@ MonoBehaviour:
         _activationDescription: 
       _cardCollectionId: 
       _allowDuplicateCards: 1
-      _minAmount: 10
-      _maxAmount: 20
+      _minAmount: 3
+      _maxAmount: 5
       _scaleWithIncomeMultiplier: 0
     - _rarityWeight: 15
       _rewardKind: 0
       _reward:
         _rewardType: 0
         _currencyType: 0
-        _amount: 0
+        _amount: 11462662
         _rewardId: 
         _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
         _displayTextLocalizationKey: 
@@ -108,7 +108,7 @@ MonoBehaviour:
       _reward:
         _rewardType: 0
         _currencyType: 0
-        _amount: 0
+        _amount: 1450655
         _rewardId: 
         _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
         _displayTextLocalizationKey: 
@@ -148,7 +148,7 @@ MonoBehaviour:
       _reward:
         _rewardType: 0
         _currencyType: 2
-        _amount: 0
+        _amount: 5
         _rewardId: 
         _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
         _displayTextLocalizationKey: 
@@ -206,7 +206,7 @@ MonoBehaviour:
   - _id: Chest_3
     _titleLocalizationKey: chest.chest_3.title
     _title: Card Chest
-    _icon: {fileID: -7057432041066431953, guid: 70f431c04906996459960caf8a378d22, type: 3}
+    _icon: {fileID: 8956127547417997447, guid: 70f431c04906996459960caf8a378d22, type: 3}
     _rewards:
     - _rarityWeight: 100
       _rewardKind: 1
@@ -231,14 +231,14 @@ MonoBehaviour:
   - _id: Chest_4
     _titleLocalizationKey: chest.chest_4.title
     _title: Treasure Chest
-    _icon: {fileID: 8956127547417997447, guid: 70f431c04906996459960caf8a378d22, type: 3}
+    _icon: {fileID: -7057432041066431953, guid: 70f431c04906996459960caf8a378d22, type: 3}
     _rewards:
     - _rarityWeight: 25
       _rewardKind: 0
       _reward:
         _rewardType: 0
         _currencyType: 0
-        _amount: 21146013
+        _amount: 371
         _rewardId: 
         _icon: {fileID: 6410043568881652876, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
         _displayTextLocalizationKey: 
@@ -258,7 +258,7 @@ MonoBehaviour:
       _reward:
         _rewardType: 0
         _currencyType: 1
-        _amount: 120
+        _amount: 6
         _rewardId: 
         _icon: {fileID: -842284591607427938, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
         _displayTextLocalizationKey: 

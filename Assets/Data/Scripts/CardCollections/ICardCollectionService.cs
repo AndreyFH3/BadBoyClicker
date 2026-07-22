@@ -7,6 +7,8 @@ namespace CardCollections
     public interface ICardCollectionService : ISavable<CardCollectionSaveData>
     {
         bool IsUnlocked { get; }
+        bool AreAllCollectionsCompleted { get; }
+        long LastCardChestAdUtcTicks { get; }
         IReadOnlyList<CardCollectionConfig.CardCollectionData> Collections { get; }
         event Action Changed;
         event Action<CardCollectionViewData> CollectionChanged;
@@ -26,6 +28,7 @@ namespace CardCollections
         bool TryResetCollectionProgress(string collectionId);
         bool TryClaimReward(string collectionId);
         bool IsRewardClaimed(string collectionId);
+        void SetLastCardChestAdUtcTicks(long utcTicks);
         void ResetAllProgress();
     }
 }

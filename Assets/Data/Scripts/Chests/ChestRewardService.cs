@@ -216,8 +216,10 @@ namespace Chests
                     return entry.Reward != null &&
                            RewardFeatureGate.IsAvailable(entry.Reward, _featureUnlockService);
                 case ChestConfig.ChestRewardKind.RandomCard:
-                    return _featureUnlockService == null ||
-                           _featureUnlockService.IsUnlocked(PlayerFeatureType.CardCollection);
+                    return (_featureUnlockService == null ||
+                            _featureUnlockService.IsUnlocked(PlayerFeatureType.CardCollection)) &&
+                           (_cardCollectionService == null ||
+                            !_cardCollectionService.AreAllCollectionsCompleted);
                 default:
                     return false;
             }

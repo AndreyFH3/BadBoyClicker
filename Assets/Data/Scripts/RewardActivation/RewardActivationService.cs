@@ -10,9 +10,10 @@ namespace RewardActivation
     {
         private readonly IRewardActivationView _view;
         private readonly ILocalizationService _localization;
-        private readonly Queue<(QuestReward Reward, Action Grant)> _pending = new();
+        private readonly Queue<(RewardActivationViewData Data, Action Grant, Action Postpone)> _pending = new();
 
         private Action _currentGrant;
+        private Action _currentPostpone;
 
         public RewardActivationService(IRewardActivationView view, ILocalizationService localization)
         {
@@ -23,21 +24,41 @@ namespace RewardActivation
         public void Initialize()
         {
             _view.ActivateRequested += OnActivateRequested;
+            _view.PostponeRequested += OnPostponeRequested;
         }
 
         public void Dispose()
         {
             _view.ActivateRequested -= OnActivateRequested;
+            _view.PostponeRequested -= OnPostponeRequested;
         }
 
-        public void Enqueue(QuestReward reward, Action grantAction)
+        public void Enqueue(QuestReward reward, Action grantAction, Action postponeAction = null)
         {
             if (reward == null || grantAction == null)
             {
                 return;
             }
 
-            _pending.Enqueue((reward, grantAction));
+            var data = new RewardActivationViewData(
+                reward.Icon,
+                ResolveTitle(reward),
+                ResolveDescription(reward),
+                _localization.Localize("common.take"),
+                _localization.Localize("common.later"),
+                postponeAction != null);
+
+            EnqueueInternal(data, grantAction, postponeAction);
+        }
+
+        public void Enqueue(RewardActivationViewData data, Action closeAction = null)
+        {
+            EnqueueInternal(data, closeAction ?? (() => { }), null);
+        }
+
+        private void EnqueueInternal(RewardActivationViewData data, Action grantAction, Action postponeAction)
+        {
+            _pending.Enqueue((data, grantAction, postponeAction));
 
             if (_currentGrant == null)
             {
@@ -49,10 +70,22 @@ namespace RewardActivation
         {
             var grant = _currentGrant;
             _currentGrant = null;
+            _currentPostpone = null;
             _view.Hide();
 
             grant?.Invoke();
 
+            ShowNext();
+        }
+
+        private void OnPostponeRequested()
+        {
+            var postpone = _currentPostpone;
+            _currentGrant = null;
+            _currentPostpone = null;
+            _view.Hide();
+
+            postpone?.Invoke();
             ShowNext();
         }
 
@@ -64,15 +97,44 @@ namespace RewardActivation
                 return;
             }
 
-            var (reward, grant) = _pending.Dequeue();
+            var (data, grant, postpone) = _pending.Dequeue();
             _currentGrant = grant;
-
-            var data = new RewardActivationViewData(
-                reward.Icon,
-                LocalizeOrFallback(reward.ActivationTitleLocalizationKey, reward.ActivationTitle),
-                LocalizeOrFallback(reward.ActivationDescriptionLocalizationKey, reward.ActivationDescription));
+            _currentPostpone = postpone;
 
             _view.Show(data);
+        }
+
+        private string ResolveTitle(QuestReward reward)
+        {
+            string activationTitle = LocalizeOrFallback(reward.ActivationTitleLocalizationKey, reward.ActivationTitle);
+            if (!string.IsNullOrEmpty(activationTitle))
+            {
+                return activationTitle;
+            }
+
+            string displayTitle = LocalizeOrFallback(reward.DisplayTextLocalizationKey, reward.DisplayText);
+            return string.IsNullOrEmpty(displayTitle)
+                ? _localization.Localize("daily_quest.milestone.reward.title")
+                : displayTitle;
+        }
+
+        private string ResolveDescription(QuestReward reward)
+        {
+            string description = LocalizeOrFallback(reward.ActivationDescriptionLocalizationKey, reward.ActivationDescription);
+            if (!string.IsNullOrEmpty(description))
+            {
+                return description;
+            }
+
+            string rewardName = LocalizeOrFallback(reward.DisplayTextLocalizationKey, reward.DisplayText);
+            if (string.IsNullOrEmpty(rewardName))
+            {
+                rewardName = reward.RewardType == QuestRewardType.Currency && reward.Amount > 0
+                    ? reward.Amount.ToString()
+                    : reward.RewardId;
+            }
+
+            return _localization.Format("daily_quest.milestone.reward.claim_description", rewardName);
         }
 
         private string LocalizeOrFallback(string key, string fallback)

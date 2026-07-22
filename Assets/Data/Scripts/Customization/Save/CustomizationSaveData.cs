@@ -9,5 +9,7 @@ namespace Customization
         public string ActiveCatId;
         public string[] PurchasedBackgroundIds;
         public string[] PurchasedCatIds;
+        public string[] UnseenBackgroundIds;
+        public string[] UnseenCatIds;
     }
 }

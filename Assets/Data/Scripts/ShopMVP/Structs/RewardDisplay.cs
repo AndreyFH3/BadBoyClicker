@@ -10,5 +10,6 @@ namespace Rewards
     {
         public Sprite Icon;
         public string Amount;
+        public string Description;
     }
 }

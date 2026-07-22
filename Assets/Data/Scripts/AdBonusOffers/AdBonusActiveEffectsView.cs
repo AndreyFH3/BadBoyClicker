@@ -13,28 +13,28 @@ namespace AdBonusOffers
         [SerializeField] private AdBonusActiveEffectItemView _itemTemplate;
 
         private readonly List<AdBonusActiveEffectItemView> _items = new();
-        private IAdBonusEffectService _effectService;
+        private IBuffService _buffService;
         private ILocalizationService _localization;
 
         [Inject]
-        public void Construct(IAdBonusEffectService effectService, ILocalizationService localization)
+        public void Construct(IBuffService buffService, ILocalizationService localization)
         {
-            _effectService = effectService;
+            _buffService = buffService;
             _localization = localization;
         }
 
         public void Initialize()
         {
             BuildRuntimeUiIfNeeded();
-            _effectService.Changed += Rebuild;
+            _buffService.Changed += Rebuild;
             Rebuild();
         }
 
         public void Dispose()
         {
-            if (_effectService != null)
+            if (_buffService != null)
             {
-                _effectService.Changed -= Rebuild;
+                _buffService.Changed -= Rebuild;
             }
         }
 
@@ -57,7 +57,7 @@ namespace AdBonusOffers
 
             _items.Clear();
 
-            foreach (var effect in _effectService.ActiveEffects)
+            foreach (var effect in _buffService.ActiveEffects)
             {
                 var item = Instantiate(_itemTemplate, _root);
                 item.gameObject.SetActive(true);
@@ -70,7 +70,7 @@ namespace AdBonusOffers
 
         private void UpdateItems()
         {
-            var effects = _effectService.ActiveEffects;
+            var effects = _buffService.ActiveEffects;
             int count = Mathf.Min(_items.Count, effects.Count);
 
             for (int i = 0; i < count; i++)
@@ -92,7 +92,10 @@ namespace AdBonusOffers
                 _ => effect.Type.ToString()
             };
 
-            return $"{name} {FormatTime(effect.RemainingSeconds)}";
+            return _localization.Format(
+                "ad_bonus.effect.active_format",
+                name,
+                FormatTime(effect.RemainingSeconds));
         }
 
         private void BuildRuntimeUiIfNeeded()

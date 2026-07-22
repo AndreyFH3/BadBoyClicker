@@ -13,6 +13,7 @@ using Utils;
 using UnityEngine;
 using Zenject;
 using GameLocalization;
+using RewardActivation;
 
 namespace DailyQuests
 {
@@ -31,6 +32,8 @@ namespace DailyQuests
         private IPlayerProgressionService _playerProgression;
         private IRewardedAdsService _rewardedAds;
         private ILocalizationService _localization;
+        private IRewardActivationService _rewardActivationService;
+        private readonly HashSet<int> _pendingMilestoneClaims = new();
         private bool _isUnlocked;
         private bool _isProgressListening;
         private float _sessionSeconds;
@@ -53,7 +56,8 @@ namespace DailyQuests
             IShopModel shopModel,
             IPlayerProgressionService playerProgression,
             IRewardedAdsService rewardedAds,
-            ILocalizationService localization)
+            ILocalizationService localization,
+            IRewardActivationService rewardActivationService)
         {
             _config = config;
             _save = save;
@@ -66,6 +70,7 @@ namespace DailyQuests
             _playerProgression = playerProgression;
             _rewardedAds = rewardedAds;
             _localization = localization;
+            _rewardActivationService = rewardActivationService;
         }
 
         public void Initialize()
@@ -167,7 +172,7 @@ namespace DailyQuests
                     {
                         RequiredPoints = data.RequiredPoints,
                         IsClaimed = isClaimed,
-                        CanClaim = _save.Points >= data.RequiredPoints && !isClaimed,
+                        CanClaim = _save.Points >= data.RequiredPoints && !isClaimed && !_pendingMilestoneClaims.Contains(data.RequiredPoints),
                         Rewards = BuildRewardDisplays(data.Rewards)
                     });
                 }
@@ -240,11 +245,50 @@ namespace DailyQuests
                 return false;
             }
 
-            _rewardService.GiveRewards(milestone.Rewards);
+            if (!_pendingMilestoneClaims.Add(requiredPoints))
+            {
+                return false;
+            }
+
+            QuestReward previewReward = milestone.Rewards != null && milestone.Rewards.Count > 0
+                ? milestone.Rewards[0]
+                : null;
+
+            if (previewReward == null || _rewardActivationService == null)
+            {
+                CompleteMilestoneClaim(requiredPoints, milestone);
+                return true;
+            }
+
+            _rewardActivationService.Enqueue(
+                previewReward,
+                () => CompleteMilestoneClaim(requiredPoints, milestone),
+                () => PostponeMilestoneClaim(requiredPoints));
+            return true;
+        }
+
+        private void PostponeMilestoneClaim(int requiredPoints)
+        {
+            if (_pendingMilestoneClaims.Remove(requiredPoints))
+            {
+                Changed?.Invoke();
+            }
+        }
+
+        private void CompleteMilestoneClaim(int requiredPoints, DailyQuestConfig.DailyQuestMilestoneData milestone)
+        {
+            _pendingMilestoneClaims.Remove(requiredPoints);
+            EnsureToday();
+
+            if (_save.Points < requiredPoints || _save.IsMilestoneClaimed(requiredPoints))
+            {
+                return;
+            }
+
+            _rewardService.GiveRewardsImmediately(milestone.Rewards);
             _save.SetMilestoneClaimed(requiredPoints);
             MilestoneClaimed?.Invoke(requiredPoints);
             Changed?.Invoke();
-            return true;
         }
 
         public void Set(DailyQuestSaveData data)

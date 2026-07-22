@@ -4,6 +4,9 @@ using System.Linq;
 using CardCollections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using Shop;
 using Zenject;
 
 namespace CardCollectionMVP
@@ -18,6 +21,18 @@ namespace CardCollectionMVP
         [SerializeField] private Ease _showEase = Ease.OutQuad;
         [SerializeField] private Ease _hideEase = Ease.InQuad;
 
+        [Header("Card chest purchase")]
+        [SerializeField] private GameObject _cardChestPurchaseRoot;
+        [SerializeField] private Button _cardChestPurchaseButton;
+        [SerializeField] private Image _cardChestPurchaseIcon;
+        [SerializeField] private TextMeshProUGUI _cardChestPurchaseName;
+        [SerializeField] private TextMeshProUGUI _cardChestPurchaseDescription;
+        [SerializeField] private Image _cardChestPurchasePriceIcon;
+        [SerializeField] private TextMeshProUGUI _cardChestPurchasePrice;
+
+        [Header("Card chest rewarded ad")]
+        [SerializeField] private Button _cardChestAdButton;
+
         private readonly Dictionary<string, CardCollectionItemView> _items = new();
         private DiContainer _container;
         private Tween _visibilityTween;
@@ -25,6 +40,8 @@ namespace CardCollectionMVP
 
         public event Action<string> CollectionSelected;
         public event Action<string> CollectRequested;
+        public event Action CardChestPurchaseRequested;
+        public event Action CardChestAdRequested;
 
         [Inject]
         private void Construct(DiContainer container)
@@ -38,11 +55,34 @@ namespace CardCollectionMVP
             {
                 _collectionReference.gameObject.SetActive(false);
             }
+
+            if (_cardChestPurchaseButton != null)
+            {
+                _cardChestPurchaseButton.onClick.AddListener(OnCardChestPurchaseRequested);
+            }
+
+            if (_cardChestAdButton != null)
+            {
+                _cardChestAdButton.onClick.AddListener(OnCardChestAdRequested);
+            }
+
+            SetCardChestPurchaseData(null);
+            SetCardChestAdAvailable(false);
         }
 
         private void OnDestroy()
         {
             _visibilityTween?.Kill();
+
+            if (_cardChestPurchaseButton != null)
+            {
+                _cardChestPurchaseButton.onClick.RemoveListener(OnCardChestPurchaseRequested);
+            }
+
+            if (_cardChestAdButton != null)
+            {
+                _cardChestAdButton.onClick.RemoveListener(OnCardChestAdRequested);
+            }
 
             foreach (var item in _items.Values)
             {
@@ -136,6 +176,78 @@ namespace CardCollectionMVP
 
             GetOrCreateItem(collection.Id).SetData(collection);
             ApplySortOrder();
+        }
+
+        public void SetCardChestPurchaseData(ShopElementData data)
+        {
+            GameObject purchaseRoot = _cardChestPurchaseRoot != null
+                ? _cardChestPurchaseRoot
+                : _cardChestPurchaseButton != null ? _cardChestPurchaseButton.gameObject : null;
+            if (purchaseRoot == null)
+            {
+                return;
+            }
+
+            purchaseRoot.SetActive(data != null);
+            if (data == null)
+            {
+                return;
+            }
+
+            if (_cardChestPurchaseButton != null)
+            {
+                _cardChestPurchaseButton.interactable = data.CanBuy;
+            }
+
+            SetImage(_cardChestPurchaseIcon, data.Icon);
+            SetImage(_cardChestPurchasePriceIcon, data.PriceIcon);
+
+            if (_cardChestPurchaseName != null)
+            {
+                _cardChestPurchaseName.text = data.Name;
+            }
+
+            if (_cardChestPurchaseDescription != null)
+            {
+                _cardChestPurchaseDescription.text = data.Bonus;
+            }
+
+            if (_cardChestPurchasePrice != null)
+            {
+                _cardChestPurchasePrice.text = data.Price;
+            }
+        }
+
+        private static void SetImage(Image image, Sprite sprite)
+        {
+            if (image == null)
+            {
+                return;
+            }
+
+            image.sprite = sprite;
+            image.enabled = sprite != null;
+        }
+
+        public void SetCardChestAdAvailable(bool isAvailable)
+        {
+            if (_cardChestAdButton == null)
+            {
+                return;
+            }
+
+            _cardChestAdButton.gameObject.SetActive(isAvailable);
+            _cardChestAdButton.interactable = isAvailable;
+        }
+
+        private void OnCardChestPurchaseRequested()
+        {
+            CardChestPurchaseRequested?.Invoke();
+        }
+
+        private void OnCardChestAdRequested()
+        {
+            CardChestAdRequested?.Invoke();
         }
 
         // Ready-to-collect first, then by collected card count (descending), fully claimed ones last.

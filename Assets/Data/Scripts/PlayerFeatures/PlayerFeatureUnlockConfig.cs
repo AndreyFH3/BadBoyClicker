@@ -10,7 +10,7 @@ namespace PlayerFeatures
         {
             new PlayerFeatureUnlockData(PlayerFeatureType.Shop, 1),
             new PlayerFeatureUnlockData(PlayerFeatureType.OfflineIncome, 1),
-            new PlayerFeatureUnlockData(PlayerFeatureType.Customization, 2),
+            new PlayerFeatureUnlockData(PlayerFeatureType.Customization, 2, true),
             new PlayerFeatureUnlockData(PlayerFeatureType.DailyLoginReward, 3),
             new PlayerFeatureUnlockData(PlayerFeatureType.RewardAdBoosts, 3),
             new PlayerFeatureUnlockData(PlayerFeatureType.Chests, 3),

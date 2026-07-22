@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c9fa62d4c29df4abca73c8ae582146, type: 3}
   m_Name: AdBonusOfferConfig
   m_EditorClassIdentifier: Assembly-CSharp::AdBonusOffers.AdBonusOfferConfig
-  _initialDelaySeconds: 90
-  _offerIntervalSeconds: 180
-  _visibleDurationSeconds: 25
-  _dailyClaimLimit: 5
+  _initialDelaySeconds: 10
+  _offerIntervalSeconds: 10
+  _visibleDurationSeconds: 20
+  _dailyClaimLimit: 300
   _offers:
   - _id: chest
     _placementId: chest
@@ -306,15 +306,15 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 0
-      _rewardId:
+      _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
       _requiresActivation: 0
-      _activationTitleLocalizationKey:
-      _activationTitle:
-      _activationDescriptionLocalizationKey:
-      _activationDescription:
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: shop_discount_30_3min
     _effectType: 3
     _durationSeconds: 180
@@ -324,12 +324,12 @@ MonoBehaviour:
       _rewardType: 0
       _currencyType: 0
       _amount: 0
-      _rewardId:
+      _rewardId: 
       _icon: {fileID: 0}
-      _displayTextLocalizationKey:
-      _displayText:
+      _displayTextLocalizationKey: 
+      _displayText: 
       _requiresActivation: 0
-      _activationTitleLocalizationKey:
-      _activationTitle:
-      _activationDescriptionLocalizationKey:
-      _activationDescription:
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 

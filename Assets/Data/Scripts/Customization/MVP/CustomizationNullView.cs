@@ -6,6 +6,7 @@ namespace Customization
     public class CustomizationNullView : ICustomizationView
     {
         public event Action<CustomizationItemType, string> ItemClicked;
+        public event Action<CustomizationItemType> TabOpened;
 
         public void SetData(List<CustomizationElementViewData> data)
         {

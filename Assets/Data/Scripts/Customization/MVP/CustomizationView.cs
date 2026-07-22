@@ -22,6 +22,12 @@ namespace Customization
         private CustomizationItemType _activeTab = CustomizationItemType.Background;
 
         public event Action<CustomizationItemType, string> ItemClicked;
+        public event Action<CustomizationItemType> TabOpened;
+
+        private void OnEnable()
+        {
+            TabOpened?.Invoke(_activeTab);
+        }
 
         private void Awake()
         {
@@ -58,11 +64,13 @@ namespace Customization
         public void RequestBackgroundTab()
         {
             SetActiveTab(CustomizationItemType.Background);
+            TabOpened?.Invoke(CustomizationItemType.Background);
         }
 
         public void RequestCatTab()
         {
             SetActiveTab(CustomizationItemType.Cat);
+            TabOpened?.Invoke(CustomizationItemType.Cat);
         }
 
         private void SetElementData(CustomizationElementViewData data)

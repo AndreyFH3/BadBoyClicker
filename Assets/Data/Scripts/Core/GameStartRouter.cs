@@ -13,12 +13,12 @@ namespace Installer.Init
         private ClickableObject _clickable;
         private IShopRuntimeSave _shopSave;
         private IPlayerProgressionService _playerProgression;
-        private IAdBonusEffectService _bonusEffectService;
+        private IBuffService _buffService;
         public System.Action<long> OnClickValueEvent;
 
         private long CalculateValue => ApplyMultiplier(
             _shopSave.ClickValue,
-            (_bonusEffectService?.ClickIncomeMultiplier ?? 1f) * (_bonusEffectService?.AllIncomeMultiplier ?? 1f));
+            (_buffService?.ClickIncomeMultiplier ?? 1f) * (_buffService?.AllIncomeMultiplier ?? 1f));
 
         [Inject]
         public void StartGame(
@@ -26,13 +26,13 @@ namespace Installer.Init
             ClickableObject clickable,
             IShopRuntimeSave shopSave,
             IPlayerProgressionService playerProgression,
-            IAdBonusEffectService bonusEffectService)
+            IBuffService buffService)
         {
             _wallet = wallet;
             _clickable = clickable;
             _shopSave = shopSave;
             _playerProgression = playerProgression;
-            _bonusEffectService = bonusEffectService;
+            _buffService = buffService;
         }
 
         public void Initialize()

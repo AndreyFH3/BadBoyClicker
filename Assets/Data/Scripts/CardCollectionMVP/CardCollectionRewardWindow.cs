@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Rewards;
+using PlayerProgression;
 using UIAnimations;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,11 +11,11 @@ namespace CardCollectionMVP
     {
         [SerializeField] private GameObject _windowRoot;
         [SerializeField] private Transform _rewardsRoot;
-        [SerializeField] private RewardView _rewardReference;
+        [SerializeField] private LevelRewardEntryView _rewardReference;
         [SerializeField] private Button _closeButton;
         [SerializeField] private CanvasGroupFade _fade;
 
-        private readonly List<RewardView> _rewardViews = new();
+        private readonly List<LevelRewardEntryView> _rewardViews = new();
 
         private void Awake()
         {
@@ -79,9 +80,10 @@ namespace CardCollectionMVP
             for (int i = 0; i < count; i++)
             {
                 bool isNew = i >= _rewardViews.Count;
-                RewardView view = isNew ? Instantiate(_rewardReference, _rewardsRoot) : _rewardViews[i];
+                LevelRewardEntryView view = isNew ? Instantiate(_rewardReference, _rewardsRoot) : _rewardViews[i];
 
-                view.Set(rewards[i]);
+                RewardDisplay reward = rewards[i];
+                view.Setup(new LevelRewardEntry(reward.Icon, reward.Amount, reward.Description));
                 view.gameObject.SetActive(true);
 
                 if (isNew)
