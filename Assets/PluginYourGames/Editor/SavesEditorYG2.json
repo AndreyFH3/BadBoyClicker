@@ -1,34 +1,21 @@
 {
-    "idSave": 65,
+    "idSave": 17,
     "GameSaveData": {
         "Wallet": {
-            "Soft": 35115,
-            "Middle": 0,
-            "Hard": 6900
+            "Soft": 200,
+            "Middle": 25,
+            "Hard": 6800
         },
         "Shop": {
-            "Levels": [
-                {
-                    "Key": "Click:sharp_claws",
-                    "Level": 2
-                },
-                {
-                    "Key": "Click:soft_paw",
-                    "Level": 1
-                },
-                {
-                    "Key": "AutoBuy:sleepy_cat",
-                    "Level": 6
-                }
-            ]
+            "Levels": []
         },
         "OfflineIncome": {
-            "LastOnlineTicks": 639202924270865942,
+            "LastOnlineTicks": 639203317984519441,
             "PendingDoubleNextReward": false
         },
         "DailyLogin": {
-            "CurrentDayIndex": 0,
-            "LastClaimUtcTicks": 0,
+            "CurrentDayIndex": 1,
+            "LastClaimUtcTicks": 639203317970206103,
             "CompletedCycles": 0
         },
         "DailyQuests": {
@@ -39,8 +26,8 @@
             "Milestones": []
         },
         "PlayerProgression": {
-            "CompletedLevels": 0,
-            "CurrentExperience": 1000,
+            "CompletedLevels": 2,
+            "CurrentExperience": 0,
             "TutorialClicks": 50,
             "IsTutorialCompleted": true
         },
@@ -65,12 +52,12 @@
             "UnseenCatIds": []
         },
         "AdBonusOffers": {
-            "DayKey": "",
+            "DayKey": "20260722",
             "ClaimsToday": 0
         },
         "Analytics": {
-            "TotalClicks": 192,
-            "NextClickMilestoneIndex": 3
+            "TotalClicks": 55,
+            "NextClickMilestoneIndex": 2
         }
     }
 }

@@ -310,9 +310,44 @@ namespace PlayerProgression
                 }
             }
 
+            AddShopUnlockEntries(entries, completedLevels + 2);
             AddFeatureUnlockEntries(entries, completedLevels + 2);
 
             return entries;
+        }
+
+        private void AddShopUnlockEntries(List<LevelRewardEntry> entries, int targetLevel)
+        {
+            AddShopUnlockEntries(entries, _config?.Clicks, targetLevel);
+            AddShopUnlockEntries(entries, _config?.AutoBuys, targetLevel);
+        }
+
+        private void AddShopUnlockEntries(
+            List<LevelRewardEntry> entries,
+            IReadOnlyList<GameConfig.ShopDataClick> shopItems,
+            int targetLevel)
+        {
+            if (shopItems == null)
+            {
+                return;
+            }
+
+            string description = _localization.Localize(
+                "player_progression.reward.shop_unlock.description");
+
+            foreach (GameConfig.ShopDataClick item in shopItems)
+            {
+                if (item == null || item.RequiredPlayerLevel != targetLevel)
+                {
+                    continue;
+                }
+
+                string name = string.IsNullOrEmpty(item.NameLocalizationKey)
+                    ? item.Name
+                    : _localization.Localize(item.NameLocalizationKey);
+
+                entries.Add(new LevelRewardEntry(item.Icon, name, description));
+            }
         }
 
         private void AddFeatureUnlockEntries(List<LevelRewardEntry> entries, int targetLevel)
