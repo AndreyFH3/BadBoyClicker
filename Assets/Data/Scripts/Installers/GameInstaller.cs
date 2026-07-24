@@ -26,6 +26,7 @@ using Customization;
 using Analytics;
 using Purchases;
 using RewardActivation;
+using Tutorials;
 
 namespace Installer
 {
@@ -49,6 +50,7 @@ namespace Installer
         [SerializeField] private AdBonusActiveEffectsView _adBonusActiveEffectsView;
         [SerializeField] private RewardedAdErrorView _rewardedAdErrorView;
         [SerializeField] private CustomizationView _customizationView;
+        [SerializeField] private TutorialView _tutorialView;
 
         public override void InstallBindings()
         {
@@ -172,6 +174,11 @@ namespace Installer
             else
                 Container.Bind<ICustomizationView>().To<CustomizationNullView>().AsSingle().NonLazy();
 
+            if (_tutorialView != null)
+                Container.Bind<ITutorialView>().FromInstance(_tutorialView).AsSingle().NonLazy();
+            else
+                Container.Bind<ITutorialView>().To<TutorialNullView>().AsSingle().NonLazy();
+
             Container.BindInterfacesAndSelfTo<DailyLoginModel>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyLoginPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyQuestPresenter>().AsSingle().NonLazy();
@@ -189,6 +196,7 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<GameStartRouter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<QuestService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameAnalyticsController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<TutorialModel>().AsSingle().NonLazy();
         }
 
         private AdBonusOfferView CreateRuntimeAdBonusOfferView()

@@ -226,6 +226,31 @@ MonoBehaviour:
     _baseBonus: 650000000
     _requiredPlayerLevel: 25
   _paidBuys:
+  - _id: Hard_rewarded_ad
+    _purchaseKind: 2
+    _paymentId: shop_hard_rewarded_ad
+    _priceCurrencyType: 3
+    _priceAmount: 0
+    _nameLocalizationKey: shop.paid.Hard_rewarded_ad.name
+    _name: Free Crystals
+    _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _priceText: Watch ad
+    _rewardTextLocalizationKey: shop.paid.Hard_rewarded_ad.reward
+    _rewardText: +5 crystals
+    _timeBasedRewardMinutes: 0
+    _rewards:
+    - _rewardType: 0
+      _currencyType: 2
+      _amount: 5
+      _rewardId:
+      _icon: {fileID: 0}
+      _displayTextLocalizationKey: shop.paid.Hard_rewarded_ad.reward
+      _displayText: +5 crystals
+      _requiresActivation: 0
+      _activationTitleLocalizationKey:
+      _activationTitle:
+      _activationDescriptionLocalizationKey:
+      _activationDescription:
   - _id: Hard_buy_1
     _purchaseKind: 0
     _paymentId: Hard_buy_1

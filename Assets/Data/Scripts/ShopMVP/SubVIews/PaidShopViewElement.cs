@@ -33,6 +33,8 @@ namespace Shop
         [SerializeField] private GameObject _realMoneyBadge;
         [Tooltip("Enabled when the offer is bought with in-game currency.")]
         [SerializeField] private GameObject _inGameBadge;
+        [Tooltip("Enabled when the offer is received for watching a rewarded ad.")]
+        [SerializeField] private GameObject _rewardedAdBadge;
 
         private readonly List<RewardView> _rewardViews = new();
 
@@ -48,7 +50,7 @@ namespace Shop
             {
                 // Real-money offers (YAN) show only the price text + "YAN"; there is
                 // no currency icon for them. In-game purchases keep their resource icon.
-                _priceIcon.gameObject.SetActive(!data.IsRealMoney);
+                _priceIcon.gameObject.SetActive(!data.IsRealMoney && !data.IsRewardedAd);
                 _priceIcon.sprite = data.PriceIcon;
             }
             if (_price != null)
@@ -59,7 +61,9 @@ namespace Shop
             if (_realMoneyBadge != null)
                 _realMoneyBadge.SetActive(data.IsRealMoney);
             if (_inGameBadge != null)
-                _inGameBadge.SetActive(!data.IsRealMoney);
+                _inGameBadge.SetActive(!data.IsRealMoney && !data.IsRewardedAd);
+            if (_rewardedAdBadge != null)
+                _rewardedAdBadge.SetActive(data.IsRewardedAd);
 
             RebuildRewards(data.Rewards);
         }

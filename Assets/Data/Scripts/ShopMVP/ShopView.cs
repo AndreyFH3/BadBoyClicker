@@ -39,12 +39,27 @@ namespace Shop
         [SerializeField] private ShopViewElement _reference;
         [Tooltip("Prefab used for paid offers. Falls back to the standard reference when not assigned.")]
         [SerializeField] private PaidShopViewElement _paidReference;
+        [Tooltip("Prefab used only for rewarded-ad offers. Falls back to the paid-offer prefab when not assigned.")]
+        [SerializeField] private RewardedAdShopViewElement _rewardedAdReference;
         [SerializeField] private TextMeshProUGUI _earnPerSecond;
+        [Header("Scrolling")]
+        [Tooltip("Scroll views that return to the bottom after completing a player level.")]
+        [SerializeField] private ScrollRect[] _scrollRects;
 
         private readonly Dictionary<ShopItemType, Dictionary<string, ShopViewElementBase>> _shopElements = new();
         private ShopItemType _activeTab = ShopItemType.Click;
 
         public event Action<string> OnBuy;
+
+        public void ScrollToTop()
+        {
+            SetVerticalScrollPosition(1f);
+        }
+
+        public void ScrollToBottom()
+        {
+            SetVerticalScrollPosition(0f);
+        }
 
         private void Awake()
         {
@@ -53,6 +68,8 @@ namespace Shop
                 _reference.gameObject.SetActive(false);
             if (_paidReference != null)
                 _paidReference.gameObject.SetActive(false);
+            if (_rewardedAdReference != null)
+                _rewardedAdReference.gameObject.SetActive(false);
             AddTabListeners();
             SetActiveTab(_activeTab);
         }
@@ -159,7 +176,7 @@ namespace Shop
                 return;
             }
 
-            ShopViewElementBase reference = GetReference(data.Type);
+            ShopViewElementBase reference = GetReference(data);
             if (reference == null)
                 return;
 
@@ -174,9 +191,12 @@ namespace Shop
             elements.Add(data.Id, instance);
         }
 
-        private ShopViewElementBase GetReference(ShopItemType type)
+        private ShopViewElementBase GetReference(ShopElementData data)
         {
-            if (type == ShopItemType.PaidBuy && _paidReference != null)
+            if (data.IsRewardedAd && _rewardedAdReference != null)
+                return _rewardedAdReference;
+
+            if (data.Type == ShopItemType.PaidBuy && _paidReference != null)
                 return _paidReference;
 
             return _reference;
@@ -284,6 +304,21 @@ namespace Shop
         {
             if (!_shopElements.ContainsKey(type))
                 _shopElements.Add(type, new Dictionary<string, ShopViewElementBase>());
+        }
+
+        private void SetVerticalScrollPosition(float normalizedPosition)
+        {
+            if (_scrollRects == null)
+                return;
+
+            foreach (ScrollRect scrollRect in _scrollRects)
+            {
+                if (scrollRect == null)
+                    continue;
+
+                scrollRect.StopMovement();
+                scrollRect.verticalNormalizedPosition = normalizedPosition;
+            }
         }
     }
 }

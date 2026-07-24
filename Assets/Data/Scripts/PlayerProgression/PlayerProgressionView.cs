@@ -50,6 +50,7 @@ namespace PlayerProgression
         private const float NewLevelButtonAnimationDuration = 0.2f;
 
         public event System.Action NewLevelRequested;
+        public event System.Action LevelUpResultClosed;
 
         private void Awake()
         {
@@ -277,7 +278,11 @@ namespace PlayerProgression
         private void HideLevelUpResult()
         {
             _resultCelebrationSequence?.Kill();
-            HideWindow(_levelUpResultRoot, _levelUpResultCanvasGroup, ref _resultFadeTween, null);
+            HideWindow(
+                _levelUpResultRoot,
+                _levelUpResultCanvasGroup,
+                ref _resultFadeTween,
+                () => LevelUpResultClosed?.Invoke());
         }
 
         private void ShowWindow(GameObject root, CanvasGroup canvasGroup, ref Tween tween)

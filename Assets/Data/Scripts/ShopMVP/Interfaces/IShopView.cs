@@ -9,5 +9,7 @@ namespace Shop
         void SetData(List<ShopElementData> data);
         void SetEarnPerSecond(long value);
         void UpdateCard(ShopElementData data);
+        void ScrollToBottom();
+        void ScrollToTop();
     }
 }

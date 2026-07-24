@@ -30,8 +30,10 @@ namespace PlayerProgression
             ? GetLevelExperienceRequirement(_save.CompletedLevels)
             : (_config?.PlayerProgression?.TutorialClickTarget ?? 100);
         public float CurrentProgress => ExperienceToNextLevel <= 0 ? 0f : Math.Min(1f, (float)CurrentExperience / ExperienceToNextLevel);
-        public bool CanCompleteLevel => _save.IsTutorialCompleted && ExperienceToNextLevel > 0 && CurrentExperience >= ExperienceToNextLevel;
-        public IReadOnlyList<LevelRewardEntry> NextLevelRewards => CreateRewardEntries(_save.CompletedLevels);
+        public bool CanCompleteLevel => ExperienceToNextLevel > 0 && CurrentExperience >= ExperienceToNextLevel;
+        public IReadOnlyList<LevelRewardEntry> NextLevelRewards => _save.IsTutorialCompleted
+            ? CreateRewardEntries(_save.CompletedLevels)
+            : Array.Empty<LevelRewardEntry>();
         public string NextLevelLossText => _localization.Format("You_want_new_level", CurrentLevel + 1);
         public float ClickIncomeMultiplier => 1f + GetBonusPercent(PlayerProgressBonusType.ClickIncomePercent) / 100f;
         public float PassiveIncomeMultiplier => 1f + GetBonusPercent(PlayerProgressBonusType.PassiveIncomePercent) / 100f;
@@ -115,11 +117,6 @@ namespace PlayerProgression
             _save.SetTutorialClicks(clicks);
             ExperienceAdded?.Invoke(1);
 
-            if (clicks >= target)
-            {
-                _save.CompleteTutorial();
-                LevelCompleted?.Invoke(CurrentLevel);
-            }
         }
 
         public bool CompleteLevel()
@@ -127,6 +124,13 @@ namespace PlayerProgression
             if (!CanCompleteLevel)
             {
                 return false;
+            }
+
+            if (!_save.IsTutorialCompleted)
+            {
+                _save.CompleteTutorial();
+                LevelCompleted?.Invoke(CurrentLevel);
+                return true;
             }
 
             int completedLevels = _save.CompletedLevels + 1;

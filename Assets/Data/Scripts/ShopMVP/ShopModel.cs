@@ -13,6 +13,7 @@ using Purchases;
 using QuestSystem;
 using Rewards;
 using Chests;
+using Core.Ads;
 
 namespace Shop
 {
@@ -30,6 +31,8 @@ namespace Shop
         private IPlayerFeatureUnlockService _featureUnlockService;
         private ICardCollectionService _cardCollectionService;
         private ChestConfig _chestConfig;
+        private IRewardedAdsService _rewardedAds;
+        private string _pendingRewardedAdItemId;
         private readonly Dictionary<string, ShopItem> _items = new();
         private readonly Dictionary<string, ShopItem> _paidItemsByPaymentId = new();
 
@@ -61,7 +64,8 @@ namespace Shop
             IQuestRewardService rewardService,
             IPlayerFeatureUnlockService featureUnlockService,
             ICardCollectionService cardCollectionService,
-            ChestConfig chestConfig)
+            ChestConfig chestConfig,
+            IRewardedAdsService rewardedAds)
         {
             _config = config;
             _wallet = wallet;
@@ -75,6 +79,7 @@ namespace Shop
             _featureUnlockService = featureUnlockService;
             _cardCollectionService = cardCollectionService;
             _chestConfig = chestConfig;
+            _rewardedAds = rewardedAds;
 
             BuildItems();
             _save.Recalculate(_config);
@@ -192,6 +197,11 @@ namespace Shop
             }
 
             var data = item.PaidData;
+            if (data.PurchaseKind == GameConfig.PaidShopPurchaseKind.RewardedAd)
+            {
+                return null;
+            }
+
             string name = _localization.Localize(data.NameLocalizationKey);
             string price = GetPaidPriceText(data);
             string reward = ResolvePaidRewardText(data);
@@ -420,6 +430,7 @@ namespace Shop
                 CanBuy = CanBuy(item, 0),
                 RewardGroup = DetermineRewardGroup(data.Rewards),
                 IsRealMoney = data.PurchaseKind == GameConfig.PaidShopPurchaseKind.RealMoney,
+                IsRewardedAd = data.PurchaseKind == GameConfig.PaidShopPurchaseKind.RewardedAd,
                 Rewards = BuildRewardDisplays(data)
             };
         }
@@ -651,6 +662,14 @@ namespace Shop
                 return _purchaseSystem != null && _purchaseSystem.IsAvailable;
             }
 
+            if (data.PurchaseKind == GameConfig.PaidShopPurchaseKind.RewardedAd)
+            {
+                // The SDK may still report that an ad is showing during its reward
+                // callback. Keeping that transient value in view state leaves the
+                // button disabled forever because the SDK emits no later shop event.
+                return _rewardedAds != null && string.IsNullOrEmpty(_pendingRewardedAdItemId);
+            }
+
             return CanSpendCurrency(data.PriceCurrencyType, data.PriceAmount);
         }
 
@@ -692,6 +711,12 @@ namespace Shop
             if (item.PaidData.PurchaseKind == GameConfig.PaidShopPurchaseKind.RealMoney)
             {
                 _purchaseSystem.Buy(item.PaidData.PaymentId);
+                return;
+            }
+
+            if (item.PaidData.PurchaseKind == GameConfig.PaidShopPurchaseKind.RewardedAd)
+            {
+                ShowRewardedAd(item);
                 return;
             }
 
@@ -745,6 +770,55 @@ namespace Shop
             StateChanged?.Invoke();
         }
 
+        private void ShowRewardedAd(ShopItem item)
+        {
+            if (_rewardedAds == null || !string.IsNullOrEmpty(_pendingRewardedAdItemId))
+            {
+                return;
+            }
+
+            if (!_rewardedAds.IsAvailable(item.PaidData.PaymentId))
+            {
+                PaidPurchaseFailed?.Invoke(item.PaidData.Id);
+                return;
+            }
+
+            string itemId = item.PaidData.Id;
+            _pendingRewardedAdItemId = itemId;
+            StateChanged?.Invoke();
+
+            _rewardedAds.Show(
+                item.PaidData.PaymentId,
+                () => CompleteRewardedAdPurchase(item),
+                () => FailRewardedAdPurchase(itemId));
+        }
+
+        private void CompleteRewardedAdPurchase(ShopItem item)
+        {
+            if (_pendingRewardedAdItemId != item.PaidData.Id)
+            {
+                return;
+            }
+
+            _pendingRewardedAdItemId = null;
+            ApplyPaidRewards(item);
+            ItemBought?.Invoke(item.PaidData.Id);
+            PaidPurchaseSucceeded?.Invoke(item.PaidData.Id);
+            StateChanged?.Invoke();
+        }
+
+        private void FailRewardedAdPurchase(string itemId)
+        {
+            if (_pendingRewardedAdItemId != itemId)
+            {
+                return;
+            }
+
+            _pendingRewardedAdItemId = null;
+            PaidPurchaseFailed?.Invoke(itemId);
+            StateChanged?.Invoke();
+        }
+
         private void OnPurchaseFailed(string paymentId)
         {
             Debug.LogWarning($"Paid shop purchase failed: {paymentId}");
@@ -773,6 +847,11 @@ namespace Shop
             if (data.PurchaseKind == GameConfig.PaidShopPurchaseKind.RealMoney)
             {
                 return _purchaseSystem.GetPrice(data.PaymentId, data.PriceText);
+            }
+
+            if (data.PurchaseKind == GameConfig.PaidShopPurchaseKind.RewardedAd)
+            {
+                return _localization.Localize("watch_ad");
             }
 
             return _localization.Format(data.PriceAmount.ConvertFromLongToString(), GetCurrencyName(data.PriceCurrencyType));

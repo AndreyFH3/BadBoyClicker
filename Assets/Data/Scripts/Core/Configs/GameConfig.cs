@@ -185,7 +185,8 @@ namespace Core
         public enum PaidShopPurchaseKind
         {
             RealMoney = 0,
-            InGameCurrency = 1
+            InGameCurrency = 1,
+            RewardedAd = 2
         }
     }
 }

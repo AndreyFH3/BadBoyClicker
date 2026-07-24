@@ -9,6 +9,7 @@ using GameLocalization;
 using GameAudio;
 using AdBonusOffers;
 using Customization;
+using Tutorials;
 using UnityEngine;
 using Zenject;
 
@@ -26,6 +27,7 @@ public class ScriptableInstaller : ScriptableObjectInstaller
     [SerializeField] protected AudioConfig _audioConfig;
     [SerializeField] protected AdBonusOfferConfig _adBonusOfferConfig;
     [SerializeField] protected CustomizationConfig _customizationConfig;
+    [SerializeField] protected TutorialConfig _tutorialConfig;
     
     public override void InstallBindings()
     {
@@ -90,5 +92,11 @@ public class ScriptableInstaller : ScriptableObjectInstaller
             : ScriptableObject.CreateInstance<CustomizationConfig>();
 
         Container.Bind<CustomizationConfig>().FromInstance(customizationConfig).AsSingle().NonLazy();
+
+        TutorialConfig tutorialConfig = _tutorialConfig != null
+            ? _tutorialConfig
+            : ScriptableObject.CreateInstance<TutorialConfig>();
+
+        Container.Bind<TutorialConfig>().FromInstance(tutorialConfig).AsSingle().NonLazy();
     }
 }

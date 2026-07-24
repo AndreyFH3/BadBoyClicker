@@ -2,6 +2,7 @@ using System;
 using GameLocalization;
 using Core.Ads;
 using RewardActivation;
+using PlayerProgression;
 using Zenject;
 namespace Shop
 {
@@ -13,6 +14,7 @@ namespace Shop
         private IRewardActivationService _rewardActivationService;
         private IRewardedAdErrorView _errorView;
         private ILocalizationService _localization;
+        private IPlayerProgressionService _playerProgression;
         private string _pendingPurchaseId;
 
         [Inject]
@@ -22,7 +24,8 @@ namespace Shop
             IShopPurchaseConfirmationView confirmationView,
             IRewardActivationService rewardActivationService,
             IRewardedAdErrorView errorView,
-            ILocalizationService localization)
+            ILocalizationService localization,
+            IPlayerProgressionService playerProgression)
         {
             _model = model;
             _view = view;
@@ -30,6 +33,7 @@ namespace Shop
             _rewardActivationService = rewardActivationService;
             _errorView = errorView;
             _localization = localization;
+            _playerProgression = playerProgression;
         }
 
         public void Initialize()
@@ -41,6 +45,7 @@ namespace Shop
             _confirmationView.ConfirmRequested += OnPurchaseConfirmed;
             _confirmationView.CancelRequested += OnPurchaseCanceled;
             Localization.LanguageChanged += OnLanguageChanged;
+            _playerProgression.LevelCompleted += OnLevelCompleted;
 
             UpdateView();
         }
@@ -54,6 +59,7 @@ namespace Shop
             _confirmationView.ConfirmRequested -= OnPurchaseConfirmed;
             _confirmationView.CancelRequested -= OnPurchaseCanceled;
             Localization.LanguageChanged -= OnLanguageChanged;
+            _playerProgression.LevelCompleted -= OnLevelCompleted;
         }
 
         private void OnStateChanged()
@@ -124,6 +130,11 @@ namespace Shop
         private void OnLanguageChanged()
         {
             UpdateView();
+        }
+
+        private void OnLevelCompleted(int _)
+        {
+            _view.ScrollToTop();
         }
     }
 }

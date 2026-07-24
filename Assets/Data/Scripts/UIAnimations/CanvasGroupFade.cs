@@ -51,7 +51,12 @@ namespace UIAnimations
                 .OnComplete(CompleteShow);
         }
 
-        public void Hide(Action onHidden = null)
+        public void Hide()
+        {
+            Hide(null);
+        }
+
+        public void Hide(Action onHidden)
         {
             EnsureInitialized();
             KillTween();

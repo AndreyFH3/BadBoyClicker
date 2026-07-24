@@ -23,6 +23,9 @@ namespace Shop
         // Paid offers only: whether the offer is bought with real money (badge only).
         public bool IsRealMoney;
 
+        // Paid offers only: whether clicking the card starts a rewarded ad.
+        public bool IsRewardedAd;
+
         // Paid offers only: what the player actually receives (icons + amounts),
         // rendered f2p-style inside the dedicated paid element.
         public IReadOnlyList<RewardDisplay> Rewards;

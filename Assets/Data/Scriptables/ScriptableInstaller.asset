@@ -23,3 +23,4 @@ MonoBehaviour:
   _audioConfig: {fileID: 11400000, guid: 0cd7f54270ff46efbe1350f37f0ce64e, type: 2}
   _adBonusOfferConfig: {fileID: 11400000, guid: 8175c6d471f44ad0a43c19b7477f1e09, type: 2}
   _customizationConfig: {fileID: 11400000, guid: f2e55bd97e5f2bd4aba7fcc74b1fc412, type: 2}
+  _tutorialConfig: {fileID: 11400000, guid: a81e23e0f18a4c019b6c0f18c532dd06, type: 2}

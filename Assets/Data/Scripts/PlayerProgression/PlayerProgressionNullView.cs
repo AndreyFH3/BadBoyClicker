@@ -8,6 +8,12 @@ namespace PlayerProgression
             remove { }
         }
 
+        public event System.Action LevelUpResultClosed
+        {
+            add { }
+            remove { }
+        }
+
         public void UpdateState(int level, long experience, long experienceToNextLevel, float progress)
         {
         }

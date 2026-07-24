@@ -25,8 +25,10 @@ namespace PlayerProgression
         private Button _popupConfirmButton;
         private Button _popupCancelButton;
         private Action _confirmAction;
+        private bool _isShowingLevelUpResult;
 
         public event Action NewLevelRequested;
+        public event Action LevelUpResultClosed;
 
         public void Initialize()
         {
@@ -75,6 +77,7 @@ namespace PlayerProgression
         public void ShowLevelUpOffer(Action confirmAction, IReadOnlyList<LevelRewardEntry> rewards, string lossText)
         {
             EnsureCreated();
+            _isShowingLevelUpResult = false;
             _confirmAction = confirmAction;
             _popupText.text = Localization.Format(
                 "player_progression.level_up_offer_runtime",
@@ -88,6 +91,7 @@ namespace PlayerProgression
         public void ShowLevelUpResult(int previousLevel, int newLevel, IReadOnlyList<LevelRewardEntry> rewards)
         {
             EnsureCreated();
+            _isShowingLevelUpResult = true;
             _confirmAction = null;
             string from = Localization.Format("player_progression.level", previousLevel);
             string to = Localization.Format("player_progression.level", newLevel);
@@ -296,6 +300,12 @@ namespace PlayerProgression
         private void HidePopup()
         {
             _popupRoot.SetActive(false);
+
+            if (_isShowingLevelUpResult)
+            {
+                _isShowingLevelUpResult = false;
+                LevelUpResultClosed?.Invoke();
+            }
         }
 
         private void SetPopupIcon(Sprite sprite)

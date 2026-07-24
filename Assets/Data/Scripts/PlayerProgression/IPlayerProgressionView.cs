@@ -5,6 +5,7 @@ namespace PlayerProgression
     public interface IPlayerProgressionView
     {
         event System.Action NewLevelRequested;
+        event System.Action LevelUpResultClosed;
 
         void UpdateState(int level, long experience, long experienceToNextLevel, float progress);
         void SetNewLevelAvailable(bool isAvailable);
