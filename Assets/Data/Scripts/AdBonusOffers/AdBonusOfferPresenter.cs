@@ -101,7 +101,7 @@ namespace AdBonusOffers
             _view.ShowRewardResult(data);
         }
 
-        private void OnRewardFailed(AdBonusOfferViewData data)
+        private void OnRewardFailed(AdBonusOfferViewData data, Core.Ads.RewardedAdFailureReason reason)
         {
             _adErrorView.Show();
             _isAdClaimBlockedAfterFailure = true;

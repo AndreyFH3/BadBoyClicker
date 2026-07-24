@@ -1,4 +1,5 @@
 using System;
+using Core.Ads;
 
 namespace AdBonusOffers
 {
@@ -7,7 +8,7 @@ namespace AdBonusOffers
         event Action<AdBonusOfferViewData> OfferShown;
         event Action OfferHidden;
         event Action<AdBonusOfferViewData> RewardGranted;
-        event Action<AdBonusOfferViewData> RewardFailed;
+        event Action<AdBonusOfferViewData, RewardedAdFailureReason> RewardFailed;
 
         bool HasActiveOffer { get; }
         AdBonusOfferViewData CurrentOffer { get; }

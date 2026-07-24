@@ -4,7 +4,7 @@ namespace Analytics
     {
         void GameStarted();
         void ClickMilestoneReached(long clicks);
-        void ShopItemBought(string itemId);
+        void ShopItemBought(string itemId, string shop);
         void LevelUp(int level);
         void FeatureUnlocked(string featureId);
         void DailyLoginClaimed(int dayNumber, string rewardType, string rewardId, long amount);
@@ -16,8 +16,8 @@ namespace Analytics
         void ChestOpened(string chestId, string rewardType, string rewardId);
         void AdBonusOfferShown(string offerId);
         void AdBonusRewardGranted(string offerId);
-        void AdBonusRewardFailed(string offerId);
-        void CustomizationItemBought(string itemType, string itemId, long price);
+        void AdBonusRewardFailed(string offerId, string reason);
+        void CustomizationItemBought(string itemType, string itemId, long price, string currency);
         void CustomizationItemSelected(string itemType, string itemId);
     }
 }

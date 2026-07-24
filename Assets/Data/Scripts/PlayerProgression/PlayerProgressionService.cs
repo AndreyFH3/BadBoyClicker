@@ -33,7 +33,7 @@ namespace PlayerProgression
         public bool CanCompleteLevel => ExperienceToNextLevel > 0 && CurrentExperience >= ExperienceToNextLevel;
         public IReadOnlyList<LevelRewardEntry> NextLevelRewards => _save.IsTutorialCompleted
             ? CreateRewardEntries(_save.CompletedLevels)
-            : Array.Empty<LevelRewardEntry>();
+            : CreateTutorialRewardEntries();
         public string NextLevelLossText => _localization.Format("You_want_new_level", CurrentLevel + 1);
         public float ClickIncomeMultiplier => 1f + GetBonusPercent(PlayerProgressBonusType.ClickIncomePercent) / 100f;
         public float PassiveIncomeMultiplier => 1f + GetBonusPercent(PlayerProgressBonusType.PassiveIncomePercent) / 100f;
@@ -128,6 +128,7 @@ namespace PlayerProgression
 
             if (!_save.IsTutorialCompleted)
             {
+                _wallet.AddMiddle(GetTutorialCurrencyReward());
                 _save.CompleteTutorial();
                 LevelCompleted?.Invoke(CurrentLevel);
                 return true;
@@ -318,6 +319,28 @@ namespace PlayerProgression
             AddFeatureUnlockEntries(entries, completedLevels + 2);
 
             return entries;
+        }
+
+        private List<LevelRewardEntry> CreateTutorialRewardEntries()
+        {
+            var entries = new List<LevelRewardEntry>();
+            long middleReward = GetTutorialCurrencyReward();
+
+            if (middleReward > 0)
+            {
+                entries.Add(new LevelRewardEntry(
+                    _config?.PlayerProgression?.MiddleRewardIcon,
+                    _localization.Format("player_progression.reward.amount", middleReward),
+                    _localization.Localize("player_progression.reward.middle_currency.description")));
+            }
+
+            AddFeatureUnlockEntries(entries, 1);
+            return entries;
+        }
+
+        private long GetTutorialCurrencyReward()
+        {
+            return Math.Max(0, _config?.PlayerProgression?.MiddleRewardPerLevel ?? 0);
         }
 
         private void AddShopUnlockEntries(List<LevelRewardEntry> entries, int targetLevel)

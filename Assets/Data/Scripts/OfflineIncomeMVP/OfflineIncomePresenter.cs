@@ -126,7 +126,7 @@ namespace OfflineIncome
                 OnRewardedAdFailed);
         }
 
-        private void OnRewardedAdFailed()
+        private void OnRewardedAdFailed(Core.Ads.RewardedAdFailureReason reason)
         {
             _view.Show(_model.CreateViewData(_wallet));
             _adErrorView.Show();

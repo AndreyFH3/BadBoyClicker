@@ -61,7 +61,11 @@ namespace PlayerProgression
                 return;
             }
 
-            _view.ShowLevelUpOffer(ConfirmLevelUp, _service.NextLevelRewards, _service.NextLevelLossText);
+            _view.ShowLevelUpOffer(
+                ConfirmLevelUp,
+                _service.NextLevelRewards,
+                _service.NextLevelLossText,
+                _service.CurrentLevel > 0);
         }
 
         private void ConfirmLevelUp()

@@ -35,7 +35,7 @@ namespace AdBonusOffers
         public event Action<AdBonusOfferViewData> OfferShown;
         public event Action OfferHidden;
         public event Action<AdBonusOfferViewData> RewardGranted;
-        public event Action<AdBonusOfferViewData> RewardFailed;
+        public event Action<AdBonusOfferViewData, RewardedAdFailureReason> RewardFailed;
 
         public bool HasActiveOffer => _currentOffer != null;
         public AdBonusOfferViewData CurrentOffer => CreateViewData(_currentOffer);
@@ -153,7 +153,7 @@ namespace AdBonusOffers
 
             if (!_adsService.IsAvailable(offer.PlacementId))
             {
-                FailClaim(viewData);
+                FailClaim(viewData, RewardedAdFailureReason.NoFill);
                 return;
             }
 
@@ -162,7 +162,7 @@ namespace AdBonusOffers
             _adsService.Show(
                 offer.PlacementId,
                 () => CompleteClaim(offer, viewData),
-                () => FailClaim(viewData));
+                reason => FailClaim(viewData, reason));
         }
 
         public void ClaimCurrentOfferForHard()
@@ -174,7 +174,7 @@ namespace AdBonusOffers
 
             if (!_wallet.SpendHard(_currentOffer.HardPrice))
             {
-                RewardFailed?.Invoke(CurrentOffer);
+                RewardFailed?.Invoke(CurrentOffer, RewardedAdFailureReason.Error);
                 return;
             }
 
@@ -199,10 +199,10 @@ namespace AdBonusOffers
             RewardGranted?.Invoke(viewData);
         }
 
-        private void FailClaim(AdBonusOfferViewData viewData)
+        private void FailClaim(AdBonusOfferViewData viewData, RewardedAdFailureReason reason)
         {
             _isClaimInProgress = false;
-            RewardFailed?.Invoke(viewData);
+            RewardFailed?.Invoke(viewData, reason);
         }
 
         private void TickCooldowns()

@@ -20,6 +20,7 @@ namespace PlayerProgression
         [Header("Warning")]
         [SerializeField] private Button _newLevelButton;
         [SerializeField] private GameObject _levelUpOfferRoot;
+        [SerializeField] private GameObject _levelUpOfferLossRoot;
         [SerializeField] private TextMeshProUGUI _levelUpOfferLossText;
         [SerializeField] private Transform _levelUpOfferRewardsContainer;
         [SerializeField] private Button _levelUpConfirmButton;
@@ -195,7 +196,7 @@ namespace PlayerProgression
             }
         }
 
-        public void ShowLevelUpOffer(System.Action confirmAction, IReadOnlyList<LevelRewardEntry> rewards, string lossText)
+        public void ShowLevelUpOffer(System.Action confirmAction, IReadOnlyList<LevelRewardEntry> rewards, string lossText, bool showLossWarning)
         {
             _confirmLevelUpAction = confirmAction;
 
@@ -204,6 +205,14 @@ namespace PlayerProgression
             if (_levelUpOfferLossText != null)
             {
                 _levelUpOfferLossText.text = lossText;
+            }
+
+            GameObject lossRoot = _levelUpOfferLossRoot != null
+                ? _levelUpOfferLossRoot
+                : _levelUpOfferLossText?.gameObject;
+            if (lossRoot != null)
+            {
+                lossRoot.SetActive(showLossWarning);
             }
 
             if (_levelUpOfferRoot != null)

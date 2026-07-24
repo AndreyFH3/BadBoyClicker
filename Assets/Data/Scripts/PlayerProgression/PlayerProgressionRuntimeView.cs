@@ -74,14 +74,16 @@ namespace PlayerProgression
             _addedExperienceText.CrossFadeAlpha(0f, 0.45f, false);
         }
 
-        public void ShowLevelUpOffer(Action confirmAction, IReadOnlyList<LevelRewardEntry> rewards, string lossText)
+        public void ShowLevelUpOffer(Action confirmAction, IReadOnlyList<LevelRewardEntry> rewards, string lossText, bool showLossWarning)
         {
             EnsureCreated();
             _isShowingLevelUpResult = false;
             _confirmAction = confirmAction;
-            _popupText.text = Localization.Format(
-                "player_progression.level_up_offer_runtime",
-                $"{lossText}\n\n{BuildRewardsText(rewards)}");
+            string rewardsText = BuildRewardsText(rewards);
+            string content = showLossWarning
+                ? $"{lossText}\n\n{rewardsText}"
+                : rewardsText;
+            _popupText.text = Localization.Format("player_progression.level_up_offer_runtime", content);
             SetPopupIcon(null);
             _popupConfirmButton.gameObject.SetActive(true);
             _popupCancelButton.GetComponentInChildren<TextMeshProUGUI>().text = Localization.Tr("common.cancel");

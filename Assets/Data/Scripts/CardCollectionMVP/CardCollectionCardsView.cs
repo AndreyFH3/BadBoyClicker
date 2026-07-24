@@ -51,6 +51,8 @@ namespace CardCollectionMVP
 
         private void Awake()
         {
+            HideImmediately();
+
             if (_cardReference != null)
             {
                 _cardReference.gameObject.SetActive(false);
@@ -70,6 +72,15 @@ namespace CardCollectionMVP
             {
                 _collectButton.onClick.AddListener(RequestCollect);
             }
+        }
+
+        private void HideImmediately()
+        {
+            CanvasGroup canvasGroup = CanvasGroup;
+            canvasGroup.alpha = 0f;
+            canvasGroup.interactable = false;
+            canvasGroup.blocksRaycasts = false;
+            Root.SetActive(false);
         }
 
         private void OnDestroy()

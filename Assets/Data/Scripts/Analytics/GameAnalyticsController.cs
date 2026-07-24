@@ -66,7 +66,7 @@ namespace Analytics
             GameStarted();
 
             _gameStartRouter.OnClickValueEvent += OnClickValue;
-            _shopModel.ItemBought += ShopItemBought;
+            _shopModel.ItemBought += OnShopItemBought;
             _playerProgression.LevelCompleted += OnLevelCompleted;
             _featureUnlockService.FeatureUnlocked += OnFeatureUnlocked;
             _dailyLoginService.RewardClaimed += OnDailyLoginRewardClaimed;
@@ -86,7 +86,7 @@ namespace Analytics
         public void Dispose()
         {
             _gameStartRouter.OnClickValueEvent -= OnClickValue;
-            _shopModel.ItemBought -= ShopItemBought;
+            _shopModel.ItemBought -= OnShopItemBought;
             _playerProgression.LevelCompleted -= OnLevelCompleted;
             _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;
             _dailyLoginService.RewardClaimed -= OnDailyLoginRewardClaimed;
@@ -113,9 +113,9 @@ namespace Analytics
             Send("click_milestone_reached", ("clicks", clicks));
         }
 
-        public void ShopItemBought(string itemId)
+        public void ShopItemBought(string itemId, string shop)
         {
-            Send("shop_item_bought", ("item_id", itemId));
+            Send("shop_item_bought", ("item_id", itemId), ("shop", shop));
         }
 
         public void LevelUp(int level)
@@ -187,14 +187,14 @@ namespace Analytics
             Send("ad_bonus_reward_granted", ("offer_id", offerId));
         }
 
-        public void AdBonusRewardFailed(string offerId)
+        public void AdBonusRewardFailed(string offerId, string reason)
         {
-            Send("ad_bonus_reward_failed", ("offer_id", offerId));
+            Send("ad_bonus_reward_failed", ("offer_id", offerId), ("reason", reason));
         }
 
-        public void CustomizationItemBought(string itemType, string itemId, long price)
+        public void CustomizationItemBought(string itemType, string itemId, long price, string currency)
         {
-            Send("customization_item_bought", ("item_type", itemType), ("item_id", itemId), ("price", price));
+            Send("customization_item_bought", ("item_type", itemType), ("item_id", itemId), ("price", price), ("currency", currency), ("shop", "customization"));
         }
 
         public void CustomizationItemSelected(string itemType, string itemId)
@@ -274,14 +274,37 @@ namespace Analytics
             AdBonusRewardGranted(offer.Id);
         }
 
-        private void OnAdBonusRewardFailed(AdBonusOfferViewData offer)
+        private void OnAdBonusRewardFailed(AdBonusOfferViewData offer, Core.Ads.RewardedAdFailureReason reason)
         {
-            AdBonusRewardFailed(offer.Id);
+            AdBonusRewardFailed(offer.Id, ToAnalyticsValue(reason));
         }
 
         private void OnCustomizationItemBought(CustomizationItemType type, string id, long price)
         {
-            CustomizationItemBought(type.ToString(), id, price);
+            CustomizationItemBought(type.ToString(), id, price, "decor");
+        }
+
+        private void OnShopItemBought(string itemId)
+        {
+            ShopElementData item = _shopModel.GetShopPositionData(itemId);
+            string shop = item?.Type switch
+            {
+                ShopItemType.Click => "clicks",
+                ShopItemType.AutoBuy => "autoclick",
+                ShopItemType.PaidBuy => "chest",
+                _ => "unknown"
+            };
+            ShopItemBought(itemId, shop);
+        }
+
+        private static string ToAnalyticsValue(Core.Ads.RewardedAdFailureReason reason)
+        {
+            return reason switch
+            {
+                Core.Ads.RewardedAdFailureReason.NoFill => "no_fill",
+                Core.Ads.RewardedAdFailureReason.Closed => "closed",
+                _ => "error"
+            };
         }
 
         private void OnCustomizationItemSelected(CustomizationItemType type, string id)

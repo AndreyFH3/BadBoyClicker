@@ -49,8 +49,10 @@ namespace Installer
         [SerializeField] private MonoBehaviour _rewardActivationView;
         [SerializeField] private AdBonusActiveEffectsView _adBonusActiveEffectsView;
         [SerializeField] private RewardedAdErrorView _rewardedAdErrorView;
+        [SerializeField] private AdLoadingOverlay _adLoadingOverlay;
         [SerializeField] private CustomizationView _customizationView;
         [SerializeField] private TutorialView _tutorialView;
+        [SerializeField] private StartupLoadingView _startupLoadingView;
 
         public override void InstallBindings()
         {
@@ -89,6 +91,7 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<CardCollectionBonusService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CustomizationService>().AsSingle().NonLazy();
             Container.Bind<IDailyLoginStartupGate>().To<DailyLoginStartupGate>().AsSingle().NonLazy();
+            EnsureAdLoadingOverlay();
             Container.Bind<IRewardedAdsService>().To<YGRewardedAdsService>().AsSingle().NonLazy();
             Container.BindInterfacesTo<PurchaseSystem>().AsSingle().NonLazy();
             Container.Bind<IRewardOfferUiGate>().To<RewardOfferUiGate>().AsSingle().NonLazy();
@@ -102,6 +105,17 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<WalletPresenter>().AsSingle().NonLazy();
             
             Container.BindInterfacesAndSelfTo<SaveYGController>().AsSingle().NonLazy();
+            Container.BindInitializableExecutionOrder<SaveYGController>(-9000);
+            if (_startupLoadingView != null)
+            {
+                Container.Bind<StartupLoadingView>().FromInstance(_startupLoadingView).AsSingle().NonLazy();
+                Container.BindInterfacesTo<StartupLoadingController>().AsSingle().NonLazy();
+                Container.BindInitializableExecutionOrder<StartupLoadingController>(-8999);
+            }
+            else
+            {
+                Debug.LogError("StartupLoadingView is not assigned in GameInstaller.", this);
+            }
             
             Container.Bind<ClickableObject>().FromInstance(_clickObj).AsSingle().NonLazy();
             Container.Bind<ClickInfoShower>().FromInstance(_clickInfo).AsSingle().NonLazy();
@@ -242,5 +256,14 @@ namespace Installer
         {
             return _rewardedAdErrorView != null ? _rewardedAdErrorView : CreateRuntimeRewardedAdErrorView();
         }
+
+        private void EnsureAdLoadingOverlay()
+        {
+            if (_adLoadingOverlay == null)
+            {
+                _adLoadingOverlay = new GameObject("AdLoadingOverlay").AddComponent<AdLoadingOverlay>();
+            }
+        }
+
     }
 }

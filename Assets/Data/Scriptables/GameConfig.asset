@@ -242,15 +242,15 @@ MonoBehaviour:
     - _rewardType: 0
       _currencyType: 2
       _amount: 5
-      _rewardId:
+      _rewardId: 
       _icon: {fileID: 0}
       _displayTextLocalizationKey: shop.paid.Hard_rewarded_ad.reward
       _displayText: +5 crystals
       _requiresActivation: 0
-      _activationTitleLocalizationKey:
-      _activationTitle:
-      _activationDescriptionLocalizationKey:
-      _activationDescription:
+      _activationTitleLocalizationKey: 
+      _activationTitle: 
+      _activationDescriptionLocalizationKey: 
+      _activationDescription: 
   - _id: Hard_buy_1
     _purchaseKind: 0
     _paymentId: Hard_buy_1
@@ -730,7 +730,7 @@ MonoBehaviour:
     _purchaseKind: 1
     _paymentId: 
     _priceCurrencyType: 2
-    _priceAmount: 10
+    _priceAmount: 25
     _nameLocalizationKey: shop.paid.exp_10_purchase.name
     _name: Experience +10%
     _icon: {fileID: 21300000, guid: fe1e21a621666644a83c4aa8706c7346, type: 3}
@@ -755,7 +755,7 @@ MonoBehaviour:
     _purchaseKind: 1
     _paymentId: 
     _priceCurrencyType: 2
-    _priceAmount: 25
+    _priceAmount: 35
     _nameLocalizationKey: shop.paid.exp_25_purchase.name
     _name: Experience +25%
     _icon: {fileID: 21300000, guid: fe1e21a621666644a83c4aa8706c7346, type: 3}
@@ -780,7 +780,7 @@ MonoBehaviour:
     _purchaseKind: 1
     _paymentId: 
     _priceCurrencyType: 2
-    _priceAmount: 50
+    _priceAmount: 60
     _nameLocalizationKey: shop.paid.exp_50_purchase.name
     _name: Experience +50%
     _icon: {fileID: 21300000, guid: fe1e21a621666644a83c4aa8706c7346, type: 3}

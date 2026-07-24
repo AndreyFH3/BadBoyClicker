@@ -44,6 +44,9 @@ namespace Core
         private GameConfig _config;
         private bool _isApplyingSaveData;
 
+        public bool IsLoaded { get; private set; }
+        public event Action Loaded;
+
         [Inject]
         public void Construct(
             Wallet wallet,
@@ -178,6 +181,12 @@ namespace Core
                 // Snapshot the offline reward now that both the shop (AutoIncomePerSecond)
                 // and the last-online timestamp are applied. Runs once per session.
                 _offlineIncomeModel.RecalculateFromSave();
+
+                if (!IsLoaded)
+                {
+                    IsLoaded = true;
+                    Loaded?.Invoke();
+                }
             }
             finally
             {

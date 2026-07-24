@@ -26,7 +26,7 @@ namespace PlayerProgression
         {
         }
 
-        public void ShowLevelUpOffer(System.Action confirmAction, System.Collections.Generic.IReadOnlyList<LevelRewardEntry> rewards, string lossText)
+        public void ShowLevelUpOffer(System.Action confirmAction, System.Collections.Generic.IReadOnlyList<LevelRewardEntry> rewards, string lossText, bool showLossWarning)
         {
             confirmAction?.Invoke();
         }

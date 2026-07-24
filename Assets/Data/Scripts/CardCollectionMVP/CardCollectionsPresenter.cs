@@ -207,7 +207,7 @@ namespace CardCollectionMVP
             UpdateCardChestAdView();
         }
 
-        private void OnCardChestAdFailed()
+        private void OnCardChestAdFailed(Core.Ads.RewardedAdFailureReason reason)
         {
             _isCardChestAdInProgress = false;
             _adErrorView.Show();

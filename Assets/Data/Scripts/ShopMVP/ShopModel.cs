@@ -790,7 +790,7 @@ namespace Shop
             _rewardedAds.Show(
                 item.PaidData.PaymentId,
                 () => CompleteRewardedAdPurchase(item),
-                () => FailRewardedAdPurchase(itemId));
+                _ => FailRewardedAdPurchase(itemId));
         }
 
         private void CompleteRewardedAdPurchase(ShopItem item)
