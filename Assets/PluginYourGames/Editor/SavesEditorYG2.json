@@ -1,31 +1,81 @@
 {
-    "idSave": 28,
+    "idSave": 299,
     "GameSaveData": {
         "Wallet": {
-            "Soft": 115,
-            "Middle": 5,
-            "Hard": 10
+            "Soft": 706,
+            "Middle": 50,
+            "Hard": 6612
         },
         "Shop": {
             "Levels": []
         },
         "OfflineIncome": {
-            "LastOnlineTicks": 639205013485592065,
+            "LastOnlineTicks": 639205457529733813,
             "PendingDoubleNextReward": false
         },
         "DailyLogin": {
-            "CurrentDayIndex": 0,
-            "LastClaimUtcTicks": 0,
+            "CurrentDayIndex": 2,
+            "LastClaimUtcTicks": 639205446392287769,
             "CompletedCycles": 0
         },
         "DailyQuests": {
-            "DayKey": "",
+            "DayKey": "20260725",
             "Points": 0,
-            "AvgIncomePerSecond": 0.0,
+            "AvgIncomePerSecond": 1.3896116018295289,
             "Quests": [
+                {
+                    "Id": "player_level_test",
+                    "CurrentValue": 0,
+                    "IsCompleted": false,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 5,
+                    "HasBaseline": true,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
+                },
                 {
                     "Id": "play_time_test",
                     "CurrentValue": 0,
+                    "IsCompleted": false,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 0,
+                    "HasEffectiveTarget": false
+                },
+                {
+                    "Id": "shop_spent_test",
+                    "CurrentValue": 0,
+                    "IsCompleted": false,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 15000,
+                    "HasEffectiveTarget": true
+                },
+                {
+                    "Id": "total_earned_test",
+                    "CurrentValue": 60,
+                    "IsCompleted": false,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 5000,
+                    "HasEffectiveTarget": true
+                },
+                {
+                    "Id": "balance_test",
+                    "CurrentValue": 706,
+                    "IsCompleted": false,
+                    "IsPointsAdded": false,
+                    "BaselineValue": 0,
+                    "HasBaseline": false,
+                    "EffectiveTargetValue": 25000,
+                    "HasEffectiveTarget": true
+                },
+                {
+                    "Id": "click_test",
+                    "CurrentValue": 30,
                     "IsCompleted": false,
                     "IsPointsAdded": false,
                     "BaselineValue": 0,
@@ -37,8 +87,8 @@
             "Milestones": []
         },
         "PlayerProgression": {
-            "CompletedLevels": 0,
-            "CurrentExperience": 182,
+            "CompletedLevels": 4,
+            "CurrentExperience": 80,
             "TutorialClicks": 50,
             "IsTutorialCompleted": true
         },
@@ -63,11 +113,11 @@
             "UnseenCatIds": []
         },
         "AdBonusOffers": {
-            "DayKey": "",
+            "DayKey": "20260725",
             "ClaimsToday": 0
         },
         "Analytics": {
-            "TotalClicks": 115,
+            "TotalClicks": 145,
             "NextClickMilestoneIndex": 3
         }
     }

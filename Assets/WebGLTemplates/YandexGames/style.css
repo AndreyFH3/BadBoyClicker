@@ -17,18 +17,20 @@ canvas {
 
 body {
     margin: 0;
+    background: linear-gradient(135deg, #ffefc9 0%, #ff8000 75%);
 }
 
 #unity-container {
     width: 100%;
     height: 100%;
     position: relative;
+    background: linear-gradient(135deg, #ffefc9 0%, #ff8000 75%);
 }
 
 #unity-canvas {
     width: 100%;
     height: 100%;
-    background: {{{ BACKGROUND_COLOR }}};
+	background: linear-gradient(135deg, #ffefc9 0%, #ff8000 75%);
 	touch-action: none;
 }
 

@@ -487,15 +487,3 @@ MonoBehaviour:
       _activationTitle: 
       _activationDescriptionLocalizationKey: 
       _activationDescription: 
-    - _rewardType: 4
-      _currencyType: 0
-      _amount: 0
-      _rewardId: card_collection_unlock_skin_emperor
-      _icon: {fileID: 5201493233513209010, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
-      _displayTextLocalizationKey: card_collection.reward.5.title.text
-      _displayText: 
-      _requiresActivation: 0
-      _activationTitleLocalizationKey: 
-      _activationTitle: 
-      _activationDescriptionLocalizationKey: 
-      _activationDescription: 

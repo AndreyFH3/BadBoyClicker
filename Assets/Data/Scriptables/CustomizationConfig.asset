@@ -198,20 +198,20 @@ MonoBehaviour:
     _sprite: {fileID: 21300000, guid: 57c8b60583d1f774e8cfed8477b733da, type: 3}
     _price: 110
     _rewardOnly: 0
-  - _id: cat_legend
-    _titleLocalizationKey: cat_legend_title_key
-    _title: Legend
-    _descriptionLocalizationKey: cat_legend_description_key
-    _description: Awarded for completing the Legends card collection.
-    _sprite: {fileID: 21300000, guid: 79235124f3c01f24486d25f37d3e0862, type: 3}
-    _price: 0
-    _rewardOnly: 1
   - _id: cat_emperor
     _titleLocalizationKey: cat_emperor_title_key
     _title: Emperor
     _descriptionLocalizationKey: cat_emperor_description_key
     _description: Awarded for completing the Legends card collection.
     _sprite: {fileID: 21300000, guid: 43cfb262e5271ba41a88dfef22835960, type: 3}
+    _price: 150
+    _rewardOnly: 0
+  - _id: cat_legend
+    _titleLocalizationKey: cat_legend_title_key
+    _title: Legend
+    _descriptionLocalizationKey: cat_legend_description_key
+    _description: Awarded for completing the Legends card collection.
+    _sprite: {fileID: 21300000, guid: 79235124f3c01f24486d25f37d3e0862, type: 3}
     _price: 0
     _rewardOnly: 1
   - _id: cat_mythic
