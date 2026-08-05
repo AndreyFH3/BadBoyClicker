@@ -10,5 +10,6 @@ namespace Purchases
         bool IsAvailable { get; }
         string GetPrice(string paymentId, string fallbackPrice);
         void Buy(string paymentId);
+        void RecoverPurchases();
     }
 }

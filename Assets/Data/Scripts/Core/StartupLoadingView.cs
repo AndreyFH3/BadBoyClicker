@@ -9,6 +9,8 @@ namespace Core
 {
     public sealed class StartupLoadingView : MonoBehaviour
     {
+        public event Action StartRequested;
+
         [Tooltip("Container with the loading status only. It must not contain the Start button.")]
         [SerializeField] private GameObject _loadingStateRoot;
         [SerializeField] private TextMeshProUGUI _statusText;
@@ -84,6 +86,7 @@ namespace Core
 
             _isClosing = true;
             _startButton.interactable = false;
+            StartRequested?.Invoke();
 
             if (_fade != null)
             {

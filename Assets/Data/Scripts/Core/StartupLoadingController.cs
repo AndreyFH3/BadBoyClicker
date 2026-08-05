@@ -1,4 +1,5 @@
 using System;
+using Purchases;
 using Zenject;
 
 namespace Core
@@ -7,16 +8,22 @@ namespace Core
     {
         private readonly ISaveSystem _saveSystem;
         private readonly StartupLoadingView _view;
+        private readonly IPurchaseSystem _purchaseSystem;
 
-        public StartupLoadingController(ISaveSystem saveSystem, StartupLoadingView view)
+        public StartupLoadingController(
+            ISaveSystem saveSystem,
+            StartupLoadingView view,
+            IPurchaseSystem purchaseSystem)
         {
             _saveSystem = saveSystem;
             _view = view;
+            _purchaseSystem = purchaseSystem;
         }
 
         public void Initialize()
         {
             _saveSystem.Loaded += OnLoaded;
+            _view.StartRequested += OnStartRequested;
 
             if (_saveSystem.IsLoaded)
             {
@@ -27,6 +34,7 @@ namespace Core
         public void Dispose()
         {
             _saveSystem.Loaded -= OnLoaded;
+            _view.StartRequested -= OnStartRequested;
         }
 
         private void OnLoaded()
@@ -37,6 +45,11 @@ namespace Core
             {
                 _view.AllowStart();
             }
+        }
+
+        private void OnStartRequested()
+        {
+            _purchaseSystem.RecoverPurchases();
         }
     }
 }

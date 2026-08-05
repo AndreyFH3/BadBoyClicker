@@ -1,4 +1,5 @@
 using System;
+using Core;
 using UnityEngine;
 using YG;
 using Zenject;
@@ -7,6 +8,14 @@ namespace Purchases
 {    
     public class PurchaseSystem : IPurchaseSystem, IInitializable, IDisposable
     {
+        private string _pendingPaymentId;
+        private readonly LazyInject<ISaveSystem> _saveSystem;
+
+        public PurchaseSystem(LazyInject<ISaveSystem> saveSystem)
+        {
+            _saveSystem = saveSystem;
+        }
+
         public event Action<string> PurchaseSucceeded;
         public event Action<string> PurchaseFailed;
 
@@ -58,6 +67,13 @@ namespace Purchases
             }
 
 #if Payments_yg
+            if (!string.IsNullOrEmpty(_pendingPaymentId))
+            {
+                Debug.LogWarning($"Purchase '{_pendingPaymentId}' is already in progress.");
+                return;
+            }
+
+            _pendingPaymentId = paymentId;
             YG2.BuyPayments(paymentId);
 #else
             Debug.LogWarning($"PluginYG2 Payments module is not enabled. Purchase was not started: {paymentId}");
@@ -65,16 +81,28 @@ namespace Purchases
 #endif
         }
 
+        public void RecoverPurchases()
+        {
+#if Payments_yg
+            YG2.ConsumePurchases(true);
+#endif
+        }
+
         private void OnPurchaseSuccess(string paymentId)
         {
+            _pendingPaymentId = null;
             PurchaseSucceeded?.Invoke(paymentId);
 #if Payments_yg
+            // The reward handlers run synchronously above. Persist their changes
+            // before removing the purchase token, so a restart can recover it.
+            _saveSystem.Value.Save();
             YG2.ConsumePurchaseByID(paymentId, false);
 #endif
         }
 
         private void OnPurchaseFailed(string paymentId)
         {
+            _pendingPaymentId = null;
             PurchaseFailed?.Invoke(paymentId);
         }
     }
