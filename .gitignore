@@ -104,3 +104,14 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# Local .NET SDK home/telemetry caches (machine-specific, contain machine id)
+.dotnet/
+.dotnet_home/
+
+# IDE language-server caches (contain local user paths)
+*.lscache
+
+# PluginYG build log (contains local build path)
+/[Aa]ssets/PluginYourGames/Editor/BuildLogYG2.txt
+/[Aa]ssets/PluginYourGames/Editor/BuildLogYG2.txt.meta

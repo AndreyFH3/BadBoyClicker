@@ -1,3 +1,0 @@
-﻿Build path: C:/Users/Lenovo/Downloads/Papka
-Build number: 7
-PluginYG version: 2.0092
