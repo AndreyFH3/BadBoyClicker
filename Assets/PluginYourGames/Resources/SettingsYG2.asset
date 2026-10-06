@@ -25,6 +25,420 @@ MonoBehaviour:
     postponeCallByFail: 0
     postponeCallTimer: 10
     labelAdvSimLabel: 0
+  Leaderboards:
+    enable: 1
+    saveScoreAnonymousPlayers: 1
+    listLBSim:
+    - technoName: test
+      entries: '1. Max: 10
+
+        2. Masha: 15
+
+        3. anonymous: 23
+
+        4.
+        Player 4: 30
+
+        5. Player current: 40
+
+        6. Player 6: 50
+
+        7.
+        Player 7: 60
+
+        8. Player 8: 70
+
+        9. Player 9: 80
+
+        10.
+        Player 10: 90'
+      isDefault: 0
+      isInvertSortOrder: 0
+      decimalOffset: 0
+      type: numeric
+      players:
+      - rank: 1
+        name: Max
+        score: 100
+        photo: demo image
+        uniqueID: 123
+        extraData: 
+      - rank: 2
+        name: Masha
+        score: 90
+        photo: demo image
+        uniqueID: 321
+        extraData: 
+      - rank: 3
+        name: anonymous
+        score: 80
+        photo: anonymous
+        uniqueID: 456
+        extraData: 
+      - rank: 4
+        name: Player 4
+        score: 70
+        photo: demo image
+        uniqueID: 321
+        extraData: 
+      - rank: 5
+        name: Player current
+        score: 60
+        photo: demo image
+        uniqueID: 000
+        extraData: 
+      - rank: 6
+        name: Player 6
+        score: 50
+        photo: demo image
+        uniqueID: 326
+        extraData: 
+      - rank: 7
+        name: Player 7
+        score: 40
+        photo: demo image
+        uniqueID: 327
+        extraData: 
+      - rank: 8
+        name: Player 8
+        score: 30
+        photo: demo image
+        uniqueID: 328
+        extraData: 
+      - rank: 9
+        name: Player 9
+        score: 20
+        photo: demo image
+        uniqueID: 329
+        extraData: 
+      - rank: 10
+        name: Player 10
+        score: 10
+        photo: demo image
+        uniqueID: 330
+        extraData: 
+      currentPlayer:
+        rank: 5
+        score: 60
+        extraData: 
+    - technoName: time
+      entries: '1. Max: 7123
+
+        2. Maria: 15321
+
+        3. anonymous: 62000
+
+        4.
+        Player 4: 122000
+
+        5. Player current: 127000
+
+        6. Player 6:
+        340000'
+      isDefault: 0
+      isInvertSortOrder: 1
+      decimalOffset: 0
+      type: numeric
+      players:
+      - rank: 1
+        name: Max
+        score: 7123
+        photo: demo image
+        uniqueID: 789
+        extraData: 
+      - rank: 2
+        name: Maria
+        score: 15321
+        photo: demo image
+        uniqueID: 987
+        extraData: 
+      - rank: 3
+        name: anonymous
+        score: 62000
+        photo: anonymous
+        uniqueID: 891
+        extraData: 
+      - rank: 4
+        name: Player 4
+        score: 122000
+        photo: demo image
+        uniqueID: 321
+        extraData: 
+      - rank: 5
+        name: Player current
+        score: 127000
+        photo: demo image
+        uniqueID: 000
+        extraData: 
+      - rank: 6
+        name: Player 6
+        score: 340000
+        photo: demo image
+        uniqueID: 321
+        extraData: 
+      currentPlayer:
+        rank: 5
+        score: 127000
+        extraData: 
+    - technoName: level
+      entries: '1. Player 1: 120
+
+        2. Player 2: 116
+
+        3. Player 3:
+        112
+
+        4. Player 4: 108
+
+        5. Player 5: 104
+
+        6. Player
+        6: 100
+
+        7. Player 7: 96
+
+        8. Player 8: 92
+
+        9. Player
+        9: 88
+
+        10. Player 10: 84
+
+        11. Player 11: 80
+
+        12.
+        Player 12: 76
+
+        13. Player 13: 72
+
+        14. Player 14: 68
+
+        15.
+        Player 15: 64
+
+        16. Player 16: 60
+
+        17. Player 17: 56
+
+        18.
+        Player 18: 52
+
+        19. Player 19: 48
+
+        20. Player 20: 44
+
+        21.
+        Player 21: 40
+
+        22. Player 22: 36
+
+        23. Player 23: 32
+
+        24.
+        Player 24: 28
+
+        25. Player 25: 24
+
+        26. Player 26: 20
+
+        27.
+        Player current: 16
+
+        28. Player 28: 12
+
+        29. Player 29: 8
+
+        30.
+        Player 30: 4'
+      isDefault: 0
+      isInvertSortOrder: 0
+      decimalOffset: 0
+      type: numeric
+      players:
+      - rank: 1
+        name: Player 1
+        score: 120
+        photo: 
+        uniqueID: sim_1
+        extraData: 
+      - rank: 2
+        name: Player 2
+        score: 116
+        photo: 
+        uniqueID: sim_2
+        extraData: 
+      - rank: 3
+        name: Player 3
+        score: 112
+        photo: 
+        uniqueID: sim_3
+        extraData: 
+      - rank: 4
+        name: Player 4
+        score: 108
+        photo: 
+        uniqueID: sim_4
+        extraData: 
+      - rank: 5
+        name: Player 5
+        score: 104
+        photo: 
+        uniqueID: sim_5
+        extraData: 
+      - rank: 6
+        name: Player 6
+        score: 100
+        photo: 
+        uniqueID: sim_6
+        extraData: 
+      - rank: 7
+        name: Player 7
+        score: 96
+        photo: 
+        uniqueID: sim_7
+        extraData: 
+      - rank: 8
+        name: Player 8
+        score: 92
+        photo: 
+        uniqueID: sim_8
+        extraData: 
+      - rank: 9
+        name: Player 9
+        score: 88
+        photo: 
+        uniqueID: sim_9
+        extraData: 
+      - rank: 10
+        name: Player 10
+        score: 84
+        photo: 
+        uniqueID: sim_10
+        extraData: 
+      - rank: 11
+        name: Player 11
+        score: 80
+        photo: 
+        uniqueID: sim_11
+        extraData: 
+      - rank: 12
+        name: Player 12
+        score: 76
+        photo: 
+        uniqueID: sim_12
+        extraData: 
+      - rank: 13
+        name: Player 13
+        score: 72
+        photo: 
+        uniqueID: sim_13
+        extraData: 
+      - rank: 14
+        name: Player 14
+        score: 68
+        photo: 
+        uniqueID: sim_14
+        extraData: 
+      - rank: 15
+        name: Player 15
+        score: 64
+        photo: 
+        uniqueID: sim_15
+        extraData: 
+      - rank: 16
+        name: Player 16
+        score: 60
+        photo: 
+        uniqueID: sim_16
+        extraData: 
+      - rank: 17
+        name: Player 17
+        score: 56
+        photo: 
+        uniqueID: sim_17
+        extraData: 
+      - rank: 18
+        name: Player 18
+        score: 52
+        photo: 
+        uniqueID: sim_18
+        extraData: 
+      - rank: 19
+        name: Player 19
+        score: 48
+        photo: 
+        uniqueID: sim_19
+        extraData: 
+      - rank: 20
+        name: Player 20
+        score: 44
+        photo: 
+        uniqueID: sim_20
+        extraData: 
+      - rank: 21
+        name: Player 21
+        score: 40
+        photo: 
+        uniqueID: sim_21
+        extraData: 
+      - rank: 22
+        name: Player 22
+        score: 36
+        photo: 
+        uniqueID: sim_22
+        extraData: 
+      - rank: 23
+        name: Player 23
+        score: 32
+        photo: 
+        uniqueID: sim_23
+        extraData: 
+      - rank: 24
+        name: Player 24
+        score: 28
+        photo: 
+        uniqueID: sim_24
+        extraData: 
+      - rank: 25
+        name: Player 25
+        score: 24
+        photo: 
+        uniqueID: sim_25
+        extraData: 
+      - rank: 26
+        name: Player 26
+        score: 20
+        photo: 
+        uniqueID: sim_26
+        extraData: 
+      - rank: 27
+        name: Player current
+        score: 16
+        photo: 
+        uniqueID: 000
+        extraData: 
+      - rank: 28
+        name: Player 28
+        score: 12
+        photo: 
+        uniqueID: sim_28
+        extraData: 
+      - rank: 29
+        name: Player 29
+        score: 8
+        photo: 
+        uniqueID: sim_29
+        extraData: 
+      - rank: 30
+        name: Player 30
+        score: 4
+        photo: 
+        uniqueID: sim_30
+        extraData: 
+      currentPlayer:
+        rank: 27
+        score: 16
+        extraData: 
   Localization:
     setLanguageMod: 1
   Metrica:
@@ -48,14 +462,6 @@ MonoBehaviour:
   RewardedAdv:
     skipInterAdvAfterReward: 0
     labelAdvSimLabel: 0
-  ServerTime:
-    manualDateSetup: 0
-    year: 2025
-    month: 6
-    day: 15
-    hour: 12
-    minute: 30
-    second: 30
   Storage:
     saveLocal: 0
     saveCloud: 1

@@ -8,7 +8,6 @@ using UnityEngine;
 using Zenject;
 using GameLocalization;
 using QuestSystem;
-using PlayerFeatures;
 
 namespace PlayerProgression
 {
@@ -22,18 +21,13 @@ namespace PlayerProgression
         private ILocalizationService _localization;
         private IQuestRewardService _rewardService;
         private IBuffService _buffService;
-        private PlayerFeatureUnlockConfig _featureUnlockConfig;
 
-        public int CurrentLevel => _save.IsTutorialCompleted ? _save.CompletedLevels + 1 : 0;
-        public long CurrentExperience => _save.IsTutorialCompleted ? _save.CurrentExperience : _save.TutorialClicks;
-        public long ExperienceToNextLevel => _save.IsTutorialCompleted
-            ? GetLevelExperienceRequirement(_save.CompletedLevels)
-            : (_config?.PlayerProgression?.TutorialClickTarget ?? 100);
+        public int CurrentLevel => _save.CompletedLevels + 1;
+        public long CurrentExperience => _save.CurrentExperience;
+        public long ExperienceToNextLevel => GetLevelExperienceRequirement(_save.CompletedLevels);
         public float CurrentProgress => ExperienceToNextLevel <= 0 ? 0f : Math.Min(1f, (float)CurrentExperience / ExperienceToNextLevel);
         public bool CanCompleteLevel => ExperienceToNextLevel > 0 && CurrentExperience >= ExperienceToNextLevel;
-        public IReadOnlyList<LevelRewardEntry> NextLevelRewards => _save.IsTutorialCompleted
-            ? CreateRewardEntries(_save.CompletedLevels)
-            : CreateTutorialRewardEntries();
+        public IReadOnlyList<LevelRewardEntry> NextLevelRewards => CreateRewardEntries(_save.CompletedLevels);
         public string NextLevelLossText => _localization.Format("You_want_new_level", CurrentLevel + 1);
         public float ClickIncomeMultiplier => 1f + GetBonusPercent(PlayerProgressBonusType.ClickIncomePercent) / 100f;
         public float PassiveIncomeMultiplier => 1f + GetBonusPercent(PlayerProgressBonusType.PassiveIncomePercent) / 100f;
@@ -43,7 +37,7 @@ namespace PlayerProgression
         public event Action<int> LevelCompleted;
 
         [Inject]
-        public void Construct(GameConfig config, Wallet wallet, PlayerProgressionRuntimeSave save, LazyInject<IShopRuntimeSave> shopSave, LazyInject<IRewardedAdsService> rewardedAds, ILocalizationService localization, IQuestRewardService rewardService, IBuffService buffService, PlayerFeatureUnlockConfig featureUnlockConfig)
+        public void Construct(GameConfig config, Wallet wallet, PlayerProgressionRuntimeSave save, LazyInject<IShopRuntimeSave> shopSave, LazyInject<IRewardedAdsService> rewardedAds, ILocalizationService localization, IQuestRewardService rewardService, IBuffService buffService)
         {
             _config = config;
             _wallet = wallet;
@@ -53,7 +47,6 @@ namespace PlayerProgression
             _localization = localization;
             _rewardService = rewardService;
             _buffService = buffService;
-            _featureUnlockConfig = featureUnlockConfig;
         }
 
         public void Initialize()
@@ -71,12 +64,6 @@ namespace PlayerProgression
 
         public void AddExperience(PlayerExperienceSource source, long contextAmount = 0)
         {
-            if (!_save.IsTutorialCompleted)
-            {
-                AddTutorialClick(source);
-                return;
-            }
-
             if (CanCompleteLevel)
             {
                 return;
@@ -105,33 +92,11 @@ namespace PlayerProgression
             _save.SetState(completedLevels, experience);
         }
 
-        private void AddTutorialClick(PlayerExperienceSource source)
-        {
-            if (source != PlayerExperienceSource.Click)
-            {
-                return;
-            }
-
-            int target = _config?.PlayerProgression?.TutorialClickTarget ?? 100;
-            int clicks = Math.Min(target, _save.TutorialClicks + 1);
-            _save.SetTutorialClicks(clicks);
-            ExperienceAdded?.Invoke(1);
-
-        }
-
         public bool CompleteLevel()
         {
             if (!CanCompleteLevel)
             {
                 return false;
-            }
-
-            if (!_save.IsTutorialCompleted)
-            {
-                _wallet.AddMiddle(GetTutorialCurrencyReward());
-                _save.CompleteTutorial();
-                LevelCompleted?.Invoke(CurrentLevel);
-                return true;
             }
 
             int completedLevels = _save.CompletedLevels + 1;
@@ -182,15 +147,22 @@ namespace PlayerProgression
             };
         }
 
+        // Every purchase is worth at least the configured ShopPurchase reward. The
+        // percent-of-price share only overtakes it deep into the shop, so without the
+        // floor the whole early game (anything under 500 soft at 0.1%) rounds down to
+        // zero experience and the shop stops feeding progression exactly when the
+        // player has the least of it.
         private long GetPurchaseExperience(long priceSpent)
         {
+            long minimum = GetExperienceReward(PlayerExperienceSource.ShopPurchase);
             if (priceSpent <= 0)
             {
-                return GetExperienceReward(PlayerExperienceSource.ShopPurchase);
+                return minimum;
             }
 
             float percent = Math.Max(0f, _config?.PlayerProgression?.PurchaseExperiencePercent ?? 0f);
-            return (long)Math.Round(priceSpent * percent / 100f, MidpointRounding.AwayFromZero);
+            long fromPrice = (long)Math.Round(priceSpent * percent / 100f, MidpointRounding.AwayFromZero);
+            return Math.Max(minimum, fromPrice);
         }
 
         private long GetExperienceReward(PlayerExperienceSource source)
@@ -315,90 +287,7 @@ namespace PlayerProgression
                 }
             }
 
-            AddShopUnlockEntries(entries, completedLevels + 2);
-            AddFeatureUnlockEntries(entries, completedLevels + 2);
-
             return entries;
-        }
-
-        private List<LevelRewardEntry> CreateTutorialRewardEntries()
-        {
-            var entries = new List<LevelRewardEntry>();
-            long middleReward = GetTutorialCurrencyReward();
-
-            if (middleReward > 0)
-            {
-                entries.Add(new LevelRewardEntry(
-                    _config?.PlayerProgression?.MiddleRewardIcon,
-                    _localization.Format("player_progression.reward.amount", middleReward),
-                    _localization.Localize("player_progression.reward.middle_currency.description")));
-            }
-
-            AddFeatureUnlockEntries(entries, 1);
-            return entries;
-        }
-
-        private long GetTutorialCurrencyReward()
-        {
-            return Math.Max(0, _config?.PlayerProgression?.MiddleRewardPerLevel ?? 0);
-        }
-
-        private void AddShopUnlockEntries(List<LevelRewardEntry> entries, int targetLevel)
-        {
-            AddShopUnlockEntries(entries, _config?.Clicks, targetLevel);
-            AddShopUnlockEntries(entries, _config?.AutoBuys, targetLevel);
-        }
-
-        private void AddShopUnlockEntries(
-            List<LevelRewardEntry> entries,
-            IReadOnlyList<GameConfig.ShopDataClick> shopItems,
-            int targetLevel)
-        {
-            if (shopItems == null)
-            {
-                return;
-            }
-
-            string description = _localization.Localize(
-                "player_progression.reward.shop_unlock.description");
-
-            foreach (GameConfig.ShopDataClick item in shopItems)
-            {
-                if (item == null || item.RequiredPlayerLevel != targetLevel)
-                {
-                    continue;
-                }
-
-                string name = string.IsNullOrEmpty(item.NameLocalizationKey)
-                    ? item.Name
-                    : _localization.Localize(item.NameLocalizationKey);
-
-                entries.Add(new LevelRewardEntry(item.Icon, name, description));
-            }
-        }
-
-        private void AddFeatureUnlockEntries(List<LevelRewardEntry> entries, int targetLevel)
-        {
-            var features = _featureUnlockConfig?.Features;
-            if (features == null)
-            {
-                return;
-            }
-
-            foreach (PlayerFeatureUnlockData feature in features)
-            {
-                if (feature == null || !feature.IsShowable || feature.RequiredLevel != targetLevel)
-                {
-                    continue;
-                }
-
-                entries.Add(new LevelRewardEntry(
-                    feature.Icon,
-                    _localization.Localize($"player_features.unlock.{feature.Feature}"),
-                    string.IsNullOrEmpty(feature.DescriptionLocalizationKey)
-                        ? null
-                        : _localization.Localize(feature.DescriptionLocalizationKey)));
-            }
         }
 
         private string GetBonusDescription(PlayerProgressBonusType type)

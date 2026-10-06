@@ -6,7 +6,6 @@ namespace CardCollections
 {
     public interface ICardCollectionService : ISavable<CardCollectionSaveData>
     {
-        bool IsUnlocked { get; }
         bool AreAllCollectionsCompleted { get; }
         long LastCardChestAdUtcTicks { get; }
         IReadOnlyList<CardCollectionConfig.CardCollectionData> Collections { get; }

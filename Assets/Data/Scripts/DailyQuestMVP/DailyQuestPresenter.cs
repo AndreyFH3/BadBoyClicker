@@ -1,7 +1,6 @@
 using System;
 using DailyQuests;
 using GameLocalization;
-using PlayerFeatures;
 using Zenject;
 
 namespace DailyQuestMVP
@@ -10,30 +9,23 @@ namespace DailyQuestMVP
     {
         private IDailyQuestService _service;
         private IDailyQuestView _view;
-        private IPlayerFeatureUnlockService _featureUnlockService;
-        private bool _isUnlocked;
 
         [Inject]
         public void Construct(
             IDailyQuestService service,
-            IDailyQuestView view,
-            IPlayerFeatureUnlockService featureUnlockService)
+            IDailyQuestView view)
         {
             _service = service;
             _view = view;
-            _featureUnlockService = featureUnlockService;
         }
 
         public void Initialize()
         {
-            _isUnlocked = _featureUnlockService.IsUnlocked(PlayerFeatureType.DailyQuest);
-            if (!_isUnlocked)
-            {
-                _featureUnlockService.FeatureUnlocked += OnFeatureUnlocked;
-                return;
-            }
-
-            StartUnlockedFlow();
+            _service.Changed += UpdateView;
+            _view.ClaimQuestPointsRequested += OnClaimQuestPointsRequested;
+            _view.ClaimMilestoneRequested += OnClaimMilestoneRequested;
+            Localization.LanguageChanged += UpdateView;
+            UpdateView();
         }
 
         public void Dispose()
@@ -42,16 +34,6 @@ namespace DailyQuestMVP
             _view.ClaimQuestPointsRequested -= OnClaimQuestPointsRequested;
             _view.ClaimMilestoneRequested -= OnClaimMilestoneRequested;
             Localization.LanguageChanged -= UpdateView;
-            _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;
-        }
-
-        private void StartUnlockedFlow()
-        {
-            _service.Changed += UpdateView;
-            _view.ClaimQuestPointsRequested += OnClaimQuestPointsRequested;
-            _view.ClaimMilestoneRequested += OnClaimMilestoneRequested;
-            Localization.LanguageChanged += UpdateView;
-            UpdateView();
         }
 
         private void UpdateView()
@@ -73,18 +55,6 @@ namespace DailyQuestMVP
             {
                 UpdateView();
             }
-        }
-
-        private void OnFeatureUnlocked(PlayerFeatureType feature)
-        {
-            if (feature != PlayerFeatureType.DailyQuest || _isUnlocked)
-            {
-                return;
-            }
-
-            _isUnlocked = true;
-            _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;
-            StartUnlockedFlow();
         }
     }
 }

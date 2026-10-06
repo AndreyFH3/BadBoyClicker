@@ -2,7 +2,6 @@ using System;
 using Core;
 using Core.Ads;
 using DailyLoginMVP;
-using PlayerFeatures;
 using Zenject;
 
 namespace OfflineIncome
@@ -20,7 +19,6 @@ namespace OfflineIncome
         private Wallet _wallet;
         private GameConfig _config;
         private IDailyLoginStartupGate _dailyLoginStartupGate;
-        private IPlayerFeatureUnlockService _featureUnlockService;
         private bool _isCompleted;
 
         [Inject]
@@ -33,8 +31,7 @@ namespace OfflineIncome
             IRewardOfferUiGate rewardOfferUiGate,
             Wallet wallet,
             GameConfig config,
-            IDailyLoginStartupGate dailyLoginStartupGate,
-            IPlayerFeatureUnlockService featureUnlockService)
+            IDailyLoginStartupGate dailyLoginStartupGate)
         {
             _container = container;
             _model = model;
@@ -45,7 +42,6 @@ namespace OfflineIncome
             _wallet = wallet;
             _config = config;
             _dailyLoginStartupGate = dailyLoginStartupGate;
-            _featureUnlockService = featureUnlockService;
         }
 
         public void Initialize()
@@ -66,13 +62,6 @@ namespace OfflineIncome
         private void StartOfflineIncomeFlow()
         {
             _dailyLoginStartupGate.Completed -= StartOfflineIncomeFlow;
-
-            if (!_featureUnlockService.IsUnlocked(PlayerFeatureType.OfflineIncome))
-            {
-                Complete();
-                DestroyView();
-                return;
-            }
 
             if (_model.HasReward)
             {

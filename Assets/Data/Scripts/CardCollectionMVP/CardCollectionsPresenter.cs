@@ -100,14 +100,7 @@ namespace CardCollectionMVP
 
         private void UpdateView()
         {
-            bool isUnlocked = _service.IsUnlocked;
-            _view.SetVisible(isUnlocked && string.IsNullOrEmpty(_selectionModel.SelectedCollectionId));
-
-            if (!isUnlocked)
-            {
-                _selectionModel.Clear();
-                return;
-            }
+            _view.SetVisible(string.IsNullOrEmpty(_selectionModel.SelectedCollectionId));
 
             var collections = _service.GetAllViewData();
             _view.SetData(collections);
@@ -117,11 +110,6 @@ namespace CardCollectionMVP
 
         private void OnCollectionChanged(CardCollectionViewData collection)
         {
-            if (!_service.IsUnlocked)
-            {
-                return;
-            }
-
             _view.UpdateCollection(collection);
         }
 
@@ -135,7 +123,7 @@ namespace CardCollectionMVP
 
         private void OnCollectionSelected(string collectionId)
         {
-            if (!_service.IsUnlocked || _service.GetViewData(collectionId) == null)
+            if (_service.GetViewData(collectionId) == null)
             {
                 return;
             }
@@ -145,15 +133,12 @@ namespace CardCollectionMVP
 
         private void OnSelectedCollectionChanged(string collectionId)
         {
-            _view.SetVisible(_service.IsUnlocked && string.IsNullOrEmpty(collectionId));
+            _view.SetVisible(string.IsNullOrEmpty(collectionId));
         }
 
         private void OnCollectRequested(string collectionId)
         {
-            if (_service.IsUnlocked)
-            {
-                _service.TryClaimReward(collectionId);
-            }
+            _service.TryClaimReward(collectionId);
         }
 
         private void OnCardChestPurchaseRequested()
@@ -217,8 +202,7 @@ namespace CardCollectionMVP
         private void UpdateCardChestAdView()
         {
             string chestId = _shopModel.GetCardChestId();
-            bool visible = _service.IsUnlocked && !_service.AreAllCollectionsCompleted &&
-                           !string.IsNullOrEmpty(chestId);
+            bool visible = !_service.AreAllCollectionsCompleted && !string.IsNullOrEmpty(chestId);
             bool isAvailable = visible && !_isCardChestAdInProgress &&
                                GetCardChestAdRemainingTicks() <= 0 &&
                                _adsService.IsAvailable(CardChestAdPlacementId);

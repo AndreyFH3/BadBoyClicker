@@ -5,7 +5,6 @@ using Core.Ads;
 using Core.Time;
 using Installer.Init;
 using PlayerProgression;
-using PlayerFeatures;
 using QuestSystem;
 using Rewards;
 using Shop;
@@ -25,7 +24,6 @@ namespace DailyQuests
         private DailyQuestRuntimeSave _save;
         private IQuestRewardService _rewardService;
         private ITimeService _timeService;
-        private IPlayerFeatureUnlockService _featureUnlockService;
         private GameStartRouter _gameStartRouter;
         private Wallet _wallet;
         private IShopModel _shopModel;
@@ -34,7 +32,6 @@ namespace DailyQuests
         private ILocalizationService _localization;
         private IRewardActivationService _rewardActivationService;
         private readonly HashSet<int> _pendingMilestoneClaims = new();
-        private bool _isUnlocked;
         private bool _isProgressListening;
         private float _sessionSeconds;
         private long _sessionSoftEarned;
@@ -50,7 +47,6 @@ namespace DailyQuests
             DailyQuestRuntimeSave save,
             IQuestRewardService rewardService,
             ITimeService timeService,
-            IPlayerFeatureUnlockService featureUnlockService,
             GameStartRouter gameStartRouter,
             Wallet wallet,
             IShopModel shopModel,
@@ -63,7 +59,6 @@ namespace DailyQuests
             _save = save;
             _rewardService = rewardService;
             _timeService = timeService;
-            _featureUnlockService = featureUnlockService;
             _gameStartRouter = gameStartRouter;
             _wallet = wallet;
             _shopModel = shopModel;
@@ -76,27 +71,17 @@ namespace DailyQuests
         public void Initialize()
         {
             _save.Changed += OnSaveChanged;
-            _featureUnlockService.FeatureUnlocked += OnFeatureUnlocked;
             Application.quitting += OnApplicationQuitting;
 
             ResetSessionQuests();
-
-            _isUnlocked = _featureUnlockService.IsUnlocked(PlayerFeatureType.DailyQuest);
-            if (_isUnlocked)
-            {
-                StartUnlockedFlow();
-            }
+            EnsureToday();
+            StartProgressListening();
 
             Changed?.Invoke();
         }
 
         public void Tick()
         {
-            if (!IsFeatureUnlocked())
-            {
-                return;
-            }
-
             _sessionSeconds += UnityEngine.Time.deltaTime;
             UpdateMaxProgress(QuestObjectiveType.PlayTime, null, (long)_sessionSeconds);
         }
@@ -104,7 +89,6 @@ namespace DailyQuests
         public void Dispose()
         {
             _save.Changed -= OnSaveChanged;
-            _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;
             Application.quitting -= OnApplicationQuitting;
             StopProgressListening();
         }
@@ -116,11 +100,6 @@ namespace DailyQuests
 
         public DailyQuestBoardViewData GetViewData()
         {
-            if (!IsFeatureUnlocked())
-            {
-                return CreateEmptyViewData();
-            }
-
             EnsureToday();
 
             var questDatas = _config?.Quests;
@@ -191,11 +170,6 @@ namespace DailyQuests
 
         public bool ClaimQuestPoints(string questId)
         {
-            if (!IsFeatureUnlocked())
-            {
-                return false;
-            }
-
             EnsureToday();
 
             if (string.IsNullOrEmpty(questId))
@@ -227,11 +201,6 @@ namespace DailyQuests
 
         public bool ClaimMilestone(int requiredPoints)
         {
-            if (!IsFeatureUnlocked())
-            {
-                return false;
-            }
-
             EnsureToday();
 
             if (_save.Points < requiredPoints || _save.IsMilestoneClaimed(requiredPoints))
@@ -294,18 +263,12 @@ namespace DailyQuests
         public void Set(DailyQuestSaveData data)
         {
             _save.Set(WithSessionProgressStripped(data));
-            if (IsFeatureUnlocked())
-            {
-                EnsureToday();
-            }
+            EnsureToday();
         }
 
         public DailyQuestSaveData Get()
         {
-            if (IsFeatureUnlocked())
-            {
-                EnsureToday();
-            }
+            EnsureToday();
 
             return WithSessionProgressStripped(_save.Get());
         }
@@ -343,22 +306,6 @@ namespace DailyQuests
 
         private void OnSaveChanged()
         {
-            if (IsFeatureUnlocked())
-            {
-                Changed?.Invoke();
-            }
-        }
-
-        private bool IsFeatureUnlocked()
-        {
-            return _isUnlocked || (_featureUnlockService != null && _featureUnlockService.IsUnlocked(PlayerFeatureType.DailyQuest));
-        }
-
-        private void StartUnlockedFlow()
-        {
-            _isUnlocked = true;
-            EnsureToday();
-            StartProgressListening();
             Changed?.Invoke();
         }
 
@@ -394,26 +341,6 @@ namespace DailyQuests
             _playerProgression.LevelCompleted -= OnPlayerLevelCompleted;
             _rewardedAds.AdRewarded -= OnAdRewarded;
             _isProgressListening = false;
-        }
-
-        private void OnFeatureUnlocked(PlayerFeatureType feature)
-        {
-            if (feature == PlayerFeatureType.DailyQuest && !_isUnlocked)
-            {
-                StartUnlockedFlow();
-            }
-        }
-
-        private DailyQuestBoardViewData CreateEmptyViewData()
-        {
-            return new DailyQuestBoardViewData
-            {
-                Points = 0,
-                MaxPoints = GetMaxMilestonePoints(),
-                PointsProgress = 0f,
-                Quests = Array.Empty<DailyQuestViewData>(),
-                Milestones = Array.Empty<DailyQuestMilestoneViewData>()
-            };
         }
 
         private void EnsureToday()
@@ -624,11 +551,6 @@ namespace DailyQuests
 
         private void AddProgress(QuestObjectiveType objectiveType, string targetId, long amount)
         {
-            if (!IsFeatureUnlocked())
-            {
-                return;
-            }
-
             EnsureToday();
 
             if (amount <= 0)
@@ -672,11 +594,6 @@ namespace DailyQuests
 
         private void UpdateMaxProgress(QuestObjectiveType objectiveType, string targetId, long absoluteValue)
         {
-            if (!IsFeatureUnlocked())
-            {
-                return;
-            }
-
             EnsureToday();
 
             var questDatas = _config?.Quests;
@@ -715,11 +632,6 @@ namespace DailyQuests
 
         private void UpdateDeltaProgress(QuestObjectiveType objectiveType, string targetId, long currentAbsoluteValue)
         {
-            if (!IsFeatureUnlocked())
-            {
-                return;
-            }
-
             EnsureToday();
 
             var questDatas = _config?.Quests;

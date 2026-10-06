@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using CardCollections;
 using Core;
 using DailyLogin;
-using PlayerFeatures;
 using PlayerProgression;
 using QuestSystem;
 using Shop;
@@ -20,7 +19,6 @@ namespace Chests
         private readonly Wallet _wallet;
         private readonly ICardCollectionService _cardCollectionService;
         private readonly IPlayerProgressionService _playerProgression;
-        private readonly IPlayerFeatureUnlockService _featureUnlockService;
         private readonly IShopRuntimeSave _shopSave;
         private readonly Dictionary<string, ChestConfig.ChestData> _chestsById = new();
 
@@ -36,14 +34,12 @@ namespace Chests
             Wallet wallet,
             ICardCollectionService cardCollectionService,
             IPlayerProgressionService playerProgression,
-            IPlayerFeatureUnlockService featureUnlockService,
             IShopRuntimeSave shopSave)
         {
             _config = config;
             _wallet = wallet;
             _cardCollectionService = cardCollectionService;
             _playerProgression = playerProgression;
-            _featureUnlockService = featureUnlockService;
             _shopSave = shopSave;
         }
 
@@ -68,12 +64,6 @@ namespace Chests
         {
             result = null;
 
-            if (!_featureUnlockService.IsUnlocked(PlayerFeatureType.Chests))
-            {
-                Debug.Log($"Chests are locked. Chest reward was not granted: {chestId}");
-                return false;
-            }
-
             var chest = GetChest(chestId);
             if (chest == null)
             {
@@ -84,6 +74,14 @@ namespace Chests
             var entry = RollReward(chest);
             if (entry == null)
             {
+                // A card-only chest runs dry once every collection is complete. Pay out
+                // the configured fallback instead of silently giving the player nothing.
+                if (TryCreateCompletedCollectionsResult(chest, out result))
+                {
+                    ChestOpeningPrepared?.Invoke(result);
+                    return true;
+                }
+
                 Debug.LogWarning($"Chest has no configured rewards: {chestId}");
                 return false;
             }
@@ -169,6 +167,26 @@ namespace Chests
             }
         }
 
+        private bool TryCreateCompletedCollectionsResult(ChestConfig.ChestData chest, out ChestOpenResult result)
+        {
+            result = null;
+
+            if (!chest.IsCardOnly ||
+                _cardCollectionService?.AreAllCollectionsCompleted != true ||
+                _config?.CompletedCollectionsFallbackReward == null)
+            {
+                return false;
+            }
+
+            result = new ChestOpenResult
+            {
+                Chest = chest,
+                Reward = _config.CompletedCollectionsFallbackReward
+            };
+
+            return true;
+        }
+
         private ChestConfig.ChestRewardEntry RollReward(ChestConfig.ChestData chest)
         {
             if (chest?.Rewards == null || chest.Rewards.Count == 0)
@@ -213,13 +231,10 @@ namespace Chests
             switch (entry.RewardKind)
             {
                 case ChestConfig.ChestRewardKind.ConfiguredReward:
-                    return entry.Reward != null &&
-                           RewardFeatureGate.IsAvailable(entry.Reward, _featureUnlockService);
+                    return entry.Reward != null;
                 case ChestConfig.ChestRewardKind.RandomCard:
-                    return (_featureUnlockService == null ||
-                            _featureUnlockService.IsUnlocked(PlayerFeatureType.CardCollection)) &&
-                           (_cardCollectionService == null ||
-                            !_cardCollectionService.AreAllCollectionsCompleted);
+                    return _cardCollectionService == null ||
+                           !_cardCollectionService.AreAllCollectionsCompleted;
                 default:
                     return false;
             }

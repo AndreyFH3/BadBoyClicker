@@ -1,7 +1,6 @@
 using System;
 using Core.Ads;
 using GameLocalization;
-using PlayerFeatures;
 using Zenject;
 
 namespace DailyLoginMVP
@@ -12,24 +11,20 @@ namespace DailyLoginMVP
         private readonly DailyLoginModel _model;
         private readonly IDailyLoginView _view;
         private readonly IDailyLoginStartupGate _startupGate;
-        private readonly IPlayerFeatureUnlockService _featureUnlockService;
         private readonly IRewardOfferUiGate _rewardOfferUiGate;
         private bool _isCompleted;
-        private bool _isWaitingForUnlock;
 
         public DailyLoginPresenter(
             DiContainer container,
             DailyLoginModel model,
             IDailyLoginView view,
             IDailyLoginStartupGate startupGate,
-            IPlayerFeatureUnlockService featureUnlockService,
             IRewardOfferUiGate rewardOfferUiGate)
         {
             _container = container;
             _model = model;
             _view = view;
             _startupGate = startupGate;
-            _featureUnlockService = featureUnlockService;
             _rewardOfferUiGate = rewardOfferUiGate;
         }
 
@@ -37,14 +32,6 @@ namespace DailyLoginMVP
         {
             _view.ClaimRequested += Claim;
             Localization.LanguageChanged += OnLanguageChanged;
-
-            if (!_featureUnlockService.IsUnlocked(PlayerFeatureType.DailyLoginReward))
-            {
-                _isWaitingForUnlock = true;
-                _featureUnlockService.FeatureUnlocked += OnFeatureUnlocked;
-                _startupGate.Complete();
-                return;
-            }
 
             TryShowReward();
         }
@@ -65,25 +52,12 @@ namespace DailyLoginMVP
         {
             _view.ClaimRequested -= Claim;
             Localization.LanguageChanged -= OnLanguageChanged;
-            _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;
         }
 
         private void Claim()
         {
             _model.Claim();
             Complete();
-        }
-
-        private void OnFeatureUnlocked(PlayerFeatureType feature)
-        {
-            if (feature != PlayerFeatureType.DailyLoginReward || !_isWaitingForUnlock)
-            {
-                return;
-            }
-
-            _isWaitingForUnlock = false;
-            _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;
-            TryShowReward();
         }
 
         private void Complete()

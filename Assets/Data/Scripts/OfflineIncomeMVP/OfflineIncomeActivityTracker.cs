@@ -1,5 +1,4 @@
 using Core.Time;
-using PlayerFeatures;
 using UnityEngine;
 using Zenject;
 
@@ -11,15 +10,13 @@ namespace OfflineIncome
 
         private ITimeService _timeService;
         private IOfflineIncomeRuntimeSave _save;
-        private IPlayerFeatureUnlockService _featureUnlockService;
         private float _elapsed;
 
         [Inject]
-        public void Construct(ITimeService timeService, IOfflineIncomeRuntimeSave save, IPlayerFeatureUnlockService featureUnlockService)
+        public void Construct(ITimeService timeService, IOfflineIncomeRuntimeSave save)
         {
             _timeService = timeService;
             _save = save;
-            _featureUnlockService = featureUnlockService;
         }
 
         public void Initialize()
@@ -47,12 +44,6 @@ namespace OfflineIncome
 
         private void RecordCurrentTime()
         {
-            if (!_featureUnlockService.IsUnlocked(PlayerFeatureType.OfflineIncome))
-            {
-                _save.SetLastOnlineTicks(_timeService.CurrentUtcTicks);
-                return;
-            }
-
             _save.SetLastOnlineTicks(_timeService.CurrentUtcTicks);
         }
     }

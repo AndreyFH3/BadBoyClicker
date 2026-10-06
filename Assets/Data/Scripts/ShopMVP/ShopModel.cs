@@ -4,7 +4,6 @@ using UnityEngine;
 using Core;
 using Utils;
 using Zenject;
-using PlayerFeatures;
 using PlayerProgression;
 using GameLocalization;
 using AdBonusOffers;
@@ -28,7 +27,6 @@ namespace Shop
         private ICardCollectionBonusService _collectionBonusService;
         private IPurchaseSystem _purchaseSystem;
         private IQuestRewardService _rewardService;
-        private IPlayerFeatureUnlockService _featureUnlockService;
         private ICardCollectionService _cardCollectionService;
         private ChestConfig _chestConfig;
         private IRewardedAdsService _rewardedAds;
@@ -62,7 +60,6 @@ namespace Shop
             ICardCollectionBonusService collectionBonusService,
             IPurchaseSystem purchaseSystem,
             IQuestRewardService rewardService,
-            IPlayerFeatureUnlockService featureUnlockService,
             ICardCollectionService cardCollectionService,
             ChestConfig chestConfig,
             IRewardedAdsService rewardedAds)
@@ -76,7 +73,6 @@ namespace Shop
             _collectionBonusService = collectionBonusService;
             _purchaseSystem = purchaseSystem;
             _rewardService = rewardService;
-            _featureUnlockService = featureUnlockService;
             _cardCollectionService = cardCollectionService;
             _chestConfig = chestConfig;
             _rewardedAds = rewardedAds;
@@ -180,7 +176,7 @@ namespace Shop
 
             foreach (var chest in _chestConfig.Chests)
             {
-                if (IsCardOnlyChest(chest))
+                if (chest.IsCardOnly)
                 {
                     return chest.Id;
                 }
@@ -265,22 +261,16 @@ namespace Shop
             StateChanged?.Invoke();
         }
 
-        // Some paid offers grant content owned by another gated system (e.g. a chest
-        // reward requires the Chests feature to actually open, a background reward
-        // requires Customization to be given). Selling those offers before that
-        // system unlocks would let the player pay for a reward they can never
-        // receive, so the offer itself stays hidden and unbuyable until then.
+        // A card-chest offer stops being sellable once every collection is complete:
+        // the player would be paying for cards that can no longer be granted.
         private bool IsAvailable(ShopItem item)
         {
             if (item.Type != ShopItemType.PaidBuy)
             {
-                return item.ClickData == null ||
-                       _playerProgression == null ||
-                       _playerProgression.CurrentLevel >= item.ClickData.RequiredPlayerLevel;
+                return true;
             }
 
-            return RewardFeatureGate.AreAvailable(item.PaidData?.Rewards, _featureUnlockService) &&
-                   !(_cardCollectionService?.AreAllCollectionsCompleted == true && IsCardChestOffer(item.PaidData));
+            return !(_cardCollectionService?.AreAllCollectionsCompleted == true && IsCardChestOffer(item.PaidData));
         }
 
         private bool IsCardChestOffer(GameConfig.PaidShopData data)
@@ -303,31 +293,13 @@ namespace Shop
                     continue;
                 }
 
-                if (IsCardOnlyChest(chest))
+                if (chest.IsCardOnly)
                 {
                     return true;
                 }
             }
 
             return false;
-        }
-
-        private static bool IsCardOnlyChest(ChestConfig.ChestData chest)
-        {
-            if (chest?.Rewards == null || chest.Rewards.Count == 0)
-            {
-                return false;
-            }
-
-            foreach (var entry in chest.Rewards)
-            {
-                if (entry == null || entry.RewardKind != ChestConfig.ChestRewardKind.RandomCard)
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
 
         private ChestConfig.ChestData FindChest(string chestId)

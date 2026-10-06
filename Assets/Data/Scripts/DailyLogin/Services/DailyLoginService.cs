@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Core;
 using Core.Time;
-using PlayerFeatures;
 using UnityEngine;
 
 namespace DailyLogin
@@ -14,7 +13,6 @@ namespace DailyLogin
         private readonly IRewardService _rewardService;
         private readonly ISaveSystem _saveSystem;
         private readonly ITimeService _timeService;
-        private readonly IPlayerFeatureUnlockService _featureUnlockService;
 
         public event Action<int, RewardConfig> RewardClaimed;
 
@@ -23,15 +21,13 @@ namespace DailyLogin
             IDailyLoginRuntimeSave runtimeSave,
             IRewardService rewardService,
             ISaveSystem saveSystem,
-            ITimeService timeService,
-            IPlayerFeatureUnlockService featureUnlockService)
+            ITimeService timeService)
         {
             _config = config;
             _runtimeSave = runtimeSave;
             _rewardService = rewardService;
             _saveSystem = saveSystem;
             _timeService = timeService;
-            _featureUnlockService = featureUnlockService;
         }
 
         public bool CanClaim()
@@ -56,8 +52,7 @@ namespace DailyLogin
                 return false;
             }
 
-            RewardConfig reward = GetCurrentRewardDay()?.GetReward(_runtimeSave.CompletedCycles);
-            return RewardFeatureGate.IsAvailable(reward, _featureUnlockService);
+            return GetCurrentRewardDay()?.GetReward(_runtimeSave.CompletedCycles) != null;
         }
 
         public int GetCurrentDayIndex()

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Chests;
 using GameLocalization;
 using QuestSystem;
 using Zenject;
@@ -10,15 +11,20 @@ namespace RewardActivation
     {
         private readonly IRewardActivationView _view;
         private readonly ILocalizationService _localization;
+        private readonly ChestConfig _chestConfig;
         private readonly Queue<(RewardActivationViewData Data, Action Grant, Action Postpone)> _pending = new();
 
         private Action _currentGrant;
         private Action _currentPostpone;
 
-        public RewardActivationService(IRewardActivationView view, ILocalizationService localization)
+        public RewardActivationService(
+            IRewardActivationView view,
+            ILocalizationService localization,
+            ChestConfig chestConfig)
         {
             _view = view;
             _localization = localization;
+            _chestConfig = chestConfig;
         }
 
         public void Initialize()
@@ -129,12 +135,31 @@ namespace RewardActivation
             string rewardName = LocalizeOrFallback(reward.DisplayTextLocalizationKey, reward.DisplayText);
             if (string.IsNullOrEmpty(rewardName))
             {
-                rewardName = reward.RewardType == QuestRewardType.Currency && reward.Amount > 0
-                    ? reward.Amount.ToString()
-                    : reward.RewardId;
+                rewardName = ResolveRewardName(reward);
             }
 
             return _localization.Format("daily_quest.milestone.reward.claim_description", rewardName);
+        }
+
+        // Falls back to the reward's own config so the player never sees a raw id
+        // like "Chest_2" in the claim popup.
+        private string ResolveRewardName(QuestReward reward)
+        {
+            if (reward.RewardType == QuestRewardType.Currency && reward.Amount > 0)
+            {
+                return reward.Amount.ToString();
+            }
+
+            if (reward.RewardType == QuestRewardType.Chest)
+            {
+                ChestConfig.ChestData chest = _chestConfig != null ? _chestConfig.GetChest(reward.RewardId) : null;
+                if (chest != null)
+                {
+                    return LocalizeOrFallback(chest.TitleLocalizationKey, chest.Title);
+                }
+            }
+
+            return reward.RewardId;
         }
 
         private string LocalizeOrFallback(string key, string fallback)

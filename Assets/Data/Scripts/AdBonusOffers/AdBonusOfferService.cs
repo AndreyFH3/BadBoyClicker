@@ -4,7 +4,6 @@ using Core;
 using Core.Ads;
 using Core.Time;
 using GameLocalization;
-using PlayerFeatures;
 using QuestSystem;
 using Utils;
 using UnityEngine;
@@ -23,7 +22,6 @@ namespace AdBonusOffers
         private IBuffService _buffService;
         private ILocalizationService _localization;
         private Wallet _wallet;
-        private IPlayerFeatureUnlockService _featureUnlockService;
         private ITimeService _timeService;
         private AdBonusOfferRuntimeSave _save;
         private AdBonusOfferConfig.AdBonusOfferData _currentOffer;
@@ -40,7 +38,6 @@ namespace AdBonusOffers
         public bool HasActiveOffer => _currentOffer != null;
         public AdBonusOfferViewData CurrentOffer => CreateViewData(_currentOffer);
         public float CurrentOfferRemainingSeconds => HasActiveOffer ? Mathf.Max(0f, _visibleTimer) : 0f;
-        private bool IsFeatureUnlocked => _featureUnlockService.IsUnlocked(PlayerFeatureType.RewardAdBoosts);
 
         [Inject]
         public void Construct(
@@ -50,7 +47,6 @@ namespace AdBonusOffers
             IBuffService buffService,
             ILocalizationService localization,
             Wallet wallet,
-            IPlayerFeatureUnlockService featureUnlockService,
             ITimeService timeService,
             AdBonusOfferRuntimeSave save)
         {
@@ -60,7 +56,6 @@ namespace AdBonusOffers
             _buffService = buffService;
             _localization = localization;
             _wallet = wallet;
-            _featureUnlockService = featureUnlockService;
             _timeService = timeService;
             _save = save;
         }
@@ -104,7 +99,7 @@ namespace AdBonusOffers
                 return false;
             }
 
-            if (!IsFeatureUnlocked || RemainingClaimsToday() <= 0)
+            if (RemainingClaimsToday() <= 0)
             {
                 return false;
             }
@@ -332,30 +327,9 @@ namespace AdBonusOffers
             if (offer == null ||
                 string.IsNullOrEmpty(offer.Id) ||
                 _cooldowns.ContainsKey(offer.Id) ||
-                (!HasRewards(offer) && !HasEffects(offer)) ||
-                !RewardFeatureGate.AreAvailable(offer.Rewards, _featureUnlockService) ||
-                !AreEffectsAvailable(offer))
+                (!HasRewards(offer) && !HasEffects(offer)))
             {
                 return false;
-            }
-
-            return true;
-        }
-
-        private bool AreEffectsAvailable(AdBonusOfferConfig.AdBonusOfferData offer)
-        {
-            if (offer?.Effects == null)
-            {
-                return true;
-            }
-
-            foreach (AdBonusOfferConfig.AdBonusEffectData effect in offer.Effects)
-            {
-                if (effect != null && effect.EffectType == AdBonusEffectType.QuestReward &&
-                    !RewardFeatureGate.IsAvailable(effect.Reward, _featureUnlockService))
-                {
-                    return false;
-                }
             }
 
             return true;

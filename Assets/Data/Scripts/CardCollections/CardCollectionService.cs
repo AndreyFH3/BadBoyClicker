@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Customization;
-using PlayerFeatures;
 using QuestSystem;
 using Rewards;
 using Utils;
@@ -10,20 +9,16 @@ using GameLocalization;
 
 namespace CardCollections
 {
-    public class CardCollectionService : ICardCollectionService, IInitializable, IDisposable
+    public class CardCollectionService : ICardCollectionService, IInitializable
     {
         private CardCollectionConfig _config;
         private CardCollectionRuntimeSave _save;
-        private IPlayerFeatureUnlockService _featureUnlockService;
         private IQuestRewardService _rewardService;
         private ILocalizationService _localization;
         private ICustomizationService _customizationService;
         private readonly Dictionary<string, CardCollectionConfig.CardData> _cardsById = new();
         private readonly Dictionary<string, CardCollectionConfig.CardCollectionData> _collectionsById = new();
         private readonly Dictionary<string, CardCollectionConfig.CardCollectionData> _collectionsByCardId = new();
-
-        public bool IsUnlocked => _featureUnlockService == null ||
-                                  _featureUnlockService.IsUnlocked(PlayerFeatureType.CardCollection);
 
         public bool AreAllCollectionsCompleted
         {
@@ -63,14 +58,12 @@ namespace CardCollections
         public void Construct(
             CardCollectionConfig config,
             CardCollectionRuntimeSave save,
-            IPlayerFeatureUnlockService featureUnlockService,
             IQuestRewardService rewardService,
             ILocalizationService localization,
             ICustomizationService customizationService)
         {
             _config = config;
             _save = save;
-            _featureUnlockService = featureUnlockService;
             _rewardService = rewardService;
             _localization = localization;
             _customizationService = customizationService;
@@ -79,12 +72,6 @@ namespace CardCollections
         public void Initialize()
         {
             RebuildIndex();
-            _featureUnlockService.FeatureUnlocked += OnFeatureUnlocked;
-        }
-
-        public void Dispose()
-        {
-            _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;
         }
 
         public bool HasCard(string cardId)
@@ -170,11 +157,6 @@ namespace CardCollections
 
         public bool TryResetCollectionProgress(string collectionId)
         {
-            if (!IsUnlocked)
-            {
-                return false;
-            }
-
             var collection = GetCollection(collectionId);
             if (collection == null)
             {
@@ -189,11 +171,6 @@ namespace CardCollections
 
         public bool TryClaimReward(string collectionId)
         {
-            if (!IsUnlocked)
-            {
-                return false;
-            }
-
             var collection = GetCollection(collectionId);
             if (collection == null || _save.IsRewardClaimed(collection.Id) || !IsCollectionCompleted(collection))
             {
@@ -223,11 +200,6 @@ namespace CardCollections
 
         public void ResetAllProgress()
         {
-            if (!IsUnlocked)
-            {
-                return;
-            }
-
             _save.ResetAll();
 
             foreach (var collection in Collections)
@@ -488,24 +460,6 @@ namespace CardCollections
                 CardChanged?.Invoke(CreateCardViewData(collection.Id, card));
                 CollectionChanged?.Invoke(CreateCollectionViewData(collection));
             }
-        }
-
-        private void OnFeatureUnlocked(PlayerFeatureType feature)
-        {
-            if (feature != PlayerFeatureType.CardCollection)
-            {
-                return;
-            }
-
-            foreach (var collection in Collections)
-            {
-                if (collection != null && !string.IsNullOrEmpty(collection.Id))
-                {
-                    CollectionChanged?.Invoke(CreateCollectionViewData(collection));
-                }
-            }
-
-            Changed?.Invoke();
         }
     }
 }

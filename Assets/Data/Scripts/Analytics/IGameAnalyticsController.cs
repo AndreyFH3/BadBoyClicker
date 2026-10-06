@@ -6,7 +6,6 @@ namespace Analytics
         void ClickMilestoneReached(long clicks);
         void ShopItemBought(string itemId, string shop);
         void LevelUp(int level);
-        void FeatureUnlocked(string featureId);
         void DailyLoginClaimed(int dayNumber, string rewardType, string rewardId, long amount);
         void DailyQuestPointsClaimed(string questId, int points);
         void DailyQuestMilestoneClaimed(int requiredPoints);

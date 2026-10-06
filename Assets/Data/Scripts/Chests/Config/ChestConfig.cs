@@ -9,6 +9,8 @@ namespace Chests
     public class ChestConfig : ScriptableObject
     {
         [SerializeField] private List<ChestData> _chests = new();
+        [Tooltip("Granted instead of a card when a card-only chest is opened after every collection is already complete.")]
+        [SerializeField] private QuestReward _completedCollectionsFallbackReward;
         [Min(1)]
         [SerializeField] private long _softRewardMinAmount = 250;
         [Min(0f)]
@@ -19,6 +21,28 @@ namespace Chests
         [SerializeField] private float _softRewardAssumedClicksPerSecond = 2f;
 
         public IReadOnlyList<ChestData> Chests => _chests;
+        public QuestReward CompletedCollectionsFallbackReward => _completedCollectionsFallbackReward;
+
+        // Display-only lookup for UI that has a chest id but no IChestService
+        // (reward popups, daily login tiles). ChestRewardService keeps its own
+        // indexed lookup for the hot path.
+        public ChestData GetChest(string chestId)
+        {
+            if (string.IsNullOrEmpty(chestId) || _chests == null)
+            {
+                return null;
+            }
+
+            for (int i = 0; i < _chests.Count; i++)
+            {
+                if (_chests[i] != null && _chests[i].Id == chestId)
+                {
+                    return _chests[i];
+                }
+            }
+
+            return null;
+        }
         public long SoftRewardMinAmount => Math.Max(1, _softRewardMinAmount);
         public float SoftRewardMinIncomeMinutes => Mathf.Max(0f, _softRewardMinIncomeMinutes);
         public float SoftRewardMaxIncomeMinutes => Mathf.Max(SoftRewardMinIncomeMinutes, _softRewardMaxIncomeMinutes);
@@ -38,6 +62,29 @@ namespace Chests
             public string Title => string.IsNullOrEmpty(_title) ? _id : _title;
             public Sprite Icon => _icon;
             public IReadOnlyList<ChestRewardEntry> Rewards => _rewards;
+
+            // A chest that can only ever pay out cards has nothing left to give once
+            // every collection is complete, so callers substitute a fallback reward.
+            public bool IsCardOnly
+            {
+                get
+                {
+                    if (_rewards == null || _rewards.Count == 0)
+                    {
+                        return false;
+                    }
+
+                    for (int i = 0; i < _rewards.Count; i++)
+                    {
+                        if (_rewards[i] == null || _rewards[i].RewardKind != ChestRewardKind.RandomCard)
+                        {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                }
+            }
         }
 
         [Serializable]

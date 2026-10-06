@@ -7,7 +7,6 @@ using Customization;
 using DailyLogin;
 using DailyQuests;
 using Installer.Init;
-using PlayerFeatures;
 using PlayerProgression;
 using QuestSystem;
 using Shop;
@@ -23,7 +22,6 @@ namespace Analytics
         private readonly GameStartRouter _gameStartRouter;
         private readonly IShopModel _shopModel;
         private readonly IPlayerProgressionService _playerProgression;
-        private readonly IPlayerFeatureUnlockService _featureUnlockService;
         private readonly IDailyLoginService _dailyLoginService;
         private readonly IDailyQuestService _dailyQuestService;
         private readonly IQuestService _questService;
@@ -37,7 +35,6 @@ namespace Analytics
             GameStartRouter gameStartRouter,
             IShopModel shopModel,
             IPlayerProgressionService playerProgression,
-            IPlayerFeatureUnlockService featureUnlockService,
             IDailyLoginService dailyLoginService,
             IDailyQuestService dailyQuestService,
             IQuestService questService,
@@ -50,7 +47,6 @@ namespace Analytics
             _gameStartRouter = gameStartRouter;
             _shopModel = shopModel;
             _playerProgression = playerProgression;
-            _featureUnlockService = featureUnlockService;
             _dailyLoginService = dailyLoginService;
             _dailyQuestService = dailyQuestService;
             _questService = questService;
@@ -68,7 +64,6 @@ namespace Analytics
             _gameStartRouter.OnClickValueEvent += OnClickValue;
             _shopModel.ItemBought += OnShopItemBought;
             _playerProgression.LevelCompleted += OnLevelCompleted;
-            _featureUnlockService.FeatureUnlocked += OnFeatureUnlocked;
             _dailyLoginService.RewardClaimed += OnDailyLoginRewardClaimed;
             _dailyQuestService.QuestPointsClaimed += DailyQuestPointsClaimed;
             _dailyQuestService.MilestoneClaimed += DailyQuestMilestoneClaimed;
@@ -88,7 +83,6 @@ namespace Analytics
             _gameStartRouter.OnClickValueEvent -= OnClickValue;
             _shopModel.ItemBought -= OnShopItemBought;
             _playerProgression.LevelCompleted -= OnLevelCompleted;
-            _featureUnlockService.FeatureUnlocked -= OnFeatureUnlocked;
             _dailyLoginService.RewardClaimed -= OnDailyLoginRewardClaimed;
             _dailyQuestService.QuestPointsClaimed -= DailyQuestPointsClaimed;
             _dailyQuestService.MilestoneClaimed -= DailyQuestMilestoneClaimed;
@@ -121,11 +115,6 @@ namespace Analytics
         public void LevelUp(int level)
         {
             Send("level_up", ("level", level));
-        }
-
-        public void FeatureUnlocked(string featureId)
-        {
-            Send("feature_unlocked", ("feature_id", featureId));
         }
 
         public void DailyLoginClaimed(int dayNumber, string rewardType, string rewardId, long amount)
@@ -216,11 +205,6 @@ namespace Analytics
             long reachedMilestone = ClickMilestones[nextMilestoneIndex];
             _runtimeSave.SetClickProgress(totalClicks, nextMilestoneIndex + 1);
             ClickMilestoneReached(reachedMilestone);
-        }
-
-        private void OnFeatureUnlocked(PlayerFeatureType feature)
-        {
-            FeatureUnlocked(feature.ToString());
         }
 
         private void OnLevelCompleted(int completedLevel)

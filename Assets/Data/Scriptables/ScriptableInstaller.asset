@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScriptableInstaller
   _config: {fileID: 11400000, guid: 9c14dd04a025e3c4781ae1191e12af34, type: 2}
   _dailyLoginConfig: {fileID: 11400000, guid: fc831dd0dcff244429af7e7760435240, type: 2}
-  _featureUnlockConfig: {fileID: 11400000, guid: 3bb12c427a4084b4980e131d0dacbbdb, type: 2}
   _questConfig: {fileID: 11400000, guid: c3cfc2b8f4a34be4e874f9e807320652, type: 2}
   _dailyQuestConfig: {fileID: 11400000, guid: 241f2d166d2abf4418f81527dcb0fd2f, type: 2}
   _cardCollectionConfig: {fileID: 11400000, guid: d4a30b2eb6965c9408c784bcbf5f059d, type: 2}
@@ -23,4 +22,3 @@ MonoBehaviour:
   _audioConfig: {fileID: 11400000, guid: 0cd7f54270ff46efbe1350f37f0ce64e, type: 2}
   _adBonusOfferConfig: {fileID: 11400000, guid: 8175c6d471f44ad0a43c19b7477f1e09, type: 2}
   _customizationConfig: {fileID: 11400000, guid: f2e55bd97e5f2bd4aba7fcc74b1fc412, type: 2}
-  _tutorialConfig: {fileID: 11400000, guid: a81e23e0f18a4c019b6c0f18c532dd06, type: 2}

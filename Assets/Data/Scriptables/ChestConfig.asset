@@ -478,6 +478,19 @@ MonoBehaviour:
       _minAmount: 0
       _maxAmount: 0
       _scaleWithIncomeMultiplier: 0
+  _completedCollectionsFallbackReward:
+    _rewardType: 0
+    _currencyType: 2
+    _amount: 10
+    _rewardId: 
+    _icon: {fileID: -1789242691427569862, guid: 199f7dfa3ce2f134d9796a7caa3907ee, type: 3}
+    _displayTextLocalizationKey: 
+    _displayText: 
+    _requiresActivation: 0
+    _activationTitleLocalizationKey: 
+    _activationTitle: 
+    _activationDescriptionLocalizationKey: 
+    _activationDescription: 
   _softRewardMinAmount: 250
   _softRewardMinIncomeMinutes: 1
   _softRewardMaxIncomeMinutes: 3

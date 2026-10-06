@@ -53,7 +53,7 @@ namespace CardCollectionMVP
 
         private void UpdateSelectedCollection()
         {
-            if (!_service.IsUnlocked || string.IsNullOrEmpty(_selectionModel.SelectedCollectionId))
+            if (string.IsNullOrEmpty(_selectionModel.SelectedCollectionId))
             {
                 _view.SetVisible(false);
                 return;
@@ -97,10 +97,7 @@ namespace CardCollectionMVP
 
         private void OnCollectRequested()
         {
-            if (_service.IsUnlocked)
-            {
-                _service.TryClaimReward(_selectionModel.SelectedCollectionId);
-            }
+            _service.TryClaimReward(_selectionModel.SelectedCollectionId);
         }
     }
 }

@@ -2,7 +2,6 @@ using System;
 using CardCollections;
 using Core;
 using Core.Time;
-using PlayerFeatures;
 using Shop;
 using Zenject;
 
@@ -14,7 +13,6 @@ namespace OfflineIncome
         private ITimeService _timeService;
         private IShopRuntimeSave _shopSave;
         private IOfflineIncomeRuntimeSave _save;
-        private IPlayerFeatureUnlockService _featureUnlockService;
         private ICardCollectionBonusService _collectionBonusService;
         private bool _pendingRewardCalculated;
 
@@ -28,14 +26,12 @@ namespace OfflineIncome
             ITimeService timeService,
             IShopRuntimeSave shopSave,
             IOfflineIncomeRuntimeSave save,
-            IPlayerFeatureUnlockService featureUnlockService,
             ICardCollectionBonusService collectionBonusService)
         {
             _config = config;
             _timeService = timeService;
             _shopSave = shopSave;
             _save = save;
-            _featureUnlockService = featureUnlockService;
             _collectionBonusService = collectionBonusService;
         }
 
@@ -97,14 +93,6 @@ namespace OfflineIncome
         private void CalculatePendingReward()
         {
             long nowTicks = _timeService.CurrentUtcTicks;
-
-            if (!_featureUnlockService.IsUnlocked(PlayerFeatureType.OfflineIncome))
-            {
-                _save.SetLastOnlineTicks(nowTicks);
-                PendingReward = 0;
-                PendingElapsedSeconds = 0;
-                return;
-            }
 
             long lastTicks = _save.LastOnlineTicks;
 

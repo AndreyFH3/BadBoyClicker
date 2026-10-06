@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Chests;
 using DailyLogin;
 using Utils;
 using GameLocalization;
@@ -9,11 +10,16 @@ namespace DailyLoginMVP
     {
         private readonly IDailyLoginService _dailyLoginService;
         private readonly ILocalizationService _localization;
+        private readonly ChestConfig _chestConfig;
 
-        public DailyLoginModel(IDailyLoginService dailyLoginService, ILocalizationService localization)
+        public DailyLoginModel(
+            IDailyLoginService dailyLoginService,
+            ILocalizationService localization,
+            ChestConfig chestConfig)
         {
             _dailyLoginService = dailyLoginService;
             _localization = localization;
+            _chestConfig = chestConfig;
         }
 
         public bool HasReward
@@ -77,13 +83,31 @@ namespace DailyLoginMVP
                     return reward.HasAmountRange
                         ? $"{reward.Amount.ConvertFromLongToString()}-{reward.AmountMax.ConvertFromLongToString()}"
                         : reward.Amount.ConvertFromLongToString();
-                case RewardType.Boost:
                 case RewardType.Chest:
+                    // Never show the raw id ("Chest_2") - fall back to the chest's own title.
+                    ChestConfig.ChestData chest = _chestConfig != null
+                        ? _chestConfig.GetChest(reward.RewardId)
+                        : null;
+                    return chest == null
+                        ? reward.RewardId
+                        : LocalizeOrFallback(chest.TitleLocalizationKey, chest.Title);
+                case RewardType.Boost:
                 case RewardType.Cosmetic:
                     return reward.RewardId;
                 default:
                     return string.Empty;
             }
+        }
+
+        private string LocalizeOrFallback(string key, string fallback)
+        {
+            if (string.IsNullOrEmpty(key))
+            {
+                return fallback;
+            }
+
+            string localized = _localization.Localize(key);
+            return string.IsNullOrEmpty(localized) || localized == key ? fallback : localized;
         }
     }
 }

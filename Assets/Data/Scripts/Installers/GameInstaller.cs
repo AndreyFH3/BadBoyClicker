@@ -13,7 +13,6 @@ using DailyLoginMVP;
 using DailyQuests;
 using DailyQuestMVP;
 using PlayerProgression;
-using PlayerFeatures;
 using QuestSystem;
 using CardCollections;
 using CardCollectionMVP;
@@ -26,7 +25,8 @@ using Customization;
 using Analytics;
 using Purchases;
 using RewardActivation;
-using Tutorials;
+using Leaderboards;
+using LeaderboardMVP;
 
 namespace Installer
 {
@@ -51,7 +51,7 @@ namespace Installer
         [SerializeField] private RewardedAdErrorView _rewardedAdErrorView;
         [SerializeField] private AdLoadingOverlay _adLoadingOverlay;
         [SerializeField] private CustomizationView _customizationView;
-        [SerializeField] private TutorialView _tutorialView;
+        [SerializeField] private LeaderboardView _leaderboardView;
         [SerializeField] private StartupLoadingView _startupLoadingView;
 
         public override void InstallBindings()
@@ -82,7 +82,6 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<RewardActivationService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<ChestRewardService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PlayerProgressionService>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<PlayerFeatureUnlockService>().AsSingle().NonLazy();
             Container.Bind<ITimeService>().To<LocalTimeService>().AsSingle().NonLazy();
             Container.Bind<IRewardService>().To<RewardService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyLoginService>().AsSingle().NonLazy();
@@ -90,6 +89,7 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<CardCollectionService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CardCollectionBonusService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CustomizationService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<LeaderboardService>().AsSingle().NonLazy();
             Container.Bind<IDailyLoginStartupGate>().To<DailyLoginStartupGate>().AsSingle().NonLazy();
             EnsureAdLoadingOverlay();
             Container.Bind<IRewardedAdsService>().To<YGRewardedAdsService>().AsSingle().NonLazy();
@@ -188,10 +188,10 @@ namespace Installer
             else
                 Container.Bind<ICustomizationView>().To<CustomizationNullView>().AsSingle().NonLazy();
 
-            if (_tutorialView != null)
-                Container.Bind<ITutorialView>().FromInstance(_tutorialView).AsSingle().NonLazy();
+            if (_leaderboardView != null)
+                Container.Bind<ILeaderboardView>().FromInstance(_leaderboardView).AsSingle().NonLazy();
             else
-                Container.Bind<ITutorialView>().To<TutorialNullView>().AsSingle().NonLazy();
+                Container.Bind<ILeaderboardView>().To<LeaderboardNullView>().AsSingle().NonLazy();
 
             Container.BindInterfacesAndSelfTo<DailyLoginModel>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<DailyLoginPresenter>().AsSingle().NonLazy();
@@ -206,11 +206,11 @@ namespace Installer
             Container.BindInterfacesAndSelfTo<AdBonusOfferPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CustomizationModel>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<CustomizationPresenter>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<LeaderboardPresenter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<OfflineIncomeActivityTracker>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameStartRouter>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<QuestService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<GameAnalyticsController>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<TutorialModel>().AsSingle().NonLazy();
         }
 
         private AdBonusOfferView CreateRuntimeAdBonusOfferView()

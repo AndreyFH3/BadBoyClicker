@@ -63,7 +63,7 @@ MonoBehaviour:
       _amountMax: 0
       _rewardId: Chest_1
       _icon: {fileID: 7204593959208558865, guid: 70f431c04906996459960caf8a378d22, type: 3}
-      _displayTextLocalizationKey: 
+      _displayTextLocalizationKey: chest.chest_1.title
       _displayText: Common chest
     _isMilestone: 0
     _cycleRewards: []
@@ -144,7 +144,7 @@ MonoBehaviour:
       _amountMax: 0
       _rewardId: click_x2_15min
       _icon: {fileID: 972382534978555927, guid: 5f03b9420226f1d4b9eab21403cf7054, type: 3}
-      _displayTextLocalizationKey: 
+      _displayTextLocalizationKey: chest.reward.click_x2_15min
       _displayText: x2 click income (15 min)
     _isMilestone: 0
     _cycleRewards: []
@@ -155,7 +155,7 @@ MonoBehaviour:
       _amountMax: 0
       _rewardId: Chest_2
       _icon: {fileID: 1305596846199975976, guid: 70f431c04906996459960caf8a378d22, type: 3}
-      _displayTextLocalizationKey: 
+      _displayTextLocalizationKey: chest.chest_2.title
       _displayText: Rare chest
     _isMilestone: 0
     _cycleRewards: []
@@ -166,7 +166,7 @@ MonoBehaviour:
       _amountMax: 0
       _rewardId: Chest_2
       _icon: {fileID: 1305596846199975976, guid: 70f431c04906996459960caf8a378d22, type: 3}
-      _displayTextLocalizationKey: 
+      _displayTextLocalizationKey: chest.chest_2.title
       _displayText: Rare chest
     _isMilestone: 0
     _cycleRewards: []

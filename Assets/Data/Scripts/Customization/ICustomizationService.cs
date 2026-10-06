@@ -12,7 +12,6 @@ namespace Customization
         event Action<CustomizationItemType, string> ActiveItemChanged;
         event Action<CustomizationItemType, string, long> ItemBought;
 
-        bool IsUnlocked { get; }
         string ActiveBackgroundId { get; }
         string ActiveCatId { get; }
         Sprite ActiveBackgroundSprite { get; }

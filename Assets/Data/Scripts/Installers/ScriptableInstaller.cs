@@ -1,7 +1,6 @@
 using Core;
 using DailyLogin;
 using DailyQuests;
-using PlayerFeatures;
 using QuestSystem;
 using CardCollections;
 using Chests;
@@ -9,7 +8,7 @@ using GameLocalization;
 using GameAudio;
 using AdBonusOffers;
 using Customization;
-using Tutorials;
+using Leaderboards;
 using UnityEngine;
 using Zenject;
 
@@ -18,7 +17,6 @@ public class ScriptableInstaller : ScriptableObjectInstaller
 {
     [SerializeField] protected GameConfig _config;
     [SerializeField] protected DailyLoginConfig _dailyLoginConfig;
-    [SerializeField] protected PlayerFeatureUnlockConfig _featureUnlockConfig;
     [SerializeField] protected QuestConfig _questConfig;
     [SerializeField] protected DailyQuestConfig _dailyQuestConfig;
     [SerializeField] protected CardCollectionConfig _cardCollectionConfig;
@@ -27,7 +25,7 @@ public class ScriptableInstaller : ScriptableObjectInstaller
     [SerializeField] protected AudioConfig _audioConfig;
     [SerializeField] protected AdBonusOfferConfig _adBonusOfferConfig;
     [SerializeField] protected CustomizationConfig _customizationConfig;
-    [SerializeField] protected TutorialConfig _tutorialConfig;
+    [SerializeField] protected LeaderboardConfig _leaderboardConfig;
     
     public override void InstallBindings()
     {
@@ -38,12 +36,6 @@ public class ScriptableInstaller : ScriptableObjectInstaller
             : ScriptableObject.CreateInstance<DailyLoginConfig>();
 
         Container.Bind<DailyLoginConfig>().FromInstance(dailyLoginConfig).AsSingle().NonLazy();
-
-        PlayerFeatureUnlockConfig featureUnlockConfig = _featureUnlockConfig != null
-            ? _featureUnlockConfig
-            : ScriptableObject.CreateInstance<PlayerFeatureUnlockConfig>();
-
-        Container.Bind<PlayerFeatureUnlockConfig>().FromInstance(featureUnlockConfig).AsSingle().NonLazy();
 
         QuestConfig questConfig = _questConfig != null
             ? _questConfig
@@ -93,10 +85,10 @@ public class ScriptableInstaller : ScriptableObjectInstaller
 
         Container.Bind<CustomizationConfig>().FromInstance(customizationConfig).AsSingle().NonLazy();
 
-        TutorialConfig tutorialConfig = _tutorialConfig != null
-            ? _tutorialConfig
-            : ScriptableObject.CreateInstance<TutorialConfig>();
+        LeaderboardConfig leaderboardConfig = _leaderboardConfig != null
+            ? _leaderboardConfig
+            : ScriptableObject.CreateInstance<LeaderboardConfig>();
 
-        Container.Bind<TutorialConfig>().FromInstance(tutorialConfig).AsSingle().NonLazy();
+        Container.Bind<LeaderboardConfig>().FromInstance(leaderboardConfig).AsSingle().NonLazy();
     }
 }
