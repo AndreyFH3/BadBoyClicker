@@ -102,26 +102,29 @@ namespace Core
 
         private bool CanSpend(long currentValue, long amount)
         {
-            ValidateAmount(amount);
-            return currentValue >= amount;
+            return IsValidAmount(amount) && currentValue >= amount;
         }
 
         private void Add(ref long currentValue, long amount, System.Action currencyChanged, System.Action<long> added)
         {
-            ValidateAmount(amount);
-            if (amount == 0)
+            if (!IsValidAmount(amount) || amount == 0)
             {
                 return;
             }
 
-            currentValue += amount;
+            // Idle income grows exponentially, so clamp instead of wrapping to a negative balance.
+            currentValue = amount > long.MaxValue - currentValue ? long.MaxValue : currentValue + amount;
             NotifyChanged(currencyChanged);
             added?.Invoke(amount);
         }
 
         private bool Spend(ref long currentValue, long amount, System.Action currencyChanged, System.Action<long> spent)
         {
-            ValidateAmount(amount);
+            if (!IsValidAmount(amount))
+            {
+                return false;
+            }
+
             if (amount == 0)
             {
                 return true;
@@ -144,12 +147,15 @@ namespace Core
             OnChanged?.Invoke();
         }
 
-        private void ValidateAmount(long amount)
+        private bool IsValidAmount(long amount)
         {
             if (amount < 0)
             {
-                Debug.Log($"{nameof(amount)}, {amount}, Amount cannot be negative.");
+                Debug.LogError($"Wallet amount cannot be negative: {amount}.");
+                return false;
             }
+
+            return true;
         }
 
         public SaveData Get()
